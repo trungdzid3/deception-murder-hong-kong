@@ -7,8 +7,14 @@ import {
 } from 'lucide-react';
 import { ROLES, MEANS_CARDS, CLUE_CARDS, CAUSE_OF_DEATH, LOCATIONS, SCENE_TILES } from './data/game-data';
 
-// Khởi tạo Socket.IO an toàn 100% trên Vercel Production
+// Khởi tạo Socket.IO: ưu tiên biến môi trường VITE_SOCKET_URL (set trong Vercel),
+// fallback về localhost:3001 khi local, hoặc window.location.origin khi production (chỉ khi server hỗ trợ websocket on same origin).
 const getSocketUrl = () => {
+  // use explicit env var if provided (recommended for production websocket server)
+  if (import.meta.env && import.meta.env.VITE_SOCKET_URL) {
+    return import.meta.env.VITE_SOCKET_URL;
+  }
+
   if (typeof window !== 'undefined') {
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       return 'http://localhost:3001';
