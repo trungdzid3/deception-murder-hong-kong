@@ -298,11 +298,8 @@ function App() {
       socket.off('accusation-failed');
       socket.off('game-reset');
       socket.off('error-msg');
-      socket.off('voice-peer-joined');
-      socket.off('voice-signal-received');
-      socket.off('voice-peer-left');
     };
-  }, [roomState, isMuted]);
+  }, [roomState]);
 
   // Actions
   const handleCreateRoom = () => {
