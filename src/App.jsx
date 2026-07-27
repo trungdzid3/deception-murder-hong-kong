@@ -88,6 +88,14 @@ function App() {
   const localStreamRef = useRef(null);
   const roomStateRef = useRef(roomState);
   const chatEndRef = useRef(null);
+  const isChatOpenRef = useRef(isChatOpen);
+
+  useEffect(() => {
+    isChatOpenRef.current = isChatOpen;
+    if (isChatOpen) {
+      setUnreadChatCount(0);
+    }
+  }, [isChatOpen]);
 
   useEffect(() => {
     roomStateRef.current = roomState;
@@ -351,7 +359,9 @@ function App() {
       });
 
       if (chatPayload.senderId !== socket.id) {
-        setUnreadChatCount(prev => prev + 1);
+        if (!isChatOpenRef.current) {
+          setUnreadChatCount(prev => prev + 1);
+        }
         setLatestChatToast(chatPayload);
         setTimeout(() => {
           setLatestChatToast(prev => (prev?.id === chatPayload.id ? null : prev));
@@ -837,24 +847,27 @@ function App() {
                         key={player.id}
                         className={`member-hub-card ${isTopCandidate ? 'is-forensic-selected' : ''}`}
                       >
-                        <div className="member-avatar-box">
+                        <div className="member-avatar-box shrink-0">
                           {player.isBot ? <Zap size={20} className="text-amber-400" /> : <Shield size={20} className="text-blue-400" />}
                         </div>
-                        <div className="member-details" onClick={() => handleVoteForensic(player.id)} style={{ cursor: 'pointer', flex: 1 }}>
-                          <span className="member-name flex items-center gap-1">
-                            {player.name} {player.id === socket.id && '(Bạn)'}
-                            {isPlayerHost && <span className="badge-host-crown">Chủ phòng</span>}
-                          </span>
-                          <span className="member-type-tag">
-                            {isTopCandidate ? 'Dẫn đầu Pháp Y' : player.isBot ? 'Bot tự động' : player.isReady ? '✓ Đã sẵn sàng' : '⏳ Chưa sẵn sàng'}
-                          </span>
-                          <div className="mt-1 flex items-center gap-1 text-xs">
-                            <span className={`px-2 py-0.5 rounded-full font-bold text-xs ${votes > 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-slate-800 text-slate-400'}`}>{votes} Phiếu</span>
+
+                        <div className="member-details cursor-pointer flex-1 min-w-0" onClick={() => handleVoteForensic(player.id)}>
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="font-extrabold text-white text-sm truncate max-w-[120px]" title={player.name}>
+                              {player.name} {player.id === socket.id && '(Bạn)'}
+                            </span>
+                            {isPlayerHost && <span className="badge-host-crown">👑 Chủ phòng</span>}
+                          </div>
+                          <div className="text-[0.72rem] mt-0.5 font-semibold truncate">
+                            {isTopCandidate ? <span className="text-amber-400 font-extrabold">⭐ Dẫn đầu Pháp Y</span> : player.isBot ? <span className="text-slate-400">🤖 Bot tự động</span> : player.isReady ? <span className="text-emerald-400 font-bold">✓ Đã sẵn sàng</span> : <span className="text-slate-400">⏳ Chưa sẵn sàng</span>}
+                          </div>
+                          <div className="mt-1 flex items-center gap-1.5 text-xs">
+                            <span className={`px-2 py-0.5 rounded-full font-extrabold text-[0.68rem] ${votes > 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-slate-800/80 text-slate-400'}`}>{votes} Phiếu</span>
                             {isMyVotedTarget && <span className="text-emerald-400 font-extrabold text-[0.65rem]">(Bạn đã bầu)</span>}
                           </div>
                         </div>
 
-                        {isTopCandidate && <div className="selected-crown-badge"><Crown size={20} /></div>}
+                        {isTopCandidate && <div className="selected-crown-badge"><Crown size={18} /></div>}
 
                         {/* NÚT KICK DÀNH RIÊNG CHO CHỦ PHÒNG */}
                         {isHost && player.id !== socket.id && (

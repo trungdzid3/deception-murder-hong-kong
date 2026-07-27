@@ -647,8 +647,9 @@ io.on('connection', (socket) => {
 
   // 13. WebRTC Voice Chat Signaling Handlers
   socket.on('voice-join', ({ roomCode }) => {
-    if (roomCode) {
-      socket.to(roomCode).emit('voice-peer-joined', { socketId: socket.id });
+    const code = (roomCode || '').trim().toUpperCase();
+    if (code) {
+      socket.to(code).emit('voice-peer-joined', { socketId: socket.id });
     }
   });
 
@@ -662,12 +663,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('voice-mute-state', ({ roomCode, isMuted }) => {
-    const room = rooms[roomCode];
+    const code = (roomCode || '').trim().toUpperCase();
+    const room = rooms[code];
     if (room) {
       const player = room.players.find(p => p.id === socket.id);
       if (player) {
         player.isMuted = isMuted;
-        io.to(roomCode).emit('room-updated', room);
+        io.to(code).emit('room-updated', room);
       }
     }
   });
