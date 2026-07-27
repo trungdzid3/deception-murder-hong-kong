@@ -711,15 +711,6 @@ function App() {
                   <span>Số người chơi: <strong className="text-amber-400">{totalPlayers}/12</strong></span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button 
-                    onClick={toggleMusic}
-                    className={`btn btn-sm ${isPlayingMusic ? 'btn-music-active' : 'btn-music-muted'} font-bold flex items-center gap-1.5`}
-                    title="Bật/Tắt Nhạc nền Sherlock Holmes"
-                  >
-                    {isPlayingMusic ? <Volume2 size={14} /> : <VolumeX size={14} />}
-                    <span>{isPlayingMusic ? 'NHẠC BẬT' : 'NHẠC TẮT'}</span>
-                  </button>
-
                   {/* CHỦ PHÒNG MỚI THẤY NÚT THÊM/XÓA BOT */}
                   {isHost ? (
                     <div className="bot-actions-group">
