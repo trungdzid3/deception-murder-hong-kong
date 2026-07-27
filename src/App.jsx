@@ -71,7 +71,7 @@ function App() {
   const [forensicBullets, setForensicBullets] = useState({});
 
   // Game Selection / Sherlock States
-  const [showGameSelectModal, setShowGameSelectModal] = useState(false);
+  const [selectedGameForModal, setSelectedGameForModal] = useState(null); // 'deception' | 'sherlock' | null
   const [sherlockSearchQuery, setSherlockSearchQuery] = useState('');
   const [sherlockSelectedNodeId, setSherlockSelectedNodeId] = useState(null);
   const [sherlockAnswers, setSherlockAnswers] = useState({});
@@ -675,101 +675,120 @@ function App() {
             </div>
 
             {/* DANH SÁCH CÁC CHẾ ĐỘ GAME TRINH THÁM (GAME MODES GALLERY) */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Compass size={16} /> CHỌN CHẾ ĐỘ GAME ĐỂ TẠO PHÒNG MỚI:
-                </span>
-                <span className="text-[0.7rem] text-slate-400">Chọn chế độ bạn muốn làm Chủ phòng</span>
+            <div className="multi-game-landing-grid mt-4">
+              
+              {/* GAME 1: DECEPTION */}
+              <div className="game-mode-card deception-theme">
+                <div>
+                  <div className="game-mode-header">
+                    <div className="game-mode-title" style={{ fontSize: '1.35rem', fontWeight: 900 }}>
+                      <Skull className="text-rose-500" size={24} />
+                      <span>DECEPTION</span>
+                    </div>
+                    <span className="game-mode-tag">Ẩn vai trò</span>
+                  </div>
+                  <p className="game-mode-desc">
+                    Vụ án mạng tại Hồng Kông. Pháp Y ra hiệu manh mối, hung thủ ẩn mình đổ tội, các thám tử truy tìm sự thật.
+                  </p>
+                </div>
+                <div>
+                  <div className="game-mode-meta">
+                    <span>👥 3 - 12 Người</span>
+                    <span>⏱️ 15 - 20 Phút</span>
+                  </div>
+                  <button 
+                    onClick={() => setSelectedGameForModal('deception')}
+                    className="btn-mode-create"
+                  >
+                    <Play size={16} /> CHƠI NGAY
+                  </button>
+                </div>
               </div>
 
-              <div className="multi-game-landing-grid">
-                
-                {/* GAME 1: DECEPTION */}
-                <div className="game-mode-card deception-theme">
-                  <div>
-                    <div className="game-mode-header">
-                      <div className="game-mode-title">
-                        <Skull className="text-rose-500" size={22} />
-                        <span>DECEPTION</span>
-                      </div>
-                      <span className="game-mode-tag">Ẩn vai trò</span>
+              {/* GAME 2: SHERLOCK HOLMES */}
+              <div className="game-mode-card sherlock-theme">
+                <div>
+                  <div className="game-mode-header">
+                    <div className="game-mode-title" style={{ fontSize: '1.35rem', fontWeight: 900 }}>
+                      <Search className="text-amber-500" size={24} />
+                      <span>SHERLOCK HOLMES</span>
                     </div>
-                    <p className="game-mode-desc">
-                      Một vụ án mạng tại Hồng Kông. Một Pháp Y bí mật ra hiệu, hung thủ ẩn mình đổ tội, các thám tử truy tìm manh mối.
-                    </p>
+                    <span className="game-mode-tag">Đọc kỳ án</span>
                   </div>
-                  <div>
-                    <div className="game-mode-meta">
-                      <span>👥 3 - 12 Người</span>
-                      <span>⏱️ 15 - 20 Phút</span>
-                    </div>
-                    <button 
-                      onClick={() => handleCreateRoom('deception')}
-                      className="btn-mode-create"
-                    >
-                      <Play size={16} /> TẠO PHÒNG DECEPTION
-                    </button>
-                  </div>
+                  <p className="game-mode-desc">
+                    Hợp tác giải vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ London, thẩm vấn nhân chứng và phá án.
+                  </p>
                 </div>
-
-                {/* GAME 2: SHERLOCK HOLMES */}
-                <div className="game-mode-card sherlock-theme">
-                  <div>
-                    <div className="game-mode-header">
-                      <div className="game-mode-title">
-                        <Search className="text-amber-500" size={22} />
-                        <span>SHERLOCK HOLMES</span>
-                      </div>
-                      <span className="game-mode-tag">Đọc kỳ án</span>
-                    </div>
-                    <p className="game-mode-desc">
-                      Hợp tác điều tra vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ London, thẩm vấn nhân chứng và phá án.
-                    </p>
+                <div>
+                  <div className="game-mode-meta">
+                    <span>👥 1 - 8 Người</span>
+                    <span>⏱️ 30 - 45 Phút</span>
                   </div>
-                  <div>
-                    <div className="game-mode-meta">
-                      <span>👥 1 - 8 Người</span>
-                      <span>⏱️ 30 - 45 Phút</span>
-                    </div>
-                    <button 
-                      onClick={() => handleCreateRoom('sherlock')}
-                      className="btn-mode-create"
-                    >
-                      <Play size={16} /> TẠO PHÒNG SHERLOCK
-                    </button>
-                  </div>
+                  <button 
+                    onClick={() => setSelectedGameForModal('sherlock')}
+                    className="btn-mode-create"
+                  >
+                    <Play size={16} /> CHƠI NGAY
+                  </button>
                 </div>
-
               </div>
+
             </div>
 
-            {/* SECTION THAM GIA PHÒNG CÓ SẴN */}
-            <div className="action-tile-card join-tile mt-4">
-              <div className="flex items-center gap-3">
-                <div className="tile-icon-wrapper text-amber-400 shrink-0">
-                  <KeyRound size={26} />
-                </div>
-                <div className="tile-content flex-1">
-                  <h3 className="text-sm font-extrabold text-white">THAM GIA PHÒNG CÓ SẴN</h3>
-                  <p className="text-xs text-slate-400">Nhập Mã PIN 4 ký tự do bạn bè chia sẻ để tham gia ngay</p>
-                </div>
-              </div>
+            {/* MODAL POPUP CHỌN TẠO PHÒNG HOẶC THAM GIA CHO GAME ĐÃ CHỌN */}
+            {selectedGameForModal && (
+              <div className="modal-overlay" onClick={() => setSelectedGameForModal(null)}>
+                <div className="modal-card" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '520px' }}>
+                  <div className="modal-header">
+                    <h3 className="flex items-center gap-2">
+                      {selectedGameForModal === 'sherlock' ? <Search size={22} className="text-amber-400" /> : <Skull size={22} className="text-rose-500" />}
+                      SẢNH VÀO GAME: {selectedGameForModal === 'sherlock' ? 'SHERLOCK HOLMES' : 'DECEPTION'}
+                    </h3>
+                    <button onClick={() => setSelectedGameForModal(null)}><X size={18} /></button>
+                  </div>
+                  
+                  <div className="modal-body py-4 space-y-4">
+                    {/* OPTION 1: TẠO PHÒNG MỚI */}
+                    <div className="p-4 rounded-xl border border-amber-500/30 bg-slate-950/70 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <Compass className="text-amber-400" size={20} />
+                        <h4 className="font-extrabold text-white text-sm">TẠO PHÒNG CHƠI MỚI</h4>
+                      </div>
+                      <p className="text-xs text-slate-300">Khởi tạo phòng mới với vai trò Chủ phòng và mời bạn bè tham gia.</p>
+                      <button 
+                        onClick={() => handleCreateRoom(selectedGameForModal)}
+                        className="btn btn-md btn-primary w-full mt-2 font-black tracking-wider"
+                      >
+                        + TẠO PHÒNG NGAY
+                      </button>
+                    </div>
 
-              <div className="pin-input-group mt-3">
-                <input 
-                  type="text"
-                  className="pin-code-field text-center font-black tracking-widest"
-                  placeholder="MÃ PIN (VD: R7S3)"
-                  value={roomCode}
-                  onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
-                  onKeyDown={(e) => e.key === 'Enter' && handleJoinRoom()}
-                />
-                <button onClick={handleJoinRoom} className="btn btn-md btn-gold-draw font-black tracking-wider whitespace-nowrap">
-                  VÀO PHÒNG
-                </button>
+                    {/* OPTION 2: THAM GIA PHÒNG CÓ SẴN */}
+                    <div className="p-4 rounded-xl border border-slate-700 bg-slate-950/70 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <KeyRound className="text-amber-400" size={20} />
+                        <h4 className="font-extrabold text-white text-sm">THAM GIA PHÒNG CÓ SẴN</h4>
+                      </div>
+                      <p className="text-xs text-slate-300">Nhập Mã PIN 4 ký tự do bạn bè chia sẻ để tham gia.</p>
+                      <div className="pin-input-group mt-2">
+                        <input 
+                          type="text"
+                          className="pin-code-field text-center font-black tracking-widest"
+                          placeholder="MÃ PIN (VD: R7S3)"
+                          value={roomCode}
+                          onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+                          onKeyDown={(e) => e.key === 'Enter' && handleJoinRoom()}
+                        />
+                        <button onClick={handleJoinRoom} className="btn btn-md btn-gold-draw font-extrabold">
+                          VÀO PHÒNG
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
-            </div>
+            )}
 
           </div>
         </main>
