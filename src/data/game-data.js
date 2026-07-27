@@ -215,7 +215,6 @@ export const MEANS_CARDS = Array.from({ length: 90 }, (_, i) => {
   };
 });
 
-// CHUẨN 200 THẺ ĐẦU MỐI (CLUE CARDS)
 export const CLUE_CARDS = Array.from({ length: 200 }, (_, i) => {
   const baseClues = [
     'Giày cao gót', 'Tàn thuốc lá', 'Gạt tàn', 'Báo cũ', 'Điều khiển từ xa', 'Thư rác', 'Kính cận', 'Son môi', 'Nhẫn cưới', 'Đồng hồ đeo tay',
@@ -223,9 +222,9 @@ export const CLUE_CARDS = Array.from({ length: 200 }, (_, i) => {
     'Bã cao su', 'Táo cắn dở', 'Xửng hấp tre', 'Đũa ăn', 'Chim dây cót', 'Tượng rồng', 'Mặt nạ', 'Tranh sơn dầu', 'Báo cáo y tế', 'Cuốn nhật ký',
     'Tác phẩm Cộng hòa', 'Bản đồ thành phố', 'Thư tình', 'Chi phiếu giả', 'Bánh gạo Tteok', 'Bạch tuộc sống', 'Phô mai Feta', 'Bọt biển thiên nhiên', 'Vé xem phim', 'Tai nghe Bluetooth',
     'Bút mực chảy', 'Dây chuyền vàng', 'Kính áp tròng', 'Nước hoa đắt tiền', 'Bông tai ngọc trai', 'Vết cà phê', 'Mảnh sơn móng tay', 'Chiếc cúc áo bị rứt', 'Lông chó mèo', 'Túi nilon rác',
-    'Hóa đơn thanh toán', 'Báo cáo khám nghiệm', 'Dây thắt lưng đứt', 'Dấu chân giầy dơ', 'Mảnh băng gạc', 'Khăn tay thêu chữ', 'Hộp quẹt diêm cháy', 'USB nén dữ liệu', 'Metal Hair Clip', 'Vé máy bay khứ hồi',
+    'Hóa đơn thanh toán', 'Báo cáo khám nghiệm', 'Dây thắt lưng đứt', 'Dấu chân giầy dơ', 'Mảnh băng gạc', 'Khăn tay thêu chữ', 'Hộp quẹt diêm cháy', 'USB nén dữ liệu', 'Kẹp tóc kim loại', 'Vé máy bay khứ hồi',
     'Brooch cài áo', 'Chìa khóa xe hơi', 'Vết son trên ly', 'Bông tai kim cương', 'Bút chì gãy', 'Sổ tay bỏ túi', 'Kính lúp nhỏ', 'Dây thắt nơ', 'Hạt nếp nương', 'Khăn len đan tay',
-    'Vết dầu mỡ', 'Vết tàn thuốc ngắt', 'Mảnh báo rách', 'Móc chìa khóa hình gấu', 'Bột phấn trang điểm', 'Hạt cúc áo kim loại', 'Bìa hồ sơ lưu trữ', 'Mảnh lụa tơ tằm', 'Fingernail Piece', 'Vết sơn tường',
+    'Vết dầu mỡ', 'Vết tàn thuốc ngắt', 'Mảnh báo rách', 'Móc chìa khóa hình gấu', 'Bột phấn trang điểm', 'Hạt cúc áo kim loại', 'Bìa hồ sơ lưu trữ', 'Mảnh lụa tơ tằm', 'Mảnh móng tay', 'Vết sơn tường',
     'Băng cassette cũ', 'Lông vũ thiên nga', 'Mảnh đĩa CD vỡ', 'Đèn pin cá nhân', 'Đồng xu cổ', 'Hạt chuỗi tràng hạt', 'Bao thư đóng dấu', 'Bút dạ quang', 'Mảnh sứ cổ', 'Khăn bạt nhựa',
     'Hộp phấn nụ', 'Vết bùn đất đỏ', 'Thẻ căn cước', 'Sổ tiết kiệm', 'Gương soi bỏ túi', 'Vé xổ số kiến thiết', 'Dây nịt quấn', 'Mảnh vải nhung', 'Dấu vết dầu hỏa', 'Vết chân chó',
     'Túi xách da', 'Bao tay y tế', 'Bông tẩy trang', 'Lọ thuốc nắp đỏ', 'Chiếc nhẫn ngọc bích', 'Mảnh gạch hoa', 'Bao lì xì đỏ', 'Vết mực xanh', 'Chiếc kẹp ghim', 'Miếng dán hạ sốt',
@@ -235,7 +234,9 @@ export const CLUE_CARDS = Array.from({ length: 200 }, (_, i) => {
     'Bàn chải đánh răng', 'Lược chải tóc', 'Lọ sơn móng tay', 'Mảnh giấy ghi chú', 'Chiếc thắt lưng vải', 'Hạt dưa đỏ', 'Chiếc móc áo', 'Lọ dầu gió', 'Miếng cao dán', 'Dây thun cột',
     'Tấm bưu thiếp', 'Sổ nốt nhạc', 'Chiếc còi cứu hộ', 'Gương chiếu hậu', 'Vết cà chua', 'Chiếc khẩu trang', 'Thẻ từ thang máy', 'Chìa khóa két sắt', 'Mảnh kính vỡ nhỏ', 'Hạt nút gỗ',
     'Chiếc thìa inox', 'Vết son sẫm', 'Túi trà lọc', 'Mảnh dây thừng rơm', 'Lọ keo 502', 'Bao ni lông đen', 'Chiếc bật lửa dẹt', 'Vé bãi xe', 'Hộp quẹt diêm', 'Mảnh giấy khen',
-    'Tờ rơi quảng cáo', 'Sổ khám bệnh', 'Bút xóa', 'Bao bì bánh snack', 'Lọ vitamin', 'Chiếc ví cầm tay', 'Thẻ thành viên', 'Nhẫn bạc S925', 'Bông tai bạc', 'Dây chuyền bạc'
+    'Tờ rơi quảng cáo', 'Sổ khám bệnh', 'Bút xóa', 'Bao bì bánh snack', 'Lọ vitamin', 'Chiếc ví cầm tay', 'Thẻ thành viên', 'Nhẫn bạc S925', 'Bông tai bạc', 'Dây chuyền bạc',
+    'Bình xịt tạo màu', 'Bàn nạo phô mai', 'Thẻ xe buýt', 'Túi chườm đá', 'Khăn trải bàn đốm', 'Nút chai rượu vang', 'Hộp quẹt khè', 'Cây gãi lưng', 'Con tem bưu chính', 'Tấm vé xem kịch',
+    'Mảnh gạch men', 'Lọ hồ dán khô', 'Tờ giấy nốt dán', 'Chiếc nơ cài tóc', 'Túi đựng kính', 'Lọ tăm xỉa răng', 'Chiếc la bàn cổ', 'Túi muối y tế', 'Hạt nút áo gỗ', 'Chiếc nhẫn đính hôn'
   ];
   return {
     id: `c_${i + 1}`,
