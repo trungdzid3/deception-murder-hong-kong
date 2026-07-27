@@ -258,32 +258,7 @@ function App() {
       setErrorMsg('Bạn đã bị Chủ phòng kick khỏi phòng!');
     });
 
-    socket.on('voice-peer-joined', async ({ socketId }) => {
-      const pc = createPeerConnection(socketId);
-      const offer = await pc.createOffer();
-      await pc.setLocalDescription(offer);
-      const code = roomStateRef.current?.code;
-      if (code) {
-        socket.emit('voice-signal', { roomCode: code, targetSocketId: socketId, signal: { offer } });
-      }
-    });
 
-    socket.on('voice-signal-received', async ({ senderSocketId, signal }) => {
-      const pc = createPeerConnection(senderSocketId);
-      const code = roomStateRef.current?.code;
-      if (signal.offer) {
-        await pc.setRemoteDescription(new RTCSessionDescription(signal.offer));
-        const answer = await pc.createAnswer();
-        await pc.setLocalDescription(answer);
-        if (code) {
-          socket.emit('voice-signal', { roomCode: code, targetSocketId: senderSocketId, signal: { answer } });
-        }
-      } else if (signal.answer) {
-        await pc.setRemoteDescription(new RTCSessionDescription(signal.answer));
-      } else if (signal.candidate) {
-        try { await pc.addIceCandidate(new RTCIceCandidate(signal.candidate)); } catch (e) {}
-      }
-    });
 
     socket.on('receive-chat', (chatPayload) => {
       setChatMessages(prev => {
