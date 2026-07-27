@@ -46,6 +46,33 @@ function generateRoomCode() {
 // Quản lý Timer Server dựa trên Timestamp chuẩn xác 100%
 const roomTimers = {};
 
+function applyBotForensicSetup(room, roomCode) {
+  const forensicPlayer = room.players.find(p => p.id === room.forensicScientistId);
+  if (!forensicPlayer || !forensicPlayer.isBot) return;
+
+  room.bullets[room.causeOfDeathTile.id] = Math.floor(Math.random() * room.causeOfDeathTile.options.length);
+  room.bullets[room.locationTile.id] = Math.floor(Math.random() * room.locationTile.options.length);
+  room.activeSceneTiles.forEach(tile => {
+    room.bullets[tile.id] = Math.floor(Math.random() * tile.options.length);
+  });
+
+  room.phase = 'INVESTIGATION';
+  room.timerType = 'DISCUSSION';
+  room.endTime = Date.now() + 180 * 1000;
+  room.eventLog.push(`🤖 Pháp y (${forensicPlayer.name}) đã gắn đạn gợi ý! Bắt đầu Vòng 1 Điều tra (3 phút).`);
+  startRoomTimer(roomCode);
+}
+
+function finalizeMurderSolution(room, roomCode, clue, means, actorLabel = 'Hung thủ') {
+  if (!clue || !means) return;
+
+  room.secretSolution = { clue, means };
+  room.crimeChoiceDeadline = null;
+  room.phase = 'FORENSIC_SETUP';
+  room.eventLog.push(`${actorLabel} đã chốt đáp án! Pháp y bắt đầu gắn đạn gợi ý hiện trường.`);
+  applyBotForensicSetup(room, roomCode);
+}
+
 function startRoomTimer(roomCode) {
   if (roomTimers[roomCode]) clearInterval(roomTimers[roomCode]);
 
@@ -56,8 +83,23 @@ function startRoomTimer(roomCode) {
       return;
     }
 
+    const now = Date.now();
+
+    if (room.phase === 'CRIME_CHOICE') {
+      if (!room.secretSolution?.means && room.crimeChoiceDeadline && now >= room.crimeChoiceDeadline) {
+        const murdererPlayer = room.players.find(p => p.role?.id === 'murderer');
+        const randomMeans = murdererPlayer?.means?.[Math.floor(Math.random() * (murdererPlayer?.means?.length || 0))];
+        const randomClue = murdererPlayer?.clues?.[Math.floor(Math.random() * (murdererPlayer?.clues?.length || 0))];
+
+        if (randomMeans && randomClue) {
+          finalizeMurderSolution(room, roomCode, randomClue, randomMeans, `🤖 AI hỗ trợ Hung thủ (${murdererPlayer.name})`);
+          io.to(roomCode).emit('room-updated', room);
+        }
+      }
+      return;
+    }
+
     if (room.phase === 'INVESTIGATION') {
-      const now = Date.now();
       
       if (room.endTime && now >= room.endTime) {
         if (room.timerType === 'DISCUSSION') {
@@ -129,6 +171,7 @@ io.on('connection', (socket) => {
       secretSolution: { clue: null, means: null },
       round: 1,
       endTime: null,
+      crimeChoiceDeadline: null,
       timerType: 'DISCUSSION',
       votesForNextRound: [],
       needsTileDraw: false,
@@ -280,6 +323,7 @@ io.on('connection', (socket) => {
     room.winner = null;
     room.round = 1;
     room.endTime = null;
+    room.crimeChoiceDeadline = Date.now() + 20 * 1000;
     room.timerType = 'DISCUSSION';
     room.votesForNextRound = [];
     room.needsTileDraw = false;
@@ -335,23 +379,10 @@ io.on('connection', (socket) => {
     if (murdererPlayer && murdererPlayer.isBot) {
       const chosenMeans = murdererPlayer.means[Math.floor(Math.random() * murdererPlayer.means.length)];
       const chosenClue = murdererPlayer.clues[Math.floor(Math.random() * murdererPlayer.clues.length)];
-      room.secretSolution = { clue: chosenClue, means: chosenMeans };
-      room.phase = 'FORENSIC_SETUP';
-      room.eventLog.push(`🤖 Hung thủ (${murdererPlayer.name}) đã chốt đáp án! Pháp y bắt đầu gắn đạn hiện trường.`);
-
-      const forensicPlayer = room.players.find(p => p.id === room.forensicScientistId);
-      if (forensicPlayer && forensicPlayer.isBot) {
-        room.bullets[room.causeOfDeathTile.id] = Math.floor(Math.random() * room.causeOfDeathTile.options.length);
-        room.bullets[room.locationTile.id] = Math.floor(Math.random() * room.locationTile.options.length);
-        room.activeSceneTiles.forEach(tile => {
-          room.bullets[tile.id] = Math.floor(Math.random() * tile.options.length);
-        });
-        room.phase = 'INVESTIGATION';
-        room.timerType = 'DISCUSSION';
-        room.endTime = Date.now() + 180 * 1000;
-        startRoomTimer(roomCode);
-        room.eventLog.push(`🤖 Pháp y (${forensicPlayer.name}) đã gắn đạn gợi ý! Bắt đầu Vòng 1 Điều tra (3 phút).`);
-      }
+      finalizeMurderSolution(room, roomCode, chosenClue, chosenMeans, `🤖 Hung thủ (${murdererPlayer.name})`);
+    } else {
+      room.eventLog.push('⏱️ Hung thủ có 20 giây để chọn đáp án. Quá thời gian AI sẽ tự chọn giúp.');
+      startRoomTimer(roomCode);
     }
 
     io.to(roomCode).emit('room-updated', room);
@@ -363,23 +394,7 @@ io.on('connection', (socket) => {
     const room = rooms[roomCode];
     if (!room) return;
 
-    room.secretSolution = { clue, means };
-    room.phase = 'FORENSIC_SETUP';
-    room.eventLog.push('Hung thủ đã chốt đáp án! Pháp y bắt đầu gắn đạn gợi ý hiện trường.');
-
-    const forensicPlayer = room.players.find(p => p.id === room.forensicScientistId);
-    if (forensicPlayer && forensicPlayer.isBot) {
-      room.bullets[room.causeOfDeathTile.id] = Math.floor(Math.random() * room.causeOfDeathTile.options.length);
-      room.bullets[room.locationTile.id] = Math.floor(Math.random() * room.locationTile.options.length);
-      room.activeSceneTiles.forEach(tile => {
-        room.bullets[tile.id] = Math.floor(Math.random() * tile.options.length);
-      });
-      room.phase = 'INVESTIGATION';
-      room.timerType = 'DISCUSSION';
-      room.endTime = Date.now() + 180 * 1000;
-      startRoomTimer(roomCode);
-      room.eventLog.push(`🤖 Pháp y (${forensicPlayer.name}) đã gắn đạn gợi ý! Bắt đầu Vòng 1 Điều tra (3 phút).`);
-    }
+    finalizeMurderSolution(room, roomCode, clue, means, 'Hung thủ');
 
     io.to(roomCode).emit('room-updated', room);
   });
