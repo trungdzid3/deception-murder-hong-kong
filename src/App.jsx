@@ -638,23 +638,29 @@ function App() {
         </div>
       )}
 
-      {/* 1. MÀN HÌNH ĐẦU TIÊN: LANDING SCREEN */}
+      {/* 1. MÀN HÌNH ĐẦU TIÊN: LANDING SCREEN - DESIGN CHUẨN ĐA GAME (MULTI-GAME DETECTIVE HUB) */}
       {!inRoom && (
         <main className="cinematic-landing-wrapper landing-bg">
-          <div className="cinematic-landing-container">
+          <div className="cinematic-landing-container" style={{ maxWidth: '860px' }}>
             
-            <div className="hero-logo-box">
-              <div className="detective-emblem-badge">
+            {/* HERO BRAND HEADER */}
+            <div className="hero-logo-box text-center">
+              <div className="detective-emblem-badge mx-auto">
                 <div className="emblem-inner-glow">
-                  <Skull size={44} className="text-rose-400 stroke-[3]" />
-                  <Search size={32} className="text-amber-400 stroke-[3] emblem-glass-overlay" />
+                  <Skull size={40} className="text-rose-500 stroke-[2.5]" />
+                  <Search size={30} className="text-amber-400 stroke-[2.5] emblem-glass-overlay" />
                 </div>
-                <div className="badge-star-sticker">SHERLOCK</div>
+                <div className="badge-star-sticker">MULTI-GAME</div>
               </div>
-              <h1 className="cinematic-main-title">DECEPTION</h1>
-              <span className="cinematic-sub-title">MURDER IN HONG KONG</span>
+              <h1 className="cinematic-main-title tracking-wider" style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}>
+                DETECTIVE REALM
+              </h1>
+              <span className="cinematic-sub-title text-amber-400 tracking-widest font-extrabold" style={{ letterSpacing: '0.15em' }}>
+                HỆ THỐNG BOARDGAME TRINH THÁM CO-OP
+              </span>
             </div>
 
+            {/* INPUT NICKNAME */}
             <div className="cinematic-identity-card">
               <label className="identity-label">
                 <Search size={16} className="text-amber-400" /> NICKNAME THÁM TỬ CỦA BẠN:
@@ -665,105 +671,106 @@ function App() {
                 placeholder="Ví dụ: Thám tử Nam..."
                 value={playerName}
                 onChange={(e) => setPlayerName(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && setShowGameSelectModal(true)}
               />
             </div>
 
-            <div className="dual-action-grid">
-              <div className="action-tile-card create-tile" onClick={() => setShowGameSelectModal(true)}>
-                <div className="tile-icon-wrapper text-rose-400">
-                  <Compass size={32} />
-                </div>
-                <div className="tile-content">
-                  <h3>+ TẠO PHÒNG MỚI</h3>
-                  <p>Chọn game, khởi tạo phòng & Mời bạn bè</p>
-                </div>
-                <button onClick={() => setShowGameSelectModal(true)} className="btn btn-md btn-primary w-full mt-2 font-black tracking-wider">
-                  TẠO PHÒNG NGAY
-                </button>
+            {/* DANH SÁCH CÁC CHẾ ĐỘ GAME TRINH THÁM (GAME MODES GALLERY) */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Compass size={16} /> CHỌN CHẾ ĐỘ GAME ĐỂ TẠO PHÒNG MỚI:
+                </span>
+                <span className="text-[0.7rem] text-slate-400">Chọn chế độ bạn muốn làm Chủ phòng</span>
               </div>
 
-              <div className="action-tile-card join-tile">
-                <div className="tile-icon-wrapper text-amber-400">
-                  <KeyRound size={32} />
-                </div>
-                <div className="tile-content">
-                  <h3>THAM GIA PHÒNG</h3>
-                  <p>Nhập Mã phòng 4 ký tự để vào án mạng</p>
+              <div className="multi-game-landing-grid">
+                
+                {/* GAME 1: DECEPTION */}
+                <div className="game-mode-card deception-theme">
+                  <div>
+                    <div className="game-mode-header">
+                      <div className="game-mode-title">
+                        <Skull className="text-rose-500" size={22} />
+                        <span>DECEPTION</span>
+                      </div>
+                      <span className="game-mode-tag">Ẩn vai trò</span>
+                    </div>
+                    <p className="game-mode-desc">
+                      Một vụ án mạng tại Hồng Kông. Một Pháp Y bí mật ra hiệu, hung thủ ẩn mình đổ tội, các thám tử truy tìm manh mối.
+                    </p>
+                  </div>
+                  <div>
+                    <div className="game-mode-meta">
+                      <span>👥 3 - 12 Người</span>
+                      <span>⏱️ 15 - 20 Phút</span>
+                    </div>
+                    <button 
+                      onClick={() => handleCreateRoom('deception')}
+                      className="btn-mode-create"
+                    >
+                      <Play size={16} /> TẠO PHÒNG DECEPTION
+                    </button>
+                  </div>
                 </div>
 
-                <div className="pin-input-group mt-2">
-                  <input 
-                    type="text"
-                    className="pin-code-field"
-                    placeholder="MÃ PIN (VD: R7S3)"
-                    value={roomCode}
-                    onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
-                    onKeyDown={(e) => e.key === 'Enter' && handleJoinRoom()}
-                  />
-                  <button onClick={handleJoinRoom} className="btn btn-md btn-gold-draw font-extrabold">
-                    VÀO PHÒNG
-                  </button>
+                {/* GAME 2: SHERLOCK HOLMES */}
+                <div className="game-mode-card sherlock-theme">
+                  <div>
+                    <div className="game-mode-header">
+                      <div className="game-mode-title">
+                        <Search className="text-amber-500" size={22} />
+                        <span>SHERLOCK HOLMES</span>
+                      </div>
+                      <span className="game-mode-tag">Đọc kỳ án</span>
+                    </div>
+                    <p className="game-mode-desc">
+                      Hợp tác điều tra vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ London, thẩm vấn nhân chứng và phá án.
+                    </p>
+                  </div>
+                  <div>
+                    <div className="game-mode-meta">
+                      <span>👥 1 - 8 Người</span>
+                      <span>⏱️ 30 - 45 Phút</span>
+                    </div>
+                    <button 
+                      onClick={() => handleCreateRoom('sherlock')}
+                      className="btn-mode-create"
+                    >
+                      <Play size={16} /> TẠO PHÒNG SHERLOCK
+                    </button>
+                  </div>
                 </div>
+
               </div>
             </div>
 
-            {/* MODAL CHỌN GAME TRINH THÁM */}
-            {showGameSelectModal && (
-              <div className="modal-overlay" onClick={() => setShowGameSelectModal(false)}>
-                <div className="modal-card select-game-modal-card" onClick={(e) => e.stopPropagation()}>
-                  <div className="modal-header">
-                    <h3><Search size={22} className="text-amber-400" /> CHỌN GAME TRINH THÁM</h3>
-                    <button onClick={() => setShowGameSelectModal(false)} className="btn-close-modal"><X size={18} /></button>
-                  </div>
-                  <div className="modal-body py-4">
-                    <p className="text-xs text-slate-400 mb-4">Hãy chọn tựa game bạn muốn làm Chủ phòng và mời bạn bè tham gia:</p>
-                    
-                    <div className="select-game-grid">
-                      
-                      {/* CARD GAME DECEPTION */}
-                      <div 
-                        onClick={() => handleCreateRoom('deception')}
-                        className="select-game-option-card border-rose-950 bg-rose-950/20 hover:bg-rose-900/30 hover:border-rose-500/50 cursor-pointer transition-all"
-                      >
-                        <div className="option-card-header flex items-center gap-2 mb-2">
-                          <Skull className="text-rose-500" size={20} />
-                          <h4 className="font-extrabold text-white">DECEPTION: HỒNG KÔNG</h4>
-                        </div>
-                        <p className="option-card-desc text-xs text-slate-300 mb-4 leading-relaxed">
-                          Ẩn vai trò, lập luận suy đoán hung thủ qua manh mối. Một người làm Pháp Y cung cấp gợi ý, hung thủ ẩn mình đổ tội.
-                        </p>
-                        <div className="option-card-footer flex items-center justify-between text-xs">
-                          <span className="player-badge bg-rose-500/20 border border-rose-500/30 px-2 py-0.5 rounded text-rose-300 font-bold">👥 3 - 12 Người</span>
-                          <span className="select-arrow text-rose-400 flex items-center gap-0.5">Chọn <ArrowRight size={12} /></span>
-                        </div>
-                      </div>
-
-                      {/* CARD GAME SHERLOCK HOLMES */}
-                      <div 
-                        onClick={() => handleCreateRoom('sherlock')}
-                        className="select-game-option-card border-amber-950 bg-amber-950/20 hover:bg-amber-900/30 hover:border-amber-500/50 cursor-pointer transition-all"
-                      >
-                        <div className="option-card-header flex items-center gap-2 mb-2">
-                          <Search className="text-amber-500" size={20} />
-                          <h4 className="font-extrabold text-white">SHERLOCK HOLMES</h4>
-                        </div>
-                        <p className="option-card-desc text-xs text-slate-300 mb-4 leading-relaxed">
-                          Hợp tác giải mã kỳ án, đọc truyện lập luận, tra cứu bản đồ địa điểm và danh bạ để tìm ra chân tướng như Sherlock Holmes.
-                        </p>
-                        <div className="option-card-footer flex items-center justify-between text-xs">
-                          <span className="player-badge bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 rounded text-amber-300 font-bold">👥 1 - 8 Người</span>
-                          <span className="select-arrow text-amber-400 flex items-center gap-0.5">Chọn <ArrowRight size={12} /></span>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
+            {/* SECTION THAM GIA PHÒNG CÓ SẴN */}
+            <div className="action-tile-card join-tile mt-4">
+              <div className="flex items-center gap-3">
+                <div className="tile-icon-wrapper text-amber-400 shrink-0">
+                  <KeyRound size={26} />
+                </div>
+                <div className="tile-content flex-1">
+                  <h3 className="text-sm font-extrabold text-white">THAM GIA PHÒNG CÓ SẴN</h3>
+                  <p className="text-xs text-slate-400">Nhập Mã PIN 4 ký tự do bạn bè chia sẻ để tham gia ngay</p>
                 </div>
               </div>
-            )}
 
-            {/* roles-showcase-bar removed per design: keep landing clean */}
+              <div className="pin-input-group mt-3">
+                <input 
+                  type="text"
+                  className="pin-code-field text-center font-black tracking-widest"
+                  placeholder="MÃ PIN (VD: R7S3)"
+                  value={roomCode}
+                  onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+                  onKeyDown={(e) => e.key === 'Enter' && handleJoinRoom()}
+                />
+                <button onClick={handleJoinRoom} className="btn btn-md btn-gold-draw font-black tracking-wider whitespace-nowrap">
+                  VÀO PHÒNG
+                </button>
+              </div>
+            </div>
+
           </div>
         </main>
       )}
