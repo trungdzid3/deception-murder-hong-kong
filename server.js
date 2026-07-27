@@ -421,7 +421,7 @@ io.on('connection', (socket) => {
           means: shuffledMeans.splice(0, 4),
           hasAccused: false,
           accusedCorrectly: false,
-          hasBadge: true
+          hasBadge: !p.isBot
         };
       }
     });
@@ -560,6 +560,7 @@ io.on('connection', (socket) => {
       room.phase = 'GAME_OVER';
       room.winner = 'INVESTIGATORS';
       room.eventLog.push(`🎉 CHÚC MỪNG! ${accuser.name} đã PHÁ ÁN THÀNH CÔNG! PHE ĐIỀU TRA VIÊN THẮNG!`);
+      if (roomTimers[roomCode]) clearInterval(roomTimers[roomCode]);
       io.to(roomCode).emit('room-updated', room);
     } else {
       room.eventLog.push(`❌ ${accuser.name} đã CÁO BUỘC SAI! Mất Huy hiệu phá án.`);
@@ -569,11 +570,13 @@ io.on('connection', (socket) => {
         startRoomTimer(roomCode);
       }
 
-      const remainingAccusers = room.players.filter(p => p.id !== room.forensicScientistId && p.hasBadge);
-      if (remainingAccusers.length === 0) {
+      // Kiểm tra người chơi thật (không tính Bot & Pháp Y) xem còn ai còn Huy hiệu không
+      const remainingHumanAccusers = room.players.filter(p => p.id !== room.forensicScientistId && !p.isBot && p.hasBadge);
+      if (remainingHumanAccusers.length === 0) {
         room.phase = 'GAME_OVER';
         room.winner = 'MURDERER';
-        room.eventLog.push('💀 Tất cả Điều tra viên đã dùng hết Huy hiệu mà không tìm ra sự thật! PHE HUNG THỦ THẮNG!');
+        room.eventLog.push('💀 Tất cả người chơi đã dùng hết Huy hiệu Phá án mà không tìm ra sự thật! PHE HUNG THỦ VÀ ĐỒNG PHẠM THẮNG!');
+        if (roomTimers[roomCode]) clearInterval(roomTimers[roomCode]);
       }
 
       io.to(roomCode).emit('accusation-failed', { accuser: accuser.name });
