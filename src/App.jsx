@@ -663,7 +663,7 @@ function App() {
                 </div>
                 <div className="badge-star-sticker">MULTI-GAME</div>
               </div>
-              <h1 className="cinematic-main-title tracking-wider font-black" style={{ fontSize: 'clamp(2.8rem, 7vw, 5.2rem)', textShadow: '0 0 25px rgba(244,63,94,0.5), 0 0 50px rgba(0,0,0,0.9)' }}>
+              <h1 className="cinematic-main-title tracking-wider font-black text-white" style={{ fontSize: 'clamp(2.8rem, 7vw, 5.2rem)', textShadow: '0 0 10px #f43f5e, 0 0 20px #f43f5e, 0 0 40px #e11d48, 0 0 70px #e11d48, 0 0 100px #be123c', letterSpacing: '0.05em' }}>
                 DETECTIVE CHRONICLES
               </h1>
               <span className="cinematic-sub-title text-amber-400 font-bold tracking-widest uppercase" style={{ fontSize: '0.85rem', letterSpacing: '0.15em' }}>
