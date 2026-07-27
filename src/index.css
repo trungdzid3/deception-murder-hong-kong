@@ -1423,12 +1423,40 @@ body {
   .lobby-hub-card { padding: 20px; }
   .lobby-members-grid { grid-template-columns: 1fr; }
   .players-grid-compact-stylish { grid-template-columns: 1fr; }
+
+  /* Mobile responsiveness for Landing Title */
+  .cinematic-main-title {
+    font-size: 3.6rem !important;
+    letter-spacing: 0.05em !important;
+    line-height: 0.9 !important;
+  }
+  .cinematic-sub-title {
+    font-size: 0.85rem !important;
+    letter-spacing: 0.18em !important;
+  }
+  .detective-emblem-badge {
+    width: 68px !important;
+    height: 68px !important;
+  }
+  .emblem-inner-glow {
+    width: 50px !important;
+    height: 50px !important;
+  }
 }
 
 @media (max-width: 600px) {
   .scene-grid-compact { grid-template-columns: 1fr; }
   .cards-picker-grid { grid-template-columns: 1fr; }
   .players-grid-compact-stylish { grid-template-columns: 1fr; }
+
+  .cinematic-main-title {
+    font-size: 2.8rem !important;
+    letter-spacing: 0.04em !important;
+  }
+  .cinematic-sub-title {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.12em !important;
+  }
 }
 
 /* =========================================================
