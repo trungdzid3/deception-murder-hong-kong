@@ -2,6 +2,7 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import { SHERLOCK_CASE_1 } from './src/data/sherlock-case-1.js';
 
 const app = express();
 app.use(cors());
@@ -143,7 +144,7 @@ io.on('connection', (socket) => {
   console.log(`User connected: ${socket.id}`);
 
   // 1. Tạo phòng
-  socket.on('create-room', ({ playerName }) => {
+  socket.on('create-room', ({ playerName, gameType }) => {
     let roomCode = generateRoomCode();
     while (rooms[roomCode]) {
       roomCode = generateRoomCode();
@@ -152,6 +153,7 @@ io.on('connection', (socket) => {
     rooms[roomCode] = {
       code: roomCode,
       hostId: socket.id,
+      gameType: gameType || 'deception',
       players: [{
         id: socket.id,
         name: playerName,
@@ -183,7 +185,7 @@ io.on('connection', (socket) => {
       deck: [],
       bullets: {},
       chatMessages: [],
-      eventLog: [`Phòng chơi ${roomCode} đã được tạo bởi ${playerName}.`]
+      eventLog: [`Phòng chơi ${roomCode} đã được tạo bởi ${playerName} cho game ${gameType || 'deception'}.`]
     };
 
     socket.join(roomCode);
@@ -375,6 +377,26 @@ io.on('connection', (socket) => {
       return;
     }
 
+    if (room.gameType === 'sherlock') {
+      // KHỞI TẠO GAME SHERLOCK HOLMES CONSULTING DETECTIVE
+      room.gameStarted = true;
+      room.phase = 'SHERLOCK_INTRO';
+      room.winner = null;
+      room.round = 1;
+      room.endTime = null;
+      room.timerType = 'DISCUSSION';
+      room.visitedNodes = [];
+      room.unlockedNodes = [...SHERLOCK_CASE_1.intro.unlocked_nodes];
+      room.sherlockScore = null;
+      room.submittedAnswers = null;
+      room.eventLog.push('Vụ án "Cái chết của Sherlock Holmes" bắt đầu! Hãy đọc cốt truyện giới thiệu.');
+
+      io.to(roomCode).emit('room-updated', room);
+      io.to(roomCode).emit('game-started', room);
+      return;
+    }
+
+    // ĐÂY LÀ KHỞI TẠO GAME DECEPTION: MURDER IN HONG KONG GỐC
     room.gameStarted = true;
     room.phase = 'CRIME_CHOICE';
     room.winner = null;
@@ -444,6 +466,94 @@ io.on('connection', (socket) => {
 
     io.to(roomCode).emit('room-updated', room);
     io.to(roomCode).emit('game-started', room);
+  });
+
+  // =========================================================
+  // CÁC SỰ KIỆN PHỤC VỤ CHO GAME SHERLOCK HOLMES
+  // =========================================================
+
+  // Chuyển giai đoạn trong game Sherlock (Ví dụ: Từ Intro sang Map)
+  socket.on('sherlock-next-phase', ({ roomCode, phase }) => {
+    const room = rooms[roomCode];
+    if (!room) return;
+    room.phase = phase;
+    room.eventLog.push(`Giai đoạn game chuyển sang: ${phase}`);
+    io.to(roomCode).emit('room-updated', room);
+  });
+
+  // Ghé thăm địa điểm (Node) trong game Sherlock
+  socket.on('visit-node', ({ roomCode, nodeId }) => {
+    const room = rooms[roomCode];
+    if (!room) return;
+
+    const formattedNodeId = nodeId.toUpperCase().replace(/\s+/g, '');
+    const node = SHERLOCK_CASE_1.nodes[formattedNodeId];
+
+    if (!node) {
+      socket.emit('error-msg', `Mã địa điểm [${nodeId}] không tồn tại trên bản đồ hoặc danh bạ!`);
+      return;
+    }
+
+    if (!room.visitedNodes.includes(formattedNodeId)) {
+      room.visitedNodes.push(formattedNodeId);
+      
+      // Mở khóa các node mới được đề cập
+      if (node.unlocks && node.unlocks.nodes) {
+        node.unlocks.nodes.forEach(un => {
+          if (!room.unlockedNodes.includes(un)) {
+            room.unlockedNodes.push(un);
+          }
+        });
+      }
+
+      const playerName = room.players.find(p => p.id === socket.id)?.name || 'Thám tử';
+      room.eventLog.push(`🕵️‍♂️ ${playerName} đã ghé thăm Địa điểm [${node.id}]: ${node.title}.`);
+    }
+
+    io.to(roomCode).emit('room-updated', room);
+  });
+
+  // Nộp đáp án và chấm điểm game Sherlock
+  socket.on('submit-sherlock-solution', ({ roomCode, answers }) => {
+    const room = rooms[roomCode];
+    if (!room) return;
+
+    room.submittedAnswers = answers;
+    
+    // Tính điểm dựa trên câu trả lời
+    let score = 0;
+    
+    // Part 1: Câu hỏi chính (5 câu, mỗi câu 15 điểm)
+    SHERLOCK_CASE_1.questions.part_1_main_case.forEach((q, idx) => {
+      const selected = answers[`q_${q.id}`];
+      if (selected !== undefined && Number(selected) === q.correct_option_index) {
+        score += 15;
+      }
+    });
+
+    // Part 2: Bí ẩn phụ (5 câu, mỗi câu 5 điểm)
+    SHERLOCK_CASE_1.questions.part_2_side_mysteries.forEach((q, idx) => {
+      const selected = answers[`q_${q.id}`];
+      if (selected !== undefined && Number(selected) === q.correct_option_index) {
+        score += 5;
+      }
+    });
+
+    // Tính toán số lượng đầu mối so với Sherlock Holmes (Holmes cần 6 leads)
+    const holmesLeads = 6;
+    const playerLeads = room.visitedNodes.length;
+    const leadsDiff = playerLeads - holmesLeads;
+    
+    // Trừ 5 điểm cho mỗi lead vượt quá, hoặc cộng 5 điểm cho mỗi lead ít hơn
+    const leadPenalty = leadsDiff * 5;
+    score = score - leadPenalty;
+    if (score < 0) score = 0;
+
+    room.sherlockScore = score;
+    room.phase = 'SHERLOCK_GAME_OVER';
+    room.eventLog.push(`🏁 Nhóm thám tử đã hoàn tất phá án! Điểm số đạt được: ${score}/100. (Số địa điểm đã ghé thăm: ${playerLeads}, Holmes đi hết: ${holmesLeads} địa điểm).`);
+
+    io.to(roomCode).emit('room-updated', room);
   });
 
   // 7. Hung thủ chọn đáp án
