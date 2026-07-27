@@ -57,6 +57,7 @@ function App() {
   const [chatInput, setChatInput] = useState('');
   const [chatMessages, setChatMessages] = useState([]);
   const [unreadChatCount, setUnreadChatCount] = useState(0);
+  const [latestChatToast, setLatestChatToast] = useState(null);
 
   // Timestamp hiện tại cập nhật 200ms/lần giúp đếm ngược mượt 100%
   const [nowTimestamp, setNowTimestamp] = useState(Date.now());
@@ -348,8 +349,13 @@ function App() {
         }
         return [...prev, chatPayload];
       });
+
       if (chatPayload.senderId !== socket.id) {
         setUnreadChatCount(prev => prev + 1);
+        setLatestChatToast(chatPayload);
+        setTimeout(() => {
+          setLatestChatToast(prev => (prev?.id === chatPayload.id ? null : prev));
+        }, 4500);
       }
       setTimeout(() => chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
     });
@@ -1675,6 +1681,25 @@ function App() {
                 />
                 <button type="submit" className="btn-send-chat" title="Gửi tin nhắn"><Send size={16} /></button>
               </form>
+            </div>
+          )}
+
+          {/* POPUP TOAST NỔI KHI CÓ TIN NHẮN MỚI NẾU KHUNG CHAT ĐANG ĐÓNG */}
+          {!isChatOpen && latestChatToast && (
+            <div 
+              onClick={() => {
+                setIsChatOpen(true);
+                setUnreadChatCount(0);
+                setLatestChatToast(null);
+              }}
+              className="chat-toast-popup"
+              title="Nhấp để mở khung trò chuyện"
+            >
+              <MessageSquare size={16} className="text-amber-400 shrink-0" />
+              <div className="chat-toast-content">
+                <span className="chat-toast-sender">{latestChatToast.sender}:</span>
+                <span className="chat-toast-text">{latestChatToast.text}</span>
+              </div>
             </div>
           )}
         </>
