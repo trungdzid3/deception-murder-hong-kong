@@ -661,13 +661,13 @@ function App() {
                   <Skull size={44} className="text-rose-500 stroke-[3]" />
                   <Search size={32} className="text-amber-400 stroke-[3] emblem-glass-overlay" />
                 </div>
-                <div className="badge-star-sticker">HỘI THÁM TỬ</div>
+                <div className="badge-star-sticker">VIP CLUB</div>
               </div>
-              <h1 className="cinematic-main-title tracking-wider" style={{ fontSize: 'clamp(2.2rem, 5vw, 3.6rem)' }}>
-                DECEPTION & SHERLOCK
+              <h1 className="cinematic-main-title tracking-wider" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}>
+                SHERLOCK & DECEPTION
               </h1>
-              <span className="cinematic-sub-title text-amber-400 font-black tracking-widest" style={{ letterSpacing: '0.15em' }}>
-                HỆ THỐNG BOARDGAME TRINH THÁM MULTIPLAYER
+              <span className="cinematic-sub-title text-amber-400 font-black tracking-widest uppercase" style={{ letterSpacing: '0.18em' }}>
+                ĐẤU TRƯỜNG KỲ ÁN TRINH THÁM MULTIPLAYER
               </span>
             </div>
 
