@@ -131,7 +131,8 @@ body {
 }
 
 /* Hide default logo when using full-bleed background */
-.cinematic-landing-wrapper.landing-bg .hero-logo-box { display: none; }
+.cinematic-landing-wrapper.landing-bg .hero-logo-box { /* keep title visible, only hide emblem/logo */ }
+.cinematic-landing-wrapper.landing-bg .detective-emblem-badge { display: none !important; }
 
 .detective-emblem-badge {
   width: 110px;

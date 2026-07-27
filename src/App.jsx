@@ -291,8 +291,10 @@ function App() {
 
   // Actions
   const handleCreateRoom = () => {
-    if (!playerName.trim()) return setErrorMsg('Vui lòng nhập tên thám tử của bạn!');
-    socket.emit('create-room', { playerName });
+    const defaultName = `Thám tử ${Math.floor(Math.random() * 9000) + 1000}`;
+    const name = playerName && playerName.trim() ? playerName.trim() : defaultName;
+    if (!playerName || !playerName.trim()) setPlayerName(name);
+    socket.emit('create-room', { playerName: name });
   };
 
   const handleJoinRoom = () => {
