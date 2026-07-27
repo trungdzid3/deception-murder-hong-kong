@@ -151,6 +151,7 @@ io.on('connection', (socket) => {
 
     rooms[roomCode] = {
       code: roomCode,
+      hostId: socket.id,
       players: [{
         id: socket.id,
         name: playerName,
@@ -161,7 +162,8 @@ io.on('connection', (socket) => {
         hasAccused: false,
         accusedCorrectly: false,
         isMuted: true,
-        hasBadge: true
+        hasBadge: true,
+        isReady: true
       }],
       forensicScientistId: socket.id, // Mặc định người tạo phòng
       votesForForensic: {}, // Map: { socketId: targetPlayerId }
@@ -215,7 +217,8 @@ io.on('connection', (socket) => {
       hasAccused: false,
       accusedCorrectly: false,
       isMuted: true,
-      hasBadge: true
+      hasBadge: true,
+      isReady: false
     };
 
     room.players.push(newPlayer);
@@ -229,10 +232,15 @@ io.on('connection', (socket) => {
     io.to(code).emit('room-updated', room);
   });
 
-  // 3. THÊM BOT VÀO PHÒNG
+  // 3. THÊM BOT VÀO PHÒNG (CHỈ CHỦ PHÒNG)
   socket.on('add-bot', ({ roomCode }) => {
     const room = rooms[roomCode];
     if (!room || room.gameStarted) return;
+    const hostId = room.hostId || room.players[0]?.id;
+    if (socket.id !== hostId) {
+      socket.emit('error-msg', 'Chỉ Chủ phòng mới có quyền thêm Bot!');
+      return;
+    }
     if (room.players.length >= 12) {
       socket.emit('error-msg', 'Phòng chơi đã đầy!');
       return;
@@ -253,7 +261,8 @@ io.on('connection', (socket) => {
       accusedCorrectly: false,
       isMuted: true,
       hasBadge: true,
-      isBot: true
+      isBot: true,
+      isReady: true
     };
 
     room.players.push(botPlayer);
@@ -261,10 +270,15 @@ io.on('connection', (socket) => {
     io.to(roomCode).emit('room-updated', room);
   });
 
-  // 4. XÓA BOT KHỎI PHÒNG
+  // 4. XÓA BOT KHỎI PHÒNG (CHỈ CHỦ PHÒNG)
   socket.on('remove-bot', ({ roomCode }) => {
     const room = rooms[roomCode];
     if (!room || room.gameStarted) return;
+    const hostId = room.hostId || room.players[0]?.id;
+    if (socket.id !== hostId) {
+      socket.emit('error-msg', 'Chỉ Chủ phòng mới có quyền xóa Bot!');
+      return;
+    }
 
     const lastBotIdx = room.players.map(p => p.isBot).lastIndexOf(true);
     if (lastBotIdx !== -1) {
@@ -272,6 +286,43 @@ io.on('connection', (socket) => {
       room.players.splice(lastBotIdx, 1);
       delete room.votesForForensic[removedBot.id];
       room.eventLog.push(`🤖 ${removedBot.name} đã rời phòng.`);
+      io.to(roomCode).emit('room-updated', room);
+    }
+  });
+
+  // 4b. SẴN SÀNG / CHƯA SẴN SÀNG (NGƯỜI CHƠI)
+  socket.on('toggle-ready', ({ roomCode }) => {
+    const room = rooms[roomCode];
+    if (!room || room.gameStarted) return;
+
+    const player = room.players.find(p => p.id === socket.id);
+    if (player) {
+      player.isReady = !player.isReady;
+      room.eventLog.push(`📌 ${player.name} đã ${player.isReady ? 'SẴN SÀNG' : 'HỦY SẴN SÀNG'}.`);
+      io.to(roomCode).emit('room-updated', room);
+    }
+  });
+
+  // 4c. KICK NGƯỜI CHƠI (CHỈ CHỦ PHÒNG)
+  socket.on('kick-player', ({ roomCode, targetId }) => {
+    const room = rooms[roomCode];
+    if (!room || room.gameStarted) return;
+
+    const hostId = room.hostId || room.players[0]?.id;
+    if (socket.id !== hostId) {
+      socket.emit('error-msg', 'Chỉ Chủ phòng mới có quyền Kick người chơi!');
+      return;
+    }
+
+    const playerIdx = room.players.findIndex(p => p.id === targetId);
+    if (playerIdx !== -1 && targetId !== hostId) {
+      const kickedPlayer = room.players[playerIdx];
+      room.players.splice(playerIdx, 1);
+      delete room.votesForForensic[targetId];
+      room.eventLog.push(`👢 ${kickedPlayer.name} đã bị Chủ phòng kick khỏi phòng.`);
+
+      // Gửi sự kiện cho người bị kick
+      io.to(targetId).emit('kicked-from-room');
       io.to(roomCode).emit('room-updated', room);
     }
   });
@@ -313,10 +364,16 @@ io.on('connection', (socket) => {
     io.to(roomCode).emit('room-updated', room);
   });
 
-  // 6. Bắt đầu game
+  // 6. Bắt đầu game (CHỈ CHỦ PHÒNG)
   socket.on('start-game', ({ roomCode, enabledOptionalRoles, ROLES_DATA, CLUES_DATA, MEANS_DATA, CAUSE_DATA, LOCATIONS_DATA, SCENES_DATA }) => {
     const room = rooms[roomCode];
     if (!room) return;
+
+    const hostId = room.hostId || room.players[0]?.id;
+    if (socket.id !== hostId) {
+      socket.emit('error-msg', 'Chỉ Chủ phòng mới có quyền bắt đầu ván chơi!');
+      return;
+    }
 
     room.gameStarted = true;
     room.phase = 'CRIME_CHOICE';

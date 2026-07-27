@@ -37,9 +37,9 @@ function App() {
   const [errorMsg, setErrorMsg] = useState('');
   const [copiedMsg, setCopiedMsg] = useState(false);
 
-  // Optional Roles Settings
-  const [enableAccomplice, setEnableAccomplice] = useState(true);
-  const [enableWitness, setEnableWitness] = useState(true);
+  // Optional Roles Settings (Mặc định tắt hoàn toàn, chỉ mở khi >= 6 người)
+  const [enableAccomplice, setEnableAccomplice] = useState(false);
+  const [enableWitness, setEnableWitness] = useState(false);
 
   // Floating Chat Bubble Open State & Mobile Active Tab
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -94,6 +94,14 @@ function App() {
     }, 200);
     return () => clearInterval(timer);
   }, []);
+
+  // TỰ ĐỘNG TẮT VAI TRÒ MỞ RỘNG NẾU ÍT HƠN 6 NGƯỜI CHƠI
+  useEffect(() => {
+    if (roomState?.players && roomState.players.length < 6) {
+      setEnableAccomplice(false);
+      setEnableWitness(false);
+    }
+  }, [roomState?.players?.length]);
 
   // TỰ ĐỘNG THU GỌN BẢNG GỢI Ý KHI VÀO VÒNG ĐIỀU TRA (INVESTIGATION) 100%
   useEffect(() => {
@@ -247,6 +255,13 @@ function App() {
       setErrorMsg(msg);
     });
 
+    socket.on('kicked-from-room', () => {
+      setInRoom(false);
+      setRoomState(null);
+      setErrorMsg('Bạn đã bị Chủ phòng kick khỏi phòng!');
+      cleanupVoiceChat();
+    });
+
     socket.on('voice-peer-joined', async ({ socketId }) => {
       const pc = createPeerConnection(socketId);
       const offer = await pc.createOffer();
@@ -353,11 +368,31 @@ function App() {
   };
 
   const handleCopyCode = () => {
-    if (roomState?.code) {
-      navigator.clipboard.writeText(roomState.code);
-      setCopiedMsg(true);
-      setTimeout(() => setCopiedMsg(false), 2000);
+    const text = roomState?.code;
+    if (!text) return;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    } catch (e) {
+      fallbackCopy(text);
     }
+    setCopiedMsg(true);
+    setTimeout(() => setCopiedMsg(false), 2500);
+  };
+
+  const fallbackCopy = (text) => {
+    const el = document.createElement('textarea');
+    el.value = text;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
   };
 
   const handleConfirmMurderChoice = () => {
@@ -633,95 +668,164 @@ function App() {
       )}
 
       {/* 2. MÀN HÌNH TRUNG GIAN PHÒNG CHỜ */}
-      {inRoom && !roomState?.gameStarted && (
-        <main className="lobby-hub-container">
-          <div className="lobby-hub-card">
-            <div className="lobby-hub-header">
-              <div className="hub-title-group">
-                <h2 className="flex items-center gap-2"><Crown size={24} className="text-amber-400" /> PHÒNG CHỜ & BẦU CHỌN NHÀ KHOA HỌC PHÁP Y</h2>
-                <p>Bỏ phiếu bầu chọn Quản trò dân chủ. Người có số phiếu bầu cao nhất sẽ làm Nhà khoa học pháp y!</p>
-              </div>
-              <div className="hub-room-badge">
-                <span className="badge-lbl">MÃ PHÒNG:</span>
-                <strong className="badge-code" onClick={handleCopyCode}>{roomState.code}</strong>
-                <button onClick={handleCopyCode} className="btn-copy-sm"><Copy size={12} /></button>
-              </div>
-            </div>
+      {inRoom && !roomState?.gameStarted && (() => {
+        const isHost = socket.id === (roomState?.hostId || roomState?.players?.[0]?.id);
+        const mePlayer = roomState?.players?.find(p => p.id === socket.id);
+        const isReady = mePlayer?.isReady;
+        const totalPlayers = roomState?.players?.length || 0;
+        const canEnableRoles = totalPlayers >= 6;
 
-            <div className="lobby-control-bar">
-              <div className="player-count-badge">
-                <Users size={18} className="text-amber-400" />
-                <span>Số người chơi: <strong className="text-amber-400">{roomState.players?.length || 0}/12</strong></span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button 
-                  onClick={toggleMute}
-                  className={`btn btn-sm ${!isMuted ? 'btn-mic-active' : 'btn-mic-muted'} font-bold flex items-center gap-1.5`}
-                  title="Bật/Tắt Mic để trò chuyện thảo luận với mọi người trong sảnh chờ"
-                >
-                  {!isMuted ? <Mic size={14} /> : <MicOff size={14} />}
-                  <span>{!isMuted ? 'MIC ĐANG BẬT' : 'BẬT MIC SẢNH CHỜ'}</span>
-                </button>
-                <div className="bot-actions-group">
-                  <button onClick={handleAddBot} className="btn btn-sm btn-secondary"><UserPlus size={14} /> + Thêm Bot</button>
-                  {botCount > 0 && <button onClick={handleRemoveBot} className="btn btn-sm btn-outline"><UserMinus size={14} /> - Xóa Bot ({botCount})</button>}
+        return (
+          <main className="lobby-hub-container">
+            <div className="lobby-hub-card">
+              <div className="lobby-hub-header">
+                <div className="hub-title-group">
+                  <h2 className="flex items-center gap-2"><Crown size={24} className="text-amber-400" /> PHÒNG CHỜ & BẦU CHỌN NHÀ KHOA HỌC PHÁP Y</h2>
+                  <p>Bỏ phiếu bầu chọn Quản trò dân chủ. Người có số phiếu bầu cao nhất sẽ làm Nhà khoa học pháp y!</p>
+                </div>
+                <div className="hub-room-badge" onClick={handleCopyCode} title="Nhấp để copy Mã phòng">
+                  <span className="badge-lbl">MÃ PHÒNG:</span>
+                  <strong className="badge-code">{roomState.code}</strong>
+                  <button onClick={handleCopyCode} className="btn-copy-sm" title="Copy mã phòng"><Copy size={12} /></button>
                 </div>
               </div>
-            </div>
 
-            <div className="lobby-members-section">
-              <span className="section-label-amber">NHẤP VÀO THÀNH VIÊN BẠN MUỐN BẦU LÀM NHÀ KHOA HỌC PHÁP Y:</span>
-              <div className="lobby-members-grid">
-                {roomState.players?.map(player => {
-                  const votes = getVotesForPlayer(player.id);
-                  const isTopCandidate = roomState.forensicScientistId === player.id;
-                  const isMyVotedTarget = myVotedId === player.id;
-                  return (
-                    <div 
-                      key={player.id}
-                      onClick={() => handleVoteForensic(player.id)}
-                      className={`member-hub-card ${isTopCandidate ? 'is-forensic-selected' : ''}`}
-                    >
-                      <div className="member-avatar-box">
-                        {player.isBot ? <Zap size={20} className="text-amber-400" /> : <Shield size={20} className="text-blue-400" />}
-                      </div>
-                      <div className="member-details">
-                        <span className="member-name">{player.name} {player.id === socket.id && '(Bạn)'}</span>
-                        <span className="member-type-tag">{isTopCandidate ? 'Dẫn đầu Pháp Y' : player.isBot ? 'Bot tự động' : 'Người chơi'}</span>
-                        <div className="mt-1 flex items-center gap-1 text-xs">
-                          <span className={`px-2 py-0.5 rounded-full font-bold text-xs ${votes > 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-slate-800 text-slate-400'}`}>{votes} Phiếu</span>
-                          {isMyVotedTarget && <span className="text-emerald-400 font-extrabold text-[0.65rem]">(Bạn đã bầu)</span>}
-                        </div>
-                      </div>
-                      {isTopCandidate && <div className="selected-crown-badge"><Crown size={20} /></div>}
+              <div className="lobby-control-bar">
+                <div className="player-count-badge">
+                  <Users size={18} className="text-amber-400" />
+                  <span>Số người chơi: <strong className="text-amber-400">{totalPlayers}/12</strong></span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={toggleMute}
+                    className={`btn btn-sm ${!isMuted ? 'btn-mic-active' : 'btn-mic-muted'} font-bold flex items-center gap-1.5`}
+                    title="Bật/Tắt Mic trò chuyện trong sảnh chờ"
+                  >
+                    {!isMuted ? <Mic size={14} /> : <MicOff size={14} />}
+                    <span>{!isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
+                  </button>
+
+                  {/* CHỦ PHÒNG MỚI THẤY NÚT THÊM/XÓA BOT */}
+                  {isHost ? (
+                    <div className="bot-actions-group">
+                      <button onClick={handleAddBot} className="btn btn-sm btn-secondary"><UserPlus size={14} /> + Thêm Bot</button>
+                      {botCount > 0 && <button onClick={handleRemoveBot} className="btn btn-sm btn-outline"><UserMinus size={14} /> - Xóa Bot ({botCount})</button>}
                     </div>
-                  );
-                })}
+                  ) : (
+                    /* NGƯỜI CHƠI KHÁC THẤY NÚT SẴN SÀNG */
+                    <button 
+                      onClick={() => socket.emit('toggle-ready', { roomCode: roomState.code })}
+                      className={`btn btn-sm font-extrabold flex items-center gap-1.5 ${isReady ? 'btn-ready-active' : 'btn-ready-inactive'}`}
+                    >
+                      {isReady ? <CheckCircle size={14} /> : <Play size={14} />}
+                      <span>{isReady ? 'ĐÃ SẴN SÀNG' : 'SẴN SÀNG'}</span>
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div className="game-settings-section">
-              <span className="section-label-amber">VAI TRÒ MỞ RỘNG TRONG VÁN CHƠI:</span>
-              <div className="settings-toggles">
-                <label className="toggle-item">
-                  <input type="checkbox" checked={enableAccomplice} onChange={(e) => setEnableAccomplice(e.target.checked)} />
-                  <span><strong>Đồng Phạm (Accomplice):</strong> Biết Kẻ sát nhân & Bộ đáp án, hỗ trợ che giấu vụ án.</span>
-                </label>
-                <label className="toggle-item mt-2">
-                  <input type="checkbox" checked={enableWitness} onChange={(e) => setEnableWitness(e.target.checked)} />
-                  <span><strong>Nhân Chứng (Witness):</strong> Biết ai thuộc phe Tội phạm nhưng phải giữ bí mật danh tính.</span>
-                </label>
+              <div className="lobby-members-section">
+                <span className="section-label-amber">NHẤP VÀO THÀNH VIÊN BẠN MUỐN BẦU LÀM NHÀ KHOA HỌC PHÁP Y:</span>
+                <div className="lobby-members-grid">
+                  {roomState.players?.map(player => {
+                    const votes = getVotesForPlayer(player.id);
+                    const isTopCandidate = roomState.forensicScientistId === player.id;
+                    const isMyVotedTarget = myVotedId === player.id;
+                    const isPlayerHost = player.id === (roomState?.hostId || roomState?.players?.[0]?.id);
+
+                    return (
+                      <div 
+                        key={player.id}
+                        className={`member-hub-card ${isTopCandidate ? 'is-forensic-selected' : ''}`}
+                      >
+                        <div className="member-avatar-box">
+                          {player.isBot ? <Zap size={20} className="text-amber-400" /> : <Shield size={20} className="text-blue-400" />}
+                        </div>
+                        <div className="member-details" onClick={() => handleVoteForensic(player.id)} style={{ cursor: 'pointer', flex: 1 }}>
+                          <span className="member-name flex items-center gap-1">
+                            {player.name} {player.id === socket.id && '(Bạn)'}
+                            {isPlayerHost && <span className="badge-host-crown">Chủ phòng</span>}
+                          </span>
+                          <span className="member-type-tag">
+                            {isTopCandidate ? 'Dẫn đầu Pháp Y' : player.isBot ? 'Bot tự động' : player.isReady ? '✓ Đã sẵn sàng' : '⏳ Chưa sẵn sàng'}
+                          </span>
+                          <div className="mt-1 flex items-center gap-1 text-xs">
+                            <span className={`px-2 py-0.5 rounded-full font-bold text-xs ${votes > 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-slate-800 text-slate-400'}`}>{votes} Phiếu</span>
+                            {isMyVotedTarget && <span className="text-emerald-400 font-extrabold text-[0.65rem]">(Bạn đã bầu)</span>}
+                          </div>
+                        </div>
+
+                        {isTopCandidate && <div className="selected-crown-badge"><Crown size={20} /></div>}
+
+                        {/* NÚT KICK DÀNH RIÊNG CHO CHỦ PHÒNG */}
+                        {isHost && player.id !== socket.id && (
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              socket.emit('kick-player', { roomCode: roomState.code, targetId: player.id });
+                            }}
+                            className="btn-kick-member"
+                            title="Kick khỏi phòng"
+                          >
+                            <UserMinus size={13} /> Kick
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
-            <div className="lobby-hub-footer">
-              <button onClick={handleStartGame} className="btn btn-lg btn-primary btn-launch-game">
-                <Play size={20} /> BẮT ĐẦU VÁN CHƠI DECEPTION
-              </button>
+              {/* VAI TRÒ MỞ RỘNG (CHỈ MỞ KHI >= 6 NGƯỜI CHƠI) */}
+              <div className="game-settings-section">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="section-label-amber">VAI TRÒ MỞ RỘNG TRONG VÁN CHƠI:</span>
+                  {!canEnableRoles && (
+                    <span className="text-xs text-rose-400 font-extrabold flex items-center gap-1">
+                      <Lock size={12} /> Cần từ 6 người chơi trở lên
+                    </span>
+                  )}
+                </div>
+                <div className="settings-toggles">
+                  <label className={`toggle-item ${!canEnableRoles || !isHost ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                    <input 
+                      type="checkbox" 
+                      checked={enableAccomplice} 
+                      disabled={!canEnableRoles || !isHost}
+                      onChange={(e) => setEnableAccomplice(e.target.checked)} 
+                    />
+                    <span><strong>Đồng Phạm (Accomplice):</strong> Biết Kẻ sát nhân & Bộ đáp án, hỗ trợ che giấu vụ án.</span>
+                  </label>
+                  <label className={`toggle-item mt-2 ${!canEnableRoles || !isHost ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                    <input 
+                      type="checkbox" 
+                      checked={enableWitness} 
+                      disabled={!canEnableRoles || !isHost}
+                      onChange={(e) => setEnableWitness(e.target.checked)} 
+                    />
+                    <span><strong>Nhân Chứng (Witness):</strong> Biết ai thuộc phe Tội phạm nhưng phải giữ bí mật danh tính.</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* CHỦ PHÒNG MỚI THẤY NÚT BẮT ĐẦU VÁN CHƠI */}
+              {isHost ? (
+                <div className="lobby-hub-footer">
+                  <button onClick={handleStartGame} className="btn btn-lg btn-primary btn-launch-game">
+                    <Play size={20} /> BẮT ĐẦU VÁN CHƠI DECEPTION
+                  </button>
+                </div>
+              ) : (
+                <div className="lobby-hub-footer text-center">
+                  <div className="text-sm font-bold text-amber-300 animate-pulse py-3 bg-amber-500/10 border border-amber-500/30 rounded-xl">
+                    ⏳ Đang chờ Chủ phòng ({roomState.players?.[0]?.name}) bắt đầu ván chơi...
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        </main>
-      )}
+          </main>
+        );
+      })()}
 
       {/* 3. MÀN HÌNH GAME CHÍNH TÍNH NĂNG GỌN GÀNG TỰ ĐỘNG THU GỌN BÀN GỢI Ý & MOBILE TABS */}
       {inRoom && roomState?.gameStarted && (
