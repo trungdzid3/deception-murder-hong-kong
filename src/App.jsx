@@ -1008,7 +1008,7 @@ function App() {
                       </div>
 
                       <div className="murderer-picker-sections mt-4">
-                        <div className="picker-column">
+                        <div className="picker-column means-picker-column">
                           <label className="picker-col-label text-rose-400 flex items-center gap-1">
                             <Flame size={14} /> 1. CHỌN 1 CÔNG CỤ GIẾT NGƯỜI (MEANS):
                           </label>
@@ -1029,7 +1029,7 @@ function App() {
                           </div>
                         </div>
 
-                        <div className="picker-column">
+                        <div className="picker-column clue-picker-column">
                           <label className="picker-col-label text-blue-400 flex items-center gap-1">
                             <FileText size={14} /> 2. CHỌN 1 BẰNG CHỨNG CHÍNH (CLUE):
                           </label>

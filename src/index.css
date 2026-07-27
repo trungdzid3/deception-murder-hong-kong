@@ -783,11 +783,11 @@ body {
    4. HUNG THỦ PICKER BANNER CRIMSON GAMING
    ========================================================= */
 .murderer-choice-banner-card {
-  background: linear-gradient(135deg, #38030f 0%, #170207 100%);
-  border: 2.5px solid var(--crimson-primary);
-  box-shadow: 0 0 30px var(--crimson-glow-strong);
+  background: linear-gradient(180deg, #1d0f14 0%, #13090d 100%);
+  border: 1.5px solid #5e2330;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
   border-radius: 24px;
-  padding: 24px;
+  padding: 20px;
   width: 100%;
 }
 
@@ -808,22 +808,59 @@ body {
 }
 
 .murderer-choice-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 900;
+  font-family: var(--font-body-strong);
+  font-size: 1.2rem;
+  font-weight: 800;
   color: white;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.015em;
 }
 
-.murderer-choice-sub { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-top: 2px; }
+.murderer-choice-sub {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e6d8dc;
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+.murderer-picker-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.picker-column {
+  border-radius: 14px;
+  padding: 12px;
+  border: 1px solid #4e2330;
+  background: #170c11;
+}
+
+.means-picker-column {
+  border-color: rgba(255, 83, 112, 0.45);
+  background: linear-gradient(180deg, rgba(214, 0, 45, 0.12) 0%, rgba(26, 11, 16, 0.9) 35%);
+}
+
+.clue-picker-column {
+  border-color: rgba(56, 189, 248, 0.45);
+  background: linear-gradient(180deg, rgba(14, 116, 144, 0.18) 0%, rgba(14, 18, 28, 0.88) 38%);
+}
+
+.picker-col-label {
+  font-family: var(--font-body-strong);
+  font-size: 0.83rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
 
 .cards-picker-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 
 .tarot-choice-card {
-  background: var(--bg-card);
-  border: 2px solid var(--border-dark);
+  background: #23131a;
+  border: 1.5px solid #64303c;
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   text-align: center;
   cursor: pointer;
   display: flex;
@@ -832,40 +869,57 @@ body {
   justify-content: center;
   gap: 4px;
   transition: all 0.2s ease;
-  min-height: 60px;
+  min-height: 56px;
 }
 
-.tarot-choice-card:hover { transform: translateY(-2px); border-color: var(--crimson-primary); }
+.card-tarot-name {
+  font-family: var(--font-body-strong);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff7f9;
+  line-height: 1.25;
+}
+
+.card-check-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 2px 6px;
+  margin-top: 3px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.tarot-choice-card:hover { transform: translateY(-1px); border-color: #ff4d6d; background: #2b1820; }
 
 .tarot-choice-card.means.selected {
-  background: var(--crimson-primary);
-  border-color: white;
-  box-shadow: 0 0 15px var(--crimson-glow-strong);
+  background: linear-gradient(180deg, #4a121f 0%, #300b14 100%);
+  border-color: #ff6b84;
+  box-shadow: inset 0 0 0 1px rgba(255, 107, 132, 0.45), 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 
 .tarot-choice-card.clue.selected {
-  background: #0077b6;
-  border-color: white;
-  box-shadow: 0 0 15px rgba(0, 180, 216, 0.5);
+  background: linear-gradient(180deg, #0c3a53 0%, #0b2538 100%);
+  border-color: #38bdf8;
+  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.45), 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 
 .btn-confirm-murder-solution {
-  background: linear-gradient(135deg, #ff1a47 0%, #99001b 100%);
+  background: linear-gradient(135deg, #e61a46 0%, #aa1130 100%);
   color: white;
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  padding: 14px 24px;
+  font-family: var(--font-body-strong);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 12px 16px;
   border-radius: 16px;
-  border: 2px solid white;
-  box-shadow: 0 0 25px var(--crimson-glow-strong);
+  border: 1.5px solid #ffd6df;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.42);
   cursor: pointer;
   transition: all 0.25s ease;
   text-transform: uppercase;
 }
 
-.btn-confirm-murder-solution:hover { transform: translateY(-3px); box-shadow: 0 0 35px var(--crimson-glow-strong); }
+.btn-confirm-murder-solution:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55); }
 
 /* =========================================================
    5. BÀN CHƠI COMPACT CRIMSON STYLISH
