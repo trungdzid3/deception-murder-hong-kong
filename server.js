@@ -600,6 +600,33 @@ io.on('connection', (socket) => {
       }
     });
   });
+
+  // 13. WebRTC Voice Chat Signaling Handlers
+  socket.on('voice-join', ({ roomCode }) => {
+    if (roomCode) {
+      socket.to(roomCode).emit('voice-peer-joined', { socketId: socket.id });
+    }
+  });
+
+  socket.on('voice-signal', ({ roomCode, targetSocketId, signal }) => {
+    if (targetSocketId) {
+      io.to(targetSocketId).emit('voice-signal-received', {
+        senderSocketId: socket.id,
+        signal
+      });
+    }
+  });
+
+  socket.on('voice-mute-state', ({ roomCode, isMuted }) => {
+    const room = rooms[roomCode];
+    if (room) {
+      const player = room.players.find(p => p.id === socket.id);
+      if (player) {
+        player.isMuted = isMuted;
+        io.to(roomCode).emit('room-updated', room);
+      }
+    }
+  });
 });
 
 const PORT = process.env.PORT || 3001;

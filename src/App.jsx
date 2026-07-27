@@ -131,17 +131,19 @@ function App() {
   const initVoiceChat = async () => {
     try {
       if (!navigator?.mediaDevices?.getUserMedia) return;
+      if (localStreamRef.current) return; // Đã có stream mic
+
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       setLocalStream(stream);
       localStreamRef.current = stream;
       
-      // NẾU LÀ PHÁP Y ➔ KHÓA MIC CỨNG NICK 100%
-      const isCurrentForensic = roomState?.forensicScientistId === socket.id;
+      const isCurrentForensic = roomState?.gameStarted && roomState?.forensicScientistId === socket.id;
       if (isCurrentForensic) {
         setIsMuted(true);
         stream.getAudioTracks().forEach(track => track.enabled = false);
       } else {
-        stream.getAudioTracks().forEach(track => track.enabled = !isMuted);
+        setIsMuted(false);
+        stream.getAudioTracks().forEach(track => track.enabled = true);
       }
 
       if (roomState?.code) {
@@ -149,6 +151,7 @@ function App() {
       }
     } catch (err) {
       console.warn('Mic access error:', err);
+      setErrorMsg('Không thể truy cập Microphone! Vui lòng cho phép trình duyệt sử dụng Mic.');
     }
   };
 
@@ -197,7 +200,14 @@ function App() {
   };
 
   const toggleMute = () => {
-    if (isForensic) return setErrorMsg('Theo luật Deception: Nhà khoa học pháp y KHÔNG ĐƯỢC bật mic hay nói thành lời!');
+    const isCurrentForensic = roomState?.gameStarted && roomState?.forensicScientistId === socket.id;
+    if (isCurrentForensic) return setErrorMsg('Theo luật Deception: Nhà khoa học pháp y KHÔNG ĐƯỢC bật mic hay nói thành lời!');
+    
+    if (!localStreamRef.current) {
+      initVoiceChat();
+      return;
+    }
+
     const nextState = !isMuted;
     setIsMuted(nextState);
     if (localStreamRef.current) {
