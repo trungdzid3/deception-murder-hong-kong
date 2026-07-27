@@ -291,6 +291,9 @@ function App() {
 
   // Actions
   const handleCreateRoom = () => {
+    if (!socket || !socket.connected) {
+      return setErrorMsg('Không kết nối tới server trò chơi. Hãy đảm bảo server đang chạy.');
+    }
     const defaultName = `Thám tử ${Math.floor(Math.random() * 9000) + 1000}`;
     const name = playerName && playerName.trim() ? playerName.trim() : defaultName;
     if (!playerName || !playerName.trim()) setPlayerName(name);
@@ -298,6 +301,9 @@ function App() {
   };
 
   const handleJoinRoom = () => {
+    if (!socket || !socket.connected) {
+      return setErrorMsg('Không kết nối tới server trò chơi. Hãy đảm bảo server đang chạy.');
+    }
     if (!playerName.trim()) return setErrorMsg('Vui lòng nhập tên thám tử của bạn!');
     if (!roomCode.trim()) return setErrorMsg('Vui lòng nhập Mã phòng 4 ký tự!');
     socket.emit('join-room', { roomCode: roomCode.toUpperCase(), playerName });
