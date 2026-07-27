@@ -333,21 +333,24 @@ function App() {
   };
 
   const handleVisitNode = (nodeId) => {
-    if (roomState?.code && nodeId) {
-      socket.emit('visit-node', { roomCode: roomState.code, nodeId });
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code && nodeId) {
+      socket.emit('visit-node', { roomCode: code, nodeId });
       setSherlockSearchQuery('');
     }
   };
 
   const handleSherlockNextPhase = (phase) => {
-    if (roomState?.code) {
-      socket.emit('sherlock-next-phase', { roomCode: roomState.code, phase });
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('sherlock-next-phase', { roomCode: code, phase });
     }
   };
 
   const handleSubmitSherlockSolution = () => {
-    if (roomState?.code) {
-      socket.emit('submit-sherlock-solution', { roomCode: roomState.code, answers: sherlockAnswers });
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('submit-sherlock-solution', { roomCode: code, answers: sherlockAnswers });
     }
   };
 
