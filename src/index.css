@@ -123,17 +123,7 @@ body {
   margin-bottom: 4px;
 }
 
-/* Landing background image (place file at public/images/landing-bg.jpg) */
-.cinematic-landing-wrapper.landing-bg {
-  background-image: url('/images/landing-bg.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
 
-/* Hide default logo when using full-bleed background */
-.cinematic-landing-wrapper.landing-bg .hero-logo-box { /* keep title visible, only hide emblem/logo */ }
-.cinematic-landing-wrapper.landing-bg .detective-emblem-badge { display: none !important; }
 
 .detective-emblem-badge {
   width: 90px;

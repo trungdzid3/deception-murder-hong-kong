@@ -612,7 +612,7 @@ function App() {
 
       {/* 1. MÀN HÌNH ĐẦU TIÊN: LANDING SCREEN */}
       {!inRoom && (
-        <main className="cinematic-landing-wrapper landing-bg">
+        <main className="cinematic-landing-wrapper">
           <div className="cinematic-landing-container">
             
             <div className="hero-logo-box">
