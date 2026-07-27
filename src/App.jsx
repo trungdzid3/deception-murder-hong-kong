@@ -998,55 +998,60 @@ function App() {
             
             {/* 1. GIAI ĐOẠN INTRO / GIỚI THIỆU VỤ ÁN */}
             {roomState?.phase === 'SHERLOCK_INTRO' && (
-              <div className="sherlock-intro-card bg-slate-900/90 border border-amber-500/30 rounded-2xl p-6 md:p-8 backdrop-blur shadow-2xl space-y-6">
-                <div className="border-b border-amber-500/20 pb-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="sherlock-intro-card">
+                
+                {/* HEADER BÀI VỤ ÁN */}
+                <div className="sherlock-intro-header">
                   <div>
                     <span className="text-xs font-bold text-amber-400 tracking-widest uppercase flex items-center gap-1.5 mb-1">
                       <Search size={14} /> Vụ án Sherlock Holmes #1
                     </span>
                     <h2 className="text-2xl md:text-3xl font-black text-amber-100">{SHERLOCK_CASE_1.title}</h2>
-                    <div className="flex items-center gap-4 text-xs text-slate-400 mt-1">
-                      <span>Tác giả: <strong>{SHERLOCK_CASE_1.author}</strong></span>
+                    <div className="flex items-center gap-4 text-xs text-slate-400 mt-2">
+                      <span>Tác giả: <strong className="text-white">{SHERLOCK_CASE_1.author}</strong></span>
                       <span>•</span>
-                      <span>Bối cảnh: <strong>{SHERLOCK_CASE_1.setting_date}</strong></span>
+                      <span>Bối cảnh: <strong className="text-amber-300">{SHERLOCK_CASE_1.setting_date}</strong></span>
                     </div>
                   </div>
                   <button 
                     onClick={() => handleSherlockNextPhase('SHERLOCK_PLAYING')}
-                    className="btn btn-md btn-gold-draw font-extrabold flex items-center gap-2 whitespace-nowrap"
+                    className="btn btn-md btn-gold-draw font-extrabold flex items-center gap-2 whitespace-nowrap shadow-lg"
                   >
                     <Compass size={18} /> BẮT ĐẦU ĐIỀU TRA KỲ ÁN <ArrowRight size={16} />
                   </button>
                 </div>
 
-                {/* BỐI CẢNH BAN ĐẦU */}
-                <div className="bg-slate-950/60 border border-amber-500/20 rounded-xl p-5 space-y-3">
+                {/* BỐI CẢNH BAN ĐẦU (INTRO STORY) */}
+                <div className="sherlock-section-box">
                   <h3 className="font-extrabold text-amber-300 text-sm flex items-center gap-2">
                     <BookOpen size={16} /> BỐI CẢNH BAN ĐẦU (INTRO STORY):
                   </h3>
-                  <p className="text-sm leading-relaxed text-slate-300 whitespace-pre-line font-serif">
+                  <div className="sherlock-story-text">
                     {SHERLOCK_CASE_1.intro.story_text}
-                  </p>
+                  </div>
                 </div>
 
                 {/* MANH MỐI TÌM THẤY & ĐỊA ĐIỂM MỞ SẴN */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-slate-950/60 border border-rose-500/20 rounded-xl p-4 space-y-2">
-                    <h4 className="font-bold text-rose-400 text-xs uppercase flex items-center gap-1.5">
-                      <Skull size={14} /> Manh mối ban đầu thu thập được:
+                  
+                  {/* MANH MỐI KHỞI ĐẦU */}
+                  <div className="sherlock-section-box clues-box">
+                    <h4 className="font-extrabold text-rose-400 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                      <Skull size={14} /> Manh mối ban đầu thu thập được tại hiện trường:
                     </h4>
-                    <ul className="space-y-1.5 text-xs text-slate-300">
+                    <ul className="sherlock-clue-list">
                       {SHERLOCK_CASE_1.intro.initial_clues.map((clue, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-rose-400 font-bold">•</span>
+                        <li key={i} className="sherlock-clue-item">
+                          <span className="sherlock-clue-bullet">•</span>
                           <span>{clue}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="bg-slate-950/60 border border-amber-500/20 rounded-xl p-4 space-y-2">
-                    <h4 className="font-bold text-amber-400 text-xs uppercase flex items-center gap-1.5">
+                  {/* ĐỊA ĐIỂM GỢI Ý MỞ KHÓA */}
+                  <div className="sherlock-section-box">
+                    <h4 className="font-extrabold text-amber-400 text-xs uppercase tracking-wider flex items-center gap-1.5">
                       <Compass size={14} /> Địa điểm gợi ý mở sẵn từ đầu:
                     </h4>
                     <div className="flex flex-wrap gap-2 pt-1">
@@ -1057,23 +1062,25 @@ function App() {
                             setSherlockSelectedNodeId(nodeId);
                             handleSherlockNextPhase('SHERLOCK_PLAYING');
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-300 font-extrabold text-xs hover:bg-amber-500/40 transition-all flex items-center gap-1.5"
+                          className="px-3 py-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 font-black text-xs hover:bg-amber-500/40 transition-all flex items-center gap-1.5 shadow"
                         >
-                          <Compass size={12} /> Ghé thăm mã [{nodeId}]
+                          <Compass size={13} /> Ghé thăm mã [{nodeId}]
                         </button>
                       ))}
                     </div>
                   </div>
+
                 </div>
 
                 <div className="text-center pt-2">
                   <button 
                     onClick={() => handleSherlockNextPhase('SHERLOCK_PLAYING')}
-                    className="btn btn-lg btn-gold-draw w-full font-black tracking-wider shadow-lg flex items-center justify-center gap-2"
+                    className="btn btn-lg btn-gold-draw w-full font-black tracking-wider shadow-lg flex items-center justify-center gap-2 py-3"
                   >
                     <Play size={20} /> VÀO BẢN ĐỒ & TRA CỨU ĐỊA ĐIỂM
                   </button>
                 </div>
+
               </div>
             )}
 

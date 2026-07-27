@@ -2638,6 +2638,92 @@ body {
   transform: translateY(-3px) !important;
 }
 
+/* SHERLOCK HOLMES COMPLETE VICTORIAN UI STYLES */
+.sherlock-game-wrapper {
+  width: 100% !important;
+  max-width: 1050px !important;
+  margin: 0 auto !important;
+  padding: 24px 16px !important;
+  color: #f1f5f9 !important;
+  box-sizing: border-box !important;
+}
+
+.sherlock-intro-card,
+.sherlock-playing-layout,
+.sherlock-quiz-card,
+.sherlock-result-card {
+  background: rgba(14, 10, 20, 0.96) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.35) !important;
+  border-radius: 24px !important;
+  padding: 28px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(245, 158, 11, 0.12) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.sherlock-intro-header {
+  border-bottom: 1.5px solid rgba(245, 158, 11, 0.25) !important;
+  padding-bottom: 18px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+}
+
+.sherlock-section-box {
+  background: rgba(8, 6, 14, 0.85) !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.sherlock-section-box.clues-box {
+  border-color: rgba(244, 63, 94, 0.35) !important;
+  background: rgba(24, 8, 14, 0.85) !important;
+}
+
+.sherlock-story-text {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif !important;
+  font-size: 0.95rem !important;
+  line-height: 1.75 !important;
+  color: #fef3c7 !important;
+  white-space: pre-line !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  padding: 16px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(245, 158, 11, 0.15) !important;
+}
+
+.sherlock-clue-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.sherlock-clue-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  font-size: 0.85rem !important;
+  color: #e2e8f0 !important;
+  line-height: 1.5 !important;
+}
+
+.sherlock-clue-bullet {
+  color: #f43f5e !important;
+  font-weight: 900 !important;
+}
+
 
 
 
