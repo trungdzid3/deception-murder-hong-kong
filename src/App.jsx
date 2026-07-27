@@ -1671,6 +1671,98 @@ function App() {
         </>
       )}
 
+      {/* MODAL KẾT THÚC GAME & CÔNG BỐ KẾT QUẢ / VAI TRÒ */}
+      {inRoom && roomState?.phase === 'GAME_OVER' && (() => {
+        const isInvestigatorsWin = roomState.winner === 'INVESTIGATORS';
+        const isHost = socket.id === (roomState?.hostId || roomState?.players?.[0]?.id);
+
+        return (
+          <div className="modal-overlay z-[1100]">
+            <div className="modal-card game-over-card-premium">
+              <div className="game-over-header text-center py-3">
+                <div className="inline-flex p-3 rounded-full bg-amber-500/10 border border-amber-500/30 mb-2">
+                  {isInvestigatorsWin ? <Trophy size={48} className="text-amber-400 animate-bounce" /> : <Skull size={48} className="text-rose-500 animate-pulse" />}
+                </div>
+                <h2 className={`text-2xl font-black ${isInvestigatorsWin ? 'text-amber-400' : 'text-rose-500'}`}>
+                  {isInvestigatorsWin ? '🎉 PHE ĐIỀU TRA VIÊN THẮNG CỤC DIỆN!' : '💀 PHE HUNG THỦ THẮNG THẾ!'}
+                </h2>
+                <p className="text-xs text-slate-300 mt-1">
+                  {isInvestigatorsWin 
+                    ? 'Lập luận xuất sắc! Vụ án đã được giải mã và Kẻ sát nhân đã bị vạch mặt!' 
+                    : 'Tất cả manh mối bị xóa sạch! Kẻ sát nhân đã tẩu thoát an toàn!'}
+                </p>
+              </div>
+
+              {/* BỘ ĐÁP ÁN BÍ MẬT */}
+              <div className="secret-solution-reveal-box bg-slate-900/80 border border-amber-500/30 rounded-xl p-3 my-3">
+                <div className="text-xs font-bold text-amber-400 mb-2 text-center flex items-center justify-center gap-1">
+                  <KeyRound size={14} /> BỘ ĐÁP ÁN BÍ MẬT CỦA VỤ ÁN:
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-center">
+                  <div className="bg-rose-950/60 border border-rose-500/30 rounded-lg p-2">
+                    <span className="text-[0.68rem] text-rose-400 font-extrabold uppercase block">Hung khí gây án</span>
+                    <strong className="text-sm text-white font-black">{roomState.secretSolution?.means?.name || 'Không rõ'}</strong>
+                  </div>
+                  <div className="bg-blue-950/60 border border-blue-500/30 rounded-lg p-2">
+                    <span className="text-[0.68rem] text-blue-400 font-extrabold uppercase block">Bằng chứng chính</span>
+                    <strong className="text-sm text-white font-black">{roomState.secretSolution?.clue?.name || 'Không rõ'}</strong>
+                  </div>
+                </div>
+              </div>
+
+              {/* DANH SÁCH VAI TRÒ TẤT CẢ NGƯỜI CHƠI */}
+              <div className="roles-reveal-section max-h-48 overflow-y-auto pr-1">
+                <div className="text-xs font-bold text-slate-300 mb-1.5 flex items-center gap-1">
+                  <Users size={14} className="text-amber-400" /> TIẾT LỘ VAI TRÒ TẤT CẢ THÀNH VIÊN:
+                </div>
+                <div className="space-y-1.5">
+                  {roomState.players?.map(p => {
+                    const isForensicPlayer = p.id === roomState.forensicScientistId;
+                    const roleObj = isForensicPlayer 
+                      ? ROLES.find(r => r.id === 'forensic_scientist') 
+                      : p.role || ROLES.find(r => r.id === 'investigator');
+
+                    return (
+                      <div key={p.id} className="flex items-center justify-between bg-slate-800/60 border border-slate-700/50 rounded-lg p-2 text-xs">
+                        <span className="font-extrabold text-white flex items-center gap-1.5">
+                          {p.isBot ? <Zap size={14} className="text-amber-400" /> : <Shield size={14} className="text-blue-400" />}
+                          {p.name} {p.id === socket.id && '(Bạn)'}
+                        </span>
+                        <span className={`px-2 py-0.5 rounded font-black text-[0.7rem] ${
+                          roleObj?.id === 'murderer' || roleObj?.id === 'accomplice' 
+                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' 
+                            : roleObj?.id === 'forensic_scientist'
+                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                            : 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
+                        }`}>
+                          {roleObj?.avatar} {roleObj?.name}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* FOOTER NÚT BẮT ĐẦU VÁN MỚI */}
+              <div className="modal-footer mt-4 pt-3 border-t border-slate-800 flex justify-center">
+                {isHost ? (
+                  <button 
+                    onClick={() => socket.emit('reset-game', { roomCode: roomState.code })} 
+                    className="btn btn-lg btn-primary btn-launch-game flex items-center gap-2"
+                  >
+                    <RefreshCw size={18} /> CHƠI LẠI VÁN MỚI (VỀ PHÒNG CHỜ)
+                  </button>
+                ) : (
+                  <div className="text-sm font-bold text-amber-300 animate-pulse py-2">
+                    ⏳ Đang chờ Chủ phòng reset ván chơi mới...
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
     </div>
   );
 }

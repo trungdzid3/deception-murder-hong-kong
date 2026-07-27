@@ -553,18 +553,50 @@ io.on('connection', (socket) => {
 
     accuser.hasBadge = false;
 
-    const isMeansCorrect = means.id === room.secretSolution.means.id;
-    const isClueCorrect = clue.id === room.secretSolution.clue.id;
+    // So sánh đáp án chính xác 100% (Hỗ trợ cả Object & String ID/Name)
+    const solMeansId = room.secretSolution.means?.id || room.secretSolution.means;
+    const solClueId = room.secretSolution.clue?.id || room.secretSolution.clue;
+    const solMeansName = room.secretSolution.means?.name;
+    const solClueName = room.secretSolution.clue?.name;
+
+    const targetMeansId = means?.id || means;
+    const targetClueId = clue?.id || clue;
+    const targetMeansName = means?.name;
+    const targetClueName = clue?.name;
+
+    const isMeansCorrect = (solMeansId && targetMeansId && solMeansId === targetMeansId) || (solMeansName && targetMeansName && solMeansName === targetMeansName);
+    const isClueCorrect = (solClueId && targetClueId && solClueId === targetClueId) || (solClueName && targetClueName && solClueName === targetClueName);
+
+    const targetPlayer = room.players.find(p => p.id === targetPlayerId);
+    const targetName = targetPlayer?.name || 'Nghi phạm';
+    const meansNameStr = targetMeansName || means?.name || 'Hung khí';
+    const clueNameStr = targetClueName || clue?.name || 'Bằng chứng';
 
     if (isMeansCorrect && isClueCorrect) {
       room.phase = 'GAME_OVER';
       room.winner = 'INVESTIGATORS';
-      room.eventLog.push(`🎉 CHÚC MỪNG! ${accuser.name} đã PHÁ ÁN THÀNH CÔNG! PHE ĐIỀU TRA VIÊN THẮNG!`);
+      const winLog = `🎉 CHÚC MỪNG! ${accuser.name} ĐÃ PHÁ ÁN CHÍNH XÁC! Tố cáo đúng [${targetName}] dùng Hung khí [${meansNameStr}] và Bằng chứng [${clueNameStr}]. PHE ĐIỀU TRA VIÊN THẮNG!`;
+      room.eventLog.push(winLog);
       if (roomTimers[roomCode]) clearInterval(roomTimers[roomCode]);
+      
+      io.to(roomCode).emit('receive-chat', {
+        sender: '📢 HỆ THỐNG PHÁ ÁN',
+        senderId: 'system',
+        text: winLog,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      });
       io.to(roomCode).emit('room-updated', room);
     } else {
-      room.eventLog.push(`❌ ${accuser.name} đã CÁO BUỘC SAI! Mất Huy hiệu phá án.`);
+      const failLog = `❌ CÁO BUỘC SAI! ${accuser.name} đã tố cáo sai [${targetName}] (Chọn: ${meansNameStr} & ${clueNameStr}). ${accuser.name} mất Huy hiệu Phá án.`;
+      room.eventLog.push(failLog);
       
+      io.to(roomCode).emit('receive-chat', {
+        sender: '📢 HỆ THỐNG PHÁ ÁN',
+        senderId: 'system',
+        text: failLog,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      });
+
       if (room.timerType === 'ACCUSATION_WINDOW') {
         room.endTime = Date.now() + 10 * 1000;
         startRoomTimer(roomCode);
@@ -575,8 +607,16 @@ io.on('connection', (socket) => {
       if (remainingHumanAccusers.length === 0) {
         room.phase = 'GAME_OVER';
         room.winner = 'MURDERER';
-        room.eventLog.push('💀 Tất cả người chơi đã dùng hết Huy hiệu Phá án mà không tìm ra sự thật! PHE HUNG THỦ VÀ ĐỒNG PHẠM THẮNG!');
+        const overLog = '💀 Tất cả người chơi đã dùng hết Huy hiệu Phá án mà không tìm ra sự thật! PHE HUNG THỦ VÀ ĐỒNG PHẠM THẮNG!';
+        room.eventLog.push(overLog);
         if (roomTimers[roomCode]) clearInterval(roomTimers[roomCode]);
+
+        io.to(roomCode).emit('receive-chat', {
+          sender: '📢 HỆ THỐNG PHÁ ÁN',
+          senderId: 'system',
+          text: overLog,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
       }
 
       io.to(roomCode).emit('accusation-failed', { accuser: accuser.name });
@@ -644,6 +684,43 @@ io.on('connection', (socket) => {
       };
       io.to(roomCode).emit('receive-chat', chatPayload);
     }
+  });
+
+  // 15. Reset ván chơi quay về Sảnh chờ (Chủ phòng)
+  socket.on('reset-game', ({ roomCode }) => {
+    const room = rooms[roomCode];
+    if (!room) return;
+    const hostId = room.hostId || room.players[0]?.id;
+    if (socket.id !== hostId) {
+      socket.emit('error-msg', 'Chỉ Chủ phòng mới có quyền Reset ván chơi!');
+      return;
+    }
+
+    if (roomTimers[roomCode]) clearInterval(roomTimers[roomCode]);
+
+    room.gameStarted = false;
+    room.phase = 'LOBBY';
+    room.winner = null;
+    room.secretSolution = { clue: null, means: null };
+    room.bullets = {};
+    room.activeSceneTiles = [];
+    room.causeOfDeathTile = null;
+    room.locationTile = null;
+
+    room.players = room.players.map(p => ({
+      ...p,
+      role: null,
+      clues: [],
+      means: [],
+      hasAccused: false,
+      accusedCorrectly: false,
+      hasBadge: true,
+      isReady: p.id === hostId || p.isBot
+    }));
+
+    room.eventLog.push(`🔄 ${room.players.find(p => p.id === socket.id)?.name} đã reset ván chơi quay về Sảnh chờ.`);
+    io.to(roomCode).emit('room-updated', room);
+    io.to(roomCode).emit('game-reset');
   });
 });
 
