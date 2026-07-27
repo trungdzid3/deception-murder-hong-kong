@@ -206,14 +206,18 @@ body {
 }
 
 .cinematic-sub-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--crimson-primary);
-  letter-spacing: 0.25em;
-  margin-top: 4px;
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.28em;
+  margin-top: 6px;
   text-transform: uppercase;
-  text-shadow: 0 0 10px var(--crimson-glow);
+  padding: 6px 12px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+  text-shadow: 0 0 18px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.5);
 }
 
 .hero-tagline {

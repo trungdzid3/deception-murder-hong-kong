@@ -571,9 +571,6 @@ function App() {
               </div>
               <h1 className="cinematic-main-title">DECEPTION</h1>
               <span className="cinematic-sub-title">MURDER IN HONG KONG</span>
-              <p className="hero-tagline">
-                Game Ẩn Vai Trò & Suy Luận Án Mạng • Crimson Cyber Gaming
-              </p>
             </div>
 
             <div className="cinematic-identity-card">
@@ -629,11 +626,7 @@ function App() {
               </div>
             </div>
 
-            <div className="roles-showcase-bar">
-              <div className="showcase-chip flex items-center gap-1.5"><Sparkles size={14} className="text-amber-400" /> <span><strong>Pháp Y:</strong> Nhà khoa học pháp y đặt đạn chỉ dẫn</span></div>
-              <div className="showcase-chip flex items-center gap-1.5"><Skull size={14} className="text-rose-400" /> <span><strong>Sát Nhân:</strong> Bí mật chọn Công cụ & Bằng chứng</span></div>
-              <div className="showcase-chip flex items-center gap-1.5"><Search size={14} className="text-blue-400" /> <span><strong>Điều Tra Viên:</strong> Phân tích lập luận phá án</span></div>
-            </div>
+            {/* roles-showcase-bar removed per design: keep landing clean */}
           </div>
         </main>
       )}
