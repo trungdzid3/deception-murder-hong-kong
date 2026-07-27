@@ -235,8 +235,8 @@ function App() {
       setShowAccuseModal(false);
       setShowDrawTileModal(false);
       
-      // HIỆN HIỆU ỨNG THÔNG BÁO VAI TRÒ NẾU KHÔNG PHẢI PHÁP Y
-      if (updated.forensicScientistId !== socket.id) {
+      // HIỆN HIỆU ỨNG THÔNG BÁO VAI TRÒ CHỈ KHI TRONG DECEPTION GAME
+      if (updated?.gameType !== 'sherlock' && updated.forensicScientistId !== socket.id) {
         setShowRoleRevealModal(true);
       }
     });
@@ -316,8 +316,10 @@ function App() {
     const defaultName = `Thám tử ${Math.floor(Math.random() * 9000) + 1000}`;
     const name = playerName && playerName.trim() ? playerName.trim() : defaultName;
     if (!playerName || !playerName.trim()) setPlayerName(name);
-    socket.emit('create-room', { playerName: name, gameType });
+    const targetGameType = gameType || selectedGameForModal || 'deception';
+    socket.emit('create-room', { playerName: name, gameType: targetGameType });
     setShowGameSelectModal(false);
+    setSelectedGameForModal(null);
   };
 
   const handleVisitNode = (nodeId) => {
