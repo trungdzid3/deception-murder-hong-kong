@@ -76,6 +76,7 @@ function App() {
   const [sherlockSearchQuery, setSherlockSearchQuery] = useState('');
   const [sherlockSelectedNodeId, setSherlockSelectedNodeId] = useState(null);
   const [sherlockAnswers, setSherlockAnswers] = useState({});
+  const [sherlockActiveTab, setSherlockActiveTab] = useState('casebook'); // 'casebook' | 'map' | 'directory' | 'newspaper' | 'quiz'
 
   // Bốc Thẻ Bối Cảnh Mới Modal (Pháp Y Vòng 2 & 3)
   const [showDrawTileModal, setShowDrawTileModal] = useState(false);
@@ -1076,172 +1077,357 @@ function App() {
               </div>
             )}
 
-            {/* 2. GIAI ĐOẠN PLAYING / TRA CỨU ĐỊA ĐIỂM & ĐỌC MANH MỐI */}
+            {/* 2. GIAI ĐOẠN PLAYING / THÁM TỬ TƯƠNG TÁC BỘ 4 THÀNH PHẦN CHÍNH */}
             {roomState?.phase === 'SHERLOCK_PLAYING' && (
               <div className="sherlock-playing-layout space-y-4">
                 
-                {/* BAR THANH ĐIỀU HƯỚNG TỔNG QUAN */}
-                <div className="bg-slate-900/90 border border-amber-500/30 rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 backdrop-blur">
-                  <div className="flex items-center gap-3">
-                    <Search size={22} className="text-amber-400" />
-                    <div>
-                      <h3 className="font-extrabold text-amber-200 text-base">{SHERLOCK_CASE_1.title}</h3>
-                      <p className="text-xs text-slate-400">
-                        Đã đi: <strong className="text-amber-400">{roomState.visitedNodes?.length || 0} địa điểm</strong> (Sherlock Holmes đi 6 địa điểm)
-                      </p>
+                {/* BANNER ĐIỀU HƯỚNG BỘ 4 THÀNH PHẦN CHÍNH (VICTORIAN TOOLBAR) */}
+                <div className="bg-slate-950/90 border border-amber-500/40 rounded-2xl p-4 shadow-2xl backdrop-blur space-y-3">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-3 border-b border-amber-500/20 pb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300">
+                        <BookOpen size={24} />
+                      </div>
+                      <div>
+                        <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-widest">KỲ ÁN SHERLOCK HOLMES #01</span>
+                        <h3 className="font-black text-amber-100 text-base md:text-lg">{SHERLOCK_CASE_1.title}</h3>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs px-3 py-1 rounded-lg bg-amber-950/60 border border-amber-500/30 text-amber-300 font-extrabold">
+                        📍 Đã khám xét: <strong>{roomState.visitedNodes?.length || 0} địa điểm</strong>
+                      </span>
+                      <button 
+                        onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
+                        className="btn btn-sm btn-gold-draw font-extrabold flex items-center gap-1.5 shadow-lg"
+                      >
+                        <Trophy size={15} /> TRẢ LỜI CÂU HỎI PHÁ ÁN
+                      </button>
                     </div>
                   </div>
 
-                  {/* THANH SEARCH KHU VỰC / MÃ ĐỊA ĐIỂM */}
-                  <div className="flex items-center gap-2 w-full md:w-auto">
-                    <div className="relative flex-1 md:w-64">
-                      <input 
-                        type="text" 
-                        placeholder="Nhập mã địa điểm (VD: 5EC, 50NW)..."
-                        className="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-1.5 text-xs text-amber-100 placeholder-slate-500 focus:outline-none focus:border-amber-400"
-                        value={sherlockSearchQuery}
-                        onChange={(e) => setSherlockSearchQuery(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleVisitNode(sherlockSearchQuery)}
-                      />
-                    </div>
+                  {/* 4 TAB CÔNG CỤ CHÍNH: SÁCH VỤ ÁN | BẢN ĐỒ | DANH BẠ | BÁO NGHỆ THUẬT */}
+                  <div className="flex flex-wrap gap-2 pt-1">
                     <button 
-                      onClick={() => handleVisitNode(sherlockSearchQuery)}
-                      className="btn btn-sm btn-primary font-bold whitespace-nowrap"
+                      onClick={() => setSherlockActiveTab('casebook')}
+                      className={`px-4 py-2 rounded-xl font-black text-xs transition-all flex items-center gap-2 ${sherlockActiveTab === 'casebook' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 scale-105' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800'}`}
                     >
-                      Ghé thăm
+                      <BookOpen size={16} /> 📖 SÁCH VỤ ÁN (CASE BOOK)
                     </button>
+
                     <button 
-                      onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
-                      className="btn btn-sm btn-gold-draw font-extrabold whitespace-nowrap flex items-center gap-1"
+                      onClick={() => setSherlockActiveTab('map')}
+                      className={`px-4 py-2 rounded-xl font-black text-xs transition-all flex items-center gap-2 ${sherlockActiveTab === 'map' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 scale-105' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800'}`}
                     >
-                      <Trophy size={14} /> Phá án
+                      <MapPin size={16} /> 🗺️ BẢN ĐỒ LONDON (MAP)
+                    </button>
+
+                    <button 
+                      onClick={() => setSherlockActiveTab('directory')}
+                      className={`px-4 py-2 rounded-xl font-black text-xs transition-all flex items-center gap-2 ${sherlockActiveTab === 'directory' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 scale-105' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800'}`}
+                    >
+                      <PhoneCall size={16} /> 📞 DANH BẠ LONDON (DIRECTORY)
+                    </button>
+
+                    <button 
+                      onClick={() => setSherlockActiveTab('newspaper')}
+                      className={`px-4 py-2 rounded-xl font-black text-xs transition-all flex items-center gap-2 ${sherlockActiveTab === 'newspaper' ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 scale-105' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800'}`}
+                    >
+                      <FileText size={16} /> 📰 BÁO HÀNG NGÀY (NEWSPAPER)
                     </button>
                   </div>
                 </div>
 
-                {/* GRID BẢNG MANH MỐI & NỘI DUNG ĐỊA ĐIỂM */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                  
-                  {/* CỘT TRÁI: DANH SÁCH ĐỊA ĐIỂM MỞ SẴN & ĐÃ GHÉ THÂM */}
-                  <div className="lg:col-span-1 space-y-4">
+                {/* TAB 1: SÁCH VỤ ÁN (CASE BOOK) */}
+                {sherlockActiveTab === 'casebook' && (
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                     
-                    {/* KHU VỰC ĐỊA ĐIỂM ĐÃ GHÉ THÂM */}
-                    <div className="bg-slate-900/80 border border-amber-500/20 rounded-xl p-4 space-y-3">
-                      <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between">
-                        <span>📍 Lịch sử ghé thăm ({roomState.visitedNodes?.length || 0}):</span>
-                      </h4>
-                      <div className="space-y-1.5 max-h-60 overflow-y-auto pr-1">
-                        {roomState.visitedNodes?.length === 0 && (
-                          <p className="text-xs text-slate-500 italic">Chưa ghé thăm địa điểm nào. Hãy chọn hoặc nhập mã bên dưới.</p>
-                        )}
-                        {roomState.visitedNodes?.map((nodeId) => {
-                          const n = SHERLOCK_CASE_1.nodes[nodeId];
-                          const isSelected = sherlockSelectedNodeId === nodeId;
-                          return (
-                            <div 
-                              key={nodeId}
-                              onClick={() => setSherlockSelectedNodeId(nodeId)}
-                              className={`p-2 rounded-lg border text-xs cursor-pointer transition-all flex items-center justify-between ${isSelected ? 'bg-amber-500/30 border-amber-400 text-amber-100 font-bold' : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:bg-slate-800/60'}`}
-                            >
-                              <div className="flex items-center gap-2 truncate">
-                                <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem]">{nodeId}</span>
-                                <span className="truncate">{n?.title || nodeId}</span>
-                              </div>
-                              <ArrowRight size={12} className="text-slate-500 shrink-0" />
-                            </div>
-                          );
-                        })}
+                    {/* CỘT TRÁI: KHÁM XÉT ĐỊA ĐIỂM & NHẬT KÝ HÀNH TRÌNH */}
+                    <div className="lg:col-span-1 space-y-4">
+                      
+                      {/* Ô TRA CỨU MÃ TỌA ĐỘ TRỰC TIẾP */}
+                      <div className="bg-slate-900/90 border border-amber-500/30 rounded-xl p-4 space-y-2">
+                        <label className="text-xs font-extrabold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
+                          <Search size={14} /> TRA CỨU MÃ TỌA ĐỘ (VD: 50NW, 5EC...):
+                        </label>
+                        <div className="flex gap-2">
+                          <input 
+                            type="text" 
+                            placeholder="Nhập mã (VD: 5EC, 53NW)..."
+                            className="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-amber-100 uppercase font-black tracking-wider focus:border-amber-400 focus:outline-none"
+                            value={sherlockSearchQuery}
+                            onChange={(e) => setSherlockSearchQuery(e.target.value.toUpperCase())}
+                            onKeyDown={(e) => e.key === 'Enter' && handleVisitNode(sherlockSearchQuery)}
+                          />
+                          <button 
+                            onClick={() => handleVisitNode(sherlockSearchQuery)}
+                            className="btn btn-sm btn-primary font-black"
+                          >
+                            ĐẾN NGAY
+                          </button>
+                        </div>
                       </div>
+
+                      {/* LỊCH SỬ GHÉ THÂM */}
+                      <div className="bg-slate-900/90 border border-amber-500/20 rounded-xl p-4 space-y-3">
+                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between">
+                          <span>📍 Các điểm đã điều tra ({roomState.visitedNodes?.length || 0}):</span>
+                        </h4>
+                        <div className="space-y-1.5 max-h-60 overflow-y-auto pr-1">
+                          {roomState.visitedNodes?.length === 0 && (
+                            <p className="text-xs text-slate-500 italic">Chưa tới địa điểm nào. Hãy chọn từ gợi ý hoặc nhập mã.</p>
+                          )}
+                          {roomState.visitedNodes?.map((nodeId) => {
+                            const n = SHERLOCK_CASE_1.nodes[nodeId];
+                            const isSelected = sherlockSelectedNodeId === nodeId;
+                            return (
+                              <div 
+                                key={nodeId}
+                                onClick={() => setSherlockSelectedNodeId(nodeId)}
+                                className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-all flex items-center justify-between ${isSelected ? 'bg-amber-500/30 border-amber-400 text-amber-100 font-bold' : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:bg-slate-800/60'}`}
+                              >
+                                <div className="flex items-center gap-2 truncate">
+                                  <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem]">{nodeId}</span>
+                                  <span className="truncate">{n?.title || nodeId}</span>
+                                </div>
+                                <ArrowRight size={12} className="text-slate-500 shrink-0" />
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* ĐỊA ĐIỂM GỢI Ý MỞ KHÓA */}
+                      <div className="bg-slate-900/90 border border-amber-500/20 rounded-xl p-4 space-y-3">
+                        <h4 className="font-extrabold text-amber-400 text-xs uppercase tracking-wider">
+                          🔍 Manh mối mở khóa ({roomState.unlockedNodes?.length || 0}):
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {roomState.unlockedNodes?.map((nodeId) => {
+                            const n = SHERLOCK_CASE_1.nodes[nodeId];
+                            const isVisited = roomState.visitedNodes?.includes(nodeId);
+                            return (
+                              <button
+                                key={nodeId}
+                                onClick={() => {
+                                  setSherlockSelectedNodeId(nodeId);
+                                  if (!isVisited) handleVisitNode(nodeId);
+                                }}
+                                className={`px-2.5 py-1 rounded-lg border text-xs font-bold transition-all flex items-center gap-1 ${isVisited ? 'bg-slate-800/80 border-slate-700 text-slate-400' : 'bg-amber-500/20 border-amber-500/40 text-amber-300 hover:bg-amber-500/40'}`}
+                              >
+                                <Compass size={11} /> [{nodeId}] {n?.title ? `(${n.title})` : ''}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
                     </div>
 
-                    {/* KHU VỰC ĐỊA ĐIỂM KHẢ NGHI ĐƯỢC GỢI Ý */}
-                    <div className="bg-slate-900/80 border border-amber-500/20 rounded-xl p-4 space-y-3">
-                      <h4 className="font-extrabold text-amber-400 text-xs uppercase tracking-wider">
-                        🔍 Địa điểm mở khóa ({roomState.unlockedNodes?.length || 0}):
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {roomState.unlockedNodes?.map((nodeId) => {
-                          const n = SHERLOCK_CASE_1.nodes[nodeId];
-                          const isVisited = roomState.visitedNodes?.includes(nodeId);
+                    {/* CỘT PHẢI: HIỂN THỊ NỘI DUNG SÁCH VỤ ÁN */}
+                    <div className="lg:col-span-2">
+                      <div className="bg-slate-900/95 border border-amber-500/30 rounded-2xl p-5 md:p-6 backdrop-blur min-h-[460px] flex flex-col justify-between space-y-4 shadow-2xl">
+                        {sherlockSelectedNodeId && SHERLOCK_CASE_1.nodes[sherlockSelectedNodeId] ? (() => {
+                          const node = SHERLOCK_CASE_1.nodes[sherlockSelectedNodeId];
                           return (
-                            <button
-                              key={nodeId}
-                              onClick={() => {
-                                setSherlockSelectedNodeId(nodeId);
-                                if (!isVisited) handleVisitNode(nodeId);
-                              }}
-                              className={`px-2.5 py-1 rounded-lg border text-xs font-bold transition-all flex items-center gap-1 ${isVisited ? 'bg-slate-800/80 border-slate-700 text-slate-400' : 'bg-amber-500/20 border-amber-500/40 text-amber-300 hover:bg-amber-500/40'}`}
-                            >
-                              <Compass size={11} /> [{nodeId}] {n?.title ? `(${n.title})` : ''}
-                            </button>
+                            <div className="space-y-4">
+                              <div className="border-b border-amber-500/20 pb-3 flex items-center justify-between">
+                                <div>
+                                  <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-500/30">
+                                    Khu vực {node.area} • Tọa độ [{node.id}]
+                                  </span>
+                                  <h3 className="text-xl font-black text-amber-100 mt-1">{node.title}</h3>
+                                </div>
+                                <span className="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-bold">
+                                  {node.type === 'suspect_interview' ? '🗣️ Lời khai nhân chứng' : node.type === 'clue_inspection' ? '🔍 Khám xét vật chứng' : '📍 Hiện trường vụ án'}
+                                </span>
+                              </div>
+
+                              {/* VĂN BẢN TRUYỆN SÁCH VỤ ÁN */}
+                              <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-5 text-sm text-amber-50/90 leading-relaxed font-serif whitespace-pre-line max-h-[350px] overflow-y-auto shadow-inner">
+                                {node.content}
+                              </div>
+
+                              {/* VẬT CHỨNG GHI NHẬN */}
+                              {node.unlocks?.evidence_items?.length > 0 && (
+                                <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3.5 space-y-1">
+                                  <h5 className="text-xs font-extrabold text-amber-300 uppercase flex items-center gap-1.5">
+                                    <Sparkles size={14} /> Bằng chứng & Thông tin thu thập thêm:
+                                  </h5>
+                                  {node.unlocks.evidence_items.map((item, idx) => (
+                                    <p key={idx} className="text-xs text-amber-100 font-semibold">• {item}</p>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           );
-                        })}
+                        })() : (
+                          <div className="space-y-6 py-4">
+                            <div className="border-b border-amber-500/20 pb-3">
+                              <h3 className="text-xl font-black text-amber-300">LỜI MỞ ĐẦU VỤ ÁN (CASE INTRODUCTION)</h3>
+                              <p className="text-xs text-slate-400 mt-1">2 December 1893 • 221B Baker Street, London</p>
+                            </div>
+
+                            <div className="bg-slate-950/80 border border-amber-500/20 rounded-xl p-5 text-sm text-slate-200 leading-relaxed font-serif whitespace-pre-line">
+                              {SHERLOCK_CASE_1.intro.story_text}
+                            </div>
+
+                            <div className="bg-amber-950/30 border border-amber-500/30 rounded-xl p-4 space-y-2">
+                              <h4 className="font-extrabold text-amber-300 text-xs uppercase flex items-center gap-1.5">
+                                <Skull size={14} /> Manh mối đầu tiên phát hiện tại hiện trường:
+                              </h4>
+                              <ul className="space-y-1 text-xs text-slate-300">
+                                {SHERLOCK_CASE_1.intro.initial_clues.map((clue, i) => (
+                                  <li key={i} className="flex items-start gap-2">
+                                    <span className="text-amber-400 font-bold">•</span>
+                                    <span>{clue}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
 
                   </div>
+                )}
 
-                  {/* CỘT PHẢI: CHI TIẾT NỘI DUNG NÚT ĐANG CHỌN */}
-                  <div className="lg:col-span-2">
-                    <div className="bg-slate-900/90 border border-amber-500/30 rounded-xl p-5 md:p-6 backdrop-blur min-h-[400px] flex flex-col justify-between space-y-4">
-                      {sherlockSelectedNodeId && SHERLOCK_CASE_1.nodes[sherlockSelectedNodeId] ? (() => {
-                        const node = SHERLOCK_CASE_1.nodes[sherlockSelectedNodeId];
+                {/* TAB 2: BẢN ĐỒ LONDON (LONDON MAP) */}
+                {sherlockActiveTab === 'map' && (
+                  <div className="bg-slate-950/90 border border-amber-500/30 rounded-2xl p-6 backdrop-blur space-y-4 shadow-2xl">
+                    <div className="border-b border-amber-500/20 pb-3 flex items-center justify-between">
+                      <div>
+                        <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
+                          <MapPin size={22} className="text-amber-400" /> BẢN ĐỒ ĐỊA ĐIỂM LONDON 1888
+                        </h3>
+                        <p className="text-xs text-slate-400">Các khu vực chính: NW (Marylebone), WC (Strand), EC (City), SW (Westminster), E (Docks).</p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {Object.values(SHERLOCK_CASE_1.nodes).map((n) => {
+                        const isVisited = roomState.visitedNodes?.includes(n.id);
+                        const isUnlocked = roomState.unlockedNodes?.includes(n.id);
                         return (
-                          <div className="space-y-4">
-                            <div className="border-b border-amber-500/20 pb-3 flex items-center justify-between">
-                              <div>
-                                <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-500/30">
-                                  Khu vực {node.area} • Mã [{node.id}]
-                                </span>
-                                <h3 className="text-xl font-black text-amber-100 mt-1">{node.title}</h3>
-                              </div>
-                              <span className="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
-                                {node.type === 'suspect_interview' ? '🗣️ Thẩm vấn' : node.type === 'clue_inspection' ? '🔍 Vật chứng' : '📍 Địa điểm'}
+                          <div 
+                            key={n.id}
+                            onClick={() => {
+                              setSherlockSelectedNodeId(n.id);
+                              setSherlockActiveTab('casebook');
+                              if (!isVisited) handleVisitNode(n.id);
+                            }}
+                            className={`p-4 rounded-xl border cursor-pointer transition-all flex flex-col justify-between space-y-2 ${isVisited ? 'bg-emerald-950/40 border-emerald-500/50 hover:bg-emerald-900/50' : isUnlocked ? 'bg-amber-950/40 border-amber-500/60 hover:bg-amber-900/50 shadow-lg' : 'bg-slate-900/60 border-slate-800 hover:bg-slate-800/60'}`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-500/30">
+                                Mã [{n.id}]
+                              </span>
+                              <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                                Vùng {n.area}
                               </span>
                             </div>
-
-                            {/* NỘI DUNG VĂN BẢN TRUYỆN */}
-                            <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-4 text-sm text-slate-200 leading-relaxed font-serif whitespace-pre-line max-h-[350px] overflow-y-auto">
-                              {node.content}
+                            <h4 className="font-extrabold text-white text-sm">{n.title}</h4>
+                            <div className="flex items-center justify-between pt-1 border-t border-slate-800 text-xs">
+                              <span className="text-slate-400 text-[0.7rem]">{isVisited ? '✅ Đã ghé thăm' : '📍 Chưa ghé'}</span>
+                              <span className="text-amber-400 font-bold flex items-center gap-1">Khám xét <ArrowRight size={12} /></span>
                             </div>
-
-                            {/* THÔNG TIN MỞ KHÓA MỚI */}
-                            {node.unlocks?.evidence_items?.length > 0 && (
-                              <div className="bg-amber-950/30 border border-amber-500/30 rounded-xl p-3 space-y-1">
-                                <h5 className="text-xs font-bold text-amber-300 uppercase flex items-center gap-1">
-                                  <Sparkles size={12} /> Vật chứng / Manh mối mới ghi nhận:
-                                </h5>
-                                {node.unlocks.evidence_items.map((item, idx) => (
-                                  <p key={idx} className="text-xs text-slate-300 font-semibold">• {item}</p>
-                                ))}
-                              </div>
-                            )}
-
                           </div>
                         );
-                      })() : (
-                        <div className="flex flex-col items-center justify-center py-16 text-center space-y-3 text-slate-500">
-                          <Search size={48} className="text-amber-500/40" />
-                          <h4 className="font-extrabold text-slate-300 text-base">Văn phòng Thám tử Baker Street</h4>
-                          <p className="text-xs max-w-md">
-                            Hãy chọn một địa điểm từ danh sách gợi ý bên trái hoặc gõ mã địa điểm vào ô tìm kiếm phía trên để tới khám xét và lấy lời khai.
-                          </p>
-                        </div>
-                      )}
-
-                      <div className="border-t border-amber-500/20 pt-3 flex items-center justify-between">
-                        <span className="text-xs text-slate-400">Tự do thảo luận cùng đồng đội để chọn điểm đến tiếp theo.</span>
-                        <button 
-                          onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
-                          className="btn btn-sm btn-gold-draw font-extrabold"
-                        >
-                          🏆 Phá án ngay
-                        </button>
-                      </div>
+                      })}
                     </div>
                   </div>
+                )}
 
-                </div>
+                {/* TAB 3: DANH BẠ LONDON (LONDON DIRECTORY) */}
+                {sherlockActiveTab === 'directory' && (
+                  <div className="bg-slate-950/90 border border-amber-500/30 rounded-2xl p-6 backdrop-blur space-y-4 shadow-2xl">
+                    <div className="border-b border-amber-500/20 pb-3 flex flex-col md:flex-row items-center justify-between gap-3">
+                      <div>
+                        <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
+                          <PhoneCall size={22} className="text-amber-400" /> DANH BẠ NIÊN GIÁM LONDON (LONDON DIRECTORY)
+                        </h3>
+                        <p className="text-xs text-slate-400">Tra cứu tên nhân vật, cơ quan hoặc tiệm buôn để lấy mã tọa độ địa điểm.</p>
+                      </div>
+
+                      <div className="w-full md:w-64">
+                        <input 
+                          type="text"
+                          placeholder="Tìm kiếm nhân vật / địa chỉ..."
+                          className="w-full bg-slate-900 border border-amber-500/40 rounded-xl px-3 py-2 text-xs text-amber-100 placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                          onChange={(e) => setSherlockSearchQuery(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {SHERLOCK_CASE_1.directory
+                        ?.filter(item => !sherlockSearchQuery || item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || item.desc.toLowerCase().includes(sherlockSearchQuery.toLowerCase()))
+                        .map((item, idx) => (
+                          <div 
+                            key={idx}
+                            onClick={() => {
+                              setSherlockSelectedNodeId(item.code);
+                              setSherlockActiveTab('casebook');
+                              handleVisitNode(item.code);
+                            }}
+                            className="bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 p-4 rounded-xl cursor-pointer transition-all flex flex-col justify-between space-y-2 hover:bg-slate-800/80"
+                          >
+                            <div>
+                              <div className="flex items-center justify-between mb-1">
+                                <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
+                                <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-500/30">
+                                  [{item.code}]
+                                </span>
+                              </div>
+                              <span className="text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">{item.category} • {item.address}</span>
+                              <p className="text-xs text-slate-300 mt-2">{item.desc}</p>
+                            </div>
+                            <button className="btn btn-xs btn-primary w-full mt-2 font-bold flex items-center justify-center gap-1">
+                              Tới địa chỉ này ({item.code}) <ArrowRight size={12} />
+                            </button>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 4: BÁO HÀNG NGÀY (DAILY TELEGRAPH NEWSPAPER) */}
+                {sherlockActiveTab === 'newspaper' && (
+                  <div className="bg-amber-950/20 border border-amber-500/40 rounded-2xl p-6 backdrop-blur space-y-6 shadow-2xl font-serif">
+                    <div className="text-center border-b-2 border-amber-500/30 pb-4 space-y-1">
+                      <span className="text-xs font-sans tracking-widest text-amber-400 uppercase font-black">{SHERLOCK_CASE_1.newspaper?.issue_date}</span>
+                      <h2 className="text-3xl font-black text-amber-100 tracking-wider uppercase font-serif">{SHERLOCK_CASE_1.newspaper?.paper_name}</h2>
+                      <p className="text-xs text-slate-400 font-sans">Ấn bản tin tức hàng ngày số 4.821 • Giá 1 Penny</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {SHERLOCK_CASE_1.newspaper?.articles?.map((art, i) => (
+                        <div 
+                          key={i}
+                          onClick={() => {
+                            if (art.related_code) {
+                              setSherlockSelectedNodeId(art.related_code);
+                              setSherlockActiveTab('casebook');
+                              handleVisitNode(art.related_code);
+                            }
+                          }}
+                          className="bg-slate-950/80 border border-amber-500/30 p-5 rounded-xl space-y-3 cursor-pointer hover:border-amber-400 transition-all shadow-lg"
+                        >
+                          <div className="border-b border-amber-500/20 pb-2 flex items-center justify-between">
+                            <h4 className="font-extrabold text-amber-200 text-sm leading-snug">{art.title}</h4>
+                            <span className="text-[0.65rem] font-sans font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 shrink-0">[{art.related_code}]</span>
+                          </div>
+                          <p className="text-xs text-slate-300 leading-relaxed">{art.summary}</p>
+                          <div className="text-right text-[0.7rem] font-sans text-amber-400 font-bold flex items-center justify-end gap-1">
+                            Khám xét tin tức này <ArrowRight size={12} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
               </div>
             )}

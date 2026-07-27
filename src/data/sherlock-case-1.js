@@ -458,5 +458,52 @@ export const SHERLOCK_CASE_1 = {
     "full_truth": "Băng buôn lậu Outer Docks bị Sherlock Holmes tố giác 2 năm trước đã quyết định lên kế hoạch trả thù sau khi ra tù dưới sự giật dây của Giáo sư Moriarty. Elle Fanning (con gái cảnh sát đã mất Dick Alpert) đứng ra tổ chức cuộc họp tại The Pavilion với Ambroise Beaupre, Gertrude Helwig và Israel Jacobs. Chandler Davenport (tay súng bắn tỉa thoát án) nhận nhiệm vụ ám sát. Jacobs nhận việc tại Ship & Turtle để đẩy thùng gỗ làm thương chân Sherlock thật, đồng thời nhận việc tại Camden House để mở khóa phòng cho Davenport bắn tỉa. Elle Fanning tìm cách đầu độc Sherlock bằng Cyanide vào 2:00 chiều hôm trước nhưng thất bại. Cùng lúc đó, diễn viên đóng giả Sherlock là Marvin Pemberton liên tục quỵt tiền dưới danh nghĩa Holmes. Sherlock thật phát hiện ra và hẹn gặp Pemberton lúc 8:45 tối tại nhà mình. Pemberton đến sớm và đuổi Mycroft đi lúc 8:30 tối. Khi Pemberton vào nhà, Davenport ngắm bắn tỉa qua kính và hạ sát Pemberton vì nhầm là Holmes thật. Beaupre và Helwig châm dầu hỏa đốt nhà để phi tang, Helwig bị bỏng tay. Sherlock thật (người đang bị thương ở chân) trốn thoát qua ngõ sau dưới lớp áo đen và ẩn náu tại cửa hàng văn phòng phẩm A. W. Faber, đồng thời để lại mảnh giấy nhắn mật mã chữ cái đầu gửi Lestrade.",
     "mastermind": "Giáo sư Moriarty (Professor Moriarty) thông qua sát thủ bắn tỉa Chandler Davenport và băng nhóm Pentacle.",
     "motive": "Trả thù Sherlock Holmes vì đã triệt phá băng nhóm buôn lậu Outer Docks hai năm trước và đòi lại công lý méo mó cho những người thân bị đi tù."
+  },
+  "directory": [
+    { "name": "Bác sĩ John Watson", "category": "Nhân vật chính", "address": "221B Baker Street", "code": "50NW", "desc": "Bạn thân và đồng sự của Sherlock Holmes." },
+    { "name": "Bà Olivia Robins", "category": "Nhân chứng", "address": "50 NW Baker St", "code": "50NW", "desc": "Nhân chứng nhìn thấy vụ đốt nhà." },
+    { "name": "Mycroft Holmes", "category": "Thủ tướng / Anh trai", "address": "Club Diogenes, Pall Mall", "code": "8SW", "desc": "Anh trai Sherlock Holmes." },
+    { "name": "Phòng thí nghiệm của Murray", "category": "Pháp y", "address": "22 SW Whitechapel", "code": "22SW", "desc": "Khám nghiệm vật chứng và chiếc hộp sắt." },
+    { "name": "Nhà nghỉ Camden House", "category": "Hiện trường súng bắn", "address": "53 NW Camden St", "code": "53NW", "desc": "Nơi phát hiện vỏ đạn súng bắn tỉa." },
+    { "name": "Cửa hàng súng Grant Arms", "category": "Vũ khí", "address": "5 EC Minories", "code": "5EC", "desc": "Tiệm bán súng Webley .44 Bull Dog của Oliver Perkins." },
+    { "name": "Israel Jacobs", "category": "Nghi phạm", "address": "53 EC Whitechapel", "code": "53EC", "desc": "Nhân viên dọn dẹp có chìa khóa Camden House." },
+    { "name": "Chandler Davenport", "category": "Sát thủ súng", "address": "28 WC Strand", "code": "28WC", "desc": "Tay súng bắn tỉa giải vô địch London." },
+    { "name": "Nhà hát Lyceum", "category": "Sân khấu kịch", "address": "18 WC Wellington St", "code": "18WC", "desc": "Vở kịch 'The Initiative of Dharma' & Gertrude Helwig." },
+    { "name": "Quán ăn Ship and Turtle", "category": "Quán ăn", "address": "83 EC Leadenhall St", "code": "83EC", "desc": "Nơi xảy ra sự cố thùng gỗ va trúng chân Holmes." },
+    { "name": "Trạm xe ngựa Trung tâm", "category": "Giao thông", "address": "5 WC High Holborn", "code": "5WC", "desc": "Dịch vụ xe ngựa chở Holmes hôm qua." },
+    { "name": "Quán rượu The Pavilion", "category": "Quán rượu / Độc tố", "address": "20 NW Marylebone", "code": "20NW", "desc": "Nơi Elle Fanning pha trà kịch độc." },
+    { "name": "John Taylor Chemist", "category": "Hóa chất độc", "address": "72 NW Baker St", "code": "72NW", "desc": "Tiệm bán chất kịch độc Cyanide." },
+    { "name": "Elle Fanning", "category": "Nghi phạm", "address": "90 NW Marylebone", "code": "90NW", "desc": "Con gái cố cảnh sát Dick Alpert." },
+    { "name": "Cảng Outer Docks", "category": "Bến cảng", "address": "98 E Wapping", "code": "98E", "desc": "Trụ sở cũ của băng buôn lậu bị Holmes phá." }
+  ],
+  "newspaper": {
+    "issue_date": "Saturday, 2 December 1893",
+    "paper_name": "THE DAILY TELEGRAPH - LONDON EDITION",
+    "articles": [
+      {
+        "title": "HỎA HOẠN KINH HOÀNG TẠI 221B BAKER STREET: NGHI VẤN VỤ MẠNG",
+        "date": "2 Dec 1893",
+        "summary": "Đêm qua lúc 9:00 tối, ngọn lửa đã thiêu rụi căn hộ của vị thám tử nổi tiếng Sherlock Holmes. Thi thể cháy xém được tìm thấy tại hiện trường với vết đạn xuyên tim. Cảnh sát Scotland Yard đang phong tỏa khu vực.",
+        "related_code": "50NW"
+      },
+      {
+        "title": "TRUY NÃ TÊN TỘI PHẠM NGUY HIỂM EDWARD BEAUPRE VƯỢT NGỤC",
+        "date": "1 Dec 1893",
+        "summary": "Bộ Nội An phát lệnh truy nã Edward Beaupre - gã trùm buôn lậu bị bắt 2 năm trước tại cảng Outer Docks. Y được nhìn thấy lảng vảng gần khu vực Regent's Park và Marylebone.",
+        "related_code": "98E"
+      },
+      {
+        "title": "VỞ KỊCH MỚI 'THE INITIATIVE OF DHARMA' TẠI NHÀ HÁT LYCEUM",
+        "date": "29 Nov 1893",
+        "summary": "Đạo diễn Wayne Nelson ra mắt vở kịch đầy kịch tính với sự tham gia của nữ minh tinh Gertrude Helwig trong trang phục dạ hội màu đỏ nổi bật.",
+        "related_code": "18WC"
+      },
+      {
+        "title": "CẢNH BÁO MẤT TRỘM HÓA CHẤT ĐỘC TẠI MARYLEBONE",
+        "date": "30 Nov 1893",
+        "summary": "Cửa hàng hóa chất John Taylor báo cáo bán lượng lớn chất xyanua cho khách hàng mua rửa ảnh. Cảnh sát khuyến cáo công chúng cẩn trọng.",
+        "related_code": "72NW"
+      }
+    ]
   }
 };
