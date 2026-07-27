@@ -627,6 +627,21 @@ io.on('connection', (socket) => {
       }
     }
   });
+
+  // 14. Tin nhắn Chat nhóm (Broadcast to room)
+  socket.on('send-chat', ({ roomCode, message }) => {
+    const room = rooms[roomCode];
+    if (room && message) {
+      const sender = room.players.find(p => p.id === socket.id);
+      const chatPayload = {
+        sender: sender?.name || 'Người chơi',
+        senderId: socket.id,
+        text: message,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      io.to(roomCode).emit('receive-chat', chatPayload);
+    }
+  });
 });
 
 const PORT = process.env.PORT || 3001;

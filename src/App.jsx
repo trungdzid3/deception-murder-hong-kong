@@ -80,12 +80,16 @@ function App() {
   const [showAccuseModal, setShowAccuseModal] = useState(false);
   const [accusationResultMsg, setAccusationResultMsg] = useState('');
 
-  // Voice Chat States (Khai báo const chính xác 100%)
   const [isMuted, setIsMuted] = useState(true);
   const [localStream, setLocalStream] = useState(null);
   const peerConnections = useRef({});
   const audioElements = useRef({});
   const localStreamRef = useRef(null);
+  const roomStateRef = useRef(roomState);
+
+  useEffect(() => {
+    roomStateRef.current = roomState;
+  }, [roomState]);
 
   // Cập nhật timestamp 200ms/lần
   useEffect(() => {
@@ -159,19 +163,23 @@ function App() {
     }
 
     pc.ontrack = (e) => {
-      if (!audioElements.current[targetSocketId]) {
-        const audio = document.createElement('audio');
+      let audio = audioElements.current[targetSocketId];
+      if (!audio) {
+        audio = document.createElement('audio');
         audio.autoplay = true;
-        audio.srcObject = e.streams[0];
+        audio.playsInline = true;
         document.body.appendChild(audio);
         audioElements.current[targetSocketId] = audio;
       }
+      audio.srcObject = e.streams[0];
+      audio.play().catch(err => console.warn('Audio play autoplay error:', err));
     };
 
     pc.onicecandidate = (e) => {
-      if (e.candidate && roomState?.code) {
+      const code = roomStateRef.current?.code;
+      if (e.candidate && code) {
         socket.emit('voice-signal', {
-          roomCode: roomState.code,
+          roomCode: code,
           targetSocketId,
           signal: { candidate: e.candidate }
         });
@@ -267,20 +275,33 @@ function App() {
       const pc = createPeerConnection(socketId);
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
-      socket.emit('voice-signal', { roomCode: roomState?.code, targetSocketId: socketId, signal: { offer } });
+      const code = roomStateRef.current?.code;
+      if (code) {
+        socket.emit('voice-signal', { roomCode: code, targetSocketId: socketId, signal: { offer } });
+      }
     });
 
     socket.on('voice-signal-received', async ({ senderSocketId, signal }) => {
       const pc = createPeerConnection(senderSocketId);
+      const code = roomStateRef.current?.code;
       if (signal.offer) {
         await pc.setRemoteDescription(new RTCSessionDescription(signal.offer));
         const answer = await pc.createAnswer();
         await pc.setLocalDescription(answer);
-        socket.emit('voice-signal', { roomCode: roomState?.code, targetSocketId: senderSocketId, signal: { answer } });
+        if (code) {
+          socket.emit('voice-signal', { roomCode: code, targetSocketId: senderSocketId, signal: { answer } });
+        }
       } else if (signal.answer) {
         await pc.setRemoteDescription(new RTCSessionDescription(signal.answer));
       } else if (signal.candidate) {
         try { await pc.addIceCandidate(new RTCIceCandidate(signal.candidate)); } catch (e) {}
+      }
+    });
+
+    socket.on('receive-chat', (chatPayload) => {
+      setChatMessages(prev => [...prev, chatPayload]);
+      if (chatPayload.senderId !== socket.id) {
+        setUnreadChatCount(prev => prev + 1);
       }
     });
 
@@ -472,9 +493,14 @@ function App() {
   };
 
   const handleSendChat = () => {
-    if (isForensic) return setErrorMsg('Theo luật Deception: Nhà khoa học pháp y im lặng, KHÔNG ĐƯỢC nhắn chat!');
     if (!chatInput.trim()) return;
-    setChatMessages(prev => [...prev, { sender: me?.name || 'Bạn', text: chatInput, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
+    const code = roomStateRef.current?.code || roomState?.code;
+    if (!code) return;
+
+    socket.emit('send-chat', {
+      roomCode: code,
+      message: chatInput.trim()
+    });
     setChatInput('');
   };
 
