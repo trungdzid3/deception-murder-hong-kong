@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,800;1,900&family=Outfit:wght@400;600;700;800;900&family=Teko:wght@600;700&display=swap');
 
+/* Custom Title Font (place KK7-Dia-Dao.ttf in public/fonts/) */
+@font-face {
+  font-family: 'KK7 Dia Dao';
+  src: url('/fonts/KK7-Dia-Dao.ttf') format('truetype');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* =========================================================
    DOMINATE CRIMSON CYBER NOIR - GAMING DESIGN SYSTEM
    ========================================================= */
@@ -17,13 +26,29 @@
   --bg-card-hover: #2d161e;
   --bg-input: #0a0406;
 
-  /* Crimson Cyber Red Gaming Palette */
-  --crimson-primary: #e6002e;
-  --crimson-hover: #ff1a47;
-  --crimson-dark: #800019;
-  --crimson-deep: #45020e;
-  --crimson-glow: rgba(230, 0, 46, 0.4);
-  --crimson-glow-strong: rgba(255, 26, 71, 0.65);
+  /* Crimson palette taken from provided gradient image */
+  --crimson-100: #d00018; /* primary brightest */
+  --crimson-90:  #b60015;
+  --crimson-75:  #9c0012;
+  --crimson-60:  #82000f;
+  --crimson-45:  #68000c;
+  --crimson-30:  #4e0009;
+  --crimson-15:  #330006;
+  --crimson-05:  #190003;
+  --crimson-00:  #000000;
+
+  --crimson-primary: var(--crimson-100);
+  --crimson-hover: #ff1a47; /* neon hover for important CTAs */
+  --crimson-dark: var(--crimson-60);
+  --crimson-deep: var(--crimson-30);
+  --crimson-glow: rgba(208, 0, 24, 0.32);
+  --crimson-glow-strong: rgba(255, 26, 71, 0.72);
+
+  /* Neon highlight for accents and differences */
+  --neon-accent: #ff1a47; /* warm neon pink/red */
+  --neon-cyan: #00f6ff; /* optional contrasting neon */
+  --neon-glow: 0 0 10px var(--neon-accent), 0 0 30px rgba(255,26,71,0.18);
+  --neon-glow-cyan: 0 0 10px var(--neon-cyan), 0 0 30px rgba(0,246,255,0.12);
 
   --accent-gold: #ffb703;
   --accent-blue: #00b4d8;
@@ -45,6 +70,9 @@
   --font-sans: 'Be Vietnam Pro', sans-serif;
   --font-heading: 'Outfit', 'Be Vietnam Pro', sans-serif;
   --font-game: 'Teko', 'Outfit', sans-serif;
+  --font-title: 'KK7 Dia Dao', var(--font-heading);
+  --font-body: var(--font-sans);
+  --font-body-strong: 'Outfit', var(--font-sans);
 }
 
 body {
@@ -155,7 +183,7 @@ body {
 }
 
 .cinematic-main-title {
-  font-family: var(--font-game);
+  font-family: var(--font-title);
   font-size: 5rem;
   font-weight: 700;
   color: #ffffff;
@@ -343,6 +371,7 @@ body {
 }
 
 .hub-title-group h2 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 900; color: var(--crimson-primary); letter-spacing: 0.03em; }
+.hub-title-group h2 { font-family: var(--font-title); }
 .hub-title-group p { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-top: 2px; }
 
 .hub-room-badge {
@@ -570,7 +599,7 @@ body {
 .scene-chip-item.scene-tile-brown { background: #542306 !important; border-color: var(--accent-gold) !important; }
 
 .scene-card-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-title);
   font-size: 1.15rem;
   font-weight: 900;
   letter-spacing: 0.05em;
@@ -579,6 +608,12 @@ body {
   padding-bottom: 4px;
   text-transform: uppercase;
 }
+
+/* Note / reminder text: italic */
+.note-text { font-style: italic; color: var(--text-muted); font-family: var(--font-body); }
+
+/* Utility: strong body text (bold, sans-serif no-serif) */
+.body-strong { font-family: var(--font-body-strong); font-weight: 800; }
 
 .scene-options-list {
   display: flex;
@@ -1031,6 +1066,24 @@ body {
 .btn-sm { padding: 8px 14px; font-size: 0.8rem; }
 .btn-md { padding: 12px 18px; font-size: 0.9rem; }
 .btn-lg { padding: 16px 28px; font-size: 1.05rem; }
+
+/* Utility highlights: use for important elements and neon-difference accents */
+.important-highlight {
+  background: linear-gradient(135deg, var(--crimson-primary) 0%, var(--crimson-dark) 100%);
+  color: white;
+  border-color: white;
+  box-shadow: var(--neon-glow);
+}
+
+.neon-highlight {
+  color: var(--neon-accent);
+  text-shadow: 0 0 6px rgba(255,26,71,0.9), 0 0 18px rgba(255,26,71,0.25);
+}
+
+.neon-outline {
+  border: 2px solid var(--neon-accent) !important;
+  box-shadow: var(--neon-glow) !important;
+}
 
 .btn-primary { background: linear-gradient(135deg, #e6002e 0%, #800019 100%); color: white; border-color: white; box-shadow: 0 0 15px var(--crimson-glow); }
 .btn-secondary { background: var(--bg-card); color: white; }
