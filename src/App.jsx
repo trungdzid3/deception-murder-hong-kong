@@ -499,36 +499,39 @@ function App() {
     <div className="app-layout">
       
       {/* HEADER - chỉ hiện khi đang trong phòng, không có logo */}
-      {inRoom && (
-        <header className="app-header-compact">
-          <div className="header-actions">
-            <div className="room-code-pill cursor-pointer" onClick={handleCopyCode} title="Nhấp để copy mã phòng">
-              <span>PHÒNG:</span>
-              <strong>{roomState?.code}</strong>
-              <Copy size={12} className="ml-1 text-slate-400" />
+      {inRoom && (() => {
+        const isMicDisabled = roomState?.gameStarted && isForensic;
+        return (
+          <header className="app-header-compact">
+            <div className="header-actions">
+              <div className="room-code-pill cursor-pointer" onClick={handleCopyCode} title="Nhấp để copy mã phòng">
+                <span>PHÒNG:</span>
+                <strong>{roomState?.code}</strong>
+                <Copy size={12} className="ml-1 text-slate-400" />
+              </div>
+
+              {/* NÚT BẬT/TẮT MIC */}
+              <button 
+                onClick={isMicDisabled ? undefined : toggleMute}
+                disabled={isMicDisabled}
+                className={`btn btn-xs ${isMicDisabled ? 'btn-mic-disabled' : !isMuted ? 'btn-mic-active' : 'btn-mic-muted'}`}
+                title={isMicDisabled ? 'Theo luật Deception: Nhà khoa học pháp y không được nói thành lời khi ván chơi bắt đầu!' : ''}
+              >
+                {isMicDisabled ? <Lock size={12} /> : !isMuted ? <Mic size={13} /> : <MicOff size={13} />}
+                <span>{isMicDisabled ? 'KHOÁ MIC (PHÁP Y)' : !isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
+              </button>
+
+              <button onClick={() => setShowGuideModal(true)} className="btn btn-xs btn-secondary">
+                <BookOpen size={13} /> Luật
+              </button>
+
+              <button onClick={handleLeaveRoom} className="btn btn-xs btn-danger">
+                <LogOut size={13} /> Rời
+              </button>
             </div>
-
-            {/* NÚT BẬT/TẮT MIC */}
-            <button 
-              onClick={isForensic ? undefined : toggleMute}
-              disabled={isForensic}
-              className={`btn btn-xs ${isForensic ? 'btn-mic-disabled' : !isMuted ? 'btn-mic-active' : 'btn-mic-muted'}`}
-              title={isForensic ? 'Theo luật Deception: Nhà khoa học pháp y không được nói thành lời!' : ''}
-            >
-              {isForensic ? <Lock size={12} /> : !isMuted ? <Mic size={13} /> : <MicOff size={13} />}
-              <span>{isForensic ? 'KHOÁ MIC (PHÁP Y)' : !isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
-            </button>
-
-            <button onClick={() => setShowGuideModal(true)} className="btn btn-xs btn-secondary">
-              <BookOpen size={13} /> Luật
-            </button>
-
-            <button onClick={handleLeaveRoom} className="btn btn-xs btn-danger">
-              <LogOut size={13} /> Rời
-            </button>
-          </div>
-        </header>
-      )}
+          </header>
+        );
+      })()}
 
       {/* THÔNG BÁO LỖI NẾU CÓ */}
       {errorMsg && (
@@ -650,9 +653,19 @@ function App() {
                 <Users size={18} className="text-amber-400" />
                 <span>Số người chơi: <strong className="text-amber-400">{roomState.players?.length || 0}/12</strong></span>
               </div>
-              <div className="bot-actions-group">
-                <button onClick={handleAddBot} className="btn btn-sm btn-secondary"><UserPlus size={14} /> + Thêm Bot</button>
-                {botCount > 0 && <button onClick={handleRemoveBot} className="btn btn-sm btn-outline"><UserMinus size={14} /> - Xóa Bot ({botCount})</button>}
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={toggleMute}
+                  className={`btn btn-sm ${!isMuted ? 'btn-mic-active' : 'btn-mic-muted'} font-bold flex items-center gap-1.5`}
+                  title="Bật/Tắt Mic để trò chuyện thảo luận với mọi người trong sảnh chờ"
+                >
+                  {!isMuted ? <Mic size={14} /> : <MicOff size={14} />}
+                  <span>{!isMuted ? 'MIC ĐANG BẬT' : 'BẬT MIC SẢNH CHỜ'}</span>
+                </button>
+                <div className="bot-actions-group">
+                  <button onClick={handleAddBot} className="btn btn-sm btn-secondary"><UserPlus size={14} /> + Thêm Bot</button>
+                  {botCount > 0 && <button onClick={handleRemoveBot} className="btn btn-sm btn-outline"><UserMinus size={14} /> - Xóa Bot ({botCount})</button>}
+                </div>
               </div>
             </div>
 
