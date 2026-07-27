@@ -95,6 +95,7 @@ function App() {
   const roomStateRef = useRef(roomState);
   const chatEndRef = useRef(null);
   const isChatOpenRef = useRef(isChatOpen);
+  const createdGameTypeRef = useRef('deception');
 
   useEffect(() => {
     isChatOpenRef.current = isChatOpen;
@@ -218,25 +219,32 @@ function App() {
   // Socket Events
   useEffect(() => {
     socket.on('room-created', ({ roomState }) => {
-      setRoomState(roomState);
+      const gameType = roomState?.gameType || createdGameTypeRef.current || 'deception';
+      setRoomState({ ...roomState, gameType });
       setInRoom(true);
       setErrorMsg('');
     });
 
     socket.on('room-updated', (updated) => {
-      setRoomState(updated);
+      setRoomState(prev => {
+        const gameType = updated?.gameType || prev?.gameType || createdGameTypeRef.current || 'deception';
+        return { ...updated, gameType };
+      });
     });
 
     socket.on('game-started', (updated) => {
-      setRoomState(updated);
+      setRoomState(prev => {
+        const gameType = updated?.gameType || prev?.gameType || createdGameTypeRef.current || 'deception';
+        return { ...updated, gameType };
+      });
       setSelectedMeans(null);
       setSelectedClue(null);
       setForensicBullets({});
       setShowAccuseModal(false);
       setShowDrawTileModal(false);
       
-      // HIỆN HIỆU ỨNG THÔNG BÁO VAI TRÒ CHỈ KHI TRONG DECEPTION GAME
-      if (updated?.gameType !== 'sherlock' && updated.forensicScientistId !== socket.id) {
+      const activeType = updated?.gameType || createdGameTypeRef.current;
+      if (activeType !== 'sherlock' && updated.forensicScientistId !== socket.id) {
         setShowRoleRevealModal(true);
       }
     });
@@ -680,57 +688,57 @@ function App() {
             <div className="multi-game-landing-grid mt-4">
               
               {/* GAME 1: DECEPTION */}
-              <div className="game-mode-card deception-theme">
+              <div className="game-mode-card deception-theme p-6">
                 <div>
-                  <div className="game-mode-header">
-                    <div className="game-mode-title" style={{ fontSize: '1.35rem', fontWeight: 900 }}>
-                      <Skull className="text-rose-500" size={24} />
+                  <div className="game-mode-header mb-3">
+                    <div className="game-mode-title" style={{ fontSize: '1.75rem', fontWeight: 900, textShadow: '0 0 12px rgba(244,63,94,0.4)' }}>
+                      <Skull className="text-rose-500" size={28} />
                       <span>DECEPTION</span>
                     </div>
                     <span className="game-mode-tag">Ẩn vai trò</span>
                   </div>
-                  <p className="game-mode-desc">
+                  <p className="game-mode-desc text-xs text-slate-300 leading-relaxed mb-4">
                     Vụ án mạng tại Hồng Kông. Pháp Y ra hiệu manh mối, hung thủ ẩn mình đổ tội, các thám tử truy tìm sự thật.
                   </p>
                 </div>
                 <div>
-                  <div className="game-mode-meta">
+                  <div className="game-mode-meta py-2">
                     <span>👥 3 - 12 Người</span>
                     <span>⏱️ 15 - 20 Phút</span>
                   </div>
                   <button 
                     onClick={() => setSelectedGameForModal('deception')}
-                    className="btn-mode-create"
+                    className="btn-mode-create py-3 mt-2"
                   >
-                    <Play size={16} /> CHƠI NGAY
+                    <Play size={18} /> CHƠI NGAY
                   </button>
                 </div>
               </div>
 
               {/* GAME 2: SHERLOCK HOLMES */}
-              <div className="game-mode-card sherlock-theme">
+              <div className="game-mode-card sherlock-theme p-6">
                 <div>
-                  <div className="game-mode-header">
-                    <div className="game-mode-title" style={{ fontSize: '1.35rem', fontWeight: 900 }}>
-                      <Search className="text-amber-500" size={24} />
+                  <div className="game-mode-header mb-3">
+                    <div className="game-mode-title" style={{ fontSize: '1.75rem', fontWeight: 900, textShadow: '0 0 12px rgba(245,158,11,0.4)' }}>
+                      <Search className="text-amber-500" size={28} />
                       <span>SHERLOCK HOLMES</span>
                     </div>
                     <span className="game-mode-tag">Đọc kỳ án</span>
                   </div>
-                  <p className="game-mode-desc">
+                  <p className="game-mode-desc text-xs text-slate-300 leading-relaxed mb-4">
                     Hợp tác giải vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ London, thẩm vấn nhân chứng và phá án.
                   </p>
                 </div>
                 <div>
-                  <div className="game-mode-meta">
+                  <div className="game-mode-meta py-2">
                     <span>👥 1 - 8 Người</span>
                     <span>⏱️ 30 - 45 Phút</span>
                   </div>
                   <button 
                     onClick={() => setSelectedGameForModal('sherlock')}
-                    className="btn-mode-create"
+                    className="btn-mode-create py-3 mt-2"
                   >
-                    <Play size={16} /> CHƠI NGAY
+                    <Play size={18} /> CHƠI NGAY
                   </button>
                 </div>
               </div>
@@ -740,48 +748,49 @@ function App() {
             {/* MODAL POPUP CHỌN TẠO PHÒNG HOẶC THAM GIA CHO GAME ĐÃ CHỌN */}
             {selectedGameForModal && (
               <div className="modal-overlay" onClick={() => setSelectedGameForModal(null)}>
-                <div className="modal-card" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '520px' }}>
-                  <div className="modal-header">
-                    <h3 className="flex items-center gap-2">
-                      {selectedGameForModal === 'sherlock' ? <Search size={22} className="text-amber-400" /> : <Skull size={22} className="text-rose-500" />}
-                      SẢNH VÀO GAME: {selectedGameForModal === 'sherlock' ? 'SHERLOCK HOLMES' : 'DECEPTION'}
+                <div className="modal-card p-6" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '480px' }}>
+                  <div className="modal-header border-b border-amber-500/20 pb-3 flex items-center justify-between">
+                    <h3 className="flex items-center gap-2 text-lg font-black text-white">
+                      {selectedGameForModal === 'sherlock' ? <Search size={24} className="text-amber-400" /> : <Skull size={24} className="text-rose-500" />}
+                      CHỌN THAO TÁC: {selectedGameForModal === 'sherlock' ? 'SHERLOCK HOLMES' : 'DECEPTION'}
                     </h3>
-                    <button onClick={() => setSelectedGameForModal(null)}><X size={18} /></button>
+                    <button onClick={() => setSelectedGameForModal(null)} className="text-slate-400 hover:text-white"><X size={20} /></button>
                   </div>
                   
                   <div className="modal-body py-4 space-y-4">
                     {/* OPTION 1: TẠO PHÒNG MỚI */}
-                    <div className="p-4 rounded-xl border border-amber-500/30 bg-slate-950/70 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <Compass className="text-amber-400" size={20} />
-                        <h4 className="font-extrabold text-white text-sm">TẠO PHÒNG CHƠI MỚI</h4>
+                    <div className="p-4 rounded-xl border border-amber-500/30 bg-slate-950/80 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-extrabold text-white text-sm flex items-center gap-2">
+                          <Compass className="text-amber-400" size={18} /> + TẠO PHÒNG MỚI
+                        </h4>
+                        <span className="text-[0.65rem] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">Làm Chủ phòng</span>
                       </div>
-                      <p className="text-xs text-slate-300">Khởi tạo phòng mới với vai trò Chủ phòng và mời bạn bè tham gia.</p>
+                      <p className="text-xs text-slate-300">Khởi tạo phòng mới và mời bạn bè tham gia ván chơi.</p>
                       <button 
                         onClick={() => handleCreateRoom(selectedGameForModal)}
-                        className="btn btn-md btn-primary w-full mt-2 font-black tracking-wider"
+                        className="btn btn-md btn-primary w-full mt-2 font-black tracking-wider shadow-lg"
                       >
-                        + TẠO PHÒNG NGAY
+                        TẠO PHÒNG NGAY
                       </button>
                     </div>
 
                     {/* OPTION 2: THAM GIA PHÒNG CÓ SẴN */}
-                    <div className="p-4 rounded-xl border border-slate-700 bg-slate-950/70 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <KeyRound className="text-amber-400" size={20} />
-                        <h4 className="font-extrabold text-white text-sm">THAM GIA PHÒNG CÓ SẴN</h4>
-                      </div>
-                      <p className="text-xs text-slate-300">Nhập Mã PIN 4 ký tự do bạn bè chia sẻ để tham gia.</p>
-                      <div className="pin-input-group mt-2">
+                    <div className="p-4 rounded-xl border border-slate-800 bg-slate-950/80 space-y-2">
+                      <h4 className="font-extrabold text-white text-sm flex items-center gap-2">
+                        <KeyRound className="text-amber-400" size={18} /> THAM GIA PHÒNG CÓ SẴN
+                      </h4>
+                      <p className="text-xs text-slate-300">Nhập Mã PIN 4 ký tự do Chủ phòng chia sẻ.</p>
+                      <div className="pin-input-group mt-2 flex gap-2">
                         <input 
                           type="text"
-                          className="pin-code-field text-center font-black tracking-widest"
+                          className="pin-code-field text-center font-black tracking-widest flex-1 uppercase"
                           placeholder="MÃ PIN (VD: R7S3)"
                           value={roomCode}
                           onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
                           onKeyDown={(e) => e.key === 'Enter' && handleJoinRoom()}
                         />
-                        <button onClick={handleJoinRoom} className="btn btn-md btn-gold-draw font-extrabold">
+                        <button onClick={handleJoinRoom} className="btn btn-md btn-gold-draw font-extrabold whitespace-nowrap">
                           VÀO PHÒNG
                         </button>
                       </div>
