@@ -672,18 +672,19 @@ io.on('connection', (socket) => {
   });
 
   // 14. Tin nhắn Chat nhóm (Broadcast to room)
-  socket.on('send-chat', ({ roomCode, message }) => {
+  socket.on('send-chat', ({ roomCode, message, msgId }) => {
     const code = (roomCode || '').toUpperCase();
     const room = rooms[code];
     if (room && message) {
       const sender = room.players.find(p => p.id === socket.id);
       const chatPayload = {
+        id: msgId || `msg_${Date.now()}_${Math.random()}`,
         sender: sender?.name || 'Người chơi',
         senderId: socket.id,
         text: message,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      io.to(code).emit('receive-chat', chatPayload);
+      socket.to(code).emit('receive-chat', chatPayload);
     }
   });
 

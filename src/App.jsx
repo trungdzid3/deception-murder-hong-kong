@@ -86,6 +86,7 @@ function App() {
   const audioElements = useRef({});
   const localStreamRef = useRef(null);
   const roomStateRef = useRef(roomState);
+  const chatEndRef = useRef(null);
 
   useEffect(() => {
     roomStateRef.current = roomState;
@@ -98,6 +99,16 @@ function App() {
     }, 200);
     return () => clearInterval(timer);
   }, []);
+
+  // TỰ ĐỘNG ẨN THÔNG BÁO LỖI SAU 3.5 GIÂY (AUTO-DISMISS TOAST)
+  useEffect(() => {
+    if (errorMsg) {
+      const timer = setTimeout(() => {
+        setErrorMsg('');
+      }, 3500);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMsg]);
 
   // TỰ ĐỘNG TẮT VAI TRÒ MỞ RỘNG NẾU ÍT HƠN 6 NGƯỜI CHƠI
   useEffect(() => {
@@ -478,16 +489,37 @@ function App() {
     setShowAccuseModal(false);
   };
 
-  const handleSendChat = () => {
-    if (!chatInput.trim()) return;
-    const code = roomStateRef.current?.code || roomState?.code;
+  const handleSendChat = (e) => {
+    if (e) e.preventDefault();
+    const text = chatInput.trim();
+    if (!text) return;
+
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
     if (!code) return setErrorMsg('Bạn chưa tham gia phòng chơi!');
 
+    const msgId = `msg_${Date.now()}_${Math.floor(Math.random()*1000)}`;
+
+    // 1. Thêm ngay tin nhắn vào bộ nhớ cá nhân (Hiển thị tức thì 0ms delay)
+    const myMsg = {
+      id: msgId,
+      sender: me?.name || playerName || 'Bạn',
+      senderId: socket.id,
+      text: text,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setChatMessages(prev => [...prev, myMsg]);
+    setChatInput('');
+
+    // 2. Phát tin nhắn qua socket cho tất cả người chơi khác
     socket.emit('send-chat', {
       roomCode: code,
-      message: chatInput.trim()
+      message: text,
+      msgId: msgId
     });
-    setChatInput('');
+
+    // Cuộn xuống cuối
+    setTimeout(() => chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
   };
 
   // NHẤP NHANH THẺ BÀI TRÊN BÀN CHƠI ĐỂ PHÁ ÁN
@@ -1580,7 +1612,7 @@ function App() {
                 ) : (
                   chatMessages.map((msg, idx) => (
                     <div 
-                      key={idx} 
+                      key={msg.id || idx} 
                       className={`chat-msg-item ${msg.senderId === socket.id ? 'is-me' : ''}`}
                     >
                       <div className="chat-msg-meta">
@@ -1591,19 +1623,20 @@ function App() {
                     </div>
                   ))
                 )}
+                <div ref={chatEndRef} />
               </div>
 
-              <div className="chat-input-bar">
+              <form onSubmit={handleSendChat} className="chat-input-bar">
                 <input 
                   type="text" 
                   value={chatInput} 
                   onChange={(e) => setChatInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleSendChat()}
-                  placeholder="Nhập tin nhắn..." 
+                  placeholder="Nhập tin nhắn (Ấn Enter để gửi)..." 
                   className="chat-input-field"
+                  autoFocus
                 />
-                <button onClick={handleSendChat} className="btn-send-chat"><Send size={16} /></button>
-              </div>
+                <button type="submit" className="btn-send-chat" title="Gửi tin nhắn"><Send size={16} /></button>
+              </form>
             </div>
           )}
         </>
