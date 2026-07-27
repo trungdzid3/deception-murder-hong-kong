@@ -794,21 +794,35 @@ function App() {
         </main>
       )}
 
-      {/* 2. MÀN HÌNH TRUNG GIAN PHÒNG CHỜ */}
+      {/* 2. MÀN HÌNH TRUNG GIAN PHÒNG CHỜ (LOBBY) */}
       {inRoom && !roomState?.gameStarted && (() => {
         const isHost = socket.id === (roomState?.hostId || roomState?.players?.[0]?.id);
         const mePlayer = roomState?.players?.find(p => p.id === socket.id);
         const isReady = mePlayer?.isReady;
         const totalPlayers = roomState?.players?.length || 0;
         const canEnableRoles = totalPlayers >= 6;
+        const isSherlock = roomState?.gameType === 'sherlock';
 
         return (
           <main className="lobby-hub-container">
             <div className="lobby-hub-card">
               <div className="lobby-hub-header">
                 <div className="hub-title-group">
-                  <h2 className="flex items-center gap-2"><Crown size={24} className="text-amber-400" /> PHÒNG CHỜ & BẦU CHỌN NHÀ KHOA HỌC PHÁP Y</h2>
-                  <p>Bỏ phiếu bầu chọn Quản trò dân chủ. Người có số phiếu bầu cao nhất sẽ làm Nhà khoa học pháp y!</p>
+                  {isSherlock ? (
+                    <>
+                      <h2 className="flex items-center gap-2 text-amber-300">
+                        <Search size={24} className="text-amber-400" /> PHÒNG CHỜ ĐIỀU TRA: SHERLOCK HOLMES
+                      </h2>
+                      <p className="text-slate-300">Hợp tác cùng đồng đội giải mã kỳ án "Cái chết của Sherlock Holmes".</p>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="flex items-center gap-2">
+                        <Crown size={24} className="text-amber-400" /> PHÒNG CHỜ & BẦU CHỌN NHÀ KHOA HỌC PHÁP Y
+                      </h2>
+                      <p>Bỏ phiếu bầu chọn Quản trò dân chủ. Người có số phiếu bầu cao nhất sẽ làm Nhà khoa học pháp y!</p>
+                    </>
+                  )}
                 </div>
                 <div className="hub-room-badge" onClick={handleCopyCode} title="Nhấp để copy Mã phòng">
                   <span className="badge-lbl">MÃ PHÒNG:</span>
@@ -820,7 +834,7 @@ function App() {
               <div className="lobby-control-bar">
                 <div className="player-count-badge">
                   <Users size={18} className="text-amber-400" />
-                  <span>Số người chơi: <strong className="text-amber-400">{totalPlayers}/12</strong></span>
+                  <span>Số người chơi: <strong className="text-amber-400">{totalPlayers}/{isSherlock ? '8' : '12'}</strong></span>
                 </div>
                 <div className="flex items-center gap-2">
                   {/* CHỦ PHÒNG MỚI THẤY NÚT THÊM/XÓA BOT */}
@@ -843,11 +857,13 @@ function App() {
               </div>
 
               <div className="lobby-members-section">
-                <span className="section-label-amber">NHẤP VÀO THÀNH VIÊN BẠN MUỐN BẦU LÀM NHÀ KHOA HỌC PHÁP Y:</span>
+                <span className="section-label-amber">
+                  {isSherlock ? 'DANH SÁCH THÁM TỬ TRONG PHÒNG CHỜ:' : 'NHẤP VÀO THÀNH VIÊN BẠN MUỐN BẦU LÀM NHÀ KHOA HỌC PHÁP Y:'}
+                </span>
                 <div className="lobby-members-grid">
                   {roomState.players?.map(player => {
                     const votes = getVotesForPlayer(player.id);
-                    const isTopCandidate = roomState.forensicScientistId === player.id;
+                    const isTopCandidate = !isSherlock && roomState.forensicScientistId === player.id;
                     const isMyVotedTarget = myVotedId === player.id;
                     const isPlayerHost = player.id === (roomState?.hostId || roomState?.players?.[0]?.id);
 
@@ -860,7 +876,7 @@ function App() {
                           {player.isBot ? <Zap size={20} className="text-amber-400" /> : <Shield size={20} className="text-blue-400" />}
                         </div>
 
-                        <div className="member-details cursor-pointer flex-1 min-w-0" onClick={() => handleVoteForensic(player.id)}>
+                        <div className="member-details cursor-pointer flex-1 min-w-0" onClick={() => !isSherlock && handleVoteForensic(player.id)}>
                           <div className="flex items-center gap-1.5 flex-wrap">
                             <span className="font-extrabold text-white text-sm truncate max-w-[120px]" title={player.name}>
                               {player.name} {player.id === socket.id && '(Bạn)'}
@@ -868,12 +884,18 @@ function App() {
                             {isPlayerHost && <span className="badge-host-crown">👑 Chủ phòng</span>}
                           </div>
                           <div className="text-[0.72rem] mt-0.5 font-semibold truncate">
-                            {isTopCandidate ? <span className="text-amber-400 font-extrabold">⭐ Dẫn đầu Pháp Y</span> : player.isBot ? <span className="text-slate-400">🤖 Bot tự động</span> : player.isReady ? <span className="text-emerald-400 font-bold">✓ Đã sẵn sàng</span> : <span className="text-slate-400">⏳ Chưa sẵn sàng</span>}
+                            {isSherlock ? (
+                              player.isReady ? <span className="text-emerald-400 font-bold">✓ Đã sẵn sàng</span> : <span className="text-slate-400">⏳ Chưa sẵn sàng</span>
+                            ) : (
+                              isTopCandidate ? <span className="text-amber-400 font-extrabold">⭐ Dẫn đầu Pháp Y</span> : player.isBot ? <span className="text-slate-400">🤖 Bot tự động</span> : player.isReady ? <span className="text-emerald-400 font-bold">✓ Đã sẵn sàng</span> : <span className="text-slate-400">⏳ Chưa sẵn sàng</span>
+                            )}
                           </div>
-                          <div className="mt-1 flex items-center gap-1.5 text-xs">
-                            <span className={`px-2 py-0.5 rounded-full font-extrabold text-[0.68rem] ${votes > 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-slate-800/80 text-slate-400'}`}>{votes} Phiếu</span>
-                            {isMyVotedTarget && <span className="text-emerald-400 font-extrabold text-[0.65rem]">(Bạn đã bầu)</span>}
-                          </div>
+                          {!isSherlock && (
+                            <div className="mt-1 flex items-center gap-1.5 text-xs">
+                              <span className={`px-2 py-0.5 rounded-full font-extrabold text-[0.68rem] ${votes > 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-slate-800/80 text-slate-400'}`}>{votes} Phiếu</span>
+                              {isMyVotedTarget && <span className="text-emerald-400 font-extrabold text-[0.65rem]">(Bạn đã bầu)</span>}
+                            </div>
+                          )}
                         </div>
 
                         {isTopCandidate && <div className="selected-crown-badge"><Crown size={18} /></div>}
@@ -897,43 +919,45 @@ function App() {
                 </div>
               </div>
 
-              {/* VAI TRÒ MỞ RỘNG (CHỈ MỞ KHI >= 6 NGƯỜI CHƠI) */}
-              <div className="game-settings-section">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="section-label-amber">VAI TRÒ MỞ RỘNG TRONG VÁN CHƠI:</span>
-                  {!canEnableRoles && (
-                    <span className="text-xs text-rose-400 font-extrabold flex items-center gap-1">
-                      <Lock size={12} /> Cần từ 6 người chơi trở lên
-                    </span>
-                  )}
+              {/* VAI TRÒ MỞ RỘNG (CHỈ DÀNH CHO DECEPTION) */}
+              {!isSherlock && (
+                <div className="game-settings-section">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="section-label-amber">VAI TRÒ MỞ RỘNG TRONG VÁN CHƠI:</span>
+                    {!canEnableRoles && (
+                      <span className="text-xs text-rose-400 font-extrabold flex items-center gap-1">
+                        <Lock size={12} /> Cần từ 6 người chơi trở lên
+                      </span>
+                    )}
+                  </div>
+                  <div className="settings-toggles">
+                    <label className={`toggle-item ${!canEnableRoles || !isHost ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                      <input 
+                        type="checkbox" 
+                        checked={enableAccomplice} 
+                        disabled={!canEnableRoles || !isHost}
+                        onChange={(e) => setEnableAccomplice(e.target.checked)} 
+                      />
+                      <span><strong>Đồng Phạm (Accomplice):</strong> Biết Kẻ sát nhân & Bộ đáp án, hỗ trợ che giấu vụ án.</span>
+                    </label>
+                    <label className={`toggle-item mt-2 ${!canEnableRoles || !isHost ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                      <input 
+                        type="checkbox" 
+                        checked={enableWitness} 
+                        disabled={!canEnableRoles || !isHost}
+                        onChange={(e) => setEnableWitness(e.target.checked)} 
+                      />
+                      <span><strong>Nhân Chứng (Witness):</strong> Biết ai thuộc phe Tội phạm nhưng phải giữ bí mật danh tính.</span>
+                    </label>
+                  </div>
                 </div>
-                <div className="settings-toggles">
-                  <label className={`toggle-item ${!canEnableRoles || !isHost ? 'opacity-50 cursor-not-allowed' : ''}`}>
-                    <input 
-                      type="checkbox" 
-                      checked={enableAccomplice} 
-                      disabled={!canEnableRoles || !isHost}
-                      onChange={(e) => setEnableAccomplice(e.target.checked)} 
-                    />
-                    <span><strong>Đồng Phạm (Accomplice):</strong> Biết Kẻ sát nhân & Bộ đáp án, hỗ trợ che giấu vụ án.</span>
-                  </label>
-                  <label className={`toggle-item mt-2 ${!canEnableRoles || !isHost ? 'opacity-50 cursor-not-allowed' : ''}`}>
-                    <input 
-                      type="checkbox" 
-                      checked={enableWitness} 
-                      disabled={!canEnableRoles || !isHost}
-                      onChange={(e) => setEnableWitness(e.target.checked)} 
-                    />
-                    <span><strong>Nhân Chứng (Witness):</strong> Biết ai thuộc phe Tội phạm nhưng phải giữ bí mật danh tính.</span>
-                  </label>
-                </div>
-              </div>
+              )}
 
               {/* CHỦ PHÒNG MỚI THẤY NÚT BẮT ĐẦU VÁN CHƠI */}
               {isHost ? (
                 <div className="lobby-hub-footer">
                   <button onClick={handleStartGame} className="btn btn-lg btn-primary btn-launch-game">
-                    <Play size={20} /> BẮT ĐẦU VÁN CHƠI DECEPTION
+                    <Play size={20} /> {isSherlock ? 'BẮT ĐẦU VÁN CHƠI SHERLOCK HOLMES' : 'BẮT ĐẦU VÁN CHƠI DECEPTION'}
                   </button>
                 </div>
               ) : (
