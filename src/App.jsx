@@ -1288,69 +1288,7 @@ function App() {
 
           </div>
 
-          {/* FLOATING CHAT BUBBLE WIDGET */}
-          <div className="floating-chat-container mobile-tab-section-chat">
-            {isChatOpen || activeMobileTab === 'chat' ? (
-              <div className="floating-chat-box mobile-full-chat">
-                <div className="floating-chat-head">
-                  <div className="flex items-center gap-2">
-                    <MessageSquare size={14} className="text-amber-400" />
-                    <span>💬 THẢO LUẬN & CHAT NHANH</span>
-                  </div>
-                  <button onClick={() => setIsChatOpen(false)}><X size={16} /></button>
-                </div>
 
-                <div className="floating-chat-messages">
-                  {isForensic && (
-                    <div className="bg-amber-500/10 border border-amber-500/30 p-2 rounded text-center text-xs text-amber-300 font-bold mb-2">
-                      🔒 Theo luật Deception: Nhà khoa học pháp y không được chat hay gợi ý thành lời!
-                    </div>
-                  )}
-
-                  {chatMessages.length === 0 ? (
-                    <div className="chat-empty-sm">Chưa có tin nhắn nào. Nhắn tin để tranh luận!</div>
-                  ) : (
-                    chatMessages.map((msg, i) => (
-                      <div key={i} className="chat-line">
-                        <strong className="text-amber-400">{msg.sender}:</strong> <span>{msg.text}</span>
-                      </div>
-                    ))
-                  )}
-                </div>
-
-                <div className="floating-chat-input">
-                  <input 
-                    type="text" 
-                    placeholder={isForensic ? "Pháp Y im lặng lắng nghe..." : "Nhắn tin tranh luận..."}
-                    value={chatInput}
-                    disabled={isForensic}
-                    onChange={(e) => setChatInput(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSendChat()}
-                  />
-                  <button 
-                    onClick={handleSendChat} 
-                    disabled={isForensic}
-                    className="btn btn-xs btn-primary disabled:opacity-50"
-                  >
-                    <Send size={12} />
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <button 
-                onClick={() => {
-                  setIsChatOpen(true);
-                  setUnreadChatCount(0);
-                }} 
-                className="floating-chat-bubble-btn"
-                title="Mở khung thảo luận"
-              >
-                <MessageSquare size={20} />
-                <span>{isForensic ? 'Lắng nghe Chat' : 'Thảo luận'}</span>
-                {unreadChatCount > 0 && <span className="chat-unread-badge">{unreadChatCount}</span>}
-              </button>
-            )}
-          </div>
 
           {/* MOBILE BOTTOM NAVIGATION BAR */}
           <nav className="mobile-bottom-nav">

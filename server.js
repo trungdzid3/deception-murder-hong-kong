@@ -673,7 +673,8 @@ io.on('connection', (socket) => {
 
   // 14. Tin nhắn Chat nhóm (Broadcast to room)
   socket.on('send-chat', ({ roomCode, message }) => {
-    const room = rooms[roomCode];
+    const code = (roomCode || '').toUpperCase();
+    const room = rooms[code];
     if (room && message) {
       const sender = room.players.find(p => p.id === socket.id);
       const chatPayload = {
@@ -682,7 +683,7 @@ io.on('connection', (socket) => {
         text: message,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      io.to(roomCode).emit('receive-chat', chatPayload);
+      io.to(code).emit('receive-chat', chatPayload);
     }
   });
 
