@@ -197,15 +197,15 @@ export const SCENE_TILES = [
 // CHUẨN 90 THẺ CÔNG CỤ / HUNG KHÍ (MEANS CARDS)
 export const MEANS_CARDS = Array.from({ length: 90 }, (_, i) => {
   const baseMeans = [
-    'Dao bếp', 'Dao cạo', 'Dây kim loại', 'Rìu', 'Kéo', 'Mảnh thủy tinh', 'Kiếm', 'Chân nến', 'Búa', 'Tạ tay',
-    'Gậy bóng chày', 'Đèn bàn', 'Gạch', 'Gối ôm', 'Dây thừng', 'Súng ngắn', 'Súng bắn tỉa', 'Dầu hỏa', 'Bật lửa', 'Thuốc độc',
-    'Rắn độc', 'Bọ cạp độc', 'Axit', 'Thuốc bảo vệ thực vật', 'Cá nóc', 'Khí gas', 'Arsenic', 'Máy tính', 'Dây điện', 'Tiêm không khí',
-    'Kim tiêm nhiễm trùng', 'Điện giật', 'Cuốc nhỏ', 'Trâm cài', 'Nồi đất', 'Đĩa ném', 'Cây lao', 'Bút máy kim loại', 'Laser công suất cao', 'Đèn sưởi',
-    'Bình chữa cháy', 'Đai an toàn', 'Ống thép', 'Dây xích', 'Móc câu cá', 'Dao phay', 'Dây dù', 'Súng phun lửa', 'Thuốc chuột', 'Xyanua',
-    'Cồn công nghiệp', 'Dây cao su', 'Khóa cửa', 'Máy cắt cỏ', 'Nỏ bắn tên', 'Mảnh gốm sứ', 'Băng keo bịt miệng', 'Bình Gas mini', 'Dao gấp', 'Thuốc ngủ liều cao',
-    'Cưa máy', 'Quả tạ đôi', 'Nĩa kim loại', 'Bàn ủi điện', 'Kìm cắt cáp', 'Chày đâm tiêu', 'Cuốc đất', 'Xẻng quân dụng', 'Mỏ lết trọng lực', 'Mảnh gương vỡ',
-    'Thắt lưng da', 'Cáp thép', 'Xăng sinh học', 'Búa tạ', 'Trám kim loại', 'Dây xích xe máy', 'Bình xịt hơi cay', 'Máy sấy tóc', 'Súng đinh', 'Gậy nát gia đình',
-    'Ống tiêm thủy tinh', 'Súng săn', 'Dao mổ y tế', 'Cây lau nhà', 'Thùng hóa chất', 'Lò vi sóng', 'Con lăn lò xo', 'Cán ô dù', 'Quạt trần mini', 'Gậy golf'
+    'Dao bếp chặt xương', 'Dao cạo râu bén', 'Dây đàn Guitar', 'Rìu đốn gỗ', 'Kéo may sắt', 'Mảnh thủy tinh sắc', 'Kiếm Nhật Samurai', 'Chân nến bằng đồng', 'Búa đập đá', 'Tạ tay 10kg',
+    'Gậy bóng chày gãy', 'Đèn bàn kim loại', 'Viên gạch nung', 'Gối lông vũ ép', 'Dây thừng thắt nút', 'Súng ngắn ổ quay', 'Súng bắn tỉa', 'Chai dầu hỏa', 'Bật lửa Zippo', 'Lọ thuốc độc',
+    'Rắn hổ mang', 'Bọ cạp sa mạc', 'Bình Axit đậm đặc', 'Thuốc trừ sâu', 'Cá nóc tươi', 'Bình khí Gas rò rỉ', 'Bột Arsenic độc', 'Máy tính xách tay', 'Dây điện cao thế', 'Bơm tiêm không khí',
+    'Kim tiêm rỉ sét', 'Dây cắm điện hở', 'Cuốc làm vườn', 'Trâm cài tóc nhọn', 'Nồi đất nướng', 'Đĩa sắt ném', 'Cây lao săn cá', 'Bút máy đầu vàng', 'Đèn Laser công suất cao', 'Đèn sưởi thạch anh',
+    'Bình chữa cháy', 'Dây đai an toàn', 'Ống thép giàn giáo', 'Dây xích đỏ', 'Móc câu cá ngừ', 'Dao phay chặt thịt', 'Dây dù nhảy', 'Súng phun lửa mini', 'Thuốc diệt chuột', 'Xyanua dạng bột',
+    'Cồn công nghiệp 90 độ', 'Dây cao su bắn chim', 'Ổ khóa cổng sắt', 'Máy cắt cỏ cầm tay', 'Nỏ bắn tên gỗ', 'Mảnh sứ bát vỡ', 'Băng dính đen bịt miệng', 'Bình Gas du lịch', 'Dao gấp đa năng', 'Thuốc ngủ quá liều',
+    'Cưa máy xăng', 'Tạ đĩa sắt', 'Nĩa ăn bít tết', 'Bàn ủi hơi nước', 'Kìm cắt cáp điện', 'Chày đâm tiêu bằng đá', 'Cuốc đất làm ruộng', 'Xẻng quân dụng gấp', 'Mỏ lết vặn ốc', 'Mảnh gương vỡ',
+    'Thắt lưng da trâu', 'Cáp thép cẩu hàng', 'Chai xăng pha Cồn', 'Búa tạ 5kg', 'Cây gậy như ý', 'Dây xích xe máy', 'Bình xịt hơi cay', 'Máy sấy tóc', 'Súng bắn đinh bê tông', 'Gậy golf sắt',
+    'Ống tiêm thủy tinh', 'Súng săn 2 nòng', 'Dao mổ phẫu thuật', 'Cây lau nhà đứt cán', 'Thùng hóa chất tẩy', 'Lò vi sóng mini', 'Con lăn ép gỗ', 'Cán ô dù kim loại', 'Quạt trần mini', 'Dây xích khóa xe'
   ];
   return {
     id: `m_${i + 1}`,
@@ -217,26 +217,26 @@ export const MEANS_CARDS = Array.from({ length: 90 }, (_, i) => {
 
 export const CLUE_CARDS = Array.from({ length: 200 }, (_, i) => {
   const baseClues = [
-    'Giày cao gót', 'Tàn thuốc lá', 'Gạt tàn', 'Báo cũ', 'Điều khiển từ xa', 'Thư rác', 'Kính cận', 'Son môi', 'Nhẫn cưới', 'Đồng hồ đeo tay',
-    'Chìa khóa', 'Ví tiền', 'Bánh bao hấp', 'Túi gạo', 'Vết máu', 'Sợi vải', 'Răng rụng', 'Sợi tóc', 'Dấu vân tay', 'Vết bùn',
-    'Bã cao su', 'Táo cắn dở', 'Xửng hấp tre', 'Đũa ăn', 'Chim dây cót', 'Tượng rồng', 'Mặt nạ', 'Tranh sơn dầu', 'Báo cáo y tế', 'Cuốn nhật ký',
-    'Tác phẩm Cộng hòa', 'Bản đồ thành phố', 'Thư tình', 'Chi phiếu giả', 'Bánh gạo Tteok', 'Bạch tuộc sống', 'Phô mai Feta', 'Bọt biển thiên nhiên', 'Vé xem phim', 'Tai nghe Bluetooth',
-    'Bút mực chảy', 'Dây chuyền vàng', 'Kính áp tròng', 'Nước hoa đắt tiền', 'Bông tai ngọc trai', 'Vết cà phê', 'Mảnh sơn móng tay', 'Chiếc cúc áo bị rứt', 'Lông chó mèo', 'Túi nilon rác',
-    'Hóa đơn thanh toán', 'Báo cáo khám nghiệm', 'Dây thắt lưng đứt', 'Dấu chân giầy dơ', 'Mảnh băng gạc', 'Khăn tay thêu chữ', 'Hộp quẹt diêm cháy', 'USB nén dữ liệu', 'Kẹp tóc kim loại', 'Vé máy bay khứ hồi',
-    'Brooch cài áo', 'Chìa khóa xe hơi', 'Vết son trên ly', 'Bông tai kim cương', 'Bút chì gãy', 'Sổ tay bỏ túi', 'Kính lúp nhỏ', 'Dây thắt nơ', 'Hạt nếp nương', 'Khăn len đan tay',
-    'Vết dầu mỡ', 'Vết tàn thuốc ngắt', 'Mảnh báo rách', 'Móc chìa khóa hình gấu', 'Bột phấn trang điểm', 'Hạt cúc áo kim loại', 'Bìa hồ sơ lưu trữ', 'Mảnh lụa tơ tằm', 'Mảnh móng tay', 'Vết sơn tường',
-    'Băng cassette cũ', 'Lông vũ thiên nga', 'Mảnh đĩa CD vỡ', 'Đèn pin cá nhân', 'Đồng xu cổ', 'Hạt chuỗi tràng hạt', 'Bao thư đóng dấu', 'Bút dạ quang', 'Mảnh sứ cổ', 'Khăn bạt nhựa',
-    'Hộp phấn nụ', 'Vết bùn đất đỏ', 'Thẻ căn cước', 'Sổ tiết kiệm', 'Gương soi bỏ túi', 'Vé xổ số kiến thiết', 'Dây nịt quấn', 'Mảnh vải nhung', 'Dấu vết dầu hỏa', 'Vết chân chó',
-    'Túi xách da', 'Bao tay y tế', 'Bông tẩy trang', 'Lọ thuốc nắp đỏ', 'Chiếc nhẫn ngọc bích', 'Mảnh gạch hoa', 'Bao lì xì đỏ', 'Vết mực xanh', 'Chiếc kẹp ghim', 'Miếng dán hạ sốt',
-    'Chiếc chìa khóa đồng', 'Bản thiết kế', 'Hóa đơn khách sạn', 'Vé tàu hỏa', 'Bao thuốc lá dẹt', 'Chiếc bờm tóc', 'Lông chim công', 'Hạt cườm lấp lánh', 'Đầu mẩu diêm', 'Miếng bọt biển',
-    'Dây buộc tóc hồng', 'Chiếc tất chân', 'Găng tay len', 'Mảnh gỗ vụn', 'Mảnh dây xích', 'Chiếc mũ lưỡi trai', 'Cặp kính râm', 'Bao súng da', 'Chiếc ghim cài', 'Tờ tiền mệnh giá nhỏ',
-    'Bao thư niêm phong', 'Mảnh kim loại', 'Dấu chân cát', 'Dây tai nghe cuộn', 'Vết dầu ăn', 'Túi đựng mỹ phẩm', 'Lọ nước hoa mini', 'Khăn lau kính', 'Cúc áo nhựa', 'Chiếc nơ buộc',
-    'Bàn chải đánh răng', 'Lược chải tóc', 'Lọ sơn móng tay', 'Mảnh giấy ghi chú', 'Chiếc thắt lưng vải', 'Hạt dưa đỏ', 'Chiếc móc áo', 'Lọ dầu gió', 'Miếng cao dán', 'Dây thun cột',
-    'Tấm bưu thiếp', 'Sổ nốt nhạc', 'Chiếc còi cứu hộ', 'Gương chiếu hậu', 'Vết cà chua', 'Chiếc khẩu trang', 'Thẻ từ thang máy', 'Chìa khóa két sắt', 'Mảnh kính vỡ nhỏ', 'Hạt nút gỗ',
-    'Chiếc thìa inox', 'Vết son sẫm', 'Túi trà lọc', 'Mảnh dây thừng rơm', 'Lọ keo 502', 'Bao ni lông đen', 'Chiếc bật lửa dẹt', 'Vé bãi xe', 'Hộp quẹt diêm', 'Mảnh giấy khen',
-    'Tờ rơi quảng cáo', 'Sổ khám bệnh', 'Bút xóa', 'Bao bì bánh snack', 'Lọ vitamin', 'Chiếc ví cầm tay', 'Thẻ thành viên', 'Nhẫn bạc S925', 'Bông tai bạc', 'Dây chuyền bạc',
-    'Bình xịt tạo màu', 'Bàn nạo phô mai', 'Thẻ xe buýt', 'Túi chườm đá', 'Khăn trải bàn đốm', 'Nút chai rượu vang', 'Hộp quẹt khè', 'Cây gãi lưng', 'Con tem bưu chính', 'Tấm vé xem kịch',
-    'Mảnh gạch men', 'Lọ hồ dán khô', 'Tờ giấy nốt dán', 'Chiếc nơ cài tóc', 'Túi đựng kính', 'Lọ tăm xỉa răng', 'Chiếc la bàn cổ', 'Túi muối y tế', 'Hạt nút áo gỗ', 'Chiếc nhẫn đính hôn'
+    'Giày cao gót đỏ', 'Tàn thuốc lá thơm', 'Gạt tàn bằng ngọc', 'Tờ báo cũ ố vàng', 'Điều khiển TV hỏng', 'Thư rác niêm phong', 'Mảnh kính cận vỡ', 'Thỏi son môi đỏ tươi', 'Nhẫn cưới khắc tên', 'Đồng hồ vàng ròng',
+    'Chìa khóa két sắt', 'Ví da bò sần', 'Bánh bao hấp dở', 'Túi gạo nếp', 'Vết máu khô', 'Sợi vải lụa đỏ', 'Răng cửa bị gãy', 'Sợi tóc kim tuyến', 'Dấu vân tay dính mực', 'Vết bùn đỏ',
+    'Bã kẹo cao su dính', 'Táo cắn dở dính son', 'Xửng hấp tre cũ', 'Đôi đũa lệch', 'Chim dây cót đồ chơi', 'Tượng rồng đá', 'Mặt nạ hóa trang', 'Tranh sơn dầu cổ', 'Báo cáo y tế bảo mật', 'Cuốn nhật ký khóa',
+    'Bản đồ thành phố ngầm', 'Thư tình viết tay', 'Chi phiếu ngân hàng giả', 'Bánh gạo Tteok chiên', 'Bạch tuộc sống tươi', 'Phô mai Feta vụn', 'Bọt biển biển sâu', 'Vé xem phim rách', 'Tai nghe Bluetooth', 'Bút mực chảy lem',
+    'Dây chuyền ngọc trai', 'Kính áp tròng xanh', 'Chai nước hoa đắt tiền', 'Bông tai kim cương', 'Vết cà phê sánh', 'Mảnh sơn móng tay đỏ', 'Chiếc cúc áo bị rứt', 'Lông mèo Ba Tư', 'Túi nilon rác đen', 'Hóa đơn siêu thị',
+    'Báo cáo khám nghiệm tử thi', 'Dây thắt lưng đứt đôi', 'Dấu chân giày da dơ', 'Mảnh băng gạc dính máu', 'Khăn tay thêu tên', 'Hộp quẹt diêm cháy rụi', 'Thẻ nhớ USB nén', 'Kẹp tóc kim loại', 'Vé máy bay 1 chiều', 'Brooch cài áo mạ vàng',
+    'Chìa khóa xe Mercedes', 'Vết son trên mép ly', 'Bông tai nụ bạc', 'Bút chì khúc gãy', 'Sổ tay bỏ túi da', 'Kính lúp trinh thám', 'Dây thắt nơ nhung', 'Hạt nếp nương thơm', 'Khăn len đan tay', 'Vết dầu nhớt đen',
+    'Vết tàn thuốc ngắt nửa', 'Mảnh báo rách góc', 'Móc chìa khóa hình gấu', 'Hộp phấn trang điểm', 'Hạt cúc áo kim loại', 'Bìa hồ sơ bảo mật', 'Mảnh lụa tơ tằm', 'Mảnh móng tay giả', 'Vết sơn tường tươi', 'Băng cassette nhạc cũ',
+    'Lông vũ thiên nga trắng', 'Mảnh đĩa CD vỡ đôi', 'Đèn pin cá nhân siêu sáng', 'Đồng xu cổ thời Pháp', 'Hạt chuỗi tràng hạt wood', 'Bao thư đóng dấu mật', 'Bút dạ quang vàng', 'Mảnh sứ cổ ngàn năm', 'Khăn bạt nhựa xanh', 'Hộp phấn nụ huế',
+    'Vết bùn đất sét', 'Thẻ căn cước công dân', 'Sổ tiết kiệm ngân hàng', 'Gương soi bỏ túi mini', 'Vé xổ số độc đắc', 'Dây nịt quấn da trâu', 'Mảnh vải nhung đen', 'Dấu vết dầu hỏa', 'Vết chân chó mực', 'Túi xách da Chanel',
+    'Bao tay y tế mỏng', 'Bông tẩy trang dùng dở', 'Lọ thuốc nắp đỏ mysterious', 'Chiếc nhẫn ngọc bích', 'Mảnh gạch hoa cổ', 'Bao lì xì đỏ may mắn', 'Vết mực xanh rớt', 'Chiếc kẹp ghim giấy', 'Miếng dán hạ sốt', 'Chiếc chìa khóa đồng cổ',
+    'Bản thiết kế tòa nhà', 'Hóa đơn khách sạn 5 sao', 'Vé tàu hỏa đêm', 'Bao thuốc lá 3 số', 'Chiếc bờm tóc ngọc trai', 'Lông chim công xòe', 'Hạt cườm lấp lánh', 'Đầu mẩu diêm quẹt', 'Miếng bọt biển rửa bát', 'Dây buộc tóc hồng',
+    'Chiếc tất chân thổ cẩm', 'Găng tay len mùa đông', 'Mảnh gỗ vụn cháy', 'Mảnh dây xích rỉ', 'Chiếc mũ lưỡi trai đen', 'Cặp kính râm đen', 'Bao súng da thật', 'Chiếc ghim cài áo', 'Tờ tiền mệnh giá 500k', 'Bao thư niêm phong đỏ',
+    'Mảnh kim loại nhọn', 'Dấu chân trên cát', 'Dây tai nghe cuộn rối', 'Vết dầu ăn chiên', 'Túi đựng mỹ phẩm cao cấp', 'Lọ nước hoa mini', 'Khăn lau kính mắt', 'Cúc áo nhựa màu đốm', 'Chiếc nơ buộc quà', 'Bàn chải đánh răng',
+    'Lược chải tóc bằng gỗ', 'Lọ sơn móng tay bóng', 'Mảnh giấy ghi chú vội', 'Chiếc thắt lưng vải dù', 'Hạt dưa đỏ Tết', 'Chiếc móc áo nhựa', 'Lọ dầu gió xanh', 'Miếng cao dán Salonpas', 'Dây thun cột tóc', 'Tấm bưu thiếp du lịch',
+    'Sổ nốt nhạc tay', 'Chiếc còi cứu hộ nhôm', 'Gương chiếu hậu vỡ', 'Vết cà chua sốt', 'Chiếc khẩu trang y tế', 'Thẻ từ thang máy cư dân', 'Chìa khóa két sắt nhỏ', 'Mảnh kính vỡ nhỏ', 'Hạt nút gỗ tròn', 'Chiếc thìa inox sáng',
+    'Vết son sẫm màu', 'Túi trà lọc ngâm', 'Mảnh dây thừng rơm', 'Lọ keo 502 dính', 'Bao ni lông đen bí ẩn', 'Chiếc bật lửa dẹt', 'Vé bãi xe trung tâm', 'Hộp quẹt diêm gỗ', 'Mảnh giấy khen học sinh', 'Tờ rơi quảng cáo nhà đất',
+    'Sổ khám bệnh định kỳ', 'Bút xóa nước', 'Bao bì bánh snack cay', 'Lọ vitamin C', 'Chiếc ví cầm tay da', 'Thẻ thành viên VIP', 'Nhẫn bạc S925 đính đá', 'Bông tai bạc tròn', 'Dây chuyền bạc nam', 'Bình xịt tạo màu Graffiti',
+    'Bàn nạo phô mai inox', 'Thẻ xe buýt tháng', 'Túi chườm đá lạnh', 'Khăn trải bàn đốm', 'Nút chai rượu vang Pháp', 'Hộp quẹt khè gas', 'Cây gãi lưng bằng trúc', 'Con tem bưu chính cổ', 'Tấm vé xem kịch rối', 'Mảnh gạch men ốp',
+    'Lọ hồ dán khô', 'Tờ giấy nốt dán dạ quang', 'Chiếc nơ cài tóc tím', 'Túi đựng kính mắt', 'Lọ tăm xỉa răng tre', 'Chiếc la bàn cổ bằng đồng', 'Túi muối y tế truyền', 'Hạt nút áo gỗ thủ công', 'Chiếc nhẫn đính hôn kim cương', 'Đôi dép tổ ong huyền thoại'
   ];
   return {
     id: `c_${i + 1}`,
