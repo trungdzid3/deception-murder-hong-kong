@@ -137,14 +137,8 @@ function App() {
       setLocalStream(stream);
       localStreamRef.current = stream;
       
-      const isCurrentForensic = roomState?.gameStarted && roomState?.forensicScientistId === socket.id;
-      if (isCurrentForensic) {
-        setIsMuted(true);
-        stream.getAudioTracks().forEach(track => track.enabled = false);
-      } else {
-        setIsMuted(false);
-        stream.getAudioTracks().forEach(track => track.enabled = true);
-      }
+      setIsMuted(false);
+      stream.getAudioTracks().forEach(track => track.enabled = true);
 
       if (roomState?.code) {
         socket.emit('voice-join', { roomCode: roomState.code });
@@ -200,9 +194,6 @@ function App() {
   };
 
   const toggleMute = () => {
-    const isCurrentForensic = roomState?.gameStarted && roomState?.forensicScientistId === socket.id;
-    if (isCurrentForensic) return setErrorMsg('Theo luật Deception: Nhà khoa học pháp y KHÔNG ĐƯỢC bật mic hay nói thành lời!');
-    
     if (!localStreamRef.current) {
       initVoiceChat();
       return;
@@ -544,39 +535,35 @@ function App() {
     <div className="app-layout">
       
       {/* HEADER - chỉ hiện khi đang trong phòng, không có logo */}
-      {inRoom && (() => {
-        const isMicDisabled = roomState?.gameStarted && isForensic;
-        return (
-          <header className="app-header-compact">
-            <div className="header-actions">
-              <div className="room-code-pill cursor-pointer" onClick={handleCopyCode} title="Nhấp để copy mã phòng">
-                <span>PHÒNG:</span>
-                <strong>{roomState?.code}</strong>
-                <Copy size={12} className="ml-1 text-slate-400" />
-              </div>
-
-              {/* NÚT BẬT/TẮT MIC */}
-              <button 
-                onClick={isMicDisabled ? undefined : toggleMute}
-                disabled={isMicDisabled}
-                className={`btn btn-xs ${isMicDisabled ? 'btn-mic-disabled' : !isMuted ? 'btn-mic-active' : 'btn-mic-muted'}`}
-                title={isMicDisabled ? 'Theo luật Deception: Nhà khoa học pháp y không được nói thành lời khi ván chơi bắt đầu!' : ''}
-              >
-                {isMicDisabled ? <Lock size={12} /> : !isMuted ? <Mic size={13} /> : <MicOff size={13} />}
-                <span>{isMicDisabled ? 'KHOÁ MIC (PHÁP Y)' : !isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
-              </button>
-
-              <button onClick={() => setShowGuideModal(true)} className="btn btn-xs btn-secondary">
-                <BookOpen size={13} /> Luật
-              </button>
-
-              <button onClick={handleLeaveRoom} className="btn btn-xs btn-danger">
-                <LogOut size={13} /> Rời
-              </button>
+      {inRoom && (
+        <header className="app-header-compact">
+          <div className="header-actions">
+            <div className="room-code-pill cursor-pointer" onClick={handleCopyCode} title="Nhấp để copy mã phòng">
+              <span>PHÒNG:</span>
+              <strong>{roomState?.code}</strong>
+              <Copy size={12} className="ml-1 text-slate-400" />
             </div>
-          </header>
-        );
-      })()}
+
+            {/* NÚT BẬT/TẮT MIC */}
+            <button 
+              onClick={toggleMute}
+              className={`btn btn-xs ${!isMuted ? 'btn-mic-active' : 'btn-mic-muted'}`}
+              title="Bật/Tắt Mic đàm thoại"
+            >
+              {!isMuted ? <Mic size={13} /> : <MicOff size={13} />}
+              <span>{!isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
+            </button>
+
+            <button onClick={() => setShowGuideModal(true)} className="btn btn-xs btn-secondary">
+              <BookOpen size={13} /> Luật
+            </button>
+
+            <button onClick={handleLeaveRoom} className="btn btn-xs btn-danger">
+              <LogOut size={13} /> Rời
+            </button>
+          </div>
+        </header>
+      )}
 
       {/* THÔNG BÁO LỖI NẾU CÓ */}
       {errorMsg && (
