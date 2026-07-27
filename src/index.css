@@ -1463,3 +1463,252 @@ body {
 .btn-mic-active  { background: rgba(16,185,129,0.15) !important; border-color: #10b981 !important; color: #6ee7b7 !important; }
 .btn-mic-muted   { background: rgba(100,116,139,0.15) !important; border-color: #475569 !important; color: #94a3b8 !important; }
 .btn-mic-disabled{ background: rgba(239,68,68,0.1) !important; border-color: #ef4444 !important; color: #fca5a5 !important; opacity: 0.7; cursor: not-allowed !important; }
+
+/* =========================================================
+   SECTION HEADER BARS (SANG TRỌNG & TING TẾ)
+   ========================================================= */
+.section-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(208, 0, 24, 0.25);
+  flex-wrap: wrap;
+}
+
+.section-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-icon-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(208, 0, 24, 0.15);
+  border: 1px solid rgba(208, 0, 24, 0.35);
+  color: var(--crimson-primary);
+  box-shadow: 0 0 10px rgba(208, 0, 24, 0.2);
+}
+
+.section-icon-badge.amber {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #f59e0b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+.section-icon-badge.blue {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: rgba(14, 165, 233, 0.35);
+  color: #0ea5e9;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+}
+
+.section-title-text {
+  font-family: var(--font-heading), 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.section-badge-round {
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.section-count-pill {
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(14, 165, 233, 0.18);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.section-tip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  font-size: 0.72rem;
+  color: var(--text-muted, #94a3b8);
+}
+
+/* =========================================================
+   SUSPECT PLAYERS GRID & CARDS (BÀN CHƠI THẺ NGHI PHẠM)
+   ========================================================= */
+.players-grid-compact-stylish {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.player-card-stylish {
+  background: linear-gradient(145deg, #180a0f 0%, #100508 100%);
+  border: 1px solid rgba(208, 0, 24, 0.22);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.player-card-stylish:hover {
+  border-color: rgba(255, 26, 71, 0.5);
+  box-shadow: 0 4px 20px rgba(255, 26, 71, 0.25);
+}
+
+.player-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.player-avatar-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.player-name-text {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #ffffff;
+}
+
+.me-tag {
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.badge-has-badge {
+  margin-left: auto;
+  color: #f43f5e;
+  background: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  padding: 2px 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.player-mini-decks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.chip-list-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.deck-lbl {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.deck-lbl.means-lbl { color: #ff6b81; }
+.deck-lbl.clues-lbl { color: #38bdf8; }
+
+.mini-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.mini-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 34px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.mini-chip.means-chip {
+  background: rgba(208, 0, 24, 0.12);
+  border: 1px solid rgba(208, 0, 24, 0.3);
+  color: #ffb3c1;
+}
+
+.mini-chip.means-chip:hover {
+  background: rgba(255, 26, 71, 0.3);
+  border-color: #ff1a47;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 26, 71, 0.4);
+}
+
+.mini-chip.clue-chip {
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  color: #bae6fd;
+}
+
+.mini-chip.clue-chip:hover {
+  background: rgba(14, 165, 233, 0.3);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.4);
+}
+
+/* OVERRIDE SCENE GRID FOR DESKTOP PARALLEL DISPLAY */
+.scene-grid-compact {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+

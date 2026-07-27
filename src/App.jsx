@@ -887,10 +887,16 @@ function App() {
 
               {/* 1. BẢNG THẺ BỐI CẢNH HIỆN TRƯỜNG */}
               <section className="compact-card scene-board-compact mobile-tab-section-scene">
-                <div className="flex items-center justify-between mb-2 border-b border-slate-700/50 pb-2">
-                  <span className="font-extrabold text-xs text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <Target size={15} /> BẢNG THẺ BỐI CẢNH HIỆN TRƯỜNG (VÒNG {roomState.round}/3)
-                  </span>
+                <div className="section-header-bar">
+                  <div className="section-title-group">
+                    <div className="section-icon-badge amber">
+                      <Target size={16} />
+                    </div>
+                    <h2 className="section-title-text">
+                      THẺ BỐI CẢNH HIỆN TRƯỜNG
+                      <span className="section-badge-round">VÒNG {roomState.round}/3</span>
+                    </h2>
+                  </div>
                 </div>
 
                 {/* TỰ ĐỘNG THU GỌN HIỆN THANH CHIP NGANG KHI VÀO VÒNG ĐIỀU TRA */}
@@ -988,11 +994,20 @@ function App() {
 
               {/* 2. BÀN CHƠI HIỂN THỊ BÀI NGƯỜI CHƠI (ẨN HOÀN TOÀN THẺ CỦA PHÁP Y) */}
               <section className="compact-card players-board-compact mobile-tab-section-players">
-                <div className="flex items-center justify-between mb-3 border-b border-slate-700/50 pb-2">
-                  <span className="font-extrabold text-xs text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <Users size={15} /> BÀN CHƠI • BÀI NGƯỜI CHƠI NGHI PHẠM ({roomState?.players ? roomState.players.length - 1 : 0})
-                  </span>
-                  <span className="text-[0.68rem] text-slate-400 italic">💡 Mẹo: Nhấp trực tiếp vào thẻ của ai để nghi vấn người đó</span>
+                <div className="section-header-bar">
+                  <div className="section-title-group">
+                    <div className="section-icon-badge blue">
+                      <Users size={16} />
+                    </div>
+                    <h2 className="section-title-text">
+                      BÀI NGƯỜI CHƠI NGHI PHẠM
+                      <span className="section-count-pill">{roomState?.players ? roomState.players.length - 1 : 0}</span>
+                    </h2>
+                  </div>
+                  <div className="section-tip-badge">
+                    <Sparkles size={12} className="text-amber-400" />
+                    <span>Nhấp vào thẻ của ai để nghi vấn người đó</span>
+                  </div>
                 </div>
 
                 {/* GIAO DIỆN CHỌN HUNG KHÍ & MANH MỐI BÍ MẬT DÀNH CHO HUNG THỦ */}
@@ -1071,49 +1086,53 @@ function App() {
                     ?.filter(player => player.id !== roomState.forensicScientistId)
                     .map(player => (
                       <div key={player.id} className="player-card-stylish">
-                        <div className="player-card-head font-extrabold">
-                          <span className="avatar-sm">
+                        <div className="player-card-head">
+                          <div className="player-avatar-badge">
                             {player.isBot ? <Zap size={14} className="text-amber-400" /> : <Shield size={14} className="text-blue-400" />}
+                          </div>
+                          <span className="player-name-text truncate">
+                            {player.name} {player.id === socket.id && <span className="me-tag">(Bạn)</span>}
                           </span>
-                          <span className="name-sm truncate">{player.name} {player.id === socket.id && '(Bạn)'}</span>
                           {player.hasBadge && (
-                            <Award size={14} className="text-rose-400 ml-auto shrink-0" title="Còn Huy hiệu Phá án" />
+                            <div className="badge-has-badge" title="Còn Huy hiệu Phá án">
+                              <Award size={13} />
+                            </div>
                           )}
                         </div>
 
                         {player.means && (
-                          <div className="player-mini-decks mt-2">
+                          <div className="player-mini-decks">
                             <div className="chip-list-group">
-                              <span className="deck-lbl text-rose-400 flex items-center gap-1">
-                                <Flame size={12} /> Công cụ giết người:
+                              <span className="deck-lbl means-lbl">
+                                <Flame size={12} /> Công cụ giết người
                               </span>
-                              <div className="flex flex-wrap gap-1 mt-1">
+                              <div className="mini-chips-grid">
                                 {player.means.map(c => (
-                                  <span 
+                                  <button 
                                     key={c.id} 
                                     onClick={() => handleQuickAccuseCard(player.id, c, 'means')}
-                                    className="mini-chip means clickable"
+                                    className="mini-chip means-chip"
                                     title="Nhấp để Phá án nhanh bằng thẻ này"
                                   >
                                     {c.name}
-                                  </span>
+                                  </button>
                                 ))}
                               </div>
                             </div>
-                            <div className="chip-list-group mt-2">
-                              <span className="deck-lbl text-blue-400 flex items-center gap-1">
-                                <FileText size={12} /> Bằng chứng chính:
+                            <div className="chip-list-group">
+                              <span className="deck-lbl clues-lbl">
+                                <FileText size={12} /> Bằng chứng chính
                               </span>
-                              <div className="flex flex-wrap gap-1 mt-1">
+                              <div className="mini-chips-grid">
                                 {player.clues?.map(c => (
-                                  <span 
+                                  <button 
                                     key={c.id} 
                                     onClick={() => handleQuickAccuseCard(player.id, c, 'clue')}
-                                    className="mini-chip clue clickable"
+                                    className="mini-chip clue-chip"
                                     title="Nhấp để Phá án nhanh bằng thẻ này"
                                   >
                                     {c.name}
-                                  </span>
+                                  </button>
                                 ))}
                               </div>
                             </div>
