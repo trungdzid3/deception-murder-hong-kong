@@ -2690,9 +2690,9 @@ body {
 }
 
 .sherlock-story-text {
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif !important;
-  font-size: 0.95rem !important;
-  line-height: 1.75 !important;
+  font-family: 'Be Vietnam Pro', 'Outfit', system-ui, sans-serif !important;
+  font-size: 0.92rem !important;
+  line-height: 1.8 !important;
   color: #fef3c7 !important;
   white-space: pre-line !important;
   background: rgba(0, 0, 0, 0.4) !important;
