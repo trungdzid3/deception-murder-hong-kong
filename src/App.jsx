@@ -505,10 +505,6 @@ function App() {
             <Search size={22} className="text-amber-400 stroke-[3]" />
             <Skull size={18} className="text-rose-400 stroke-[3] logo-skull-mini" />
           </div>
-          <div>
-            <h1 className="app-title">DECEPTION</h1>
-            <span className="app-subtitle">MURDER IN HONG KONG • CRIMSON CYBER</span>
-          </div>
         </div>
 
         {inRoom && (
