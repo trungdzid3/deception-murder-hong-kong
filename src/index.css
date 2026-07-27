@@ -1712,3 +1712,216 @@ body {
   width: 100% !important;
 }
 
+/* =========================================================
+   MODAL OVERLAY & DRAW TILE MODAL (PHÁP Y BỐC THẺ STYLING)
+   ========================================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 2, 3, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 16px;
+}
+
+.modal-card {
+  background: linear-gradient(145deg, #18090d 0%, #0d0406 100%);
+  border: 2px solid var(--crimson-primary, #d00018);
+  box-shadow: 0 0 35px rgba(208, 0, 24, 0.4);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 520px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: modalPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+  font-family: var(--font-heading), 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.03em;
+}
+
+.modal-header button {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+.modal-header button:hover { color: #ffffff; }
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* KHUNG THẺ RÚT MỚI */
+.new-tarot-card-frame {
+  background: rgba(208, 0, 24, 0.08);
+  border: 1.5px solid rgba(208, 0, 24, 0.3);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tarot-card-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #f59e0b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: uppercase;
+}
+
+.tarot-card-title {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.tarot-options-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.option-tarot-btn {
+  background: rgba(20, 11, 14, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #cbd5e1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.option-tarot-btn:hover {
+  border-color: rgba(255, 26, 71, 0.5);
+  color: #ffffff;
+  background: rgba(255, 26, 71, 0.15);
+}
+
+.option-tarot-btn.selected {
+  background: linear-gradient(135deg, #d00018 0%, #9c0012 100%);
+  border-color: #ff1a47;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 26, 71, 0.5);
+  font-weight: 800;
+}
+
+/* THẺ CŨ CẦN ĐÈ LÊN */
+.old-tiles-selection-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  letter-spacing: 0.05em;
+}
+
+.old-tiles-selectable-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.selectable-old-tile-card {
+  background: rgba(20, 11, 14, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.selectable-old-tile-card:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.selectable-old-tile-card.selected {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: #f59e0b;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.4);
+}
+
+.old-tile-name {
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #ffffff;
+}
+
+.old-tile-bullet {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 6px;
+}
+
+.btn-gold-draw {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #000000 !important;
+  font-weight: 900 !important;
+  border: none !important;
+  padding: 9px 18px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.btn-gold-draw:hover {
+  transform: scale(1.03);
+}
+
+
