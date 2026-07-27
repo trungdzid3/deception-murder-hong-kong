@@ -6,12 +6,29 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 
+// Health check endpoint cho Railway
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', service: 'Deception Murder in Hong Kong - Socket.IO Server', timestamp: new Date().toISOString() });
+});
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy' });
+});
+
+const ALLOWED_ORIGINS = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  // Thêm URL Vercel của bạn vào đây sau khi deploy frontend
+  process.env.FRONTEND_URL || '*'
+];
+
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
-  }
+    origin: ALLOWED_ORIGINS,
+    methods: ['GET', 'POST'],
+    credentials: true
+  },
+  transports: ['websocket', 'polling']
 });
 
 const rooms = {};

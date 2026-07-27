@@ -7,21 +7,18 @@ import {
 } from 'lucide-react';
 import { ROLES, MEANS_CARDS, CLUE_CARDS, CAUSE_OF_DEATH, LOCATIONS, SCENE_TILES } from './data/game-data';
 
-// Khởi tạo Socket.IO: ưu tiên biến môi trường VITE_SOCKET_URL (set trong Vercel),
-// fallback về localhost:3001 khi local, hoặc window.location.origin khi production (chỉ khi server hỗ trợ websocket on same origin).
+// Khởi tạo Socket.IO an toàn - Hỗ trợ Railway backend
 const getSocketUrl = () => {
-  // use explicit env var if provided (recommended for production websocket server)
-  if (import.meta.env && import.meta.env.VITE_SOCKET_URL) {
+  // Nếu có biến môi trường VITE_SOCKET_URL (Railway URL) thì dùng
+  if (import.meta.env.VITE_SOCKET_URL) {
     return import.meta.env.VITE_SOCKET_URL;
   }
-
-  if (typeof window !== 'undefined') {
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      return 'http://localhost:3001';
-    }
-    return window.location.origin;
+  // Nếu đang chạy localhost dev thì kết nối port 3001
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'http://localhost:3001';
   }
-  return '';
+  // Fallback: kết nối cùng origin (không hoạt động trên Vercel vì serverless)
+  return window.location.origin;
 };
 
 const socket = io(getSocketUrl(), {

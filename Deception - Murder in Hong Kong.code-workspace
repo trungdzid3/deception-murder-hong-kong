@@ -4,5 +4,16 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"chat.tools.terminal.autoApprove": {
+			"/^powershell -Command \"\\$url='https://github\\.com/superfly/flyctl/releases/latest/download/flyctl_windows_amd64\\.zip'; \\$out='flyctl\\.zip'; Invoke-WebRequest \\$url -OutFile \\$out; Expand-Archive -Path \\$out -DestinationPath '\\./flyctl_temp' -Force; Move-Item '\\./flyctl_temp/flyctl\\.exe' '\\./flyctl\\.exe' -Force; \\./flyctl\\.exe version\"$/": {
+				"approve": true,
+				"matchCommandLine": true
+			},
+			"/^powershell -Command \"Invoke-WebRequest -UseBasicParsing -Uri 'https://github\\.com/superfly/flyctl/releases/latest/download/flyctl_windows_amd64\\.zip' -OutFile 'flyctl\\.zip'; Expand-Archive -LiteralPath 'flyctl\\.zip' -DestinationPath 'flyctl_temp' -Force; Move-Item -Path '\\./flyctl_temp/flyctl\\.exe' -Destination '\\./flyctl\\.exe' -Force; \\.\\\\flyctl\\.exe version\"$/": {
+				"approve": true,
+				"matchCommandLine": true
+			}
+		}
+	}
 }
