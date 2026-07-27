@@ -498,44 +498,34 @@ function App() {
   return (
     <div className="app-layout">
       
-      {/* HEADER TỔNG QUAN */}
-      <header className="app-header-compact">
-        <div className="app-brand">
-          <div className="app-logo-badge">
-            <Search size={22} className="text-amber-400 stroke-[3]" />
-            <Skull size={18} className="text-rose-400 stroke-[3] logo-skull-mini" />
+      {/* ROOM CONTROLS - chỉ hiện khi đang trong phòng, gọn gàng inline */}
+      {inRoom && (
+        <div className="room-controls-bar">
+          <div className="room-code-pill cursor-pointer" onClick={handleCopyCode} title="Nhấp để copy mã phòng">
+            <span>PHÒNG:</span>
+            <strong>{roomState?.code}</strong>
+            <Copy size={12} className="ml-1 text-slate-400" />
           </div>
+
+          <button 
+            onClick={isForensic ? undefined : toggleMute}
+            disabled={isForensic}
+            className={`btn btn-xs ${isForensic ? 'btn-mic-disabled' : !isMuted ? 'btn-mic-active' : 'btn-mic-muted'}`}
+            title={isForensic ? 'Theo luật Deception: Nhà khoa học pháp y không được nói thành lời!' : ''}
+          >
+            {isForensic ? <Lock size={12} /> : !isMuted ? <Mic size={13} /> : <MicOff size={13} />}
+            <span>{isForensic ? 'KHOÁ MIC' : !isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
+          </button>
+
+          <button onClick={() => setShowGuideModal(true)} className="btn btn-xs btn-secondary">
+            <BookOpen size={13} /> Luật
+          </button>
+
+          <button onClick={handleLeaveRoom} className="btn btn-xs btn-danger">
+            <LogOut size={13} /> Rời
+          </button>
         </div>
-
-        {inRoom && (
-          <div className="header-actions">
-            <div className="room-code-pill cursor-pointer" onClick={handleCopyCode} title="Nhấp để copy mã phòng">
-              <span>PHÒNG:</span>
-              <strong>{roomState?.code}</strong>
-              <Copy size={12} className="ml-1 text-slate-400" />
-            </div>
-
-            {/* NÚT BẬT/TẮT MIC */}
-            <button 
-              onClick={isForensic ? undefined : toggleMute}
-              disabled={isForensic}
-              className={`btn btn-xs ${isForensic ? 'btn-mic-disabled' : !isMuted ? 'btn-mic-active' : 'btn-mic-muted'}`}
-              title={isForensic ? 'Theo luật Deception: Nhà khoa học pháp y không được nói thành lời!' : ''}
-            >
-              {isForensic ? <Lock size={12} /> : !isMuted ? <Mic size={13} /> : <MicOff size={13} />}
-              <span>{isForensic ? 'KHOÁ MIC (PHÁP Y)' : !isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
-            </button>
-
-            <button onClick={() => setShowGuideModal(true)} className="btn btn-xs btn-secondary">
-              <BookOpen size={13} /> Luật
-            </button>
-
-            <button onClick={handleLeaveRoom} className="btn btn-xs btn-danger">
-              <LogOut size={13} /> Rời
-            </button>
-          </div>
-        )}
-      </header>
+      )}
 
       {/* THÔNG BÁO LỖI NẾU CÓ */}
       {errorMsg && (

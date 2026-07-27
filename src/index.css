@@ -1310,3 +1310,37 @@ body {
   .cards-picker-grid { grid-template-columns: 1fr; }
   .players-grid-compact-stylish { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   ROOM CONTROLS BAR (thay thế header cũ)
+   ========================================================= */
+.room-controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(20, 11, 14, 0.85);
+  border-bottom: 1px solid rgba(208, 0, 24, 0.2);
+  flex-wrap: wrap;
+}
+
+.room-code-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  background: rgba(208, 0, 24, 0.12);
+  border: 1px solid rgba(208, 0, 24, 0.35);
+  border-radius: 99px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.room-code-pill:hover { background: rgba(208, 0, 24, 0.22); }
+.room-code-pill strong { color: #fca5a5; font-weight: 700; font-size: 0.75rem; }
+
+.btn-mic-active  { background: rgba(16,185,129,0.15) !important; border-color: #10b981 !important; color: #6ee7b7 !important; }
+.btn-mic-muted   { background: rgba(100,116,139,0.15) !important; border-color: #475569 !important; color: #94a3b8 !important; }
+.btn-mic-disabled{ background: rgba(239,68,68,0.1) !important; border-color: #ef4444 !important; color: #fca5a5 !important; opacity: 0.7; cursor: not-allowed !important; }
