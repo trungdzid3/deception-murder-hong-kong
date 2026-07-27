@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { io } from 'socket.io-client';
 import { 
   Skull, Shield, Search, Eye, EyeOff, Users, X, 
@@ -117,6 +117,38 @@ function App() {
       setEnableWitness(false);
     }
   }, [roomState?.players?.length]);
+
+  // ĐỒNG BỘ NỘI DUNG CHAT TỪ ROOM STATE CHO TẤT CẢ THÀNH VIÊN
+  useEffect(() => {
+    if (roomState?.chatMessages) {
+      setChatMessages(roomState.chatMessages);
+    }
+  }, [roomState?.chatMessages]);
+
+  // TỰ ĐỘNG CHỌN BACKGROUND ẢNH VŨ ÁN / SẢNH CHỜ THU HÚT
+  const currentBgStyle = useMemo(() => {
+    if (!inRoom) {
+      return {
+        backgroundImage: `linear-gradient(185deg, rgba(10, 8, 15, 0.85) 0%, rgba(5, 5, 10, 0.94) 100%), url('/images/landing-bg.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      };
+    }
+
+    const code = roomState?.code || '';
+    const codeSum = code.split('').reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+    const bgImageName = codeSum % 2 === 0 ? 'game-bg-1.jpg' : 'game-bg-2.jpg';
+
+    return {
+      backgroundImage: `linear-gradient(185deg, rgba(12, 9, 18, 0.88) 0%, rgba(6, 5, 10, 0.95) 100%), url('/images/${bgImageName}')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed'
+    };
+  }, [inRoom, roomState?.code]);
 
   // TỰ ĐỘNG THU GỌN BẢNG GỢI Ý KHI VÀO VÒNG ĐIỀU TRA (INVESTIGATION) 100%
   useEffect(() => {
@@ -596,7 +628,7 @@ function App() {
   const murdererPlayerObj = roomState?.players?.find(p => p.role?.id === 'murderer');
 
   return (
-    <div className="app-layout">
+    <div className="app-layout" style={currentBgStyle}>
       
       {/* HEADER - chỉ hiện khi đang trong phòng, không có logo */}
       {inRoom && (

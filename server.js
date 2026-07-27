@@ -182,6 +182,7 @@ io.on('connection', (socket) => {
       activeSceneTiles: [],
       deck: [],
       bullets: {},
+      chatMessages: [],
       eventLog: [`Phòng chơi ${roomCode} đã được tạo bởi ${playerName}.`]
     };
 
@@ -684,7 +685,13 @@ io.on('connection', (socket) => {
         text: message,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
+
+      if (!room.chatMessages) room.chatMessages = [];
+      room.chatMessages.push(chatPayload);
+      if (room.chatMessages.length > 100) room.chatMessages.shift();
+
       io.to(code).emit('receive-chat', chatPayload);
+      io.to(code).emit('room-updated', room);
     }
   });
 
