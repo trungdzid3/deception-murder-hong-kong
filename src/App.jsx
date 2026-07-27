@@ -478,6 +478,18 @@ function App() {
     setShowAccuseModal(false);
   };
 
+  const handleSendChat = () => {
+    if (!chatInput.trim()) return;
+    const code = roomStateRef.current?.code || roomState?.code;
+    if (!code) return setErrorMsg('Bạn chưa tham gia phòng chơi!');
+
+    socket.emit('send-chat', {
+      roomCode: code,
+      message: chatInput.trim()
+    });
+    setChatInput('');
+  };
+
   // NHẤP NHANH THẺ BÀI TRÊN BÀN CHƠI ĐỂ PHÁ ÁN
   const handleQuickAccuseCard = (playerId, card, type) => {
     if (isForensic) return;
@@ -490,18 +502,6 @@ function App() {
       setAccuseClue(card);
     }
     setShowAccuseModal(true);
-  };
-
-  const handleSendChat = () => {
-    if (!chatInput.trim()) return;
-    const code = roomStateRef.current?.code || roomState?.code;
-    if (!code) return;
-
-    socket.emit('send-chat', {
-      roomCode: code,
-      message: chatInput.trim()
-    });
-    setChatInput('');
   };
 
   const handleLeaveRoom = () => {
@@ -1607,6 +1607,68 @@ function App() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* NÚT CHAT BỐC NỔI (FLOATING CHAT BUBBLE) - CHỈ HIỆN KHI Ở TRONG PHÒNG */}
+      {inRoom && (
+        <>
+          <button 
+            onClick={() => {
+              setIsChatOpen(prev => !prev);
+              setUnreadChatCount(0);
+            }} 
+            className="btn-floating-chat"
+            title="Mở khung trò chuyện chat"
+          >
+            <MessageSquare size={22} />
+            {unreadChatCount > 0 && (
+              <span className="unread-chat-badge">{unreadChatCount}</span>
+            )}
+          </button>
+
+          {/* KHUNG CHAT DRAWER NỔI */}
+          {isChatOpen && (
+            <div className="floating-chat-drawer">
+              <div className="chat-drawer-header">
+                <span className="flex items-center gap-1.5 font-bold text-amber-400">
+                  <MessageSquare size={16} /> TRÒ CHUYỆN TOÀN PHÒNG ({chatMessages.length})
+                </span>
+                <button onClick={() => setIsChatOpen(false)} className="btn-close-chat"><X size={16} /></button>
+              </div>
+
+              <div className="chat-messages-box">
+                {chatMessages.length === 0 ? (
+                  <div className="empty-chat-msg">Chưa có tin nhắn nào. Hãy nhắn câu đầu tiên!</div>
+                ) : (
+                  chatMessages.map((msg, idx) => (
+                    <div 
+                      key={idx} 
+                      className={`chat-msg-item ${msg.senderId === socket.id ? 'is-me' : ''}`}
+                    >
+                      <div className="chat-msg-meta">
+                        <span className="sender-name">{msg.sender} {msg.senderId === socket.id ? '(Bạn)' : ''}</span>
+                        <span className="msg-time">{msg.time}</span>
+                      </div>
+                      <div className="chat-msg-text">{msg.text}</div>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              <div className="chat-input-bar">
+                <input 
+                  type="text" 
+                  value={chatInput} 
+                  onChange={(e) => setChatInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSendChat()}
+                  placeholder="Nhập tin nhắn..." 
+                  className="chat-input-field"
+                />
+                <button onClick={handleSendChat} className="btn-send-chat"><Send size={16} /></button>
+              </div>
+            </div>
+          )}
+        </>
       )}
 
     </div>
