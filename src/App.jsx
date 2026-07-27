@@ -7,7 +7,23 @@ import {
 } from 'lucide-react';
 import { ROLES, MEANS_CARDS, CLUE_CARDS, CAUSE_OF_DEATH, LOCATIONS, SCENE_TILES } from './data/game-data';
 
-const socket = io(window.location.hostname === 'localhost' ? 'http://localhost:3001' : window.location.origin);
+// Khởi tạo Socket.IO an toàn 100% trên Vercel Production
+const getSocketUrl = () => {
+  if (typeof window !== 'undefined') {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:3001';
+    }
+    return window.location.origin;
+  }
+  return '';
+};
+
+const socket = io(getSocketUrl(), {
+  autoConnect: true,
+  transports: ['websocket', 'polling'],
+  reconnectionAttempts: 5,
+  timeout: 10000
+});
 
 function App() {
   // Client & Room States
@@ -103,6 +119,7 @@ function App() {
   // WebRTC Audio Stream
   const initVoiceChat = async () => {
     try {
+      if (!navigator?.mediaDevices?.getUserMedia) return;
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       setLocalStream(stream);
       localStreamRef.current = stream;
@@ -162,9 +179,9 @@ function App() {
     }
     setLocalStream(null);
     localStreamRef.current = null;
-    Object.keys(peerConnections.current).forEach(id => peerConnections.current[id].close());
+    Object.keys(peerConnections.current).forEach(id => peerConnections.current[id]?.close());
     peerConnections.current = {};
-    Object.keys(audioElements.current).forEach(id => audioElements.current[id].remove());
+    Object.keys(audioElements.current).forEach(id => audioElements.current[id]?.remove());
     audioElements.current = {};
   };
 
@@ -421,10 +438,10 @@ function App() {
   };
 
   // Helper getters & Vote counting
-  const me = roomState?.players.find(p => p.id === socket.id);
+  const me = roomState?.players?.find(p => p.id === socket.id);
   const isForensic = roomState?.forensicScientistId === socket.id;
   const isMurderer = me?.role?.id === 'murderer';
-  const botCount = roomState?.players.filter(p => p.isBot).length || 0;
+  const botCount = roomState?.players?.filter(p => p.isBot).length || 0;
   const hasVotedNextRound = roomState?.votesForNextRound?.includes(socket.id);
   const totalPlayersCount = roomState?.players?.length || 1;
   const votesCount = roomState?.votesForNextRound?.length || 0;
@@ -448,7 +465,7 @@ function App() {
   ].filter(Boolean) : [];
 
   const nextDrawnTile = roomState?.deck?.[0];
-  const accusedPlayerObj = roomState?.players.find(p => p.id === accuseTargetId);
+  const accusedPlayerObj = roomState?.players?.find(p => p.id === accuseTargetId);
 
   // Helper lấy string label an toàn từ option
   const getOptLabel = (opt) => {
@@ -465,7 +482,7 @@ function App() {
   };
 
   // Lấy tên Kẻ sát nhân của vụ án
-  const murdererPlayerObj = roomState?.players.find(p => p.role?.id === 'murderer');
+  const murdererPlayerObj = roomState?.players?.find(p => p.role?.id === 'murderer');
 
   return (
     <div className="app-layout">
@@ -479,7 +496,7 @@ function App() {
           </div>
           <div>
             <h1 className="app-title">DECEPTION</h1>
-            <span className="app-subtitle">MURDER IN HONG KONG • TRINH THÁM NOIR</span>
+            <span className="app-subtitle">MURDER IN HONG KONG • CRIMSON CYBER</span>
           </div>
         </div>
 
@@ -553,7 +570,7 @@ function App() {
               <h1 className="cinematic-main-title">DECEPTION</h1>
               <span className="cinematic-sub-title">MURDER IN HONG KONG</span>
               <p className="hero-tagline">
-                Game Ẩn Vai Trò & Suy Luận Án Mạng • Graphic Novel
+                Game Ẩn Vai Trò & Suy Luận Án Mạng • Crimson Cyber Gaming
               </p>
             </div>
 
@@ -638,7 +655,7 @@ function App() {
             <div className="lobby-control-bar">
               <div className="player-count-badge">
                 <Users size={18} className="text-amber-400" />
-                <span>Số người chơi: <strong className="text-amber-400">{roomState.players.length}/12</strong></span>
+                <span>Số người chơi: <strong className="text-amber-400">{roomState.players?.length || 0}/12</strong></span>
               </div>
               <div className="bot-actions-group">
                 <button onClick={handleAddBot} className="btn btn-sm btn-secondary"><UserPlus size={14} /> + Thêm Bot</button>
@@ -649,7 +666,7 @@ function App() {
             <div className="lobby-members-section">
               <span className="section-label-amber">NHẤP VÀO THÀNH VIÊN BẠN MUỐN BẦU LÀM NHÀ KHOA HỌC PHÁP Y:</span>
               <div className="lobby-members-grid">
-                {roomState.players.map(player => {
+                {roomState.players?.map(player => {
                   const votes = getVotesForPlayer(player.id);
                   const isTopCandidate = roomState.forensicScientistId === player.id;
                   const isMyVotedTarget = myVotedId === player.id;
@@ -980,7 +997,7 @@ function App() {
               <section className="compact-card players-board-compact mobile-tab-section-players">
                 <div className="flex items-center justify-between mb-3 border-b border-slate-700/50 pb-2">
                   <span className="font-extrabold text-xs text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <Users size={15} /> BÀN CHƠI • BÀI NGƯỜI CHƠI NGHI PHẠM ({roomState?.players.length - 1})
+                    <Users size={15} /> BÀN CHƠI • BÀI NGƯỜI CHƠI NGHI PHẠM ({roomState?.players ? roomState.players.length - 1 : 0})
                   </span>
                   <span className="text-[0.68rem] text-slate-400 italic">💡 Mẹo: Nhấp trực tiếp vào thẻ của ai để nghi vấn người đó</span>
                 </div>
@@ -1058,7 +1075,7 @@ function App() {
                 {/* DANH SÁCH BÀI NGƯỜI CHƠI (ẨN HOÀN TOÀN PHÁP Y KHỎI BÀN CHƠI) */}
                 <div className="players-grid-compact-stylish">
                   {roomState?.players
-                    .filter(player => player.id !== roomState.forensicScientistId)
+                    ?.filter(player => player.id !== roomState.forensicScientistId)
                     .map(player => (
                       <div key={player.id} className="player-card-stylish">
                         <div className="player-card-head font-extrabold">
@@ -1355,7 +1372,7 @@ function App() {
                 >
                   <option value="">-- Nhấp chọn người chơi làm nghi phạm --</option>
                   {roomState?.players
-                    .filter(p => p.id !== roomState.forensicScientistId)
+                    ?.filter(p => p.id !== roomState.forensicScientistId)
                     .map(p => (
                       <option key={p.id} value={p.id}>{p.name} {p.isBot ? '(Bot)' : ''}</option>
                     ))}
