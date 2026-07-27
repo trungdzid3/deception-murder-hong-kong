@@ -1975,6 +1975,20 @@ body {
   color: #ffffff;
 }
 
+/* MUSIC TOGGLE BUTTONS */
+.btn-music-active {
+  background: rgba(245, 158, 11, 0.2) !important;
+  border: 1px solid rgba(245, 158, 11, 0.5) !important;
+  color: #fbbf24 !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.3) !important;
+}
+
+.btn-music-muted {
+  background: rgba(51, 65, 85, 0.4) !important;
+  border: 1px solid rgba(71, 85, 105, 0.6) !important;
+  color: #94a3b8 !important;
+}
+
 .btn-ready-active {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
   color: #ffffff !important;

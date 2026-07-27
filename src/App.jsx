@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { io } from 'socket.io-client';
 import { 
   Skull, Shield, Search, Eye, EyeOff, Users, X, 
-  Mic, MicOff, LogOut, CheckCircle, ArrowRight,
+  LogOut, CheckCircle, ArrowRight, Volume2, VolumeX, Music,
   BookOpen, Send, MessageSquare, Crown, Award, Play, UserPlus, UserMinus, Target, RefreshCw, Layers, Trophy, Clock, CheckSquare, AlertTriangle, Sparkles, Check, Copy, KeyRound, Compass, ChevronUp, ChevronDown, Lock, Flame, Zap, FileText, UserCheck, UserX, AlertCircle
 } from 'lucide-react';
 import { ROLES, MEANS_CARDS, CLUE_CARDS, CAUSE_OF_DEATH, LOCATIONS, SCENE_TILES } from './data/game-data';
@@ -81,11 +81,10 @@ function App() {
   const [showAccuseModal, setShowAccuseModal] = useState(false);
   const [accusationResultMsg, setAccusationResultMsg] = useState('');
 
-  const [isMuted, setIsMuted] = useState(true);
-  const [localStream, setLocalStream] = useState(null);
-  const peerConnections = useRef({});
-  const audioElements = useRef({});
-  const localStreamRef = useRef(null);
+  // Nhạc nền BGM Sherlock Holmes
+  const [isPlayingMusic, setIsPlayingMusic] = useState(true);
+  const audioBgmRef = useRef(null);
+
   const roomStateRef = useRef(roomState);
   const chatEndRef = useRef(null);
   const isChatOpenRef = useRef(isChatOpen);
@@ -183,89 +182,29 @@ function App() {
     }
   }, [roomState?.needsTileDraw, roomState?.round, roomState?.forensicScientistId]);
 
-  // WebRTC Audio Stream
-  const initVoiceChat = async () => {
-    try {
-      if (!navigator?.mediaDevices?.getUserMedia) return;
-      if (localStreamRef.current) return; // Đã có stream mic
-
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      setLocalStream(stream);
-      localStreamRef.current = stream;
-      
-      setIsMuted(false);
-      stream.getAudioTracks().forEach(track => track.enabled = true);
-
-      if (roomState?.code) {
-        socket.emit('voice-join', { roomCode: roomState.code });
-      }
-    } catch (err) {
-      console.warn('Mic access error:', err);
-      setErrorMsg('Không thể truy cập Microphone! Vui lòng cho phép trình duyệt sử dụng Mic.');
-    }
-  };
-
-  const createPeerConnection = (targetSocketId) => {
-    if (peerConnections.current[targetSocketId]) return peerConnections.current[targetSocketId];
-    const pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
-    peerConnections.current[targetSocketId] = pc;
-
-    if (localStreamRef.current) {
-      localStreamRef.current.getTracks().forEach(track => pc.addTrack(track, localStreamRef.current));
-    }
-
-    pc.ontrack = (e) => {
-      let audio = audioElements.current[targetSocketId];
-      if (!audio) {
-        audio = document.createElement('audio');
-        audio.autoplay = true;
-        audio.playsInline = true;
-        document.body.appendChild(audio);
-        audioElements.current[targetSocketId] = audio;
-      }
-      audio.srcObject = e.streams[0];
-      audio.play().catch(err => console.warn('Audio play autoplay error:', err));
-    };
-
-    pc.onicecandidate = (e) => {
-      const code = roomStateRef.current?.code;
-      if (e.candidate && code) {
-        socket.emit('voice-signal', {
-          roomCode: code,
-          targetSocketId,
-          signal: { candidate: e.candidate }
-        });
+  // TỰ ĐỘNG PHÁT NHẠC KHI CÓ TƯƠNG TÁC ĐẦU TIÊN CỦA NGƯỜI DÙNG (BYPASS AUTOPLAY POLICY)
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (audioBgmRef.current && isPlayingMusic && audioBgmRef.current.paused) {
+        audioBgmRef.current.play().catch(() => {});
       }
     };
+    window.addEventListener('click', handleFirstInteraction, { once: true });
+    window.addEventListener('keydown', handleFirstInteraction, { once: true });
+    return () => {
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('keydown', handleFirstInteraction);
+    };
+  }, [isPlayingMusic]);
 
-    return pc;
-  };
-
-  const cleanupVoiceChat = () => {
-    if (localStreamRef.current) {
-      localStreamRef.current.getTracks().forEach(t => t.stop());
-    }
-    setLocalStream(null);
-    localStreamRef.current = null;
-    Object.keys(peerConnections.current).forEach(id => peerConnections.current[id]?.close());
-    peerConnections.current = {};
-    Object.keys(audioElements.current).forEach(id => audioElements.current[id]?.remove());
-    audioElements.current = {};
-  };
-
-  const toggleMute = () => {
-    if (!localStreamRef.current) {
-      initVoiceChat();
-      return;
-    }
-
-    const nextState = !isMuted;
-    setIsMuted(nextState);
-    if (localStreamRef.current) {
-      localStreamRef.current.getAudioTracks().forEach(t => t.enabled = !nextState);
-    }
-    if (roomState?.code) {
-      socket.emit('voice-mute-state', { roomCode: roomState.code, isMuted: nextState });
+  const toggleMusic = () => {
+    if (!audioBgmRef.current) return;
+    if (isPlayingMusic) {
+      audioBgmRef.current.pause();
+      setIsPlayingMusic(false);
+    } else {
+      audioBgmRef.current.play().catch(e => console.warn('BGM play failed:', e));
+      setIsPlayingMusic(true);
     }
   };
 
@@ -293,8 +232,6 @@ function App() {
       if (updated.forensicScientistId !== socket.id) {
         setShowRoleRevealModal(true);
       }
-
-      initVoiceChat();
     });
 
     socket.on('accusation-failed', ({ accuser }) => {
@@ -309,7 +246,6 @@ function App() {
       setShowAccuseModal(false);
       setShowDrawTileModal(false);
       setShowRoleRevealModal(false);
-      cleanupVoiceChat();
     });
 
     socket.on('error-msg', (msg) => {
@@ -320,7 +256,6 @@ function App() {
       setInRoom(false);
       setRoomState(null);
       setErrorMsg('Bạn đã bị Chủ phòng kick khỏi phòng!');
-      cleanupVoiceChat();
     });
 
     socket.on('voice-peer-joined', async ({ socketId }) => {
@@ -591,7 +526,6 @@ function App() {
   };
 
   const handleLeaveRoom = () => {
-    cleanupVoiceChat();
     setInRoom(false);
     setRoomState(null);
   };
@@ -656,14 +590,14 @@ function App() {
               <Copy size={12} className="ml-1 text-slate-400" />
             </div>
 
-            {/* NÚT BẬT/TẮT MIC */}
+            {/* NÚT BẬT/TẮT NHẠC NỀN */}
             <button 
-              onClick={toggleMute}
-              className={`btn btn-xs ${!isMuted ? 'btn-mic-active' : 'btn-mic-muted'}`}
-              title="Bật/Tắt Mic đàm thoại"
+              onClick={toggleMusic}
+              className={`btn btn-xs ${isPlayingMusic ? 'btn-music-active' : 'btn-music-muted'}`}
+              title="Bật/Tắt Nhạc nền Sherlock Holmes"
             >
-              {!isMuted ? <Mic size={13} /> : <MicOff size={13} />}
-              <span>{!isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
+              {isPlayingMusic ? <Volume2 size={13} /> : <VolumeX size={13} />}
+              <span>{isPlayingMusic ? 'NHẠC BẬT' : 'NHẠC TẮT'}</span>
             </button>
 
             <button onClick={() => setShowGuideModal(true)} className="btn btn-xs btn-secondary">
@@ -806,12 +740,12 @@ function App() {
                 </div>
                 <div className="flex items-center gap-2">
                   <button 
-                    onClick={toggleMute}
-                    className={`btn btn-sm ${!isMuted ? 'btn-mic-active' : 'btn-mic-muted'} font-bold flex items-center gap-1.5`}
-                    title="Bật/Tắt Mic trò chuyện trong sảnh chờ"
+                    onClick={toggleMusic}
+                    className={`btn btn-sm ${isPlayingMusic ? 'btn-music-active' : 'btn-music-muted'} font-bold flex items-center gap-1.5`}
+                    title="Bật/Tắt Nhạc nền Sherlock Holmes"
                   >
-                    {!isMuted ? <Mic size={14} /> : <MicOff size={14} />}
-                    <span>{!isMuted ? 'MIC MỞ' : 'MIC TẮT'}</span>
+                    {isPlayingMusic ? <Volume2 size={14} /> : <VolumeX size={14} />}
+                    <span>{isPlayingMusic ? 'NHẠC BẬT' : 'NHẠC TẮT'}</span>
                   </button>
 
                   {/* CHỦ PHÒNG MỚI THẤY NÚT THÊM/XÓA BOT */}
@@ -1809,6 +1743,9 @@ function App() {
           </div>
         );
       })()}
+
+      {/* TRÌNH PHÁT NHẠC NỀN SHERLOCK HOLMES BGM */}
+      <audio ref={audioBgmRef} src="/audio/bgm.mp3" loop />
 
     </div>
   );

@@ -217,7 +217,6 @@ io.on('connection', (socket) => {
       means: [],
       hasAccused: false,
       accusedCorrectly: false,
-      isMuted: true,
       hasBadge: true,
       isReady: false
     };
@@ -645,34 +644,7 @@ io.on('connection', (socket) => {
     });
   });
 
-  // 13. WebRTC Voice Chat Signaling Handlers
-  socket.on('voice-join', ({ roomCode }) => {
-    const code = (roomCode || '').trim().toUpperCase();
-    if (code) {
-      socket.to(code).emit('voice-peer-joined', { socketId: socket.id });
-    }
-  });
 
-  socket.on('voice-signal', ({ roomCode, targetSocketId, signal }) => {
-    if (targetSocketId) {
-      io.to(targetSocketId).emit('voice-signal-received', {
-        senderSocketId: socket.id,
-        signal
-      });
-    }
-  });
-
-  socket.on('voice-mute-state', ({ roomCode, isMuted }) => {
-    const code = (roomCode || '').trim().toUpperCase();
-    const room = rooms[code];
-    if (room) {
-      const player = room.players.find(p => p.id === socket.id);
-      if (player) {
-        player.isMuted = isMuted;
-        io.to(code).emit('room-updated', room);
-      }
-    }
-  });
 
   // 14. Tin nhắn Chat nhóm (Broadcast to room)
   socket.on('send-chat', ({ roomCode, message, msgId }) => {
