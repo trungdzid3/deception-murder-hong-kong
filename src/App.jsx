@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { 
   Skull, Shield, Search, Eye, EyeOff, Users, X, 
   LogOut, CheckCircle, ArrowRight, Volume2, VolumeX, Music,
-  BookOpen, Send, MessageSquare, Crown, Award, Play, UserPlus, UserMinus, Target, RefreshCw, Layers, Trophy, Clock, CheckSquare, AlertTriangle, Sparkles, Check, Copy, KeyRound, Compass, ChevronUp, ChevronDown, Lock, Flame, Zap, FileText, UserCheck, UserX, AlertCircle
+  BookOpen, Send, MessageSquare, Crown, Award, Play, UserPlus, UserMinus, Target, RefreshCw, Layers, Trophy, Clock, CheckSquare, AlertTriangle, Sparkles, Check, Copy, KeyRound, Compass, ChevronUp, ChevronDown, Lock, Flame, Zap, FileText, UserCheck, UserX, AlertCircle, MapPin, PhoneCall
 } from 'lucide-react';
 import { ROLES, MEANS_CARDS, CLUE_CARDS, CAUSE_OF_DEATH, LOCATIONS, SCENE_TILES } from './data/game-data';
 import { SHERLOCK_CASE_1 } from './data/sherlock-case-1';
