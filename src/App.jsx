@@ -769,7 +769,7 @@ function App() {
           <div className="natural-game-layout">
             
             {/* CỘT TRÁI: VAI TRÒ & BỘ NÚT TƯƠNG TÁC */}
-            <aside className="natural-panel-left mobile-tab-section-profile">
+            <aside className="natural-panel-left mobile-tab-section-profile sidebar-profile-panel">
               
               {/* VAI TRÒ CARD */}
               <div className="compact-card role-info-card">
@@ -777,10 +777,10 @@ function App() {
                 <div className="flex items-center justify-between mt-1">
                   <div className="flex items-center gap-2">
                     <Shield size={20} className="text-amber-400" />
-                    <span className="font-extrabold text-sm text-amber-400">{me?.role ? me.role.name : 'Chưa phân vai'}</span>
+                    <span className="role-name-text">{me?.role ? me.role.name : 'Chưa phân vai'}</span>
                   </div>
                   {me?.role && (
-                    <button onClick={() => setShowRoleSecret(!showRoleSecret)} className="btn btn-xs btn-outline">
+                    <button onClick={() => setShowRoleSecret(!showRoleSecret)} className="btn btn-xs btn-outline role-toggle-btn">
                       {showRoleSecret ? <EyeOff size={12} /> : <Eye size={12} />}
                     </button>
                   )}
@@ -808,13 +808,13 @@ function App() {
                 
                 <div className="mt-2">
                   {roomState?.timerType === 'DISCUSSION' ? (
-                    <div className="discussion-timer-pill">
+                    <div className="discussion-timer-pill sidebar-timer-pill">
                       <Clock size={16} className="animate-spin-slow text-emerald-400" />
                       <span>BÀN LUẬN:</span>
                       <strong className="font-mono text-base ml-auto">{formatTime(secCount)}</strong>
                     </div>
                   ) : (
-                    <div className="accusation-timer-pill">
+                    <div className="accusation-timer-pill sidebar-timer-pill">
                       <Clock size={16} className="animate-pulse text-rose-400" />
                       <span>PHÁ ÁN:</span>
                       <strong className="font-mono text-base text-rose-400 ml-auto">{secCount}s</strong>
@@ -829,7 +829,7 @@ function App() {
                   {roomState?.phase === 'INVESTIGATION' && (
                     <button 
                       onClick={handleVoteNextRound}
-                      className={`natural-vote-btn ${hasVotedNextRound ? 'voted' : ''}`}
+                      className={`natural-vote-btn sidebar-action-btn ${hasVotedNextRound ? 'voted' : ''}`}
                     >
                       <CheckSquare size={15} />
                       <span className="truncate">Vote Chuyển Vòng</span>
@@ -841,7 +841,7 @@ function App() {
                   {roomState?.phase === 'INVESTIGATION' && isForensic && roomState?.round <= 3 && (
                     <button 
                       onClick={() => setShowDrawTileModal(true)}
-                      className="btn-tarot-draw-glow w-full"
+                      className="btn-tarot-draw-glow sidebar-action-btn draw-btn w-full"
                     >
                       <Layers size={15} /> Bốc Thẻ Mới (Vòng {roomState.round})
                     </button>
@@ -851,7 +851,7 @@ function App() {
                   {roomState?.phase === 'INVESTIGATION' && !isForensic && (
                     <button 
                       onClick={() => me?.hasBadge ? setShowAccuseModal(true) : setErrorMsg('Đã hết Huy hiệu!')}
-                      className={`btn-accuse-badge-glow w-full ${!me?.hasBadge ? 'disabled' : ''}`}
+                      className={`btn-accuse-badge-glow sidebar-action-btn accuse-btn w-full ${!me?.hasBadge ? 'disabled' : ''}`}
                       disabled={!me?.hasBadge}
                     >
                       <Award size={16} /> Phá Án ({me?.hasBadge ? 'Còn 1 Huy hiệu' : 'Hết Huy hiệu'})
