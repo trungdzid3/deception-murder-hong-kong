@@ -485,6 +485,7 @@ body {
 .app-brand { display: flex; align-items: center; gap: 12px; }
 
 .app-title { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; color: white; letter-spacing: 0.05em; line-height: 1; text-transform: uppercase; }
+.app-title.important-highlight { font-family: var(--font-title); color: white; box-shadow: var(--neon-glow); }
 .app-subtitle { font-family: var(--font-heading); font-size: 0.72rem; font-weight: 800; color: var(--crimson-primary); letter-spacing: 0.15em; display: block; }
 .header-actions { display: flex; align-items: center; gap: 10px; }
 
@@ -608,6 +609,7 @@ body {
   padding-bottom: 4px;
   text-transform: uppercase;
 }
+.scene-card-title.important-highlight { color: white; background: linear-gradient(90deg, var(--crimson-75), var(--crimson-30)); padding: 6px 10px; border-radius: 8px; box-shadow: var(--neon-glow); }
 
 /* Note / reminder text: italic */
 .note-text { font-style: italic; color: var(--text-muted); font-family: var(--font-body); }
@@ -1086,6 +1088,11 @@ body {
 }
 
 .btn-primary { background: linear-gradient(135deg, #e6002e 0%, #800019 100%); color: white; border-color: white; box-shadow: 0 0 15px var(--crimson-glow); }
+.btn-primary.important-highlight, .btn-primary.important-highlight:hover {
+  background: linear-gradient(135deg, var(--crimson-primary) 0%, var(--crimson-dark) 100%);
+  box-shadow: var(--neon-glow);
+  border-color: white;
+}
 .btn-secondary { background: var(--bg-card); color: white; }
 .btn-outline { background: transparent; color: var(--text-muted); }
 .btn-danger { background: #99001b; color: white; }
