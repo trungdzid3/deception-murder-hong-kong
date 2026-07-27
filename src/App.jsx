@@ -733,21 +733,21 @@ function App() {
             {/* MODAL CHỌN GAME TRINH THÁM */}
             {showGameSelectModal && (
               <div className="modal-overlay" onClick={() => setShowGameSelectModal(false)}>
-                <div className="modal-card select-game-modal-card p-6" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '620px' }}>
-                  <div className="modal-header border-b border-amber-500/20 pb-3 flex items-center justify-between">
+                <div className="modal-card select-game-modal-card" onClick={(e) => e.stopPropagation()}>
+                  <div className="modal-header border-b border-amber-500/20 pb-3 flex items-center justify-between mb-4">
                     <h3 className="text-lg font-black text-white flex items-center gap-2">
                       <Search size={22} className="text-amber-400" /> CHỌN TỰA GAME ĐỂ TẠO PHÒNG MỚI
                     </h3>
                     <button onClick={() => setShowGameSelectModal(false)} className="text-slate-400 hover:text-white"><X size={20} /></button>
                   </div>
                   
-                  <div className="modal-body py-4">
-                    <div className="select-game-grid grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="modal-body">
+                    <div className="select-game-grid">
                       
                       {/* CARD GAME DECEPTION */}
                       <div 
                         onClick={() => handleCreateRoom('deception')}
-                        className="select-game-option-card border border-rose-500/40 bg-slate-950/90 hover:bg-rose-950/50 hover:border-rose-400 p-5 rounded-2xl cursor-pointer transition-all flex flex-col justify-between space-y-4"
+                        className="select-game-option-card deception-option space-y-4"
                       >
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
@@ -776,7 +776,7 @@ function App() {
                       {/* CARD GAME SHERLOCK HOLMES */}
                       <div 
                         onClick={() => handleCreateRoom('sherlock')}
-                        className="select-game-option-card border border-amber-500/40 bg-slate-950/90 hover:bg-amber-950/50 hover:border-amber-400 p-5 rounded-2xl cursor-pointer transition-all flex flex-col justify-between space-y-4"
+                        className="select-game-option-card sherlock-option space-y-4"
                       >
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">

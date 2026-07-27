@@ -2580,6 +2580,64 @@ body {
   box-shadow: 0 6px 20px rgba(5, 150, 105, 0.5);
 }
 
+/* GAME SELECTION MODAL STYLES */
+.select-game-modal-card {
+  width: 680px !important;
+  max-width: calc(100vw - 32px) !important;
+  background: rgba(12, 9, 20, 0.96) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.15) !important;
+  padding: 24px !important;
+  text-align: left !important;
+}
+
+.select-game-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+@media (max-width: 640px) {
+  .select-game-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.select-game-option-card {
+  background: rgba(18, 14, 28, 0.9) !important;
+  border-radius: 18px !important;
+  padding: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  text-align: left !important;
+}
+
+.select-game-option-card.deception-option {
+  border: 1.5px solid rgba(244, 63, 94, 0.4) !important;
+}
+.select-game-option-card.deception-option:hover {
+  border-color: rgba(244, 63, 94, 0.9) !important;
+  background: rgba(40, 12, 24, 0.95) !important;
+  box-shadow: 0 8px 25px rgba(244, 63, 94, 0.3) !important;
+  transform: translateY(-3px) !important;
+}
+
+.select-game-option-card.sherlock-option {
+  border: 1.5px solid rgba(245, 158, 11, 0.4) !important;
+}
+.select-game-option-card.sherlock-option:hover {
+  border-color: rgba(245, 158, 11, 0.9) !important;
+  background: rgba(40, 26, 12, 0.95) !important;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3) !important;
+  transform: translateY(-3px) !important;
+}
+
 
 
 
