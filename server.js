@@ -684,7 +684,7 @@ io.on('connection', (socket) => {
         text: message,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      socket.to(code).emit('receive-chat', chatPayload);
+      io.to(code).emit('receive-chat', chatPayload);
     }
   });
 

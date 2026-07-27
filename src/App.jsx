@@ -310,10 +310,16 @@ function App() {
     });
 
     socket.on('receive-chat', (chatPayload) => {
-      setChatMessages(prev => [...prev, chatPayload]);
+      setChatMessages(prev => {
+        if (chatPayload.id && prev.some(m => m.id === chatPayload.id)) {
+          return prev;
+        }
+        return [...prev, chatPayload];
+      });
       if (chatPayload.senderId !== socket.id) {
         setUnreadChatCount(prev => prev + 1);
       }
+      setTimeout(() => chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
     });
 
     socket.on('voice-peer-left', ({ socketId }) => {
