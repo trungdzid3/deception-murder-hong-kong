@@ -71,6 +71,7 @@ function App() {
   const [forensicBullets, setForensicBullets] = useState({});
 
   // Game Selection / Sherlock States
+  const [showGameSelectModal, setShowGameSelectModal] = useState(false);
   const [selectedGameForModal, setSelectedGameForModal] = useState(null); // 'deception' | 'sherlock' | null
   const [sherlockSearchQuery, setSherlockSearchQuery] = useState('');
   const [sherlockSelectedNodeId, setSherlockSelectedNodeId] = useState(null);
