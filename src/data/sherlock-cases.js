@@ -3,56 +3,117 @@ import { SHERLOCK_CASE_2 } from './sherlock-case-2';
 import { SHERLOCK_CASE_3 } from './sherlock-case-3';
 import { SHERLOCK_CASE_4 } from './sherlock-case-4';
 import { SHERLOCK_CASE_5 } from './sherlock-case-5';
+import { SHERLOCK_CASE_6 } from './sherlock-case-6';
 
-export { SHERLOCK_CASE_1, SHERLOCK_CASE_2, SHERLOCK_CASE_3, SHERLOCK_CASE_4, SHERLOCK_CASE_5 };
+export { SHERLOCK_CASE_1, SHERLOCK_CASE_2, SHERLOCK_CASE_3, SHERLOCK_CASE_4, SHERLOCK_CASE_5, SHERLOCK_CASE_6 };
 
 export const ALL_SHERLOCK_CASES = {
   sherlock_case_1: SHERLOCK_CASE_1,
   sherlock_case_2: SHERLOCK_CASE_2,
   sherlock_case_3: SHERLOCK_CASE_3,
   sherlock_case_4: SHERLOCK_CASE_4,
-  sherlock_case_5: SHERLOCK_CASE_5
+  sherlock_case_5: SHERLOCK_CASE_5,
+  sherlock_case_6: SHERLOCK_CASE_6
 };
 
+/**
+ * DANH SÁCH VỤ ÁN – SẮP XẾP THEO ĐỘ KHÓ TĂNG DẦN
+ *
+ * HỆ THỐNG TÍNH ĐIỂM CHUẨN SHCD:
+ * - Holmes điểm cơ sở luôn là 100 điểm (dùng số bước tối ưu của Holmes).
+ * - Điểm tối đa người chơi = Phần 1 (100đ) + Phần 2 câu hỏi phụ (30đ).
+ * - Phạt: Trừ 5 điểm cho mỗi địa điểm thừa so với Holmes.
+ * - Ví dụ Case 6: Holmes dùng 3 bước. Bạn dùng 5 bước = trừ (5-3)×5 = 10 điểm.
+ */
 export const SHERLOCK_CASES_LIST = [
   {
     id: "sherlock_case_1",
     title: "Vụ Án 1: Bức Tranh Bị Đánh Tráo (The Swapped Canvas)",
     setting_date: "Ngày 10 tháng 9 năm 1890",
-    difficulty: "Dễ (Tân thủ)",
+    difficulty: "Tân thủ",
+    diffLevel: "beginner",
+    holmes_clues: 4,
+    scoring: {
+      part1_max: 100,
+      part2_max: 30,
+      total_max: 130,
+      penalty_per_extra_clue: 5
+    },
+    desc: "Bức tranh kiệt tác 'Hoàng hôn trên sông Thames' bị đánh tráo trước buổi đấu giá lớn nhất thập kỷ. Holmes chỉ cần 4 bước đi – bạn có thể đua điểm cùng ông không?"
+  },
+  {
+    id: "sherlock_case_6",
+    title: "Vụ Án 2: Bản Thiết Kế Bị Đánh Cắp (The Stolen Blueprint)",
+    setting_date: "Ngày 14 tháng 10 năm 1890",
+    difficulty: "Nhập môn",
     diffLevel: "easy",
-    desc: "Bức tranh kiệt tác duy nhất 'Hoàng hôn trên sông Thames' bị đánh tráo ngay trước buổi đấu giá quốc tế. Kịch bản tân thủ chuẩn mực giúp thám tử tập đua số bước và điểm số cùng Sherlock Holmes!"
+    holmes_clues: 3,
+    scoring: {
+      part1_max: 100,
+      part2_max: 30,
+      total_max: 130,
+      penalty_per_extra_clue: 5
+    },
+    desc: "Bản thiết kế hệ thống điều khiển động cơ hơi nước bị đánh cắp ngay trước kỳ thi tốt nghiệp. Cửa sổ vỡ nhưng kính lại rơi ra ngoài… Holmes phá án chỉ 3 bước!"
   },
   {
     id: "sherlock_case_2",
-    title: "Vụ Án 2: Cái Chết Của Sherlock Holmes (Baker Street)",
+    title: "Vụ Án 3: Cái Chết Của Sherlock Holmes (Baker Street)",
     setting_date: "Ngày 2 tháng 12 năm 1893",
-    difficulty: "Dễ (Nhập môn)",
+    difficulty: "Nhập môn nâng cao",
     diffLevel: "easy",
-    desc: "Vụ hỏa hoạn và án mạng bí ẩn tại căn hộ 221B Baker Street. Thám tử làm quen với hệ thống tra cứu bản đồ, danh bạ và các manh mối hiện trường."
+    holmes_clues: 4,
+    scoring: {
+      part1_max: 100,
+      part2_max: 30,
+      total_max: 130,
+      penalty_per_extra_clue: 5
+    },
+    desc: "Vụ hỏa hoạn và án mạng bí ẩn tại căn hộ 221B Baker Street. Thi thể bị cháy xém nhưng Holmes vẫn còn sống... Thám tử làm quen với bản đồ, danh bạ London."
   },
   {
     id: "sherlock_case_3",
-    title: "Vụ Án 3: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
+    title: "Vụ Án 4: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
     setting_date: "Ngày 5 tháng 3 năm 1889",
     difficulty: "Trung bình",
     diffLevel: "medium",
-    desc: "Án mạng quý tộc Clarendon tại Bloomsbury. Frances Nolan bị nghi là kẻ sát nhân cuồng sát trong trạng thái thôi miên hoang tưởng. Thám tử cần bóc gỡ âm mưu thao túng tâm lý chiếm đoạt di chúc."
+    holmes_clues: 5,
+    scoring: {
+      part1_max: 100,
+      part2_max: 30,
+      total_max: 130,
+      penalty_per_extra_clue: 5
+    },
+    desc: "Frances Nolan bị nghi là kẻ cuồng sát sau khi thôi miên giết người. Thám tử cần bóc gỡ âm mưu thao túng tâm lý tinh vi để chiếm đoạt gia tài."
   },
   {
     id: "sherlock_case_4",
-    title: "Vụ Án 4: Lời Nguyền Của Xác Ướp (The Mummy's Curse)",
+    title: "Vụ Án 5: Lời Nguyền Của Xác Ướp (The Mummy's Curse)",
     setting_date: "Ngày 11 tháng 4 năm 1890",
-    difficulty: "Chuyên gia (Rất khó)",
+    difficulty: "Khó",
     diffLevel: "hard",
-    desc: "Chuỗi cái chết kỳ quặc giội xuống đoàn thám hiểm khai quật lăng mộ nữ vương Ai Cập Katebet. Vụ án có độ phức tạp rất cao với mạo danh tâm linh, cổ vật bị đánh tráo và buôn lén thị trường đen."
+    holmes_clues: 5,
+    scoring: {
+      part1_max: 100,
+      part2_max: 30,
+      total_max: 130,
+      penalty_per_extra_clue: 5
+    },
+    desc: "Chuỗi cái chết giội xuống đoàn thám hiểm lăng mộ Ai Cập Katebet. Mạo danh tâm linh, cổ vật Toutankhamon bị đánh tráo và buôn lén ra thị trường đen."
   },
   {
     id: "sherlock_case_5",
-    title: "Vụ Án 5: Cán Cân Công Lý Bất Ổn (The Case of the Unsettled Balance)",
+    title: "Vụ Án 6: Cán Cân Công Lý Bất Ổn (The Case of the Unsettled Balance)",
     setting_date: "Ngày 4 tháng 6 năm 1890",
-    difficulty: "Chuyên gia (Rất khó)",
-    diffLevel: "hard",
-    desc: "Chuỗi cái chết bí ẩn giội xuống London theo biểu tượng nghi thức 4 nguyên tố cổ đại Thủy, Hỏa, Phong, Thổ. Đòi hỏi thám tử lột trần thủ đoạn triết học cuồng tín và chất độc Belladonna."
+    difficulty: "Chuyên gia",
+    diffLevel: "expert",
+    holmes_clues: 6,
+    scoring: {
+      part1_max: 100,
+      part2_max: 30,
+      total_max: 130,
+      penalty_per_extra_clue: 5
+    },
+    desc: "Chuỗi án mạng theo nghi thức 4 nguyên tố cổ đại Thủy, Hỏa, Phong, Thổ giội xuống London. Cuồng tín triết học Empedocles và độc tố Belladonna – vụ án khó nhất!"
   }
 ];

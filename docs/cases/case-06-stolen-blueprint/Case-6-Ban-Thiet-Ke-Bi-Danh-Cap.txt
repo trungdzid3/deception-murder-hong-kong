@@ -1,0 +1,78 @@
+================================================================================
+VỤ ÁN 6: BẢN THIẾT KẾ BỊ ĐÁNH CẮP (The Stolen Blueprint)
+Kịch bản Nhập môn – Hệ thống tính điểm chuẩn SHCD
+================================================================================
+Tác giả kịch bản: Sherlock Holmes Fan Case (Nhập môn)
+Ngày bối cảnh: Thứ Ba, 14 tháng 10 năm 1890
+Số bước đi tối ưu của Holmes: 3 bước (10WC → 12NW → 08EC)
+Điểm tối đa Phần 1 + 2: 100 + 30 = 130 điểm
+================================================================================
+
+1. LỜI MỞ ĐẦU
+--------------------------------------------------------------------------------
+Sáng thứ Ba, ngày 14 tháng 10 năm 1890
+
+Arthur Pendelton, một sinh viên cơ khí xuất sắc, hốt hoảng lao vào căn hộ 221B Baker Street.
+
+"Anh Holmes, bản thiết kế tâm huyết của tôi đã bị đánh cắp đêm qua khỏi phòng thí nghiệm! Đó là sơ đồ của một hệ thống điều khiển vòng kín dùng cho động cơ hơi nước. Nếu không có nó để nộp cho hội đồng vào chiều nay, tôi sẽ trượt tốt nghiệp!"
+
+"Cậu rời phòng lúc nào? Có ai khả nghi không?" Holmes điềm tĩnh rót trà.
+
+"Tôi rời đi lúc 9 giờ tối qua. Sáng nay đến, cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, ngăn kéo bàn bị cạy tung. Chỉ có hai người biết chi tiết về dự án này: Thomas Higgins – gã sinh viên cùng khóa luôn ganh tị; và Giáo sư Sterling – người hướng dẫn của tôi. Tuần trước, Giáo sư đòi đứng tên đồng tác giả nhưng tôi từ chối vì toàn bộ thuật toán phản hồi đều do tôi tự tính toán."
+
+Holmes quay sang bạn: "Một bài toán logic thú vị đây. Chúng ta bắt đầu từ đâu nào?"
+
+
+2. DANH BẠ ĐỊA ĐIỂM
+--------------------------------------------------------------------------------
+- 10 WC: Phòng thí nghiệm Cơ khí (Hiện trường vụ án)
+- 14 SW: Căn hộ của sinh viên Thomas Higgins (Nghi phạm 1)
+- 08 EC: Văn phòng của Giáo sư Sterling (Nghi phạm 2)
+- 22 WC: Quán rượu Cáo Trắng (Nơi tụ tập sinh viên)
+- 12 NW: Phòng Giáo vụ Đại học UCL (Quản lý hành chính)
+- 17 EC: Cửa hàng Xì gà Havana (Nơi bán thuốc lá cao cấp)
+- 13 SW: Sở Cảnh sát Scotland Yard (Thanh tra Lestrade)
+
+
+3. NỘI DUNG ĐIỀU TRA (NODES)
+--------------------------------------------------------------------------------
+📍 10 WC – Phòng thí nghiệm Cơ khí
+Ngăn kéo bàn bị cạy tung bằng vật cứng. Cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, tạo ra một lỗ hổng vừa đủ để thò tay vào mở chốt. Tuy nhiên, nhìn kỹ rìa bệ cửa sổ, toàn bộ những mảnh kính vỡ vụn đều rơi lả tả trên bãi cỏ bên ngoài – sàn nhà bên trong lại hoàn toàn sạch sẽ.
+Ngay cạnh rãnh trượt của ngăn kéo, có một vệt tro màu xám trắng rất mịn, tỏa ra mùi thơm ngầy ngậy. Đích thị là tàn của một điếu xì gà đắt tiền rụng xuống chưa quá 12 tiếng.
+
+📍 14 SW – Căn hộ của Thomas Higgins
+Căn hộ tồi tàn và bừa bộn. Higgins nhồi những nhúm thuốc lá sợi rẻ tiền vào một chiếc tẩu gỗ cộc kệch, gắt gỏng: "Tôi ăn cắp bản thiết kế đó làm gì? Các ma trận điều khiển của nó tôi còn chẳng hiểu! Tối qua tôi ở quán rượu Cáo Trắng đến tận nửa đêm. Các anh đi mà hỏi Giáo sư Sterling ấy, viện trợ nghiên cứu của ông ta sắp bị cắt sạch rồi!"
+
+📍 08 EC – Văn phòng Giáo sư Sterling
+Giáo sư Sterling bệ vệ ngồi sau bàn làm việc bằng gỗ sồi, tay kẹp một điếu xì gà Cuba tỏa khói nghi ngút. "Thật đáng tiếc cho Arthur. Nếu cậu ta chịu hợp tác với tôi, hệ thống đó đã có thể cứu vãn nhiều thứ." Trên mu bàn tay phải của Giáo sư có một vết xước rướm máu. Ông ta giấu tay xuống gầm bàn: "Tối qua tôi làm việc ở đây đến khuya. Thật xui xẻo cho cậu sinh viên kia."
+
+📍 22 WC – Quán rượu Cáo Trắng
+Ông chủ quán lau ly, gật gù: "Thomas Higgins hả? Tối qua nó ngồi ở góc kia uống rượu từ 8 giờ tối đến gần 1 giờ sáng mới lảo đảo đi về. Nó cứ lải nhải phàn nàn về mấy phương trình tự động hóa của thằng nhóc Arthur."
+
+📍 12 NW – Phòng Giáo vụ Đại học UCL
+Trưởng phòng Giáo vụ mở sổ cái tài chính: "Khoa Cơ khí của Giáo sư Sterling đang gặp khủng hoảng nghiêm trọng. Nếu cuối tháng này ông ấy không trình làng được một phát minh hoặc bằng sáng chế mới nào có tính ứng dụng cao, hội đồng quản trị sẽ cắt 100% ngân sách và đóng cửa phòng thí nghiệm của ông ấy."
+
+📍 17 EC – Cửa hàng Xì gà Havana
+Người bán hàng kiểm tra lọ tro mà Holmes mang tới: "Mùi hương và chất tro này? Đây là loại xì gà Partagas thượng hạng nhập từ Cuba. Khách quen mua loại này của tôi không nhiều, Giáo sư Sterling là một trong số những người luôn đặt hàng đều đặn mỗi tuần."
+
+📍 13 SW – Sở Cảnh sát Scotland Yard
+Lestrade ngáp dài: "Vụ vỡ cửa kính ở trường đại học à? Chắc chắn là do bọn trộm vặt quanh phố. Hoặc là cậu sinh viên Higgins kia ghen tị nên đập phá. Tôi sẽ phái người đi bắt Higgins dọa cho một trận là nó khai ngay!"
+
+
+4. ĐÁP ÁN & LỜI GIẢI HOLMES
+--------------------------------------------------------------------------------
+1. Hung thủ: Giáo sư Sterling.
+2. Cửa sổ đập vỡ từ BÊN TRONG ra ngoài (mảnh kính rơi trên bãi cỏ).
+3. Động cơ: Chiếm đoạt phát minh để giữ lại nguồn tài trợ ngân sách UCL.
+4. Bằng chứng vật lý: Tàn xì gà Partagas đắt tiền + vết xước do kính cứa tay Sterling.
+5. Thomas Higgins: Uống rượu tại Quán Cáo Trắng từ 8 giờ đến 1 giờ sáng (ngoại phạm).
+6. Vết xước do bị kính cứa khi đập vỡ cửa sổ từ bên trong.
+7. Nguy cơ bị cắt 100% ngân sách và đóng cửa phòng thí nghiệm cuối tháng.
+
+Đường đi tối ưu của Holmes (3 bước): 10WC → 12NW → 08EC
+
+HỆ THỐNG TÍNH ĐIỂM:
+- Holmes điểm gốc: 100 (3 bước đi tối ưu)
+- Điểm tối đa bạn có thể đạt: 130 điểm (100 Phần 1 + 30 Phần 2)
+- Phạt mỗi manh mối thừa: -5 điểm/clue
+- Nếu trả lời đúng hết (130đ) và đi đúng 3 bước như Holmes: 130 điểm (vượt Holmes!)
