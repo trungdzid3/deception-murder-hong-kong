@@ -41,7 +41,7 @@
 Deception - Murder in Hong Kong/
 ├── .agent/                    # Quy chuẩn & Hướng dẫn đặc tả Agents (GEMINI, UI, Database...)
 ├── docs/                      # Tài liệu tham khảo & Luật chơi PDF
-│   ├── references/            # Hình ảnh bản đồ & Tài nguyên tham khảo
+│   ├── references/            # Hình ảnh tham khảo (Anh-Tham-Khao-Ban-Do-London-1888.jpg, Anh-Tham-Khao-Background-Game.jpg)
 │   └── rulebooks/             # File luật chơi PDF (Luat-Choi-Sherlock-Holmes.pdf, Luat-Choi-Deception-Murder-in-Hong-Kong.pdf)
 ├── public/                    # Tài nguyên tĩnh web (Assets)
 │   ├── audio/                 # Nhạc nền Sherlock Holmes BGM (Audio MP3)
