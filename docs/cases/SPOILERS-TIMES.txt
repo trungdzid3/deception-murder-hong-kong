@@ -1,0 +1,61 @@
+This file describes what and why changes were made to The Times newspapers.  
+
+The cases these changes pertain to are:
+
+CASE 6: March 5, 1889
+CASE 7: April 11, 1890
+
+
+
+SPOILERS BELOW:
+
+
+
+
+
+
+
+
+
+
+
+March 5, 1889, Page 1:
+
+
+The following sentance was added to the upper right article:
+
+"The camp was highly guarded to prevent plunder."
+
+It was in the French version, and in the soluton to Case 6, Holmes states that Travis Phyllip's "first article clearly shows that he could never enter the tomb and thus commit the first murder."  Eccentric Holmes must read the French copy of the Times.
+
+That's the only change to this page.
+
+
+
+
+April 11, 1890, Page 2:
+
+
+The Attempted burglary blurb was added because it was in the French version, and while I don't think its exclusion in the English version keeps players from being able to solve Case 6, it hints at impropriety taking place at Evenson & Co.  Its another clue that players should check out that location.  
+
+Also the whole Entertainments section was added to this page.  This is very important, as the Oxford Music Hall ad is the only clue that tells us where to find Violette.  Without talking to Violette I don't know how players would successfully solve this case.  (Incidentally, when we played this case we were able to find Violette by blindly checking out entertainment venues.  Another ad in another paper mentioned Oxford Music Hall, but not Violette. We bascially got lucky.)  
+
+These ads were not translated from their French version, but copied from the original Sleuth English newspaper.
+
+In order to fit everything in we had to remove the WANTED PLACES section as well as the ad telling where the Times can be purchased.  These weren't in the French version, so I assume they aren't needed.
+
+
+There was another ad in the French version of this paper which I decided not to include, since I don't see its relevance and it would have taken up way too much room, forcing us to replace both pages of the paper.  
+
+Here's the ad in French:
+
+EXPOSITIONS DE MACHINES A COUDRE ET D'APPAREILS MENAGERS. Au Pavillion Royal de l'Agriculture, a Islington, s'est ouverte la Deuxieme Exposition Internationale Annuelle de Machines a Coudre et d'Appareils Menagers, exposition pleine de promesses qui interessera un vaste public. On peut y voir une machine a coudre sans navette pouvant faire un kilometre de points de piqure, une nouvelle sorte de epingles a cheveux qui penetrent dans la chevelure a la maniere de'un tire-bouchon, une machin avec laquelle on pretend qu'une ouvriere peut faire de quatre a cinq mille boutonnieres par jour, del instruments de musique automatiques, de nouveaux porte-bouteilles alveoles, qui semblent tres utiles dan une cave, et enfin des echelles de sauvetage de tres faible encombrement, qui peuvent etre utilisees en temps normal comme des chaises ou des commodes. Cette exposition sera ouverte pendant deux semaines.
+
+The rough Google translation is:
+
+EXHIBITIONS OF SEWING MACHINES AND APPLIANCES . The Royal Pavillion of Agriculture, Islington, opened the Second Annual International Exhibition of Machinery has Sew and appliances Housewares, promising exhibition that will interest a wide audience. You can see a sewing machine without shuttle can make one kilometer sting points, a new kind of Pins has hair that penetrate into the hair to the manner de'un corkscrew, a thing with which one pretends that ouvriere can make four five thousand boutonnieres day, del automatic musical instruments, new bottle holders alveoli , which seem very useful dan cellar, and finally very small footprint rescue ladders that can be used in time normal as chairs or dressers. This exhibition will be open for two weeks.
+
+
+If this helps cases 8-10 and should be included, please let me know.  I haven't finished those yet.
+
+-Mpascall

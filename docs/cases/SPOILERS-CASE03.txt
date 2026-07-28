@@ -1,0 +1,91 @@
+This file has the amikezor's rough notes of the big differences he found between the French and English editions of Case 3.  In parenthesis I note why we did or didn't include each item.  
+
+
+SPOILERS BELOW
+
+
+
+
+
+
+
+
+24 SE
+{{The “client” is a woman at paragraph 4}}
+
+(I decided not to include this small change because, although new changes in 36 EC now tie this rental in with the sisters, I don't see how it would help players arrive to the new solution.  At the least it doesn't seem worth recreating this whole page for the errata.)
+
+
+15 SW
+{{Description is slightly different}}
+… During his stay, he had only one visitor.
+A very striking woman, who came by quite frequently… who she was.
+
+{{ And then the paragraph goes back to the first visitor}}
+I learned later on, but there was a second person who wanted to meet mister Clarendon during that time. A most disegeeable chap. He was very large, had a thick walrus moustache and a prominent scar down his cheek. He asked for the room of Mr Clarendon, and I replied that no one was registered here with this name. He was angry, then waited at the bar of the hotel until the nightfall. Mr Clarendon came back after he left.
+
+(I didn't include this change because it didn't seem to affect the solution at all, and would have decreased the ammount of text by many lines, which would've forced me to increase the font size or line spacing a distracting ammount.  Also, this removes the lines about Gus manhandling Clarendon, which tied in great with the report from Clarendon's family's butler that he remembers Clarendon being roughed up that same night. When I played this case, this was the "aha" moment that got us to realize what was going on between Gus and Clarendon.  I don't see a reason to remove this.  Do you?)
+
+{{Only 1 glass of wine is mentioned}}.
+
+(There was no way I wasn't going to include this, even though it was the only change to that page.  Many people on the BGG forums site the including of two wine glasses at the scene of the crime as proof that Loretta was there the night Clarendon was murdered.)
+
+
+19 SW
+{{remove the sentence “What began as a purely … evening between friends”}}
+
+(I don't see the significance of this change, so I didn't think it was worth re-creating a whole page.  Does anyone else?)
+
+
+13 WC
+
+{{REMOVE}} “Do you recall a meeting with Miss Frances last month when she blacked out?”
+
+He looks puzzled a moment, then offers, “Well, I did meet with both Miss Frances and Miss Loretta last month and Miss Frances did leave unexpectedly.  I thought it odd at the time, but she did not black out, as such.”
+
+{{REPLACE WITH}} “When did you meet Miss Nolan for the last time?”
+A moment, he seems lost in his thoughts, then he suggests: “Well, I indeed met Miss Frances last month. She was in the company of Dr Trevelyan, the doctor in charge of Miss Loretta. Miss Frances wished that the Dr became the guardian {{I MEAN THE ONE LEGALLY IN CHARGE}} of her sister, if anything would happened to her. Miss Frances seemed absent-minded, her eyes were a bit in the vague… I thought it odd at the time, but when I learned that she blacked out later during the day, I thought she had a sunstroke.” 
+
+{{REMOVE}} Miss Loretta laughed that very disturbing laugh of hers and left also.”
+
+(This was SO important!  It places the doctor (instead of Lorretta) at the scene of the only witnessed blackout.  And it also points to a possible motive for the Doctor, which doesn't exist in the official English edition.)
+
+14 WC
+{{TO BE ADDED AFTER THE TEXT}} …
+“And what can you tell us about the parents of Frances and Loretta Nolan?”
+Opening a dusty binder with the date 1961, he flips few pages a,d tell us about the results of the investigation:
+“Zagreb Yoblinski was obviously punished for his crime. The conclusions at that time were that he was mentally unstable. He acted on his own and the investigation stopped there.”
+
+(While I don't see that this is useful in solving the case, it was an easy inclusion, since I'm recreating this whole page anyway.)
+
+17 WC
+
+{{TO BE ADDED AFTER THE TEXT}} …
+The testament of Frances Nolan teach us that the guardian of her sister, in case of death, is someone named Dr Treverlyan. This testament dates from June.
+
+(Here's proof that the doctor has a motive to get Frances out of the picture.)
+
+
+36 EC
+
+{{REMOVE}} I couldn’t have killed him!”
+{{REPLACE WITH}} “How were your provisions concerning your inheritage and the one of your sister in case of… let’s say in case of disappearance ?” 
+“I am the legal guardian of Loretta. In case of disappearance {{A POLITE WORD FOR “death”?}}, its our solicitor, Hiram Davenport, who will manage our goods, as it was when we were children.”
+
+(Here's where you learn that Frances has no idea she changed her will, putting the doctor in charge of her sister.  When players compare this to Davenports statement of Frances seeming out of it while changing her will, it becomes apparent she was hypnotized.  Also, I decided to use "incapacitated" as the replacement for "death." I'm not perfectly satisfied with it. Can someone suggest a better word?)
+
+
+
+{{REMOVE THE PARAGRAPH THAT BEGINS WITH}}“Yes, twice in the past month.
+
+{{REPLACE WITH}}"Yes, twice in the past two weeks. The first time I found myself sitting on a bench in Hyde Park.  The second time occurred a few days later.  I was going to Lambert Walk, to get some information concerning a house we, my sister and I, were planning to stay two weeks for some vacations away from the city.  That was the last thing I remember until I woke up again at the Waterloo Station.  I consulted my doctor, Dr. Mason, and he was quite puzzled.  He prescribed rest.”
+
+(This removes the account of Lorretta being present during the first blackout.  For some reason it changes the second blackout so that it ties into the house being rented at 24 SE (Lambeth Walk). Also changes where she woke up from her last blackout from Liverpool Street Station to Waterloo Station, although I can't figure out the significance of that.  Anyone?)
+
+
+Well, that's it.  It fixes a lot of the problems people have with this case, but sadly, not all of them.  Its still a stretch to conclude the doctor climbed the trellis at Clarendon's apartment and shot him before going back to Frances' house to hypnotize her.  I mean, the trellis is still all dusty, like its never been climbed.  I was really hoping to find a clue at 28 WC, the location where the derringer was bought, with a shop keep remembering an entranced Frances buying the gun.  At least they removed the original 80s clue which implied Lorretta bought the gun and just had them put her sisters name on the receipt. Its also never explained how Clarendon knew the secret locations his burglery victims hid their jewelry.  In the 80s game it could at least be assumed that since Lorretta knew hypnotism, she may have used her skills on the victims in the moments she had them alone.  Worst of all, its never shown that the doctor has such a need from money that he would kill Clarendon in an attempt to frame Frances.  Oh well. At least this revised case more strongly points at the correct killer now. I hope you found it useful.
+
+If you'd like to share what you think, have anything that should be added to this, or explainations for any of the above changes, email me at mpascall@gmail.com or jump on the BGG forums or /r/boardgames.
+
+Thanks!
+-Mpascall

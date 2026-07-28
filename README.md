@@ -40,8 +40,8 @@
 ```
 Deception - Murder in Hong Kong/
 ├── .agent/                    # Quy chuẩn & Hướng dẫn đặc tả Agents (GEMINI, UI, Database...)
-├── docs/                      # Tài liệu tham khảo & Kịch bản / Luật chơi PDF
-│   ├── cases/                 # Tài liệu PDF kịch bản mở rộng (Case-4-The-Unsettled-Balance.pdf)
+├── docs/                      # Tài liệu tham khảo & Kịch bản / Errata / Luật chơi PDF
+│   ├── cases/                 # Tài liệu kịch bản mở rộng & Hồ sơ Errata (Case 4, Errata PDF & TXT)
 │   ├── references/            # Hình ảnh tham khảo (Anh-Tham-Khao-Ban-Do-London-1888.jpg, Anh-Tham-Khao-Background-Game.jpg)
 │   └── rulebooks/             # File luật chơi PDF (Luat-Choi-Sherlock-Holmes.pdf, Luat-Choi-Deception-Murder-in-Hong-Kong.pdf)
 ├── public/                    # Tài nguyên tĩnh web (Assets)

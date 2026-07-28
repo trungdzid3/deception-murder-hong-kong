@@ -1,0 +1,47 @@
+This file has amikezor's rough notes of the differences he found between the French and English editions of Case 6. At the end I explain what was used in the errata and why.
+
+SPOILERS BELOW
+
+
+
+
+11SE
+par. 3. delete "as Professor Windibank was particularly anxious about them."
+
+38 WC
+bottom of page
+delete "and the Museum ...". The only sponsor in this sentence is the University.
+Though in other paragraphs it is both.
+
+12 NW
+The widow is magnificient / very beautiful
+
+43 WC
+after "very eager to accompany the Katebet expedition"
+insert "and meet Turnbull"
+end of the same paragraph, insert a sentence :
+"Enraged, he resigned University and found a journalist position at the Times"
+
+30 EC
+after "he is a bit of a strange duck" add "though rather competent"
+
+38 EC
+"Ramses two" should be changed to "Toutankhamon"
+
+50 EC
+before "You know I am not really a reporter"
+insert "I was not able to work in good circumstances. The security perimeter around the camp was
+extermely strict and I could not access the tumb depsite my numerous demands"
+
+52 EC
+Does "bird" means a small statue ?
+If not, then bird should be replaced by the proper term.
+
+
+
+
+I decided the only change worthy of replacing a full page was 50 EC which explains that the tight security kept Travis from to the tomb, and thus he couldn't have been the murderer.  Without this info it seems like everyone decides he was the sole killer, since there isn't any direct evidence to point to anyone else.  There was also a change to the March 5, 1889 newspaper article that added the same bit of information.  It could easily be argued that since he is the only source of this information, he could be lying.  It would have been great if another character had corroborated that.  
+
+I included the other EC clues that were on the same page as 50 EC, as well as fixing a couple typos, but I did not bother with the other clues.  They added flavor, but I don't see how any of them pointed to the proper solution and each clue would have required its own new page.
+
+The original 80's game had Travis as the only killer.  Any ideas why that was changed?  My only guess is that Ystari thought that was too easy.  In my opinion the new solution of two murders is clever, but virtually impossible for players to discover.
