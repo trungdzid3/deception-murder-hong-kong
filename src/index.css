@@ -2985,6 +2985,47 @@ body {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
 }
 
+/* ALPHABET QUICK INDEX BAR */
+.sherlock-alphabet-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  padding: 8px 0 !important;
+  border-top: 1px solid rgba(245, 158, 11, 0.2) !important;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2) !important;
+  margin: 10px 0 !important;
+}
+
+.sherlock-alphabet-btn {
+  min-width: 28px !important;
+  height: 28px !important;
+  padding: 0 6px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(18, 12, 28, 0.8) !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  color: #cbd5e1 !important;
+  border-radius: 6px !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.sherlock-alphabet-btn:hover {
+  border-color: #f59e0b !important;
+  color: #fef3c7 !important;
+  background: rgba(45, 28, 16, 0.9) !important;
+}
+
+.sherlock-alphabet-btn.active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #09050d !important;
+  border-color: #fde68a !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4) !important;
+}
+
 /* =========================================================
    LONDON MAP 1888 VINTAGE MAP INTERACTIVE STYLES
    ========================================================= */

@@ -78,6 +78,7 @@ function App() {
   const [sherlockAnswers, setSherlockAnswers] = useState({});
   const [sherlockActiveTab, setSherlockActiveTab] = useState('casebook'); // 'casebook' | 'map' | 'directory' | 'newspaper' | 'quiz'
   const [sherlockSelectedAreaFilter, setSherlockSelectedAreaFilter] = useState('ALL'); // 'ALL' | 'NW' | 'WC' | 'EC' | 'SW' | 'SE'
+  const [sherlockDirLetterFilter, setSherlockDirLetterFilter] = useState('ALL'); // 'ALL' | 'A' .. 'Z'
 
   // Bốc Thẻ Bối Cảnh Mới Modal (Pháp Y Vòng 2 & 3)
   const [showDrawTileModal, setShowDrawTileModal] = useState(false);
@@ -1377,34 +1378,60 @@ function App() {
                       </div>
                     </div>
 
+                    {/* BỘ LỌC CHỮ CÁI ALPHABET (A-Z QUICK INDEX) */}
+                    <div className="sherlock-alphabet-bar">
+                      {['ALL', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y', 'Z'].map((letter) => (
+                        <button
+                          key={letter}
+                          onClick={() => setSherlockDirLetterFilter(letter)}
+                          className={`sherlock-alphabet-btn ${sherlockDirLetterFilter === letter ? 'active' : ''}`}
+                        >
+                          {letter}
+                        </button>
+                      ))}
+                    </div>
+
                     <div className="sherlock-directory-grid">
                       {SHERLOCK_CASE_1.directory
-                        ?.filter(item => !sherlockSearchQuery || item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || item.desc.toLowerCase().includes(sherlockSearchQuery.toLowerCase()))
-                        .map((item, idx) => (
-                          <div 
-                            key={idx}
-                            onClick={() => {
-                              setSherlockSelectedNodeId(item.code);
-                              setSherlockActiveTab('casebook');
-                              handleVisitNode(item.code);
-                            }}
-                            className="sherlock-directory-card"
-                          >
-                            <div>
-                              <div className="flex items-center justify-between mb-1.5">
-                                <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
-                                <span className="sherlock-directory-code">
-                                  Mã [{item.code}]
-                                </span>
+                        ?.slice()
+                        .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
+                        .filter(item => {
+                          const matchQuery = !sherlockSearchQuery || 
+                            item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || 
+                            item.desc.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) ||
+                            item.address.toLowerCase().includes(sherlockSearchQuery.toLowerCase());
+                          const matchLetter = sherlockDirLetterFilter === 'ALL' || 
+                            item.name.toUpperCase().startsWith(sherlockDirLetterFilter);
+                          return matchQuery && matchLetter;
+                        })
+                        .map((item, idx) => {
+                          const bareCode = item.code.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+                          return (
+                            <div 
+                              key={idx}
+                              onClick={() => {
+                                setSherlockSelectedNodeId(item.code);
+                                setSherlockActiveTab('casebook');
+                                handleVisitNode(item.code);
+                              }}
+                              className="sherlock-directory-card"
+                            >
+                              <div>
+                                <div className="flex items-center justify-between mb-1.5">
+                                  <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
+                                  <span className="sherlock-directory-code">
+                                    Mã [{bareCode}]
+                                  </span>
+                                </div>
+                                <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
+                                <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
                               </div>
-                              <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
-                              <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
+                              <button className="sherlock-search-btn w-full mt-2 text-xs flex items-center justify-center gap-1.5">
+                                🔍 TRA CỨU ĐỊA CHỈ NÀY ({bareCode}) <ArrowRight size={13} />
+                              </button>
                             </div>
-                            <button className="sherlock-search-btn w-full mt-2 text-xs flex items-center justify-center gap-1.5">
-                              🔍 ĐI THEO ĐỊA CHỈ NÀY ({item.code}) <ArrowRight size={13} />
-                            </button>
-                          </div>
-                        ))}
+                          );
+                        })}
                     </div>
                   </div>
                 )}
