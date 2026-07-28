@@ -1017,7 +1017,7 @@ function App() {
                   <div className="sherlock-case-selection-grid">
                     {SHERLOCK_CASES_LIST.map((c, index) => {
                       const isSelected = (roomState?.selectedCaseId || 'sherlock_case_1') === c.id;
-                      const diffClass = c.difficulty === 'Trung bình' ? 'medium' : c.difficulty === 'Khó' ? 'hard' : 'hard';
+                      const diffClass = c.diffLevel || (c.difficulty?.includes('Dễ') ? 'easy' : c.difficulty?.includes('Trung bình') ? 'medium' : 'hard');
 
                       return (
                         <div 
