@@ -1,0 +1,2681 @@
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { io } from 'socket.io-client';
+import { 
+  Skull, Shield, Search, Eye, EyeOff, Users, X, 
+  LogOut, CheckCircle, ArrowRight, ArrowLeft, Volume2, VolumeX, Music,
+  BookOpen, Send, MessageSquare, Crown, Award, Play, UserPlus, UserMinus, Target, RefreshCw, Layers, Trophy, Clock, CheckSquare, AlertTriangle, Sparkles, Check, Copy, KeyRound, Compass, ChevronUp, ChevronDown, Lock, Flame, Zap, FileText, UserCheck, UserX, AlertCircle, MapPin, PhoneCall, HelpCircle
+} from 'lucide-react';
+import { ROLES, MEANS_CARDS, CLUE_CARDS, CAUSE_OF_DEATH, LOCATIONS, SCENE_TILES } from './data/game-data';
+import { SHERLOCK_CASE_1 } from './data/sherlock-case-1';
+
+// Khởi tạo Socket.IO an toàn - Hỗ trợ Railway backend
+const getSocketUrl = () => {
+  // Nếu có biến môi trường VITE_SOCKET_URL (Railway URL) thì dùng
+  if (import.meta.env.VITE_SOCKET_URL) {
+    return import.meta.env.VITE_SOCKET_URL;
+  }
+  // Nếu đang chạy localhost dev thì kết nối port 3001
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'http://localhost:3001';
+  }
+  // Fallback: kết nối cùng origin (không hoạt động trên Vercel vì serverless)
+  return window.location.origin;
+};
+
+const socket = io(getSocketUrl(), {
+  autoConnect: true,
+  transports: ['websocket', 'polling'],
+  reconnectionAttempts: 5,
+  timeout: 10000
+});
+
+function App() {
+  // Client & Room States
+  const [playerName, setPlayerName] = useState('');
+  const [roomCode, setRoomCode] = useState('');
+  const [inRoom, setInRoom] = useState(false);
+  const [roomState, setRoomState] = useState(null);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [copiedMsg, setCopiedMsg] = useState(false);
+
+  // Optional Roles Settings (Mặc định tắt hoàn toàn, chỉ mở khi >= 6 người)
+  const [enableAccomplice, setEnableAccomplice] = useState(false);
+  const [enableWitness, setEnableWitness] = useState(false);
+
+  // Floating Chat Bubble Open State & Mobile Active Tab
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [activeMobileTab, setActiveMobileTab] = useState('scene'); // 'scene' | 'players' | 'profile' | 'chat'
+
+  // Role Reveal Modal khi mới vào trận (Trừ Pháp Y)
+  const [showRoleRevealModal, setShowRoleRevealModal] = useState(false);
+
+  // Auto Collapse Scene Board khi Pháp Y gắn đạn xong
+  const [isSceneBoardCollapsed, setIsSceneBoardCollapsed] = useState(false);
+
+  // UI Local States
+  const [showRoleSecret, setShowRoleSecret] = useState(false);
+  const [showGuideModal, setShowGuideModal] = useState(false);
+  const [chatInput, setChatInput] = useState('');
+  const [chatMessages, setChatMessages] = useState([]);
+  const [unreadChatCount, setUnreadChatCount] = useState(0);
+  const [latestChatToast, setLatestChatToast] = useState(null);
+
+  // Timestamp hiện tại cập nhật 200ms/lần giúp đếm ngược mượt 100%
+  const [nowTimestamp, setNowTimestamp] = useState(Date.now());
+
+  // Selections for Murderer
+  const [selectedMeans, setSelectedMeans] = useState(null);
+  const [selectedClue, setSelectedClue] = useState(null);
+
+  // Selections for Forensic Scientist (Bullets)
+  const [forensicBullets, setForensicBullets] = useState({});
+
+  // Game Selection / Sherlock States
+  const [showGameSelectModal, setShowGameSelectModal] = useState(false);
+  const [selectedGameForModal, setSelectedGameForModal] = useState(null); // 'deception' | 'sherlock' | null
+  const [sherlockSearchQuery, setSherlockSearchQuery] = useState('');
+  const [sherlockSelectedNodeId, setSherlockSelectedNodeId] = useState(null);
+  const [sherlockAnswers, setSherlockAnswers] = useState({});
+  const [sherlockActiveTab, setSherlockActiveTab] = useState('casebook'); // 'casebook' | 'map' | 'directory' | 'newspaper' | 'quiz'
+  const [sherlockSelectedAreaFilter, setSherlockSelectedAreaFilter] = useState('ALL'); // 'ALL' | 'NW' | 'WC' | 'EC' | 'SW' | 'SE'
+  const [sherlockDirLetterFilter, setSherlockDirLetterFilter] = useState('ALL'); // 'ALL' | 'A' .. 'Z'
+
+  // Bốc Thẻ Bối Cảnh Mới Modal (Pháp Y Vòng 2 & 3)
+  const [showDrawTileModal, setShowDrawTileModal] = useState(false);
+  const [replaceTargetTileId, setReplaceTargetTileId] = useState('');
+  const [newTileBulletIdx, setNewTileBulletIdx] = useState(null);
+
+  // Accusation / Phá án Modal State
+  const [accuseTargetId, setAccuseTargetId] = useState('');
+  const [accuseMeans, setAccuseMeans] = useState(null);
+  const [accuseClue, setAccuseClue] = useState(null);
+  const [showAccuseModal, setShowAccuseModal] = useState(false);
+  const [accusationResultMsg, setAccusationResultMsg] = useState('');
+
+  // Nhạc nền BGM Sherlock Holmes
+  const [isPlayingMusic, setIsPlayingMusic] = useState(true);
+  const audioBgmRef = useRef(null);
+
+  const roomStateRef = useRef(roomState);
+  const chatEndRef = useRef(null);
+  const isChatOpenRef = useRef(isChatOpen);
+  const createdGameTypeRef = useRef('deception');
+
+  useEffect(() => {
+    isChatOpenRef.current = isChatOpen;
+    if (isChatOpen) {
+      setUnreadChatCount(0);
+    }
+  }, [isChatOpen]);
+
+  useEffect(() => {
+    roomStateRef.current = roomState;
+  }, [roomState]);
+
+  // Cập nhật timestamp 200ms/lần
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNowTimestamp(Date.now());
+    }, 200);
+    return () => clearInterval(timer);
+  }, []);
+
+  // TỰ ĐỘNG ẨN THÔNG BÁO LỖI SAU 3.5 GIÂY (AUTO-DISMISS TOAST)
+  useEffect(() => {
+    if (errorMsg) {
+      const timer = setTimeout(() => {
+        setErrorMsg('');
+      }, 3500);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMsg]);
+
+  // TỰ ĐỘNG TẮT VAI TRÒ MỞ RỘNG NẾU ÍT HƠN 6 NGƯỜI CHƠI
+  useEffect(() => {
+    if (roomState?.players && roomState.players.length < 6) {
+      setEnableAccomplice(false);
+      setEnableWitness(false);
+    }
+  }, [roomState?.players?.length]);
+
+  // ĐỒNG BỘ NỘI DUNG CHAT TỪ ROOM STATE CHO TẤT CẢ THÀNH VIÊN
+  useEffect(() => {
+    if (roomState?.chatMessages) {
+      setChatMessages(roomState.chatMessages);
+    }
+  }, [roomState?.chatMessages]);
+
+  // TỰ ĐỘNG CHỌN BACKGROUND ẢNH VŨ ÁN / SẢNH CHỜ THU HÚT
+  const currentBgStyle = useMemo(() => {
+    if (!inRoom) {
+      return {
+        backgroundImage: `linear-gradient(185deg, rgba(10, 8, 15, 0.85) 0%, rgba(5, 5, 10, 0.94) 100%), url('/images/landing-bg.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      };
+    }
+
+    const code = roomState?.code || '';
+    const codeSum = code.split('').reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+    const bgImageName = codeSum % 2 === 0 ? 'game-bg-1.jpg' : 'game-bg-2.jpg';
+
+    return {
+      backgroundImage: `linear-gradient(185deg, rgba(12, 9, 18, 0.88) 0%, rgba(6, 5, 10, 0.95) 100%), url('/images/${bgImageName}')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed'
+    };
+  }, [inRoom, roomState?.code]);
+
+  // TỰ ĐỘNG THU GỌN BẢNG GỢI Ý KHI VÀO VÒNG ĐIỀU TRA (INVESTIGATION) 100%
+  useEffect(() => {
+    if (roomState?.phase === 'INVESTIGATION') {
+      setIsSceneBoardCollapsed(true);
+    } else if (roomState?.phase === 'FORENSIC_SETUP') {
+      setIsSceneBoardCollapsed(false);
+    }
+  }, [roomState?.phase]);
+
+  // Format mm:ss
+  const formatTime = (totalSeconds) => {
+    const s = Math.max(0, Number(totalSeconds) || 0);
+    const mins = Math.floor(s / 60);
+    const secs = s % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // TỰ ĐỘNG BẬT MODAL BỐC THẺ CHO PHÁP Y KHI VÀO VÒNG MỚI
+  useEffect(() => {
+    if (roomState?.gameStarted && roomState?.forensicScientistId === socket.id && roomState?.needsTileDraw) {
+      setShowDrawTileModal(true);
+    }
+  }, [roomState?.needsTileDraw, roomState?.round, roomState?.forensicScientistId]);
+
+  // TỰ ĐỘNG PHÁT NHẠC KHI CÓ TƯƠNG TÁC ĐẦU TIÊN CỦA NGƯỜI DÙNG (BYPASS AUTOPLAY POLICY)
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (audioBgmRef.current && isPlayingMusic && audioBgmRef.current.paused) {
+        audioBgmRef.current.play().catch(() => {});
+      }
+    };
+    window.addEventListener('click', handleFirstInteraction, { once: true });
+    window.addEventListener('keydown', handleFirstInteraction, { once: true });
+    return () => {
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('keydown', handleFirstInteraction);
+    };
+  }, [isPlayingMusic]);
+
+  const toggleMusic = () => {
+    if (!audioBgmRef.current) return;
+    if (isPlayingMusic) {
+      audioBgmRef.current.pause();
+      setIsPlayingMusic(false);
+    } else {
+      audioBgmRef.current.play().catch(e => console.warn('BGM play failed:', e));
+      setIsPlayingMusic(true);
+    }
+  };
+
+  // Socket Events
+  useEffect(() => {
+    socket.on('room-created', ({ roomState }) => {
+      const gameType = roomState?.gameType || createdGameTypeRef.current || 'deception';
+      setRoomState({ ...roomState, gameType });
+      setInRoom(true);
+      setErrorMsg('');
+    });
+
+    socket.on('room-updated', (updated) => {
+      setRoomState(prev => {
+        const gameType = updated?.gameType || prev?.gameType || createdGameTypeRef.current || 'deception';
+        return { ...updated, gameType };
+      });
+    });
+
+    socket.on('game-started', (updated) => {
+      setRoomState(prev => {
+        const gameType = updated?.gameType || prev?.gameType || createdGameTypeRef.current || 'deception';
+        return { ...updated, gameType };
+      });
+      setSelectedMeans(null);
+      setSelectedClue(null);
+      setForensicBullets({});
+      setShowAccuseModal(false);
+      setShowDrawTileModal(false);
+      
+      const activeType = updated?.gameType || createdGameTypeRef.current;
+      if (activeType !== 'sherlock' && updated.forensicScientistId !== socket.id) {
+        setShowRoleRevealModal(true);
+      }
+    });
+
+    socket.on('accusation-failed', ({ accuser }) => {
+      setAccusationResultMsg(`Lời phá án của ${accuser} KHÔNG CHÍNH XÁC!`);
+      setTimeout(() => setAccusationResultMsg(''), 5000);
+    });
+
+    socket.on('game-reset', () => {
+      setSelectedMeans(null);
+      setSelectedClue(null);
+      setForensicBullets({});
+      setShowAccuseModal(false);
+      setShowDrawTileModal(false);
+      setShowRoleRevealModal(false);
+    });
+
+    socket.on('error-msg', (msg) => {
+      setErrorMsg(msg);
+    });
+
+    socket.on('kicked-from-room', () => {
+      setInRoom(false);
+      setRoomState(null);
+      setErrorMsg('Bạn đã bị Chủ phòng kick khỏi phòng!');
+    });
+
+
+
+    socket.on('receive-chat', (chatPayload) => {
+      setChatMessages(prev => {
+        if (chatPayload.id && prev.some(m => m.id === chatPayload.id)) {
+          return prev;
+        }
+        return [...prev, chatPayload];
+      });
+
+      if (chatPayload.senderId !== socket.id) {
+        if (!isChatOpenRef.current) {
+          setUnreadChatCount(prev => prev + 1);
+        }
+        setLatestChatToast(chatPayload);
+        setTimeout(() => {
+          setLatestChatToast(prev => (prev?.id === chatPayload.id ? null : prev));
+        }, 4500);
+      }
+      setTimeout(() => chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
+    });
+
+    socket.on('voice-peer-left', ({ socketId }) => {
+      if (peerConnections.current[socketId]) {
+        peerConnections.current[socketId].close();
+        delete peerConnections.current[socketId];
+      }
+      if (audioElements.current[socketId]) {
+        audioElements.current[socketId].remove();
+        delete audioElements.current[socketId];
+      }
+    });
+
+    return () => {
+      socket.off('room-created');
+      socket.off('room-updated');
+      socket.off('game-started');
+      socket.off('accusation-failed');
+      socket.off('game-reset');
+      socket.off('error-msg');
+    };
+  }, [roomState]);
+
+  // Actions
+  const handleCreateRoom = (gameType) => {
+    if (!socket || !socket.connected) {
+      return setErrorMsg('Không kết nối tới server trò chơi. Hãy đảm bảo server đang chạy.');
+    }
+    const defaultName = `Thám tử ${Math.floor(Math.random() * 9000) + 1000}`;
+    const name = playerName && playerName.trim() ? playerName.trim() : defaultName;
+    if (!playerName || !playerName.trim()) setPlayerName(name);
+    const targetGameType = gameType || selectedGameForModal || 'deception';
+    socket.emit('create-room', { playerName: name, gameType: targetGameType });
+    setShowGameSelectModal(false);
+    setSelectedGameForModal(null);
+  };
+
+  const handleVisitNode = (nodeId) => {
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code && nodeId) {
+      socket.emit('visit-node', { roomCode: code, nodeId });
+      setSherlockSearchQuery('');
+    }
+  };
+
+  const handleSherlockNextPhase = (phase) => {
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('sherlock-next-phase', { roomCode: code, phase });
+    }
+  };
+
+  const handleSubmitSherlockSolution = () => {
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('submit-sherlock-solution', { roomCode: code, answers: sherlockAnswers });
+    }
+  };
+
+  const handleJoinRoom = () => {
+    if (!socket || !socket.connected) {
+      return setErrorMsg('Không kết nối tới server trò chơi. Hãy đảm bảo server đang chạy.');
+    }
+    if (!playerName.trim()) return setErrorMsg('Vui lòng nhập tên thám tử của bạn!');
+    if (!roomCode.trim()) return setErrorMsg('Vui lòng nhập Mã phòng 4 ký tự!');
+    socket.emit('join-room', { roomCode: roomCode.toUpperCase(), playerName });
+  };
+
+  const handleAddBot = () => {
+    if (roomState?.code) {
+      socket.emit('add-bot', { roomCode: roomState.code });
+    }
+  };
+
+  const handleRemoveBot = () => {
+    if (roomState?.code) {
+      socket.emit('remove-bot', { roomCode: roomState.code });
+    }
+  };
+
+  const handleVoteForensic = (targetId) => {
+    if (roomState?.code) {
+      socket.emit('vote-forensic', { roomCode: roomState.code, targetId });
+    }
+  };
+
+  const handleVoteNextRound = () => {
+    if (roomState?.code) {
+      socket.emit('vote-next-round', { roomCode: roomState.code });
+    }
+  };
+
+  const handleStartGame = () => {
+    if (roomState?.gameType === 'sherlock') {
+      socket.emit('start-game', { roomCode: roomState.code });
+      return;
+    }
+    if (!roomState?.players || roomState.players.length < 3) {
+      return setErrorMsg('Cần ít nhất 3 người chơi (hoặc bấm + Bot) để bắt đầu!');
+    }
+    socket.emit('start-game', {
+      roomCode: roomState.code,
+      enabledOptionalRoles: { accomplice: enableAccomplice, witness: enableWitness },
+      ROLES_DATA: ROLES,
+      CLUES_DATA: CLUE_CARDS,
+      MEANS_DATA: MEANS_CARDS,
+      CAUSE_DATA: CAUSE_OF_DEATH,
+      LOCATIONS_DATA: LOCATIONS,
+      SCENES_DATA: SCENE_TILES
+    });
+  };
+
+  const handleCopyCode = () => {
+    const text = roomState?.code;
+    if (!text) return;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    } catch (e) {
+      fallbackCopy(text);
+    }
+    setCopiedMsg(true);
+    setTimeout(() => setCopiedMsg(false), 2500);
+  };
+
+  const fallbackCopy = (text) => {
+    const el = document.createElement('textarea');
+    el.value = text;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
+
+  const handleConfirmMurderChoice = () => {
+    if (!selectedMeans || !selectedClue) return setErrorMsg('Vui lòng chọn 1 Công cụ giết người và 1 Bằng chứng chính!');
+    socket.emit('submit-solution', {
+      roomCode: roomState.code,
+      means: selectedMeans,
+      clue: selectedClue
+    });
+  };
+
+  const handleSelectBullet = (tileId, optionIdx) => {
+    setForensicBullets(prev => ({
+      ...prev,
+      [tileId]: optionIdx
+    }));
+  };
+
+  const handleConfirmForensicBullets = () => {
+    const allTileIds = [
+      roomState.causeOfDeathTile?.id,
+      roomState.locationTile?.id,
+      ...(roomState.activeSceneTiles?.map(t => t.id) || [])
+    ];
+
+    const missingBullets = allTileIds.some(id => forensicBullets[id] === undefined);
+    if (missingBullets) {
+      return setErrorMsg('Vui lòng đặt đủ đạn chỉ dẫn lên tất cả 6 Thẻ Bối Cảnh!');
+    }
+
+    socket.emit('submit-bullets', {
+      roomCode: roomState.code,
+      bullets: forensicBullets
+    });
+
+    setIsSceneBoardCollapsed(true);
+  };
+
+  const handleConfirmReplaceTile = () => {
+    if (!replaceTargetTileId || newTileBulletIdx === null) {
+      return setErrorMsg('Vui lòng chọn 1 thẻ cũ cần thay và chọn 1 mục chỉ dẫn trên thẻ mới!');
+    }
+    socket.emit('draw-and-replace-tile', {
+      roomCode: roomState.code,
+      oldTileId: replaceTargetTileId,
+      newOptionIndex: newTileBulletIdx
+    });
+    setShowDrawTileModal(false);
+    setReplaceTargetTileId('');
+    setNewTileBulletIdx(null);
+  };
+
+  const handleSendAccusation = () => {
+    if (!accuseTargetId || !accuseMeans || !accuseClue) return setErrorMsg('Vui lòng chọn đầy đủ người bị tình nghi, Công cụ giết người và Bằng chứng chính!');
+    socket.emit('accuse-solution', {
+      roomCode: roomState.code,
+      targetPlayerId: accuseTargetId,
+      means: accuseMeans,
+      clue: accuseClue
+    });
+    setShowAccuseModal(false);
+  };
+
+  const handleSendChat = (e) => {
+    if (e) e.preventDefault();
+    const text = chatInput.trim();
+    if (!text) return;
+
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (!code) return setErrorMsg('Bạn chưa tham gia phòng chơi!');
+
+    const msgId = `msg_${Date.now()}_${Math.floor(Math.random()*1000)}`;
+
+    // 1. Thêm ngay tin nhắn vào bộ nhớ cá nhân (Hiển thị tức thì 0ms delay)
+    const myMsg = {
+      id: msgId,
+      sender: me?.name || playerName || 'Bạn',
+      senderId: socket.id,
+      text: text,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setChatMessages(prev => [...prev, myMsg]);
+    setChatInput('');
+
+    // 2. Phát tin nhắn qua socket cho tất cả người chơi khác
+    socket.emit('send-chat', {
+      roomCode: code,
+      message: text,
+      msgId: msgId
+    });
+
+    // Cuộn xuống cuối
+    setTimeout(() => chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
+  };
+
+  // NHẤP NHANH THẺ BÀI TRÊN BÀN CHƠI ĐỂ PHÁ ÁN
+  const handleQuickAccuseCard = (playerId, card, type) => {
+    if (isForensic) return;
+    if (!me?.hasBadge) return setErrorMsg('Bạn đã dùng hết Huy hiệu Phá án!');
+    
+    setAccuseTargetId(playerId);
+    if (type === 'means') {
+      setAccuseMeans(card);
+    } else {
+      setAccuseClue(card);
+    }
+    setShowAccuseModal(true);
+  };
+
+  const handleLeaveRoom = () => {
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('leave-room', { roomCode: code });
+    }
+    setInRoom(false);
+    setRoomState(null);
+    setSherlockAnswers({});
+    setSherlockSelectedNodeId(null);
+    setShowRoleRevealModal(false);
+    setShowAccuseModal(false);
+    setAccuseTargetId('');
+    setAccusationResultMsg('');
+    setErrorMsg('');
+  };
+
+  // Helper getters & Vote counting
+  const me = roomState?.players?.find(p => p.id === socket.id);
+  const isForensic = roomState?.forensicScientistId === socket.id;
+  const isMurderer = me?.role?.id === 'murderer';
+  const isHost = roomState?.hostId === socket.id || roomState?.players?.[0]?.id === socket.id;
+  const botCount = roomState?.players?.filter(p => p.isBot).length || 0;
+  const hasVotedNextRound = roomState?.votesForNextRound?.includes(socket.id);
+  const totalPlayersCount = roomState?.players?.length || 1;
+  const votesCount = roomState?.votesForNextRound?.length || 0;
+
+  const getVotesForPlayer = (playerId) => {
+    if (!roomState?.votesForForensic) return 0;
+    return Object.values(roomState.votesForForensic).filter(id => id === playerId).length;
+  };
+
+  const myVotedId = roomState?.votesForForensic?.[socket.id];
+
+  // TÍNH TOÁN SỐ GIÂY ĐẾM NGƯỢC CHÍNH XÁC 100%
+  const secCount = roomState?.endTime 
+    ? Math.max(0, Math.ceil((roomState.endTime - nowTimestamp) / 1000))
+    : (roomState?.timerType === 'ACCUSATION_WINDOW' ? 10 : 180);
+
+  const allSceneTiles = roomState ? [
+    roomState.causeOfDeathTile,
+    roomState.locationTile,
+    ...(roomState.activeSceneTiles || [])
+  ].filter(Boolean) : [];
+
+  const nextDrawnTile = roomState?.deck?.[0];
+  const accusedPlayerObj = roomState?.players?.find(p => p.id === accuseTargetId);
+
+  // Helper lấy string label an toàn từ option
+  const getOptLabel = (opt) => {
+    if (!opt) return 'Chưa chọn';
+    if (typeof opt === 'string') return opt;
+    return opt.label || 'Chưa chọn';
+  };
+
+  // Helper phân màu thẻ bối cảnh: Tím (Nguyên nhân), Xanh lá (Địa điểm), Nâu nhạt (Gợi ý)
+  const getTileColorClass = (tileId) => {
+    if (tileId === roomState?.causeOfDeathTile?.id) return 'cause-death-purple';
+    if (tileId === roomState?.locationTile?.id) return 'location-green';
+    return 'scene-tile-brown';
+  };
+
+  // Lấy tên Kẻ sát nhân của vụ án
+  const murdererPlayerObj = roomState?.players?.find(p => p.role?.id === 'murderer');
+
+  return (
+    <div className="app-layout" style={currentBgStyle}>
+      
+      {/* HEADER - chỉ hiện khi đang trong phòng, không có logo */}
+      {inRoom && (
+        <header className="app-header-compact">
+          <div className="header-actions">
+            <div className="room-code-pill cursor-pointer" onClick={handleCopyCode} title="Nhấp để copy mã phòng">
+              <span>PHÒNG:</span>
+              <strong>{roomState?.code}</strong>
+              <Copy size={12} className="ml-1 text-slate-400" />
+            </div>
+
+            {/* NÚT BẬT/TẮT NHẠC NỀN */}
+            <button 
+              onClick={toggleMusic}
+              className={`btn btn-xs ${isPlayingMusic ? 'btn-music-active' : 'btn-music-muted'}`}
+              title="Bật/Tắt Nhạc nền Sherlock Holmes"
+            >
+              {isPlayingMusic ? <Volume2 size={13} /> : <VolumeX size={13} />}
+              <span>{isPlayingMusic ? 'NHẠC BẬT' : 'NHẠC TẮT'}</span>
+            </button>
+
+            <button onClick={() => setShowGuideModal(true)} className="btn btn-xs btn-secondary">
+              <BookOpen size={13} /> Luật
+            </button>
+
+            <button onClick={handleLeaveRoom} className="btn btn-xs btn-danger">
+              <LogOut size={13} /> Rời
+            </button>
+          </div>
+        </header>
+      )}
+
+      {/* THÔNG BÁO LỖI NẾU CÓ */}
+      {errorMsg && (
+        <div className="error-toast">
+          <AlertCircle size={18} />
+          <span>{errorMsg}</span>
+          <button onClick={() => setErrorMsg('')}><X size={14} /></button>
+        </div>
+      )}
+
+      {copiedMsg && (
+        <div className="copy-toast">
+          <Check size={16} />
+          <span>Đã copy Mã phòng [{roomState?.code}]!</span>
+        </div>
+      )}
+
+      {/* THÔNG BÁO KẾT QUẢ PHÁ ÁN SAI */}
+      {accusationResultMsg && (
+        <div className="accusation-toast">
+          <X size={20} className="text-rose-400" />
+          <span>{accusationResultMsg}</span>
+        </div>
+      )}
+
+      {/* 1. MÀN HÌNH ĐẦU TIÊN: LANDING SCREEN */}
+      {!inRoom && (
+        <main className="cinematic-landing-wrapper landing-bg">
+          <div className="cinematic-landing-container">
+            
+            {/* LOGO TITLE */}
+            <div className="hero-logo-box text-center">
+              <div className="detective-emblem-badge mx-auto">
+                <div className="emblem-inner-glow">
+                  <Skull size={44} className="text-rose-500 stroke-[3]" />
+                  <Search size={32} className="text-amber-400 stroke-[3] emblem-glass-overlay" />
+                </div>
+                <div className="badge-star-sticker">MULTI-GAME</div>
+              </div>
+              <h1 className="cinematic-main-title tracking-wider font-black text-white" style={{ fontSize: 'clamp(2.8rem, 7vw, 5.2rem)', textShadow: '0 0 15px rgba(244, 63, 94, 0.65), 0 0 35px rgba(225, 29, 72, 0.35), 0 0 65px rgba(159, 18, 57, 0.25)', letterSpacing: '0.04em' }}>
+                DETECTIVE CHRONICLES
+              </h1>
+              <span className="cinematic-sub-title text-amber-400 font-bold tracking-widest uppercase" style={{ fontSize: '0.85rem', letterSpacing: '0.15em' }}>
+                ĐẤU TRƯỜNG KỲ ÁN TRINH THÁM MULTIPLAYER
+              </span>
+            </div>
+
+            {/* INPUT NICKNAME */}
+            <div className="cinematic-identity-card">
+              <label className="identity-label">
+                <Search size={16} className="text-amber-400" /> NICKNAME THÁM TỬ CỦA BẠN:
+              </label>
+              <input 
+                type="text"
+                className="identity-input-field"
+                placeholder="Ví dụ: Thám tử Nam..."
+                value={playerName}
+                onChange={(e) => setPlayerName(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && setShowGameSelectModal(true)}
+              />
+            </div>
+
+            {/* DUAL ACTION GRID: TẠO PHÒNG MỚI & THAM GIA PHÒNG */}
+            <div className="dual-action-grid">
+              
+              {/* TẠO PHÒNG MỚI */}
+              <div className="action-tile-card create-tile" onClick={() => setShowGameSelectModal(true)}>
+                <div className="tile-icon-wrapper text-rose-400">
+                  <Compass size={32} />
+                </div>
+                <div className="tile-content">
+                  <h3>+ TẠO PHÒNG MỚI</h3>
+                  <p>Chọn tựa game, khởi tạo phòng & Mời bạn bè</p>
+                </div>
+                <button onClick={() => setShowGameSelectModal(true)} className="btn btn-md btn-primary w-full mt-2 font-black tracking-wider">
+                  TẠO PHÒNG NGAY
+                </button>
+              </div>
+
+              {/* THAM GIA PHÒNG */}
+              <div className="action-tile-card join-tile">
+                <div className="tile-icon-wrapper text-amber-400">
+                  <KeyRound size={32} />
+                </div>
+                <div className="tile-content">
+                  <h3>THAM GIA PHÒNG</h3>
+                  <p>Nhập Mã phòng 4 ký tự do bạn bè chia sẻ</p>
+                </div>
+
+                <div className="pin-input-group mt-2">
+                  <input 
+                    type="text"
+                    className="pin-code-field uppercase tracking-widest text-center font-black"
+                    placeholder="MÃ PIN (VD: R7S3)"
+                    value={roomCode}
+                    onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+                    onKeyDown={(e) => e.key === 'Enter' && handleJoinRoom()}
+                  />
+                  <button onClick={handleJoinRoom} className="btn btn-md btn-gold-draw font-extrabold whitespace-nowrap">
+                    VÀO PHÒNG
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      )}
+
+      {/* 2. MÀN HÌNH TRUNG GIAN PHÒNG CHỜ (LOBBY) */}
+      {inRoom && !roomState?.gameStarted && (() => {
+        const isHost = socket.id === (roomState?.hostId || roomState?.players?.[0]?.id);
+        const mePlayer = roomState?.players?.find(p => p.id === socket.id);
+        const isReady = mePlayer?.isReady;
+        const totalPlayers = roomState?.players?.length || 0;
+        const canEnableRoles = totalPlayers >= 6;
+        const isSherlock = roomState?.gameType === 'sherlock';
+
+        return (
+          <main className="lobby-hub-container">
+            <div className="lobby-hub-card">
+              <div className="lobby-hub-header">
+                <div className="hub-title-group">
+                  {isSherlock ? (
+                    <>
+                      <h2 className="flex items-center gap-2 text-amber-300">
+                        <Search size={24} className="text-amber-400" /> PHÒNG CHỜ ĐIỀU TRA: SHERLOCK HOLMES
+                      </h2>
+                      <p className="text-slate-300">Hợp tác cùng đồng đội giải mã kỳ án "Cái chết của Sherlock Holmes".</p>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="flex items-center gap-2">
+                        <Crown size={24} className="text-amber-400" /> PHÒNG CHỜ & BẦU CHỌN NHÀ KHOA HỌC PHÁP Y
+                      </h2>
+                      <p>Bỏ phiếu bầu chọn Quản trò dân chủ. Người có số phiếu bầu cao nhất sẽ làm Nhà khoa học pháp y!</p>
+                    </>
+                  )}
+                </div>
+                <div className="hub-room-badge" onClick={handleCopyCode} title="Nhấp để copy Mã phòng">
+                  <span className="badge-lbl">MÃ PHÒNG:</span>
+                  <strong className="badge-code">{roomState.code}</strong>
+                  <button onClick={handleCopyCode} className="btn-copy-sm" title="Copy mã phòng"><Copy size={12} /></button>
+                </div>
+              </div>
+
+              <div className="lobby-control-bar">
+                <div className="player-count-badge">
+                  <Users size={18} className="text-amber-400" />
+                  <span>Số người chơi: <strong className="text-amber-400">{totalPlayers}/{isSherlock ? '8' : '12'}</strong></span>
+                </div>
+                <div className="flex items-center gap-2">
+                  {/* CHỦ PHÒNG MỚI THẤY NÚT THÊM/XÓA BOT */}
+                  {isHost ? (
+                    <div className="bot-actions-group">
+                      <button onClick={handleAddBot} className="btn btn-sm btn-secondary"><UserPlus size={14} /> + Thêm Bot</button>
+                      {botCount > 0 && <button onClick={handleRemoveBot} className="btn btn-sm btn-outline"><UserMinus size={14} /> - Xóa Bot ({botCount})</button>}
+                    </div>
+                  ) : (
+                    /* NGƯỜI CHƠI KHÁC THẤY NÚT SẴN SÀNG */
+                    <button 
+                      onClick={() => socket.emit('toggle-ready', { roomCode: roomState.code })}
+                      className={`btn btn-sm font-extrabold flex items-center gap-1.5 ${isReady ? 'btn-ready-active' : 'btn-ready-inactive'}`}
+                    >
+                      {isReady ? <CheckCircle size={14} /> : <Play size={14} />}
+                      <span>{isReady ? 'ĐÃ SẴN SÀNG' : 'SẴN SÀNG'}</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <div className="lobby-members-section">
+                <span className="section-label-amber">
+                  {isSherlock ? 'DANH SÁCH THÁM TỬ TRONG PHÒNG CHỜ:' : 'NHẤP VÀO THÀNH VIÊN BẠN MUỐN BẦU LÀM NHÀ KHOA HỌC PHÁP Y:'}
+                </span>
+                <div className="lobby-members-grid">
+                  {roomState.players?.map(player => {
+                    const votes = getVotesForPlayer(player.id);
+                    const isTopCandidate = !isSherlock && roomState.forensicScientistId === player.id;
+                    const isMyVotedTarget = myVotedId === player.id;
+                    const isPlayerHost = player.id === (roomState?.hostId || roomState?.players?.[0]?.id);
+
+                    return (
+                      <div 
+                        key={player.id}
+                        className={`member-hub-card ${isTopCandidate ? 'is-forensic-selected' : ''}`}
+                      >
+                        <div className="member-avatar-box shrink-0">
+                          {player.isBot ? <Zap size={20} className="text-amber-400" /> : <Shield size={20} className="text-blue-400" />}
+                        </div>
+
+                        <div className="member-details cursor-pointer flex-1 min-w-0" onClick={() => !isSherlock && handleVoteForensic(player.id)}>
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="font-extrabold text-white text-sm truncate max-w-[120px]" title={player.name}>
+                              {player.name} {player.id === socket.id && '(Bạn)'}
+                            </span>
+                            {isPlayerHost && <span className="badge-host-crown">👑 Chủ phòng</span>}
+                          </div>
+                          <div className="text-[0.72rem] mt-0.5 font-semibold truncate">
+                            {isSherlock ? (
+                              player.isReady ? <span className="text-emerald-400 font-bold">✓ Đã sẵn sàng</span> : <span className="text-slate-400">⏳ Chưa sẵn sàng</span>
+                            ) : (
+                              isTopCandidate ? <span className="text-amber-400 font-extrabold">⭐ Dẫn đầu Pháp Y</span> : player.isBot ? <span className="text-slate-400">🤖 Bot tự động</span> : player.isReady ? <span className="text-emerald-400 font-bold">✓ Đã sẵn sàng</span> : <span className="text-slate-400">⏳ Chưa sẵn sàng</span>
+                            )}
+                          </div>
+                          {!isSherlock && (
+                            <div className="mt-1 flex items-center gap-1.5 text-xs">
+                              <span className={`px-2 py-0.5 rounded-full font-extrabold text-[0.68rem] ${votes > 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-slate-800/80 text-slate-400'}`}>{votes} Phiếu</span>
+                              {isMyVotedTarget && <span className="text-emerald-400 font-extrabold text-[0.65rem]">(Bạn đã bầu)</span>}
+                            </div>
+                          )}
+                        </div>
+
+                        {isTopCandidate && <div className="selected-crown-badge"><Crown size={18} /></div>}
+
+                        {/* NÚT KICK DÀNH RIÊNG CHO CHỦ PHÒNG */}
+                        {isHost && player.id !== socket.id && (
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              socket.emit('kick-player', { roomCode: roomState.code, targetId: player.id });
+                            }}
+                            className="btn-kick-member"
+                            title="Kick khỏi phòng"
+                          >
+                            <UserMinus size={13} /> Kick
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* VAI TRÒ MỞ RỘNG (CHỈ DÀNH CHO DECEPTION) */}
+              {!isSherlock && (
+                <div className="game-settings-section">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="section-label-amber">VAI TRÒ MỞ RỘNG TRONG VÁN CHƠI:</span>
+                    {!canEnableRoles && (
+                      <span className="text-xs text-rose-400 font-extrabold flex items-center gap-1">
+                        <Lock size={12} /> Cần từ 6 người chơi trở lên
+                      </span>
+                    )}
+                  </div>
+                  <div className="settings-toggles">
+                    <label className={`toggle-item ${!canEnableRoles || !isHost ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                      <input 
+                        type="checkbox" 
+                        checked={enableAccomplice} 
+                        disabled={!canEnableRoles || !isHost}
+                        onChange={(e) => setEnableAccomplice(e.target.checked)} 
+                      />
+                      <span><strong>Đồng Phạm (Accomplice):</strong> Biết Kẻ sát nhân & Bộ đáp án, hỗ trợ che giấu vụ án.</span>
+                    </label>
+                    <label className={`toggle-item mt-2 ${!canEnableRoles || !isHost ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                      <input 
+                        type="checkbox" 
+                        checked={enableWitness} 
+                        disabled={!canEnableRoles || !isHost}
+                        onChange={(e) => setEnableWitness(e.target.checked)} 
+                      />
+                      <span><strong>Nhân Chứng (Witness):</strong> Biết ai thuộc phe Tội phạm nhưng phải giữ bí mật danh tính.</span>
+                    </label>
+                  </div>
+                </div>
+              )}
+
+              {/* CHỦ PHÒNG MỚI THẤY NÚT BẮT ĐẦU VÁN CHƠI */}
+              {isHost ? (
+                <div className="lobby-hub-footer">
+                  <button onClick={handleStartGame} className="btn btn-lg btn-primary btn-launch-game">
+                    <Play size={20} /> BẮT ĐẦU
+                  </button>
+                </div>
+              ) : (
+                <div className="lobby-hub-footer text-center">
+                  <div className="text-sm font-bold text-amber-300 animate-pulse py-3 bg-amber-500/10 border border-amber-500/30 rounded-xl">
+                    ⏳ Đang chờ Chủ phòng ({roomState.players?.[0]?.name}) bắt đầu ván chơi...
+                  </div>
+                </div>
+              )}
+            </div>
+          </main>
+        );
+      })()}
+
+      {/* 3. MÀN HÌNH GAME CHÍNH */}
+      {inRoom && roomState?.gameStarted && (
+        roomState?.gameType === 'sherlock' ? (
+          <main className="sherlock-game-wrapper p-4 md:p-6 max-w-6xl mx-auto min-h-screen text-slate-200">
+            
+            {/* 1. GIAI ĐOẠN INTRO / GIỚI THIỆU VỤ ÁN */}
+            {roomState?.phase === 'SHERLOCK_INTRO' && (
+              <div className="sherlock-intro-card">
+                
+                {/* TIÊU ĐỀ KỲ ÁN SHERLOCK */}
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
+                  <div>
+                    <span className="text-xs font-bold text-slate-400 tracking-widest uppercase flex items-center gap-1.5 mb-1">
+                      <Search size={14} className="text-slate-300" /> Vụ án Sherlock Holmes #1
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-black text-amber-100">{SHERLOCK_CASE_1.title}</h2>
+                    <div className="flex items-center gap-4 text-xs text-slate-400 mt-2">
+                      <span>Tác giả: <strong className="text-slate-200">{SHERLOCK_CASE_1.author}</strong></span>
+                      <span>•</span>
+                      <span>Bối cảnh: <strong className="text-slate-200">{SHERLOCK_CASE_1.setting_date}</strong></span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* BỐI CẢNH BAN ĐẦU (INTRO STORY) */}
+                <div className="sherlock-section-box">
+                  <h3 className="font-extrabold text-slate-200 text-sm flex items-center gap-2">
+                    <BookOpen size={16} className="text-slate-300" /> BỐI CẢNH BAN ĐẦU (INTRO STORY):
+                  </h3>
+                  <div className="sherlock-story-text">
+                    {SHERLOCK_CASE_1.intro.story_text}
+                  </div>
+                </div>
+
+                {/* MANH MỐI TÌM THẤY & ĐỊA ĐIỂM MỞ SẴN */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  
+                  {/* MANH MỐI KHỞI ĐẦU */}
+                  <div className="sherlock-section-box clues-box">
+                    <h4 className="font-extrabold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                      <Skull size={14} className="text-slate-300" /> Manh mối ban đầu thu thập được tại hiện trường:
+                    </h4>
+                    <ul className="sherlock-clue-list">
+                      {SHERLOCK_CASE_1.intro.initial_clues.map((clue, i) => (
+                        <li key={i} className="sherlock-clue-item">
+                          <span className="sherlock-clue-bullet">•</span>
+                          <span>{clue}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* TỌA ĐỘ MANH MỐI GỢI Ý KHỞI ĐẦU (NON-CLICKABLE STATIC SUMMARY) */}
+                  <div className="sherlock-section-box">
+                    <h4 className="font-extrabold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                      <Compass size={14} className="text-slate-300" /> Tọa độ manh mối gợi ý khởi đầu:
+                    </h4>
+                    <div className="flex flex-wrap gap-2 my-1">
+                      {SHERLOCK_CASE_1.intro.unlocked_nodes.map((nodeId) => {
+                        const node = SHERLOCK_CASE_1.nodes[nodeId];
+                        const name = node?.title || nodeId;
+                        return (
+                          <span
+                            key={nodeId}
+                            className="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-amber-500/30 text-amber-200 text-xs font-black flex items-center gap-1.5"
+                          >
+                            <Compass size={13} className="text-amber-400" /> {name}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <p className="text-[0.72rem] text-slate-400 italic mt-1 leading-relaxed">
+                      Lưu ý: Thám tử cần tự tra cứu vị trí các con số này trên Bản đồ hoặc Danh bạ London để tiến hành khám xét thủ công.
+                    </p>
+                  </div>
+
+                </div>
+
+                {/* NÚT BẮT ĐẦU - GÓC PHẢI BÊN DƯỚI */}
+                <div className="flex justify-end pt-4 border-t border-amber-500/20">
+                  <button 
+                    onClick={() => handleSherlockNextPhase('SHERLOCK_PLAYING')}
+                    className="btn btn-md btn-gold-draw font-black tracking-wider shadow-lg flex items-center gap-2 px-6 py-2.5"
+                  >
+                    BẮT ĐẦU <ArrowRight size={18} />
+                  </button>
+                </div>
+
+              </div>
+            )}
+
+            {/* 2. GIAI ĐOẠN PLAYING / THÁM TỬ TƯƠNG TÁC BỘ 4 THÀNH PHẦN CHÍNH */}
+            {roomState?.phase === 'SHERLOCK_PLAYING' && (
+              <div className="sherlock-playing-layout space-y-4">
+                
+                {/* BANNER ĐIỀU HƯỚNG BỘ 4 THÀNH PHẦN CHÍNH (VICTORIAN TOOLBAR) */}
+                <div className="sherlock-playing-toolbar">
+                  <div className="sherlock-toolbar-header">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300">
+                        <BookOpen size={24} />
+                      </div>
+                      <div>
+                        <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-widest">KỲ ÁN SHERLOCK HOLMES #01</span>
+                        <h3 className="font-black text-amber-100 text-base md:text-lg">{SHERLOCK_CASE_1.title}</h3>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs px-3 py-1.5 rounded-lg bg-amber-950/80 border border-amber-500/40 text-amber-300 font-extrabold flex items-center gap-1.5">
+                        <Compass size={14} className="text-amber-400" /> Đã khám xét: <strong>{roomState.visitedNodes?.length || 0} địa điểm</strong>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 4 TAB CÔNG CỤ CHÍNH: SÁCH VỤ ÁN | BẢN ĐỒ | DANH BẠ | BÁO HÀNG NGÀY */}
+                  <div className="sherlock-toolbar-tabs">
+                    <button 
+                      onClick={() => setSherlockActiveTab('casebook')}
+                      className={`sherlock-tab-btn ${sherlockActiveTab === 'casebook' ? 'active' : ''}`}
+                    >
+                      <BookOpen size={16} /> SÁCH VỤ ÁN (CASE BOOK)
+                    </button>
+
+                    <button 
+                      onClick={() => setSherlockActiveTab('map')}
+                      className={`sherlock-tab-btn ${sherlockActiveTab === 'map' ? 'active' : ''}`}
+                    >
+                      <MapPin size={16} /> BẢN ĐỒ LONDON (MAP)
+                    </button>
+
+                    <button 
+                      onClick={() => setSherlockActiveTab('directory')}
+                      className={`sherlock-tab-btn ${sherlockActiveTab === 'directory' ? 'active' : ''}`}
+                    >
+                      <PhoneCall size={16} /> DANH BẠ LONDON (DIRECTORY)
+                    </button>
+
+                    <button 
+                      onClick={() => setSherlockActiveTab('newspaper')}
+                      className={`sherlock-tab-btn ${sherlockActiveTab === 'newspaper' ? 'active' : ''}`}
+                    >
+                      <FileText size={16} /> BÁO HÀNG NGÀY (NEWSPAPER)
+                    </button>
+                  </div>
+                </div>
+
+                {/* TAB 1: SÁCH VỤ ÁN (CASE BOOK) */}
+                {sherlockActiveTab === 'casebook' && (
+                  <div className="sherlock-grid-layout">
+                    
+                    {/* CỘT TRÁI: NHẬT KÝ ĐỊA ĐIỂM ĐÃ ĐIỀU TRA & MANH MỐI KHỞI ĐẦU */}
+                    <div className="space-y-4">
+                      
+                      {/* LỊCH SỬ CÁC ĐỊA ĐIỂM ĐÃ ĐIỀU TRA */}
+                      <div className="sherlock-panel">
+                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between border-b border-amber-500/20 pb-2 mb-2">
+                          <span className="flex items-center gap-1.5"><Compass size={14} /> ĐỊA ĐIỂM ĐÃ ĐIỀU TRA ({roomState.visitedNodes?.length || 0}):</span>
+                        </h4>
+                        <div className="space-y-1.5 max-h-60 overflow-y-auto pr-1">
+                          {roomState.visitedNodes?.length === 0 && (
+                            <p className="text-xs text-slate-500 italic p-2">Chưa tới địa điểm nào. Hãy tra cứu con số trên Bản Đồ để tiến hành khám xét.</p>
+                          )}
+                          {roomState.visitedNodes?.map((nodeId) => {
+                            const n = SHERLOCK_CASE_1.nodes[nodeId];
+                            const isSelected = sherlockSelectedNodeId === nodeId;
+                            return (
+                              <div 
+                                key={nodeId}
+                                onClick={() => setSherlockSelectedNodeId(nodeId)}
+                                className={`sherlock-history-item ${isSelected ? 'selected' : ''}`}
+                              >
+                                <div className="flex items-center gap-2 truncate">
+                                  <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem]">[{nodeId}]</span>
+                                  <span className="truncate">{n?.title || nodeId}</span>
+                                </div>
+                                <ArrowRight size={12} className="text-slate-500 shrink-0" />
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* KHUNG THỐNG KÊ MANH MỐI MỞ KHÓA (KHÔNG BẤM ĐƯỢC - DẠNG BUTTON PILL) */}
+                      <div className="sherlock-panel space-y-2">
+                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider border-b border-amber-500/20 pb-2 flex items-center gap-1.5">
+                          <Search size={14} /> MÃ MANH MỐI ĐÃ THU THẬP ({roomState.unlockedNodes?.length || 0}):
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {roomState.unlockedNodes?.map((nodeId) => {
+                            const isVisited = roomState.visitedNodes?.includes(nodeId);
+                            const node = SHERLOCK_CASE_1.nodes[nodeId];
+                            const name = node?.title || nodeId;
+                            return (
+                              <span
+                                key={nodeId}
+                                className={`sherlock-unlocked-btn cursor-default opacity-90 ${isVisited ? 'visited' : ''}`}
+                              >
+                                <Compass size={12} /> {name} {isVisited ? '• Đã tới' : '• Chưa tới'}
+                              </span>
+                            );
+                          })}
+                        </div>
+                        <p className="text-[0.7rem] text-slate-400 italic pt-1 leading-relaxed border-t border-slate-800">
+                          Lưu ý: Hãy tìm con số tương ứng trên Bản Đồ để tiến hành khám xét địa điểm.
+                        </p>
+                      </div>
+
+                    </div>
+
+                    {/* CỘT PHẢI: HIỂN THỊ NỘI DUNG SÁCH VỤ ÁN */}
+                    <div>
+                      <div className="sherlock-reading-panel">
+                        {sherlockSelectedNodeId && SHERLOCK_CASE_1.nodes[sherlockSelectedNodeId] ? (() => {
+                          const node = SHERLOCK_CASE_1.nodes[sherlockSelectedNodeId];
+                          return (
+                            <div className="space-y-4">
+                              <div className="border-b border-amber-500/20 pb-3 flex items-center justify-between">
+                                <div>
+                                  <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-500/30">
+                                    Khu vực {node.area} • Tọa độ [{node.id}]
+                                  </span>
+                                  <h3 className="text-xl font-black text-amber-100 mt-1">{node.title}</h3>
+                                </div>
+                                <span className="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-bold">
+                                  {node.type === 'suspect_interview' ? '🗣️ Lời khai nhân chứng' : node.type === 'clue_inspection' ? '🔍 Khám xét vật chứng' : '📍 Hiện trường vụ án'}
+                                </span>
+                              </div>
+
+                              {/* VĂN BẢN TRUYỆN SÁCH VỤ ÁN */}
+                              <div className="sherlock-reading-text">
+                                {node.content}
+                              </div>
+
+                              {/* VẬT CHỨNG GHI NHẬN */}
+                              {node.unlocks?.evidence_items?.length > 0 && (
+                                <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3.5 space-y-1">
+                                  <h5 className="text-xs font-extrabold text-amber-300 uppercase flex items-center gap-1.5">
+                                    <Sparkles size={14} /> Bằng chứng & Thông tin thu thập thêm:
+                                  </h5>
+                                  {node.unlocks.evidence_items.map((item, idx) => (
+                                    <p key={idx} className="text-xs text-amber-100 font-semibold">• {item}</p>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })() : (
+                          <div className="space-y-6 py-4">
+                            <div className="border-b border-amber-500/20 pb-3">
+                              <h3 className="text-xl font-black text-amber-300">LỜI MỞ ĐẦU VỤ ÁN (CASE INTRODUCTION)</h3>
+                              <p className="text-xs text-slate-400 mt-1">2 December 1893 • 221B Baker Street, London</p>
+                            </div>
+
+                            <div className="sherlock-reading-text">
+                              {SHERLOCK_CASE_1.intro.story_text}
+                            </div>
+
+                            <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-4 space-y-2">
+                              <h4 className="font-extrabold text-amber-300 text-xs uppercase flex items-center gap-1.5">
+                                <Skull size={14} /> Manh mối đầu tiên phát hiện tại hiện trường:
+                              </h4>
+                              <ul className="sherlock-clue-list">
+                                {SHERLOCK_CASE_1.intro.initial_clues.map((clue, i) => (
+                                  <li key={i} className="sherlock-clue-item">
+                                    <span className="sherlock-clue-bullet">•</span>
+                                    <span>{clue.replace(/^[\s•\-]+/, '')}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                  </div>
+                )}
+
+                {/* TAB 2: BẢN ĐỒ LONDON INTERACTIVE (MAP 1888) */}
+                {sherlockActiveTab === 'map' && (
+                  <div className="sherlock-map-wrapper">
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-amber-500/20 pb-3">
+                      <div>
+                        <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
+                          <MapPin size={22} className="text-amber-400" /> BẢN ĐỒ TỔNG THỂ LONDON 1888 (HOLMES' LONDON MAP)
+                        </h3>
+                        <p className="text-xs text-slate-400">
+                          Nhấp trực tiếp vào các ghim tròn trên bản đồ để di chuyển và lấy lời khai / khám xét địa điểm.
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3 text-xs">
+                        <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> Đã đến
+                        </span>
+                        <span className="flex items-center gap-1.5 text-amber-300 font-bold">
+                          <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Khả nghi
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* QUY TRÌNH ĐIỀU TRA VỤ ÁN (DETECTIVE MANUAL) */}
+                    <div className="bg-slate-950/80 border border-amber-500/30 rounded-xl p-3.5 text-xs space-y-2">
+                      <div className="font-black text-amber-300 flex items-center gap-2 text-xs border-b border-amber-500/20 pb-2 uppercase tracking-wider">
+                        <BookOpen size={15} className="text-amber-400" /> QUY TRÌNH ĐIỀU TRA VỤ ÁN HOLMES
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-slate-300 font-medium">
+                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                          <span className="font-bold text-amber-400">1. Tra cứu Danh Bạ:</span> Tìm tên/địa chỉ trong Danh Bạ London để lấy tọa độ (VD: 89 SW, 50 NW).
+                        </div>
+                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                          <span className="font-bold text-amber-400">2. Định vị Bản Đồ:</span> Tìm con số tương ứng thuộc 6 khu vực (NW, WC, EC, SW, SC, SE).
+                        </div>
+                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                          <span className="font-bold text-amber-400">3. Đọc Sách Vụ Án:</span> Nhấp mã địa điểm để đọc lời khai/thông tin trong Sách Vụ Án.
+                        </div>
+                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                          <span className="font-bold text-amber-400">4. Ghi Chép Manh Mối:</span> Nên ghi lại các địa điểm đã tìm thấy ra giấy để xâu chuỗi sự thật.
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* VIEWPORT BẢN ĐỒ TƯƠNG TÁC */}
+                    <div className="sherlock-map-viewport">
+                      <img 
+                        src="/images/london-map-1888.jpg" 
+                        alt="Holmes London Map 1888" 
+                        className="sherlock-map-img"
+                      />
+
+                      {/* GHIM CÁC CON SỐ NGUYÊN BẢN TRÊN BẢN ĐỒ CHUẨN ĐỊA LÝ */}
+                      {Object.values(SHERLOCK_CASE_1.nodes).map((n) => {
+                        const isVisited = roomState.visitedNodes?.includes(n.id);
+                        
+                        // Tọa độ % phân vùng địa lý chuẩn 100% trên bản đồ Holmes London (Bản đồ 5 mảnh)
+                        const coordsMap = {
+                          // NW (North West - Top Left)
+                          '221B': { left: '18%', top: '22%' },
+                          '50NW': { left: '22%', top: '16%' },
+                          '53NW': { left: '26%', top: '28%' },
+                          '16NW': { left: '32%', top: '14%' },
+                          '20NW': { left: '14%', top: '34%' },
+                          '72NW': { left: '24%', top: '38%' },
+                          '89NW': { left: '30%', top: '36%' },
+                          '90NW': { left: '28%', top: '44%' },
+                          '41NW': { left: '12%', top: '12%' },
+                          '49NW': { left: '36%', top: '22%' },
+                          '96NW': { left: '18%', top: '46%' },
+                          '45NW': { left: '20%', top: '30%' },
+                          '78NW': { left: '34%', top: '42%' },
+                          '99NW': { left: '16%', top: '48%' },
+
+                          // WC (West Central - Upper Middle)
+                          '18WC': { left: '46%', top: '36%' },
+                          '28WC': { left: '42%', top: '42%' },
+                          '34WC': { left: '52%', top: '38%' },
+                          '85WC': { left: '48%', top: '30%' },
+                          '5WC': { left: '40%', top: '26%' },
+                          '15WC': { left: '44%', top: '20%' },
+                          '67WC': { left: '50%', top: '44%' },
+                          '24WC': { left: '48%', top: '22%' },
+                          '31WC': { left: '54%', top: '34%' },
+
+                          // EC (East Central - Top Right)
+                          '5EC': { left: '78%', top: '18%' },
+                          '30EC': { left: '72%', top: '32%' },
+                          '35EC': { left: '76%', top: '26%' },
+                          '42EC': { left: '84%', top: '30%' },
+                          '53EC': { left: '80%', top: '36%' },
+                          '73EC': { left: '82%', top: '14%' },
+                          '74EC': { left: '88%', top: '22%' },
+                          '83EC': { left: '84%', top: '40%' },
+                          '98E': { left: '94%', top: '28%' },
+                          '27EC': { left: '68%', top: '20%' },
+                          '61EC': { left: '74%', top: '42%' },
+                          '91EC': { left: '90%', top: '38%' },
+                          '11EC': { left: '74%', top: '16%' },
+                          '21EC': { left: '86%', top: '24%' },
+                          '39EC': { left: '70%', top: '38%' },
+                          '66EC': { left: '92%', top: '18%' },
+                          '82EC': { left: '86%', top: '44%' },
+
+                          // SW (South West - Bottom Left)
+                          '8SW': { left: '28%', top: '74%' },
+                          '22SW': { left: '34%', top: '84%' },
+                          '14SW': { left: '20%', top: '66%' },
+                          '52SW': { left: '24%', top: '80%' },
+                          '12SW': { left: '16%', top: '76%' },
+                          '79SW': { left: '38%', top: '72%' },
+                          '98SW': { left: '30%', top: '88%' },
+                          '54SW': { left: '28%', top: '82%' },
+
+                          // SE (South East - Bottom Right)
+                          '88SE': { left: '80%', top: '76%' }
+                        };
+
+                        const pos = coordsMap[n.id] || { left: '50%', top: '50%' };
+
+                        // Số nguyên bản (bỏ kí tự khu vực NW, SW, EC...)
+                        const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+
+                        return (
+                          <div
+                            key={n.id}
+                            style={{ 
+                              left: pos.left, 
+                              top: pos.top
+                            }}
+                            className={`sherlock-map-pin ${isVisited ? 'visited' : ''} ${n.type === 'decoy' ? 'decoy' : ''}`}
+                            onClick={() => {
+                              setSherlockSelectedNodeId(n.id);
+                              setSherlockActiveTab('casebook');
+                              if (!isVisited) handleVisitNode(n.id);
+                            }}
+                            title={`Địa điểm [${bareNumber}] - ${n.title}`}
+                          >
+                            <div className="sherlock-map-pin-badge">
+                              [{bareNumber}]
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 3: DANH BẠ LONDON (LONDON DIRECTORY 1893) */}
+                {sherlockActiveTab === 'directory' && (
+                  <div className="sherlock-directory-wrapper">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-3 border-b border-amber-500/20 pb-3">
+                      <div>
+                        <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
+                          <PhoneCall size={22} className="text-amber-400" /> NIÊN GIÁM DANH BẠ LONDON (POST OFFICE DIRECTORY)
+                        </h3>
+                        <p className="text-xs text-slate-400">Tra cứu tên nhân vật, cơ quan hoặc tiệm buôn để lấy mã tọa độ địa điểm.</p>
+                      </div>
+
+                      <div className="sherlock-input-group w-full md:w-72">
+                        <input 
+                          type="text"
+                          placeholder="Tìm nhân vật / địa chỉ..."
+                          className="sherlock-search-input"
+                          onChange={(e) => setSherlockSearchQuery(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    {/* BỘ LỌC CHỮ CÁI ALPHABET (A-Z QUICK INDEX) */}
+                    <div className="sherlock-alphabet-bar">
+                      {['ALL', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y', 'Z'].map((letter) => (
+                        <button
+                          key={letter}
+                          onClick={() => setSherlockDirLetterFilter(letter)}
+                          className={`sherlock-alphabet-btn ${sherlockDirLetterFilter === letter ? 'active' : ''}`}
+                        >
+                          {letter}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="sherlock-directory-grid">
+                      {SHERLOCK_CASE_1.directory
+                        ?.slice()
+                        .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
+                        .filter(item => {
+                          const matchQuery = !sherlockSearchQuery || 
+                            item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || 
+                            item.desc.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) ||
+                            item.address.toLowerCase().includes(sherlockSearchQuery.toLowerCase());
+                          const nameWords = item.name.toUpperCase().split(/[\s,.-]+/);
+                          const matchLetter = sherlockDirLetterFilter === 'ALL' || 
+                            nameWords.some(w => w.startsWith(sherlockDirLetterFilter));
+                          return matchQuery && matchLetter;
+                        })
+                        .map((item, idx) => (
+                          <div 
+                            key={idx}
+                            className="sherlock-directory-card cursor-default"
+                          >
+                            <div>
+                              <div className="flex items-center justify-between mb-1.5">
+                                <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
+                                <span className="sherlock-directory-code">
+                                  Mã [{item.code}]
+                                </span>
+                              </div>
+                              <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
+                              <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 4: BÁO HÀNG NGÀY (THE DAILY TELEGRAPH NEWSPAPER) */}
+                {sherlockActiveTab === 'newspaper' && (
+                  <div className="sherlock-newspaper-paper">
+                    <div className="sherlock-newspaper-header">
+                      <span className="text-xs font-sans tracking-widest text-amber-800 uppercase font-black">{SHERLOCK_CASE_1.newspaper?.issue_date}</span>
+                      <h2 className="sherlock-newspaper-title">{SHERLOCK_CASE_1.newspaper?.paper_name}</h2>
+                      <div className="sherlock-newspaper-meta">
+                        <span>Số 12,458</span> • <span>LONDON, THỨ BẢY, NGÀY 2 THÁNG 12 NĂM 1893</span> • <span>GIÁ BÁN: 1 XU</span>
+                      </div>
+                    </div>
+
+                    <div className="sherlock-newspaper-grid">
+                      {SHERLOCK_CASE_1.newspaper?.articles?.map((art, i) => {
+                        const bareCode = art.related_code ? art.related_code.replace(/(NW|SW|EC|WC|SE|E)$/i, '') : '';
+                        return (
+                          <div 
+                            key={i}
+                            className="sherlock-newspaper-art cursor-default"
+                          >
+                            <div className="sherlock-newspaper-art-header">
+                              <span className="text-[0.65rem] font-bold text-amber-800 uppercase">{art.date}</span>
+                              {bareCode && (
+                                <span className="text-[0.65rem] font-black text-amber-900 bg-amber-200/80 px-1.5 py-0.5 rounded">
+                                  📌 Tọa độ [{bareCode}]
+                                </span>
+                              )}
+                            </div>
+                            <h3 className="sherlock-newspaper-art-title">{art.title}</h3>
+                            <p className="sherlock-newspaper-art-body">{art.summary}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT Ở GÓC PHẢI BÊN DƯỚI RÕ RÀNG */}
+                <div className="flex justify-end pt-4 border-t border-amber-500/20 mt-4">
+                  <button 
+                    onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
+                    className="btn btn-md btn-gold-draw font-black tracking-wider shadow-lg flex items-center gap-2 px-6 py-2.5"
+                  >
+                    <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
+                  </button>
+                </div>
+
+              </div>
+            )}
+
+            {/* 3. GIAI ĐOẠN QUIZ / NỘP LỜI GIẢI (SOLVE THE CASE) */}
+            {roomState?.phase === 'SHERLOCK_QUIZ' && (
+              <div className="sherlock-quiz-card space-y-6">
+                
+                {/* HEADER BANNER */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-500/30 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300">
+                      <Trophy size={22} />
+                    </div>
+                    <div>
+                      <h2 className="text-xl md:text-2xl font-black text-amber-100 uppercase tracking-wide">BỘ CÂU HỎI PHÁ ÁN (SOLVE THE CASE)</h2>
+                      <p className="text-xs text-slate-300 mt-0.5">Hãy đưa ra câu trả lời chính xác nhất dựa trên các manh mối đã thu thập được.</p>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => handleSherlockNextPhase('SHERLOCK_PLAYING')}
+                    className="btn btn-sm btn-outline text-amber-300 border-amber-500/40 hover:bg-amber-500/20 font-bold self-start sm:self-center flex items-center gap-1.5 px-4 py-2"
+                  >
+                    <ArrowLeft size={16} /> Quay lại điều tra
+                  </button>
+                </div>
+
+                {/* THỐNG KÊ TIẾN ĐỘ TRẢ LỜI */}
+                <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3 flex items-center justify-between text-xs">
+                  <span className="font-extrabold text-amber-300 flex items-center gap-2">
+                    <HelpCircle size={16} /> TIẾN ĐỘ TRẢ LỜI: {Object.keys(sherlockAnswers).length} / 10 CÂU HỎI
+                  </span>
+                  <div className="w-36 bg-slate-900 rounded-full h-2 overflow-hidden border border-amber-500/30">
+                    <div 
+                      className="bg-amber-500 h-full transition-all duration-300"
+                      style={{ width: `${(Object.keys(sherlockAnswers).length / 10) * 100}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* PHẦN 1: CÂU HỎI VỤ ÁN CHÍNH */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 bg-amber-500/10 border-l-4 border-amber-500 px-3 py-2 rounded-r-lg">
+                    <h3 className="font-extrabold text-amber-300 text-sm uppercase tracking-wider">PHẦN 1: CÂU HỎI VỤ ÁN CHÍNH (MAIN CASE - 5 CÂU)</h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {SHERLOCK_CASE_1.questions.part_1_main_case.map((q, idx) => {
+                      const isSelectedAny = sherlockAnswers[`q_${q.id}`] !== undefined;
+                      return (
+                        <div 
+                          key={q.id} 
+                          className={`sherlock-quiz-question-card ${isSelectedAny ? 'answered' : ''}`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <span className="sherlock-question-number">
+                              {idx + 1}
+                            </span>
+                            <div className="flex-1">
+                              <h4 className="font-bold text-sm text-amber-100 leading-snug">{q.question}</h4>
+                            </div>
+                          </div>
+
+                          {/* GRID 4 LỰA CHỌN CHUẨN CARD HÀNG NGANG / 2 CỘT */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2">
+                            {q.options.map((opt, oIdx) => {
+                              const isChecked = sherlockAnswers[`q_${q.id}`] === oIdx;
+                              const optionLetters = ['A', 'B', 'C', 'D'];
+                              return (
+                                <label 
+                                  key={oIdx} 
+                                  className={`sherlock-quiz-option-card ${isChecked ? 'selected' : ''}`}
+                                >
+                                  <input 
+                                    type="radio" 
+                                    name={`q_${q.id}`} 
+                                    checked={isChecked}
+                                    onChange={() => setSherlockAnswers(prev => ({ ...prev, [`q_${q.id}`]: oIdx }))}
+                                    className="sr-only"
+                                  />
+                                  <span className={`sherlock-option-badge ${isChecked ? 'selected' : ''}`}>
+                                    {optionLetters[oIdx]}
+                                  </span>
+                                  <span className="sherlock-option-text">{opt}</span>
+                                </label>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* PHẦN 2: CÂU HỎI BÍ ẨN PHỤ */}
+                <div className="space-y-4 pt-4">
+                  <div className="flex items-center gap-2 bg-amber-500/10 border-l-4 border-amber-500 px-3 py-2 rounded-r-lg">
+                    <h3 className="font-extrabold text-amber-400 text-sm uppercase tracking-wider">PHẦN 2: CÂU HỎI BÍ ẨN PHỤ (SIDE MYSTERIES - 5 CÂU)</h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {SHERLOCK_CASE_1.questions.part_2_side_mysteries.map((q, idx) => {
+                      const isSelectedAny = sherlockAnswers[`q_${q.id}`] !== undefined;
+                      return (
+                        <div 
+                          key={q.id} 
+                          className={`sherlock-quiz-question-card ${isSelectedAny ? 'answered' : ''}`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <span className="sherlock-question-number">
+                              {idx + 6}
+                            </span>
+                            <div className="flex-1">
+                              <h4 className="font-bold text-sm text-amber-100 leading-snug">{q.question}</h4>
+                            </div>
+                          </div>
+
+                          {/* GRID 4 LỰA CHỌN CHUẨN CARD HÀNG NGANG / 2 CỘT */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2">
+                            {q.options.map((opt, oIdx) => {
+                              const isChecked = sherlockAnswers[`q_${q.id}`] === oIdx;
+                              const optionLetters = ['A', 'B', 'C', 'D'];
+                              return (
+                                <label 
+                                  key={oIdx} 
+                                  className={`sherlock-quiz-option-card ${isChecked ? 'selected' : ''}`}
+                                >
+                                  <input 
+                                    type="radio" 
+                                    name={`q_${q.id}`} 
+                                    checked={isChecked}
+                                    onChange={() => setSherlockAnswers(prev => ({ ...prev, [`q_${q.id}`]: oIdx }))}
+                                    className="sr-only"
+                                  />
+                                  <span className={`sherlock-option-badge ${isChecked ? 'selected' : ''}`}>
+                                    {optionLetters[oIdx]}
+                                  </span>
+                                  <span className="sherlock-option-text">{opt}</span>
+                                </label>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* FOOTER NỘP BÀI */}
+                <div className="pt-6 border-t border-amber-500/20 text-center">
+                  <button 
+                    onClick={handleSubmitSherlockSolution}
+                    className="btn btn-lg btn-gold-draw w-full font-black tracking-widest text-base shadow-2xl py-4 flex items-center justify-center gap-2"
+                  >
+                    <Trophy size={20} /> NỘP BÀI & XEM ĐÁP ÁN CHÍNH XÁC <ArrowRight size={20} />
+                  </button>
+                </div>
+
+              </div>
+            )}
+
+            {/* 4. GIAI ĐOẠN GAME OVER / TỔNG KẾT & VẠCH TRẦN SỰ THẬT */}
+            {roomState?.phase === 'SHERLOCK_GAME_OVER' && (
+              <div className="sherlock-result-card bg-slate-900/90 border border-amber-500/40 rounded-2xl p-6 md:p-8 backdrop-blur shadow-2xl space-y-6">
+                
+                {/* SCORE BANNER */}
+                <div className="text-center bg-gradient-to-b from-amber-950/60 to-slate-950 border border-amber-500/40 rounded-2xl p-6 space-y-2">
+                  <span className="text-xs font-bold text-amber-400 tracking-widest uppercase">KẾT QUẢ ĐIỀU TRA TỔNG KẾT</span>
+                  <h2 className="text-5xl font-black text-amber-300">{(roomState?.sherlockScore ?? 0)} / 100 ĐIỂM</h2>
+                  <p className="text-sm font-bold text-amber-100">
+                    {(roomState?.sherlockScore ?? 0) >= 100 ? '🏆 Tuyệt vời! Bạn đã vượt qua cả Sherlock Holmes!' : (roomState?.sherlockScore ?? 0) >= 70 ? '🥇 Thám tử lừng danh phố Baker!' : (roomState?.sherlockScore ?? 0) >= 35 ? '🥈 Phá án thành công!' : '🥉 Cần rèn luyện thêm kỹ năng suy luận!'}
+                  </p>
+                  <p className="text-xs text-slate-400">
+                    Nhóm đã đi <strong>{roomState.visitedNodes?.length || 0} địa điểm</strong> (Sherlock Holmes đi 6 địa điểm).
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3 pt-4 border-t border-amber-500/20">
+                    <button 
+                      onClick={handleLeaveRoom}
+                      className="btn btn-lg btn-secondary font-black flex items-center gap-2"
+                    >
+                      <LogOut size={18} /> TRỞ VỀ SẢNH CHỜ CHÍNH
+                    </button>
+                    {isHost && (
+                      <button 
+                        onClick={() => socket.emit('reset-game', { roomCode: roomState.code })}
+                        className="btn btn-lg btn-gold-draw font-black flex items-center gap-2"
+                      >
+                        <RefreshCw size={18} /> CHƠI LẠI VÁN MỚI (VỀ SẢNH PHÒNG)
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* SỰ THẬT TOÀN BỘ VỤ ÁN */}
+                <div className="bg-slate-950/80 border border-amber-500/30 rounded-xl p-5 space-y-3">
+                  <h3 className="font-black text-amber-300 text-base flex items-center gap-2">
+                    <Sparkles size={18} /> VẠCH TRẦN TOÀN BỘ SỰ THẬT VỤ ÁN (FULL TRUTH):
+                  </h3>
+                  <p className="text-sm leading-relaxed text-slate-200 font-serif whitespace-pre-line">
+                    {SHERLOCK_CASE_1.solution_summary.full_truth}
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 text-xs">
+                    <div className="p-3 rounded-lg bg-rose-950/30 border border-rose-500/30 text-rose-300">
+                      <strong>Kẻ đứng sau (Mastermind):</strong> {SHERLOCK_CASE_1.solution_summary.mastermind}
+                    </div>
+                    <div className="p-3 rounded-lg bg-amber-950/30 border border-amber-500/30 text-amber-300">
+                      <strong>Động cơ (Motive):</strong> {SHERLOCK_CASE_1.solution_summary.motive}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            )}
+
+          </main>
+        ) : (
+          <main className={`game-container-compact mobile-tab-view-${activeMobileTab}`}>
+          
+          {/* BANNER THÔNG BÁO BỐC THẺ */}
+          {roomState?.phase === 'INVESTIGATION' && isForensic && roomState?.needsTileDraw && (
+            <div className="forensic-draw-alert-bar-compact">
+              <div className="flex items-center gap-2">
+                <Sparkles size={20} className="text-amber-400 animate-spin-slow" />
+                <span className="font-extrabold text-amber-300 text-xs uppercase tracking-wider">
+                  VÒNG {roomState.round}: ĐẾN LƯỢT PHÁP Y BỐC THẺ BỐI CẢNH MỚI!
+                </span>
+              </div>
+              <button 
+                onClick={() => setShowDrawTileModal(true)}
+                className="btn-tarot-draw-glow"
+              >
+                <Layers size={14} /> BỐC THẺ MỚI (VÒNG {roomState.round})
+              </button>
+            </div>
+          )}
+
+          {/* BANNER CỬA SỔ PHÁ ÁN 10s */}
+          {roomState?.phase === 'INVESTIGATION' && roomState?.timerType === 'ACCUSATION_WINDOW' && (
+            <div className="accusation-huge-alert-bar-compact">
+              <div className="flex items-center gap-2">
+                <AlertTriangle size={24} className="text-rose-400 animate-bounce" />
+                <div>
+                  <h3 className="font-black text-rose-300 text-sm">CỬA SỔ PHÁ ÁN ĐANG MỞ!</h3>
+                  <p className="text-xs text-white">Còn <strong className="big-sec-count-sm">{secCount}s</strong> để bấm Phá Án!</p>
+                </div>
+              </div>
+              {!isForensic && me?.hasBadge && (
+                <button 
+                  onClick={() => setShowAccuseModal(true)}
+                  className="btn-accuse-badge-glow"
+                >
+                  <Award size={16} /> PHÁ ÁN NGAY!
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* BANNER KẾT THÚC GAME */}
+          {roomState?.phase === 'GAME_OVER' && (
+            <div className={`game-over-banner ${roomState.winner === 'INVESTIGATORS' ? 'win-investigators' : 'win-murderer'}`}>
+              <h2>
+                {roomState.winner === 'INVESTIGATORS' ? 'PHE ĐIỀU TRA VIÊN PHÁ ÁN THÀNH CÔNG!' : 'KẺ SÁT NHÂN ĐÃ THOÁT TỘI GÂY ÁN HOÀN HẢO!'}
+              </h2>
+              <p className="text-xs mt-1 font-mono">
+                Đáp án: Công cụ <strong>[{roomState.secretSolution?.means?.name}]</strong> & Bằng chứng <strong>[{roomState.secretSolution?.clue?.name}]</strong>
+              </p>
+            </div>
+          )}
+
+          {/* BỐ CỤC VÁN CHƠI GỌN GÀNG TỰ NHIÊN */}
+          <div className="natural-game-layout">
+            
+            {/* CỘT TRÁI: VAI TRÒ & BỘ NÚT TƯƠNG TÁC */}
+            <aside className="natural-panel-left mobile-tab-section-profile sidebar-profile-panel">
+              
+              {/* VAI TRÒ CARD */}
+              <div className="compact-card role-info-card">
+                <span className="card-mini-heading">VAI TRÒ CỦA BẠN</span>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="flex items-center gap-2">
+                    <Shield size={20} className="text-amber-400" />
+                    <span className="role-name-text">{me?.role ? me.role.name : 'Chưa phân vai'}</span>
+                  </div>
+                  {me?.role && (
+                    <button onClick={() => setShowRoleSecret(!showRoleSecret)} className="btn btn-xs btn-outline role-toggle-btn">
+                      {showRoleSecret ? <EyeOff size={12} /> : <Eye size={12} />}
+                    </button>
+                  )}
+                </div>
+
+                {showRoleSecret && me?.role && (
+                  <div className="role-secret-box mt-2 text-xs">
+                    <p>{me.role.description}</p>
+                    {(isMurderer || isForensic) && roomState?.secretSolution?.means && (
+                      <div className="mt-2 p-2 rounded bg-rose-500/10 border border-rose-500/30 text-rose-300 font-bold">
+                        ĐÁP ÁN VỤ ÁN:
+                        <div className="text-xs text-white font-normal mt-1">
+                          🔴 Công cụ giết người: <strong>{roomState.secretSolution.means.name}</strong><br />
+                          🔵 Bằng chứng chính: <strong>{roomState.secretSolution.clue.name}</strong>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* THỜI GIAN VÁN ĐẤU & BỘ NÚT TƯƠNG TÁC COMPACT */}
+              <div className="compact-card timer-action-card">
+                <span className="card-mini-heading">VÒNG {roomState?.round || 1}/3 • THỜI GIAN</span>
+                
+                <div className="mt-2">
+                  {roomState?.timerType === 'DISCUSSION' ? (
+                    <div className="discussion-timer-pill sidebar-timer-pill">
+                      <Clock size={16} className="animate-spin-slow text-emerald-400" />
+                      <span>BÀN LUẬN:</span>
+                      <strong className="font-mono text-base ml-auto">{formatTime(secCount)}</strong>
+                    </div>
+                  ) : (
+                    <div className="accusation-timer-pill sidebar-timer-pill">
+                      <Clock size={16} className="animate-pulse text-rose-400" />
+                      <span>PHÁ ÁN:</span>
+                      <strong className="font-mono text-base text-rose-400 ml-auto">{secCount}s</strong>
+                    </div>
+                  )}
+                </div>
+
+                {/* NÚT TƯƠNG TÁC GỌN GÀNG COMPACT */}
+                <div className="flex flex-col gap-2 mt-3">
+                  
+                  {/* NÚT VOTE CHUYỂN VÒNG */}
+                  {roomState?.phase === 'INVESTIGATION' && (
+                    <button 
+                      onClick={handleVoteNextRound}
+                      className={`natural-vote-btn sidebar-action-btn ${hasVotedNextRound ? 'voted' : ''}`}
+                    >
+                      <CheckSquare size={15} />
+                      <span className="truncate">Vote Chuyển Vòng</span>
+                      <strong className="ml-auto font-mono text-xs">({votesCount}/{totalPlayersCount})</strong>
+                    </button>
+                  )}
+
+                  {/* NÚT BỐC THẺ PHÁP Y */}
+                  {roomState?.phase === 'INVESTIGATION' && isForensic && roomState?.round <= 3 && (
+                    <button 
+                      onClick={() => setShowDrawTileModal(true)}
+                      className="btn-tarot-draw-glow sidebar-action-btn draw-btn w-full"
+                    >
+                      <Layers size={15} /> Bốc Thẻ Mới (Vòng {roomState.round})
+                    </button>
+                  )}
+
+                  {/* NÚT PHÁ ÁN */}
+                  {roomState?.phase === 'INVESTIGATION' && !isForensic && (
+                    <button 
+                      onClick={() => me?.hasBadge ? setShowAccuseModal(true) : setErrorMsg('Đã hết Huy hiệu!')}
+                      className={`btn-accuse-badge-glow sidebar-action-btn accuse-btn w-full ${!me?.hasBadge ? 'disabled' : ''}`}
+                      disabled={!me?.hasBadge}
+                    >
+                      <Award size={16} /> Phá Án ({me?.hasBadge ? 'Còn 1 Huy hiệu' : 'Hết Huy hiệu'})
+                    </button>
+                  )}
+                </div>
+              </div>
+
+            </aside>
+
+            {/* CỘT CHÍNH: BANNER ĐÁP ÁN BÍ MẬT DÀNH CHO PHÁP Y & BẢNG BỐI CẢNH */}
+            <main className="natural-panel-center">
+              
+              {/* BANNER THÔNG BÁO ĐÁP ÁN BÍ MẬT DÀNH RIÊNG CHO PHÁP Y (SIÊU GỌN 1 DÒNG) */}
+              {isForensic && roomState?.secretSolution?.means && (
+                <div className="forensic-solution-banner-compact mb-3 mobile-tab-section-scene">
+                  <div className="flex items-center gap-2 text-xs flex-wrap">
+                    <span className="font-extrabold text-amber-400 flex items-center gap-1">
+                      <Sparkles size={14} /> ĐÁP ÁN VỤ ÁN:
+                    </span>
+                    <span className="solution-tag murderer flex items-center gap-1">
+                      <Skull size={13} className="text-amber-400" /> Kẻ sát nhân: <strong>{murdererPlayerObj?.name || 'Kẻ Sát Nhân'}</strong>
+                    </span>
+                    <span className="solution-tag means flex items-center gap-1">
+                      <Flame size={13} className="text-rose-400" /> Công cụ giết người: <strong>{roomState.secretSolution.means.name}</strong>
+                    </span>
+                    <span className="solution-tag clue flex items-center gap-1">
+                      <FileText size={13} className="text-blue-400" /> Bằng chứng chính: <strong>{roomState.secretSolution.clue.name}</strong>
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* 1. BẢNG THẺ BỐI CẢNH HIỆN TRƯỜNG */}
+              <section className="compact-card scene-board-compact mobile-tab-section-scene">
+                <div className="section-header-bar">
+                  <div className="section-title-group">
+                    <div className="section-icon-badge amber">
+                      <Target size={16} />
+                    </div>
+                    <h2 className="section-title-text">
+                      THẺ BỐI CẢNH HIỆN TRƯỜNG
+                      <span className="section-badge-round">VÒNG {roomState.round}/3</span>
+                    </h2>
+                  </div>
+                </div>
+
+                {/* TỰ ĐỘNG THU GỌN HIỆN THANH CHIP NGANG KHI VÀO VÒNG ĐIỀU TRA */}
+                {isSceneBoardCollapsed ? (
+                  <div className="scene-summary-chips-bar">
+                    {allSceneTiles.map(tile => {
+                      const bulletIdx = roomState.bullets?.[tile.id];
+                      const bulletOption = bulletIdx !== undefined ? tile.options[bulletIdx] : 'Chưa chọn';
+                      const bulletLabel = getOptLabel(bulletOption);
+                      const tileColorClass = getTileColorClass(tile.id);
+                      return (
+                        <div key={tile.id} className={`scene-chip-item ${tileColorClass} flex items-center gap-1.5`}>
+                          <span className="chip-tile-name">{tile.name}:</span>
+                          <span className="flex items-center gap-1 font-bold text-white">
+                            <Target size={12} /> {bulletLabel}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <>
+                    {/* PHÁP Y GẮN ĐẠN LẦN ĐẦU (PHÂN MÀU THẺ TÍM, XANH LÁ, NÂU NHẠT CHUẨN LUẬT) */}
+                    {roomState.phase === 'FORENSIC_SETUP' && isForensic && (
+                      <div className="forensic-setup-compact">
+                        <div className="scene-grid-compact">
+                          {allSceneTiles.map((tile) => {
+                            const tileColorClass = getTileColorClass(tile.id);
+                            return (
+                              <div key={tile.id} className={`scene-card-sm picking ${tileColorClass}`}>
+                                <div className="scene-card-title">{tile.name}</div>
+                                <div className="scene-options-list">
+                                  {tile.options.map((opt, idx) => {
+                                    const label = getOptLabel(opt);
+                                    const isSelected = forensicBullets[tile.id] === idx;
+                                    return (
+                                      <button 
+                                        key={idx}
+                                        onClick={() => handleSelectBullet(tile.id, idx)}
+                                        className={`scene-opt-btn ${isSelected ? 'selected' : ''}`}
+                                      >
+                                        {isSelected && <Target size={13} className="inline mr-1 text-rose-400" />}
+                                        {label}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <button 
+                          onClick={handleConfirmForensicBullets}
+                          className="btn btn-md btn-primary mt-3 w-full font-bold shadow-lg"
+                        >
+                          🚀 XÁC NHẬN ĐẶT ĐẠN CHỈ DẪN & BẮT ĐẦU ĐIỀU TRA
+                        </button>
+                      </div>
+                    )}
+
+                    {/* HIỂN THỊ THẺ BỐI CẢNH CÔNG KHAI KHI MỞ RỘNG */}
+                    {(roomState.phase === 'INVESTIGATION' || roomState.phase === 'GAME_OVER') && (
+                      <div className="scene-grid-compact">
+                        {allSceneTiles.map((tile) => {
+                          const bulletIdx = roomState.bullets[tile.id];
+                          const tileColorClass = getTileColorClass(tile.id);
+                          return (
+                            <div key={tile.id} className={`scene-card-sm public ${tileColorClass}`}>
+                              <div className="scene-card-title">{tile.name}</div>
+                              <div className="scene-options-list">
+                                {tile.options.map((opt, idx) => {
+                                  const label = getOptLabel(opt);
+                                  const isSelected = bulletIdx === idx;
+                                  return (
+                                    <div key={idx} className={`scene-opt-item ${isSelected ? 'has-bullet' : ''}`}>
+                                      {isSelected ? (
+                                        <span className="flex items-center gap-1 text-rose-400 font-bold">
+                                          <Target size={13} /> {label}
+                                        </span>
+                                      ) : (
+                                        <span className="text-slate-400">{label}</span>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </>
+                )}
+              </section>
+
+              {/* 2. BÀN CHƠI HIỂN THỊ BÀI NGƯỜI CHƠI (ẨN HOÀN TOÀN THẺ CỦA PHÁP Y) */}
+              <section className="compact-card players-board-compact mobile-tab-section-players">
+                <div className="section-header-bar">
+                  <div className="section-title-group">
+                    <div className="section-icon-badge blue">
+                      <Users size={16} />
+                    </div>
+                    <h2 className="section-title-text">
+                      BÀI NGƯỜI CHƠI NGHI PHẠM
+                      <span className="section-count-pill">{roomState?.players ? roomState.players.length - 1 : 0}</span>
+                    </h2>
+                  </div>
+                  <div className="section-tip-badge">
+                    <Sparkles size={12} className="text-amber-400" />
+                    <span>Nhấp vào thẻ của ai để nghi vấn người đó</span>
+                  </div>
+                </div>
+
+                {/* GIAO DIỆN CHỌN HUNG KHÍ & MANH MỐI BÍ MẬT DÀNH CHO HUNG THỦ */}
+                {roomState?.phase === 'CRIME_CHOICE' && (
+                  isMurderer ? (
+                    <div className="murderer-choice-banner-card mb-4">
+                      <div className="murderer-choice-head">
+                        <div className="badge-skull-glow"><Skull size={24} /></div>
+                        <div>
+                          <h3 className="murderer-choice-title">THIẾT LẬP VỤ ÁN BÍ MẬT (DÀNH CHO KẺ SÁT NHÂN)</h3>
+                          <p className="murderer-choice-sub">Hãy nhấp chọn 1 Công cụ giết người và 1 Bằng chứng chính của bạn làm đáp án vụ án:</p>
+                        </div>
+                      </div>
+
+                      <div className="murderer-picker-sections mt-4">
+                        <div className="picker-column means-picker-column">
+                          <label className="picker-col-label text-rose-400 flex items-center gap-1">
+                            <Flame size={14} /> 1. CHỌN 1 CÔNG CỤ GIẾT NGƯỜI (MEANS):
+                          </label>
+                          <div className="cards-picker-grid">
+                            {me?.means?.map(card => {
+                              const isSelected = selectedMeans?.id === card.id;
+                              return (
+                                <button
+                                  key={card.id}
+                                  onClick={() => setSelectedMeans(card)}
+                                  className={`tarot-choice-card means ${isSelected ? 'selected' : ''}`}
+                                >
+                                  <span className="card-tarot-name">{card.name}</span>
+                                  {isSelected && <span className="card-check-badge flex items-center gap-0.5 justify-center"><Check size={12} /> Đã chọn</span>}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="picker-column clue-picker-column">
+                          <label className="picker-col-label text-blue-400 flex items-center gap-1">
+                            <FileText size={14} /> 2. CHỌN 1 BẰNG CHỨNG CHÍNH (CLUE):
+                          </label>
+                          <div className="cards-picker-grid">
+                            {me?.clues?.map(card => {
+                              const isSelected = selectedClue?.id === card.id;
+                              return (
+                                <button
+                                  key={card.id}
+                                  onClick={() => setSelectedClue(card)}
+                                  className={`tarot-choice-card clue ${isSelected ? 'selected' : ''}`}
+                                >
+                                  <span className="card-tarot-name">{card.name}</span>
+                                  {isSelected && <span className="card-check-badge flex items-center gap-0.5 justify-center"><Check size={12} /> Đã chọn</span>}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      <button 
+                        onClick={handleConfirmMurderChoice} 
+                        className="btn-confirm-murder-solution w-full mt-4"
+                      >
+                        CHỐT ĐÁP ÁN VỤ ÁN BÍ MẬT
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="text-center py-6 text-sm text-amber-400 font-extrabold animate-pulse bg-amber-500/10 border border-amber-500/30 rounded-xl mb-4">
+                      ⏳ Đang chờ Kẻ Sát Nhân bí mật chọn đáp án Công cụ & Bằng chứng chính...
+                    </div>
+                  )
+                )}
+
+                {/* DANH SÁCH BÀI NGƯỜI CHƠI (ẨN HOÀN TOÀN PHÁP Y KHỎI BÀN CHƠI) */}
+                <div className="players-grid-compact-stylish">
+                  {roomState?.players
+                    ?.filter(player => player.id !== roomState.forensicScientistId)
+                    .map(player => (
+                      <div key={player.id} className="player-card-stylish">
+                        <div className="player-card-head">
+                          <div className="player-avatar-badge">
+                            {player.isBot ? <Zap size={14} className="text-amber-400" /> : <Shield size={14} className="text-blue-400" />}
+                          </div>
+                          <span className="player-name-text truncate">
+                            {player.name} {player.id === socket.id && <span className="me-tag">(Bạn)</span>}
+                          </span>
+                          {player.hasBadge && (
+                            <div className="badge-has-badge" title="Còn Huy hiệu Phá án">
+                              <Award size={13} />
+                            </div>
+                          )}
+                        </div>
+
+                        {player.means && (
+                          <div className="player-mini-decks">
+                            <div className="chip-list-group">
+                              <span className="deck-lbl means-lbl">
+                                <Flame size={12} /> Công cụ giết người
+                              </span>
+                              <div className="mini-chips-grid">
+                                {player.means.map(c => (
+                                  <button 
+                                    key={c.id} 
+                                    onClick={() => handleQuickAccuseCard(player.id, c, 'means')}
+                                    className="mini-chip means-chip"
+                                    title="Nhấp để Phá án nhanh bằng thẻ này"
+                                  >
+                                    {c.name}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="chip-list-group">
+                              <span className="deck-lbl clues-lbl">
+                                <FileText size={12} /> Bằng chứng chính
+                              </span>
+                              <div className="mini-chips-grid">
+                                {player.clues?.map(c => (
+                                  <button 
+                                    key={c.id} 
+                                    onClick={() => handleQuickAccuseCard(player.id, c, 'clue')}
+                                    className="mini-chip clue-chip"
+                                    title="Nhấp để Phá án nhanh bằng thẻ này"
+                                  >
+                                    {c.name}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                </div>
+
+              </section>
+
+            </main>
+
+          </div>
+
+
+
+          {/* MOBILE BOTTOM NAVIGATION BAR */}
+          <nav className="mobile-bottom-nav">
+            <button 
+              onClick={() => setActiveMobileTab('scene')}
+              className={`mobile-nav-btn ${activeMobileTab === 'scene' ? 'active' : ''}`}
+            >
+              <Target size={18} />
+              <span>🎯 Gợi Ý</span>
+            </button>
+
+            <button 
+              onClick={() => setActiveMobileTab('players')}
+              className={`mobile-nav-btn ${activeMobileTab === 'players' ? 'active' : ''}`}
+            >
+              <Users size={18} />
+              <span>🎴 Bàn Bài</span>
+            </button>
+
+            <button 
+              onClick={() => setActiveMobileTab('profile')}
+              className={`mobile-nav-btn ${activeMobileTab === 'profile' ? 'active' : ''}`}
+            >
+              <Shield size={18} />
+              <span>🕵️ Hồ Sơ</span>
+            </button>
+
+            <button 
+              onClick={() => {
+                setActiveMobileTab('chat');
+                setIsChatOpen(true);
+              }}
+              className={`mobile-nav-btn ${activeMobileTab === 'chat' ? 'active' : ''}`}
+            >
+              <MessageSquare size={18} />
+              <span>💬 Chat</span>
+            </button>
+          </nav>
+
+        </main>
+        )
+      )}
+
+      {/* 4. MODAL THÔNG BÁO TIẾT LỘ VAI TRÒ */}
+      {showRoleRevealModal && me?.role && (
+        <div className="modal-overlay">
+          <div className={`modal-card role-reveal-card ${me.role.id}`}>
+            <div className="role-reveal-hero">
+              <div className="role-reveal-icon-badge">
+                <Shield size={40} className="text-amber-400" />
+              </div>
+              <span className="role-reveal-subtitle">BẠN ĐƯỢC PHÂN VAI TRÒ</span>
+              <h2 className="role-reveal-title">{me.role.name}</h2>
+            </div>
+
+            <div className="role-reveal-desc">
+              <p>{me.role.description}</p>
+              {isMurderer && (
+                <div className="murderer-alert-box mt-2">
+                  <span>Hãy bí mật chọn 1 Công cụ giết người và 1 Bằng chứng chính làm đáp án vụ án!</span>
+                </div>
+              )}
+            </div>
+
+            <div className="modal-footer justify-center pt-2">
+              <button 
+                onClick={() => setShowRoleRevealModal(false)}
+                className="btn btn-lg btn-primary font-black px-8"
+              >
+                <Check size={18} /> ĐÃ HIỂU VAI TRÒ
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL BỐC THẺ BỐI CẢNH MỚI */}
+      {showDrawTileModal && nextDrawnTile && (
+        <div className="modal-overlay">
+          <div className="modal-card draw-tile-modal-premium">
+            <div className="modal-header">
+              <h3>
+                <Sparkles size={20} className="text-amber-400" /> 
+                <span>PHÁP Y: CHỌN THẺ CŨ ĐỂ ĐÈ THẺ MỚI (VÒNG {roomState.round})</span>
+              </h3>
+              <button onClick={() => setShowDrawTileModal(false)}><X size={18} /></button>
+            </div>
+
+            <div className="modal-body">
+              <div className="new-tarot-card-frame">
+                <div className="tarot-card-badge">
+                  <Layers size={14} /> THẺ RÚT MỚI
+                </div>
+                <h4 className="tarot-card-title">{nextDrawnTile.name}</h4>
+                <div className="tarot-options-list mt-2">
+                  {nextDrawnTile.options.map((opt, idx) => {
+                    const isSelected = newTileBulletIdx === idx;
+                    const label = getOptLabel(opt);
+                    return (
+                      <button 
+                        key={idx}
+                        onClick={() => setNewTileBulletIdx(idx)}
+                        className={`option-tarot-btn ${isSelected ? 'selected' : ''}`}
+                      >
+                        {isSelected && <Target size={13} className="inline mr-1 text-rose-400" />}
+                        {label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="old-tiles-selection-section">
+                <label className="section-label">NHẤP CHỌN 1 THẺ CŨ CẦN ĐÈ LÊN:</label>
+                <div className="old-tiles-selectable-grid">
+                  {roomState?.activeSceneTiles?.map(tile => {
+                    const isSelected = replaceTargetTileId === tile.id;
+                    const activeBullet = roomState.bullets[tile.id];
+                    const bulletOption = activeBullet !== undefined ? tile.options[activeBullet] : 'Chưa có';
+                    const bulletLabel = getOptLabel(bulletOption);
+
+                    return (
+                      <div 
+                        key={tile.id}
+                        onClick={() => setReplaceTargetTileId(tile.id)}
+                        className={`selectable-old-tile-card ${isSelected ? 'selected' : ''}`}
+                      >
+                        <span className="old-tile-name">{tile.name}</span>
+                        <span className="old-tile-bullet flex items-center gap-1 text-rose-400">
+                          <Target size={12} /> {bulletLabel}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button onClick={() => setShowDrawTileModal(false)} className="btn btn-secondary">Đóng</button>
+              <button onClick={handleConfirmReplaceTile} className="btn btn-gold-draw font-extrabold">
+                🚀 XÁC NHẬN ĐÈ THẺ
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL PHÁ ÁN */}
+      {showAccuseModal && (
+        <div className="modal-overlay">
+          <div className="modal-card accuse-modal-premium">
+            <div className="modal-header">
+              <h3><Award size={18} /> ĐƯA RA LỜI PHÁ ÁN CHÍNH THỨC</h3>
+              {roomState?.timerType === 'ACCUSATION_WINDOW' && (
+                <div className="font-mono text-rose-400 font-bold text-xs">⏱️ Còn {secCount}s</div>
+              )}
+              <button onClick={() => setShowAccuseModal(false)}><X size={18} /></button>
+            </div>
+
+            <div className="modal-body">
+              <div className="modal-field">
+                <label className="font-extrabold text-amber-400">1. CHỌN NGHI PHẠM BỊ CÁO BUỘC:</label>
+                <select 
+                  value={accuseTargetId} 
+                  onChange={(e) => {
+                    setAccuseTargetId(e.target.value);
+                    setAccuseMeans(null);
+                    setAccuseClue(null);
+                  }}
+                  className="modal-select font-bold"
+                >
+                  <option value="">-- Nhấp chọn người chơi làm nghi phạm --</option>
+                  {roomState?.players
+                    ?.filter(p => p.id !== roomState.forensicScientistId)
+                    .map(p => (
+                      <option key={p.id} value={p.id}>{p.name} {p.isBot ? '(Bot)' : ''}</option>
+                    ))}
+                </select>
+              </div>
+
+              {accuseTargetId && accusedPlayerObj && (
+                <>
+                  <div className="modal-field mt-2">
+                    <label className="font-extrabold text-rose-400 flex items-center gap-1">
+                      <Flame size={14} /> 2. CHỌN 1 CÔNG CỤ GIẾT NGƯỜI CỦA [{accusedPlayerObj.name.toUpperCase()}]:
+                    </label>
+                    <div className="modal-cards-grid">
+                      {accusedPlayerObj.means?.map(c => (
+                        <div 
+                          key={c.id} 
+                          onClick={() => setAccuseMeans(c)}
+                          className={`modal-card-item means ${accuseMeans?.id === c.id ? 'selected' : ''}`}
+                        >
+                          <span className="card-name-txt">{c.name}</span>
+                          {accuseMeans?.id === c.id && <span className="text-emerald-400 text-xs font-bold flex items-center gap-0.5"><Check size={12} /> Đã chọn</span>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="modal-field mt-2">
+                    <label className="font-extrabold text-blue-400 flex items-center gap-1">
+                      <FileText size={14} /> 3. CHỌN 1 BẰNG CHỨNG CHÍNH CỦA [{accusedPlayerObj.name.toUpperCase()}]:
+                    </label>
+                    <div className="modal-cards-grid">
+                      {accusedPlayerObj.clues?.map(c => (
+                        <div 
+                          key={c.id} 
+                          onClick={() => setAccuseClue(c)}
+                          className={`modal-card-item clue ${accuseClue?.id === c.id ? 'selected' : ''}`}
+                        >
+                          <span className="card-name-txt">{c.name}</span>
+                          {accuseClue?.id === c.id && <span className="text-emerald-400 text-xs font-bold flex items-center gap-0.5"><Check size={12} /> Đã chọn</span>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="modal-footer">
+              <button onClick={() => setShowAccuseModal(false)} className="btn btn-secondary">Hủy</button>
+              <button 
+                onClick={handleSendAccusation} 
+                className="btn btn-primary font-black"
+                disabled={!accuseTargetId || !accuseMeans || !accuseClue}
+              >
+                🚀 XÁC NHẬN LỜI PHÁ ÁN
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL HUỚNG DẪN LUẬT CHƠI DYNAMIC THEO LOẠI GAME */}
+      {showGuideModal && (
+        <div className="modal-overlay z-[1200]">
+          <div className="modal-card max-w-xl">
+            <div className="modal-header border-b border-amber-500/20 pb-2">
+              <h3 className="text-base font-black text-amber-200 flex items-center gap-2">
+                📖 {roomState?.gameType === 'sherlock' ? 'HUỚNG DẪN LUẬT CHƠI SHERLOCK HOLMES' : 'HUỚNG DẪN LUẬT CHƠI CS FILES DECEPTION'}
+              </h3>
+              <button onClick={() => setShowGuideModal(false)} className="text-slate-400 hover:text-white"><X size={18} /></button>
+            </div>
+            
+            <div className="modal-body text-xs text-left leading-relaxed py-3 space-y-3">
+              {roomState?.gameType === 'sherlock' ? (
+                <>
+                  <p className="text-amber-300 font-bold">
+                    <strong>Sherlock Holmes Consulting Detective</strong> là trò chơi suy luận thám tử hợp tác:
+                  </p>
+                  <div className="space-y-2 text-slate-200 font-medium">
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">📖 1. Sách Vụ Án (Case Book):</strong> Đọc câu chuyện khởi đầu, theo dõi nhật ký các địa điểm bạn ĐÃ KHÁM XÉT và chuẩn bị trả lời câu hỏi phá án.
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">🗺️ 2. Bản Đồ London (Map):</strong> Bản đồ được đánh số theo các khu vực địa lý. Bạn cần tự tìm con số mã địa điểm trên Bản Đồ và nhấp trực tiếp vào đó để đến khám xét.
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">📞 3. Danh Bạ London (Directory):</strong> Tra cứu tên nhân vật, cơ quan hoặc tiệm buôn theo bảng chữ cái A-Z để lấy mã số địa điểm.
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">📰 4. Báo Hàng Ngày (Newspaper):</strong> Đọc báo Daily Telegraph để thu thập các tin tức, sự kiện khả nghi liên quan.
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">🏆 5. Phá Án (Quiz):</strong> Khi đã xâu chuỗi đầy đủ manh mối, bấm "Trả lời câu hỏi phá án" để trả lời bộ câu hỏi kiểm tra sự thật!
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-amber-300 font-bold">
+                    <strong>Deception: Murder in Hong Kong</strong> là trò chơi suy luận ẩn vai trò:
+                  </p>
+                  <ul className="list-disc pl-4 space-y-1.5 text-slate-200">
+                    <li><strong>Nhà khoa học pháp y:</strong> Biết đáp án vụ án nhưng KHÔNG ĐƯỢC NÓI THÀNH LỜI. Đưa ra gợi ý thông qua các thẻ bối cảnh.</li>
+                    <li><strong>Kẻ sát nhân:</strong> Bí mật chọn 1 Công cụ giết người và 1 Bằng chứng chính của mình lúc đầu game. Cần giấu giếm và đánh lạc hướng mọi người.</li>
+                    <li><strong>Điều tra viên:</strong> Thảo luận cùng nhau, quan sát bài của tất cả người chơi để tìm ra ai giữ Công cụ & Bằng chứng mục tiêu. Mỗi người có 1 Huy hiệu duy nhất để đưa ra lời Phá án!</li>
+                  </ul>
+                </>
+              )}
+            </div>
+
+            <div className="modal-footer pt-2 border-t border-amber-500/20 flex justify-end">
+              <button onClick={() => setShowGuideModal(false)} className="btn btn-primary font-extrabold px-5 py-1.5 text-xs">Đã hiểu</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* NÚT CHAT BỐC NỔI (FLOATING CHAT BUBBLE) - CHỈ HIỆN KHI Ở TRONG PHÒNG */}
+      {inRoom && (
+        <>
+          <button 
+            onClick={() => {
+              setIsChatOpen(prev => !prev);
+              setUnreadChatCount(0);
+            }} 
+            className="btn-floating-chat"
+            title="Mở khung trò chuyện chat"
+          >
+            <MessageSquare size={22} />
+            {unreadChatCount > 0 && (
+              <span className="unread-chat-badge">{unreadChatCount}</span>
+            )}
+          </button>
+
+          {/* KHUNG CHAT DRAWER NỔI */}
+          {isChatOpen && (
+            <div className="floating-chat-drawer">
+              <div className="chat-drawer-header">
+                <span className="flex items-center gap-1.5 font-bold text-amber-400">
+                  <MessageSquare size={16} /> TRÒ CHUYỆN TOÀN PHÒNG ({chatMessages.length})
+                </span>
+                <button onClick={() => setIsChatOpen(false)} className="btn-close-chat"><X size={16} /></button>
+              </div>
+
+              <div className="chat-messages-box">
+                {chatMessages.length === 0 ? (
+                  <div className="empty-chat-msg">Chưa có tin nhắn nào. Hãy nhắn câu đầu tiên!</div>
+                ) : (
+                  chatMessages.map((msg, idx) => (
+                    <div 
+                      key={msg.id || idx} 
+                      className={`chat-msg-item ${msg.senderId === socket.id ? 'is-me' : ''}`}
+                    >
+                      <div className="chat-msg-meta">
+                        <span className="sender-name">{msg.sender} {msg.senderId === socket.id ? '(Bạn)' : ''}</span>
+                        <span className="msg-time">{msg.time}</span>
+                      </div>
+                      <div className="chat-msg-text">{msg.text}</div>
+                    </div>
+                  ))
+                )}
+                <div ref={chatEndRef} />
+              </div>
+
+              <form onSubmit={handleSendChat} className="chat-input-bar">
+                <input 
+                  type="text" 
+                  value={chatInput} 
+                  onChange={(e) => setChatInput(e.target.value)}
+                  placeholder="Nhập tin nhắn (Ấn Enter để gửi)..." 
+                  className="chat-input-field"
+                  autoFocus
+                />
+                <button type="submit" className="btn-send-chat" title="Gửi tin nhắn"><Send size={16} /></button>
+              </form>
+            </div>
+          )}
+
+          {/* POPUP TOAST NỔI KHI CÓ TIN NHẮN MỚI NẾU KHUNG CHAT ĐANG ĐÓNG */}
+          {!isChatOpen && latestChatToast && (
+            <div 
+              onClick={() => {
+                setIsChatOpen(true);
+                setUnreadChatCount(0);
+                setLatestChatToast(null);
+              }}
+              className="chat-toast-popup"
+              title="Nhấp để mở khung trò chuyện"
+            >
+              <MessageSquare size={16} className="text-amber-400 shrink-0" />
+              <div className="chat-toast-content">
+                <span className="chat-toast-sender">{latestChatToast.sender}:</span>
+                <span className="chat-toast-text">{latestChatToast.text}</span>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
+      {/* MODAL KẾT THÚC GAME & CÔNG BỐ KẾT QUẢ / VAI TRÒ */}
+      {inRoom && roomState?.phase === 'GAME_OVER' && (() => {
+        const isInvestigatorsWin = roomState.winner === 'INVESTIGATORS';
+        const isHost = socket.id === (roomState?.hostId || roomState?.players?.[0]?.id);
+
+        return (
+          <div className="modal-overlay z-[1100]">
+            <div className="modal-card game-over-card-premium">
+              <div className="game-over-header text-center py-3">
+                <div className="inline-flex p-3 rounded-full bg-amber-500/10 border border-amber-500/30 mb-2">
+                  {isInvestigatorsWin ? <Trophy size={48} className="text-amber-400 animate-bounce" /> : <Skull size={48} className="text-rose-500 animate-pulse" />}
+                </div>
+                <h2 className={`text-2xl font-black ${isInvestigatorsWin ? 'text-amber-400' : 'text-rose-500'}`}>
+                  {isInvestigatorsWin ? '🎉 PHE ĐIỀU TRA VIÊN THẮNG CỤC DIỆN!' : '💀 PHE HUNG THỦ THẮNG THẾ!'}
+                </h2>
+                <p className="text-xs text-slate-300 mt-1">
+                  {isInvestigatorsWin 
+                    ? 'Lập luận xuất sắc! Vụ án đã được giải mã và Kẻ sát nhân đã bị vạch mặt!' 
+                    : 'Tất cả manh mối bị xóa sạch! Kẻ sát nhân đã tẩu thoát an toàn!'}
+                </p>
+              </div>
+
+              {/* BỘ ĐÁP ÁN BÍ MẬT */}
+              <div className="secret-solution-reveal-box bg-slate-900/80 border border-amber-500/30 rounded-xl p-3 my-3">
+                <div className="text-xs font-bold text-amber-400 mb-2 text-center flex items-center justify-center gap-1">
+                  <KeyRound size={14} /> BỘ ĐÁP ÁN BÍ MẬT CỦA VỤ ÁN:
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-center">
+                  <div className="bg-rose-950/60 border border-rose-500/30 rounded-lg p-2">
+                    <span className="text-[0.68rem] text-rose-400 font-extrabold uppercase block">Hung khí gây án</span>
+                    <strong className="text-sm text-white font-black">{roomState.secretSolution?.means?.name || 'Không rõ'}</strong>
+                  </div>
+                  <div className="bg-blue-950/60 border border-blue-500/30 rounded-lg p-2">
+                    <span className="text-[0.68rem] text-blue-400 font-extrabold uppercase block">Bằng chứng chính</span>
+                    <strong className="text-sm text-white font-black">{roomState.secretSolution?.clue?.name || 'Không rõ'}</strong>
+                  </div>
+                </div>
+              </div>
+
+              {/* DANH SÁCH VAI TRÒ TẤT CẢ NGƯỜI CHƠI */}
+              <div className="roles-reveal-section max-h-48 overflow-y-auto pr-1">
+                <div className="text-xs font-bold text-slate-300 mb-1.5 flex items-center gap-1">
+                  <Users size={14} className="text-amber-400" /> TIẾT LỘ VAI TRÒ TẤT CẢ THÀNH VIÊN:
+                </div>
+                <div className="space-y-1.5">
+                  {roomState.players?.map(p => {
+                    const isForensicPlayer = p.id === roomState.forensicScientistId;
+                    const roleObj = isForensicPlayer 
+                      ? ROLES.find(r => r.id === 'forensic_scientist') 
+                      : p.role || ROLES.find(r => r.id === 'investigator');
+
+                    return (
+                      <div key={p.id} className="flex items-center justify-between bg-slate-800/60 border border-slate-700/50 rounded-lg p-2 text-xs">
+                        <span className="font-extrabold text-white flex items-center gap-1.5">
+                          {p.isBot ? <Zap size={14} className="text-amber-400" /> : <Shield size={14} className="text-blue-400" />}
+                          {p.name} {p.id === socket.id && '(Bạn)'}
+                        </span>
+                        <span className={`px-2 py-0.5 rounded font-black text-[0.7rem] ${
+                          roleObj?.id === 'murderer' || roleObj?.id === 'accomplice' 
+                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' 
+                            : roleObj?.id === 'forensic_scientist'
+                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                            : 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
+                        }`}>
+                          {roleObj?.avatar} {roleObj?.name}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* FOOTER NÚT BẮT ĐẦU VÁN MỚI / RỜI PHÒNG */}
+              <div className="modal-footer mt-4 pt-3 border-t border-slate-800 flex flex-wrap justify-center gap-3">
+                <button 
+                  onClick={handleLeaveRoom} 
+                  className="btn btn-md btn-secondary flex items-center gap-2 font-bold"
+                >
+                  <LogOut size={16} /> TRỜ VỀ SẢNH CHỜ CHÍNH
+                </button>
+                {isHost ? (
+                  <button 
+                    onClick={() => socket.emit('reset-game', { roomCode: roomState.code })} 
+                    className="btn btn-md btn-primary btn-launch-game flex items-center gap-2"
+                  >
+                    <RefreshCw size={18} /> CHƠI LẠI VÁN MỚI (VỀ PHÒNG CHỜ)
+                  </button>
+                ) : (
+                  <div className="text-sm font-bold text-amber-300 animate-pulse py-2 flex items-center gap-2">
+                    <Clock size={16} /> Đang chờ Chủ phòng reset ván chơi mới...
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* MODAL CHỌN GAME TRINH THÁM (ROOT LEVEL OVERLAY) */}
+      {showGameSelectModal && (
+        <div className="modal-overlay" onClick={() => setShowGameSelectModal(false)}>
+          <div className="modal-card select-game-modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header border-b border-amber-500/20 pb-3 flex items-center justify-between mb-4">
+              <h3 className="text-lg font-black text-white flex items-center gap-2">
+                <Search size={22} className="text-amber-400" /> CHỌN TỰA GAME ĐỂ TẠO PHÒNG MỚI
+              </h3>
+              <button onClick={() => setShowGameSelectModal(false)} className="text-slate-400 hover:text-white"><X size={20} /></button>
+            </div>
+            
+            <div className="modal-body">
+              <div className="select-game-grid">
+                
+                {/* CARD GAME DECEPTION */}
+                <div 
+                  onClick={() => handleCreateRoom('deception')}
+                  className="select-game-option-card deception-option"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <Skull className="text-rose-500" size={26} />
+                        <h4 className="font-black text-white text-xl tracking-tight">DECEPTION</h4>
+                      </div>
+                      <span className="select-game-badge deception-badge">Ẩn vai trò</span>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                      Vụ án mạng tại Hồng Kông. Pháp Y ra hiệu manh mối, Hung thủ ẩn mình đổ tội, Thám tử truy tìm sự thật.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 pt-4">
+                    <div className="select-game-meta-row">
+                      <span>👥 3 - 12 Người</span>
+                      <span>⏱️ 15 - 20 Phút</span>
+                    </div>
+                    <button className="select-game-btn deception-btn">
+                      TẠO PHÒNG DECEPTION <ArrowRight size={16} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* CARD GAME SHERLOCK HOLMES */}
+                <div 
+                  onClick={() => handleCreateRoom('sherlock')}
+                  className="select-game-option-card sherlock-option"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <Search className="text-amber-500" size={26} />
+                        <h4 className="font-black text-white text-xl tracking-tight">SHERLOCK HOLMES</h4>
+                      </div>
+                      <span className="select-game-badge sherlock-badge">Đọc kỳ án</span>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                      Hợp tác giải vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ, thẩm vấn nhân chứng và giải mã kỳ án.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 pt-4">
+                    <div className="select-game-meta-row">
+                      <span>👥 1 - 8 Người</span>
+                      <span>⏱️ 30 - 45 Phút</span>
+                    </div>
+                    <button className="select-game-btn sherlock-btn">
+                      TẠO PHÒNG SHERLOCK <ArrowRight size={16} />
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TRÌNH PHÁT NHẠC NỀN SHERLOCK HOLMES BGM */}
+      <audio ref={audioBgmRef} src="/audio/bgm.mp3" loop />
+
+    </div>
+  );
+}
+
+export default App;
