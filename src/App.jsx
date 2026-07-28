@@ -2245,24 +2245,57 @@ function App() {
         </div>
       )}
 
-      {/* MODAL HUỚNG DẪN LUẬT CHƠI */}
+      {/* MODAL HUỚNG DẪN LUẬT CHƠI DYNAMIC THEO LOẠI GAME */}
       {showGuideModal && (
-        <div className="modal-overlay">
-          <div className="modal-card">
-            <div className="modal-header">
-              <h3>📖 HUỚNG DẪN LUẬT CHƠI CS FILES DECEPTION</h3>
-              <button onClick={() => setShowGuideModal(false)}><X size={18} /></button>
+        <div className="modal-overlay z-[1200]">
+          <div className="modal-card max-w-xl">
+            <div className="modal-header border-b border-amber-500/20 pb-2">
+              <h3 className="text-base font-black text-amber-200 flex items-center gap-2">
+                📖 {roomState?.gameType === 'sherlock' ? 'HUỚNG DẪN LUẬT CHƠI SHERLOCK HOLMES' : 'HUỚNG DẪN LUẬT CHƠI CS FILES DECEPTION'}
+              </h3>
+              <button onClick={() => setShowGuideModal(false)} className="text-slate-400 hover:text-white"><X size={18} /></button>
             </div>
-            <div className="modal-body text-xs text-left leading-relaxed">
-              <p><strong>Deception: Murder in Hong Kong</strong> là trò chơi suy luận ẩn vai trò:</p>
-              <ul className="list-disc pl-4 mt-2 space-y-1">
-                <li><strong>Nhà khoa học pháp y:</strong> Biết đáp án vụ án nhưng KHÔNG ĐƯỢC NÓI THÀNH LỜI. Đưa ra gợi ý thông qua các thẻ bối cảnh.</li>
-                <li><strong>Kẻ sát nhân:</strong> Bí mật chọn 1 Công cụ giết người và 1 Bằng chứng chính của mình lúc đầu game. Cần giấu giếm và đánh lạc hướng mọi người.</li>
-                <li><strong>Điều tra viên:</strong> Thảo luận cùng nhau, quan sát bài của tất cả người chơi để tìm ra ai giữ Công cụ & Bằng chứng mục tiêu. Mỗi người có 1 Huy hiệu duy nhất để đưa ra lời Phá án!</li>
-              </ul>
+            
+            <div className="modal-body text-xs text-left leading-relaxed py-3 space-y-3">
+              {roomState?.gameType === 'sherlock' ? (
+                <>
+                  <p className="text-amber-300 font-bold">
+                    <strong>Sherlock Holmes Consulting Detective</strong> là trò chơi suy luận thám tử hợp tác:
+                  </p>
+                  <div className="space-y-2 text-slate-200 font-medium">
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">📖 1. Sách Vụ Án (Case Book):</strong> Đọc câu chuyện khởi đầu, theo dõi nhật ký các địa điểm bạn ĐÃ KHÁM XÉT và chuẩn bị trả lời câu hỏi phá án.
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">🗺️ 2. Bản Đồ London (Map):</strong> Bản đồ được đánh số theo các khu vực địa lý. Bạn cần tự tìm con số mã địa điểm trên Bản Đồ và nhấp trực tiếp vào đó để đến khám xét.
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">📞 3. Danh Bạ London (Directory):</strong> Tra cứu tên nhân vật, cơ quan hoặc tiệm buôn theo bảng chữ cái A-Z để lấy mã số địa điểm.
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">📰 4. Báo Hàng Ngày (Newspaper):</strong> Đọc báo Daily Telegraph để thu thập các tin tức, sự kiện khả nghi liên quan.
+                    </div>
+                    <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                      <strong className="text-amber-400">🏆 5. Phá Án (Quiz):</strong> Khi đã xâu chuỗi đầy đủ manh mối, bấm "Trả lời câu hỏi phá án" để trả lời bộ câu hỏi kiểm tra sự thật!
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-amber-300 font-bold">
+                    <strong>Deception: Murder in Hong Kong</strong> là trò chơi suy luận ẩn vai trò:
+                  </p>
+                  <ul className="list-disc pl-4 space-y-1.5 text-slate-200">
+                    <li><strong>Nhà khoa học pháp y:</strong> Biết đáp án vụ án nhưng KHÔNG ĐƯỢC NÓI THÀNH LỜI. Đưa ra gợi ý thông qua các thẻ bối cảnh.</li>
+                    <li><strong>Kẻ sát nhân:</strong> Bí mật chọn 1 Công cụ giết người và 1 Bằng chứng chính của mình lúc đầu game. Cần giấu giếm và đánh lạc hướng mọi người.</li>
+                    <li><strong>Điều tra viên:</strong> Thảo luận cùng nhau, quan sát bài của tất cả người chơi để tìm ra ai giữ Công cụ & Bằng chứng mục tiêu. Mỗi người có 1 Huy hiệu duy nhất để đưa ra lời Phá án!</li>
+                  </ul>
+                </>
+              )}
             </div>
-            <div className="modal-footer">
-              <button onClick={() => setShowGuideModal(false)} className="btn btn-primary">Đã hiểu</button>
+
+            <div className="modal-footer pt-2 border-t border-amber-500/20 flex justify-end">
+              <button onClick={() => setShowGuideModal(false)} className="btn btn-primary font-extrabold px-5 py-1.5 text-xs">Đã hiểu</button>
             </div>
           </div>
         </div>
