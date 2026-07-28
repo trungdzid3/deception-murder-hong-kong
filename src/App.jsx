@@ -1453,7 +1453,7 @@ function App() {
                       <span className="text-xs font-sans tracking-widest text-amber-800 uppercase font-black">{SHERLOCK_CASE_1.newspaper?.issue_date}</span>
                       <h2 className="sherlock-newspaper-title">{SHERLOCK_CASE_1.newspaper?.paper_name}</h2>
                       <div className="sherlock-newspaper-meta">
-                        <span>No. 12,458</span> • <span>LONDON, SATURDAY, DECEMBER 2, 1893</span> • <span>PRICE ONE PENNY</span>
+                        <span>Số 12,458</span> • <span>LONDON, THỨ BẢY, NGÀY 2 THÁNG 12 NĂM 1893</span> • <span>GIÁ BÁN: 1 XU</span>
                       </div>
                     </div>
 
