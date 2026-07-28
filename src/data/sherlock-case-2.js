@@ -11,13 +11,14 @@ export const SHERLOCK_CASE_2 = {
     "penalty_per_extra_clue": 5
   },
   "intro": {
-    "story_text": "Chúng tôi chưa từng thấy Bác sĩ John Watson bàng hoàng và sụp đổ đến thế khi bước chân tới hiện trường vụ án. Đầu ông ngoẹo sang một bên, ngồi buông thõng dựa vào thùng gỗ trên vỉa hè, chìm trong cơn thẫn thờ như không nghe thấy tiếng gọi của chúng tôi. Căn hộ 221B Baker Street chỉ còn là đống tàn tích bốc khói nghi ngút. Cảnh sát hối hả chạy ngược chạy xuôi trong sự hoảng loạn. Phía sau hàng rào bảo vệ, đám đông hiếu kỳ mỗi lúc một đông. Dưới tấm khăn trải ngay gần Bác sĩ Watson là một thi thể... thi thể của Sherlock Holmes.\n\nBác sĩ Watson kiểm tra thi thể trong sự đau đớn: khoảng 85% cơ thể bị bỏng độ hai và độ ba. Tuy nhiên, ngoài tổn thương do ngọn lửa, thi thể còn có một vết thương thứ hai — vết đạn bắn xuyên từ đằng sau lưng và thoát ra ở bụng. Cùng lúc đó, nhóm thám tử trẻ tìm thấy một hộp sắt nhỏ trên bàn làm việc của Holmes sống sót qua ngọn lửa. Bên trong có hai bức thư viết tay nguyên bản:\n\n*Bức thư 1:*\n\"S,\nNo harm will come of it, I promise!\n-M.\"\n(Dịch: S, Sẽ không có hại gì đâu, tôi hứa! - M.)\n\n*Bức thư 2 (Gửi Lestrade):*\n\"Lestrade,\nAnalysis\nwill\nfurther\naid.\nBest\nexamine\nremaining\"\n(Dịch: Lestrade, Phân tích sẽ hỗ trợ thêm. Tốt nhất hãy kiểm tra phần còn lại.)",
+    "story_text": "Chúng tôi chưa từng thấy Bác sĩ John Watson bàng hoàng và sụp đổ đến thế khi bước chân tới hiện trường vụ án. Đầu ông ngoẹo sang một bên, ngồi buông thõng dựa vào thùng gỗ trên vỉa hè, chìm trong cơn thẫn thờ. Căn hộ 221B Baker Street chỉ còn là đống tàn tích bốc khói nghi ngút. Dưới tấm khăn trải ngay gần Bác sĩ Watson là một thi thể... thi thể của Sherlock Holmes.\n\nBác sĩ Watson kiểm tra thi thể: khoảng 85% cơ thể bị bỏng độ hai và độ ba. Ngoài tổn thương do ngọn lửa, thi thể còn có vết đạn bắn xuyên từ đằng sau lưng thoát ra ở bụng.\n\nCùng lúc đó, Wiggins báo cáo phát hiện từ căn phòng làm việc còn bốc khói:\n- Một hộp sắt trên bàn làm việc chứa vé xem kịch (The Allegro, The Lyceum, The Olympia), biên lai xe ngựa và bao diêm.\n- Hai bức thư viết tay:\n  * Bức thư 1: \"S, No harm will come of it, I promise! - M.\"\n  * Bức thư 2 (Gửi Lestrade): \"Lestrade, Analysis will further aid. Best examine remaining\"\n- Một đống mảnh kính vỡ trên vỉa hè phía sau đối diện 221B Baker St và báo cáo về tiếng phụ nữ thét lên cùng thời điểm ngọn lửa bùng phát.\n- Nhân chứng chính: Bà Olivia Robins ở địa chỉ 50NW (sống đối diện đường) báo rằng bà đã thấy Sherlock gặp một người đàn ông nghi là anh trai ông ấy vào khoảng 8:30 sáng, trước khi ngọn lửa bùng phát lúc 9 giờ.",
     "initial_clues": [
       "Thi thể cháy xém tại 221B Baker Street mang vết đạn bắn xuyên từ đằng sau lưng thoát ra bụng.",
-      "Chiếc hộp sắt trên bàn làm việc chứa vé xem kịch (The Allegro, The Lyceum, The Olympia) và biên lai xe ngựa.",
+      "Hộp sắt chứa vé xem kịch (The Allegro, The Lyceum, The Olympia), biên lai xe ngựa và bao diêm.",
       "Bức thư 1: \"S, No harm will come of it, I promise! - M.\"",
-      "Bức thư 2 gửi Lestrade: \"Analysis will further aid. Best examine remaining\"",
-      "Thông tin về đợt tuyên án đường dây buôn lậu tại Outer Docks 2 năm trước (25/11/1891)."
+      "Bức thư 2 gửi Lestrade: \"Lestrade, Analysis will further aid. Best examine remaining\"",
+      "Đống kính vỡ trên vỉa hè phía sau đối diện 221B và tiếng phụ nữ thét lên lúc hỏa hoạn.",
+      "Nhân chứng Olivia Robins (50NW) thấy Holmes gặp một người đàn ông lúc 8:30 sáng."
     ],
     "unlocked_nodes": ["221B"]
   },
@@ -30,16 +31,32 @@ export const SHERLOCK_CASE_2 = {
       "map_coords": { "x": 110, "y": 85 },
       "content": "Căn hộ 221B chìm trong tro tàn sau ngọn lửa dữ dội. Thi thể bị cháy xém nằm cạnh bàn làm việc. Khám xét vết đạn trên lưng nạn nhân và vết chai xước tay, thám tử nhận ra người bị bắn chết thực chất là Marvin Pemberton - vị khách đến gặp Holmes sớm hơn hẹn. Cạnh tách trà bị vỡ tỏa mùi đắng nhẹ của chất độc Cyanide. Holmes đã nhận ra nguy hiểm, thoát ra ngoài và để lại mật thư bí ẩn cho Lestrade.",
       "unlocks": {
-        "nodes": ["13SW", "38EC", "28WC", "34WC"],
+        "nodes": ["50NW", "13SW", "38EC", "28WC", "34WC"],
         "evidence_items": [
           "Nạn nhân bị bắn tại 221B là Marvin Pemberton, không phải Sherlock Holmes.",
           "Trà của Holmes bị chèn chất độc Cyanide bởi Elle Fanning.",
-          "Mật thư của Holmes chứa quy tắc lấy chữ cái đầu tiên."
+          "Mật thư của Holmes gửi Lestrade chứa thông điệp ẩn giấu."
         ]
       },
       "key_hints": [
-        "Holmes vẫn sống; thi thể là Marvin Pemberton.",
-        "Mật thư chữ cái đầu tiên chỉ địa điểm ẩn náu của Holmes."
+        "Holmes vẫn sống; thi thể là Marvin Pemberton."
+      ]
+    },
+    "50NW": {
+      "id": "50NW",
+      "title": "Nhà bà Olivia Robins (Nhân chứng đối diện 221B)",
+      "area": "NW",
+      "type": "suspect_interview",
+      "map_coords": { "x": 135, "y": 110 },
+      "content": "Bà Olivia Robins sống đối diện 221B Baker Street cho biết: Khoảng 8:30 sáng, trước khi đám cháy bùng phát, bà thấy Sherlock Holmes gặp gỡ một người đàn ông có diện mạo giống như anh/em trai của ông ấy (Mycroft Holmes). Sau đó người đàn ông này rời đi và một vị khách khác (Marvin Pemberton) bước vào căn hộ.",
+      "unlocks": {
+        "nodes": ["13SW", "28WC"],
+        "evidence_items": [
+          "Bà Olivia Robins thấy Holmes gặp một người đàn ông giống anh trai lúc 8:30 sáng."
+        ]
+      },
+      "key_hints": [
+        "Nhân chứng chính xác nhận mốc thời gian trước khi vụ án xảy ra."
       ]
     },
     "13SW": {

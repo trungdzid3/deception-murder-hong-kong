@@ -59,6 +59,15 @@ export const MASTER_DIRECTORY = [
     desc: "Ngõ nhỏ nơi thi thể nạn nhân ngã từ mái nhà được phát hiện với mùi thảo mộc kỳ lạ. (Case 5)",
     appeared_in: ["case_5"]
   },
+  {
+    code: "50NW",
+    name: "Robins, Olivia (Nhân chứng đối diện 221B)",
+    category: "Cư dân",
+    address: "50 North West St, NW",
+    map_coords: { x: 135, y: 110 },
+    desc: "Nhà bà Olivia Robins đối diện 221B Baker Street. Nhân chứng chính thấy Holmes gặp một người đàn ông lúc 8:30 sáng.",
+    appeared_in: ["case_2"]
+  },
 
   // ═════════════════════════════════════════════════════════════════════
   // PHÂN KHU WC – WEST CENTRAL (TRUNG TÂM TÂY: Holborn, Bloomsbury, Covent Garden)
