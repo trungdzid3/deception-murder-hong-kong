@@ -2401,28 +2401,28 @@ function App() {
                 {/* CARD GAME DECEPTION */}
                 <div 
                   onClick={() => handleCreateRoom('deception')}
-                  className="select-game-option-card deception-option space-y-4"
+                  className="select-game-option-card deception-option"
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Skull className="text-rose-500" size={24} />
-                        <h4 className="font-black text-white text-lg">DECEPTION</h4>
+                      <div className="flex items-center gap-2.5">
+                        <Skull className="text-rose-500" size={26} />
+                        <h4 className="font-black text-white text-xl tracking-tight">DECEPTION</h4>
                       </div>
-                      <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">Ẩn vai trò</span>
+                      <span className="select-game-badge deception-badge">Ẩn vai trò</span>
                     </div>
-                    <p className="text-xs text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-300 leading-relaxed pt-1">
                       Vụ án mạng tại Hồng Kông. Pháp Y ra hiệu manh mối, Hung thủ ẩn mình đổ tội, Thám tử truy tìm sự thật.
                     </p>
                   </div>
 
-                  <div className="space-y-2 pt-2 border-t border-slate-800">
-                    <div className="flex items-center justify-between text-xs font-bold text-slate-400">
+                  <div className="space-y-3 pt-4">
+                    <div className="select-game-meta-row">
                       <span>👥 3 - 12 Người</span>
                       <span>⏱️ 15 - 20 Phút</span>
                     </div>
-                    <button className="btn btn-sm btn-primary w-full font-black flex items-center justify-center gap-1.5 py-2">
-                      TẠO PHÒNG DECEPTION <ArrowRight size={14} />
+                    <button className="select-game-btn deception-btn">
+                      TẠO PHÒNG DECEPTION <ArrowRight size={16} />
                     </button>
                   </div>
                 </div>
@@ -2430,28 +2430,28 @@ function App() {
                 {/* CARD GAME SHERLOCK HOLMES */}
                 <div 
                   onClick={() => handleCreateRoom('sherlock')}
-                  className="select-game-option-card sherlock-option space-y-4"
+                  className="select-game-option-card sherlock-option"
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Search className="text-amber-500" size={24} />
-                        <h4 className="font-black text-white text-lg">SHERLOCK HOLMES</h4>
+                      <div className="flex items-center gap-2.5">
+                        <Search className="text-amber-500" size={26} />
+                        <h4 className="font-black text-white text-xl tracking-tight">SHERLOCK HOLMES</h4>
                       </div>
-                      <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Đọc kỳ án</span>
+                      <span className="select-game-badge sherlock-badge">Đọc kỳ án</span>
                     </div>
-                    <p className="text-xs text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-300 leading-relaxed pt-1">
                       Hợp tác giải vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ, thẩm vấn nhân chứng và giải mã kỳ án.
                     </p>
                   </div>
 
-                  <div className="space-y-2 pt-2 border-t border-slate-800">
-                    <div className="flex items-center justify-between text-xs font-bold text-slate-400">
+                  <div className="space-y-3 pt-4">
+                    <div className="select-game-meta-row">
                       <span>👥 1 - 8 Người</span>
                       <span>⏱️ 30 - 45 Phút</span>
                     </div>
-                    <button className="btn btn-sm btn-gold-draw w-full font-black flex items-center justify-center gap-1.5 py-2">
-                      TẠO PHÒNG SHERLOCK <ArrowRight size={14} />
+                    <button className="select-game-btn sherlock-btn">
+                      TẠO PHÒNG SHERLOCK <ArrowRight size={16} />
                     </button>
                   </div>
                 </div>
