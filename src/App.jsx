@@ -1460,78 +1460,160 @@ function App() {
               </div>
             )}
 
-            {/* 3. GIAI ĐOẠN QUIZ / NỘP LỜI GIẢI */}
+            {/* 3. GIAI ĐOẠN QUIZ / NỘP LỜI GIẢI (SOLVE THE CASE) */}
             {roomState?.phase === 'SHERLOCK_QUIZ' && (
-              <div className="sherlock-quiz-card bg-slate-900/90 border border-amber-500/30 rounded-2xl p-6 md:p-8 backdrop-blur shadow-2xl space-y-6">
-                <div className="border-b border-amber-500/20 pb-3 flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-black text-amber-100 flex items-center gap-2">
-                      <Trophy size={24} className="text-amber-400" /> BỘ CÂU HỎI PHÁ ÁN
-                    </h2>
-                    <p className="text-xs text-slate-400">Hãy đưa ra câu trả lời chính xác nhất dựa trên các manh mối thu thập được.</p>
+              <div className="sherlock-quiz-card space-y-6">
+                
+                {/* HEADER BANNER */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-500/30 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300">
+                      <Trophy size={22} />
+                    </div>
+                    <div>
+                      <h2 className="text-xl md:text-2xl font-black text-amber-100 uppercase tracking-wide">BỘ CÂU HỎI PHÁ ÁN (SOLVE THE CASE)</h2>
+                      <p className="text-xs text-slate-300 mt-0.5">Hãy đưa ra câu trả lời chính xác nhất dựa trên các manh mối đã thu thập được.</p>
+                    </div>
                   </div>
                   <button 
                     onClick={() => handleSherlockNextPhase('SHERLOCK_PLAYING')}
-                    className="btn btn-xs btn-outline"
+                    className="btn btn-sm btn-outline text-amber-300 border-amber-500/40 hover:bg-amber-500/20 font-bold self-start sm:self-center flex items-center gap-1.5 px-4 py-2"
                   >
-                    ← Quay lại điều tra
+                    <ArrowLeft size={16} /> Quay lại điều tra
                   </button>
                 </div>
 
-                {/* PART 1: CÂU HỎI VỤ ÁN CHÍNH */}
+                {/* THỐNG KÊ TIẾN ĐỘ TRẢ LỜI */}
+                <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3 flex items-center justify-between text-xs">
+                  <span className="font-extrabold text-amber-300 flex items-center gap-2">
+                    <HelpCircle size={16} /> TIẾN ĐỘ TRẢ LỜI: {Object.keys(sherlockAnswers).length} / 10 CÂU HỎI
+                  </span>
+                  <div className="w-36 bg-slate-900 rounded-full h-2 overflow-hidden border border-amber-500/30">
+                    <div 
+                      className="bg-amber-500 h-full transition-all duration-300"
+                      style={{ width: `${(Object.keys(sherlockAnswers).length / 10) * 100}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* PHẦN 1: CÂU HỎI VỤ ÁN CHÍNH */}
                 <div className="space-y-4">
-                  <h3 className="font-extrabold text-amber-300 text-sm uppercase tracking-wider">PHẦN 1: CÂU HỎI VỤ ÁN CHÍNH (MAIN CASE)</h3>
-                  {SHERLOCK_CASE_1.questions.part_1_main_case.map((q, idx) => (
-                    <div key={q.id} className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2">
-                      <p className="font-bold text-sm text-slate-200">{idx + 1}. {q.question}</p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
-                        {q.options.map((opt, oIdx) => (
-                          <label key={oIdx} className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-all flex items-center gap-2 ${sherlockAnswers[`q_${q.id}`] === oIdx ? 'bg-amber-500/20 border-amber-400 text-amber-200 font-bold' : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:bg-slate-800'}`}>
-                            <input 
-                              type="radio" 
-                              name={`q_${q.id}`} 
-                              checked={sherlockAnswers[`q_${q.id}`] === oIdx}
-                              onChange={() => setSherlockAnswers(prev => ({ ...prev, [`q_${q.id}`]: oIdx }))}
-                            />
-                            <span>{opt}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                  <div className="flex items-center gap-2 bg-amber-500/10 border-l-4 border-amber-500 px-3 py-2 rounded-r-lg">
+                    <h3 className="font-extrabold text-amber-300 text-sm uppercase tracking-wider">PHẦN 1: CÂU HỎI VỤ ÁN CHÍNH (MAIN CASE - 5 CÂU)</h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {SHERLOCK_CASE_1.questions.part_1_main_case.map((q, idx) => {
+                      const isSelectedAny = sherlockAnswers[`q_${q.id}`] !== undefined;
+                      return (
+                        <div 
+                          key={q.id} 
+                          className={`sherlock-quiz-question-card ${isSelectedAny ? 'answered' : ''}`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <span className="sherlock-question-number">
+                              {idx + 1}
+                            </span>
+                            <div className="flex-1">
+                              <h4 className="font-bold text-sm text-amber-100 leading-snug">{q.question}</h4>
+                            </div>
+                          </div>
+
+                          {/* GRID 4 LỰA CHỌN CHUẨN CARD HÀNG NGANG / 2 CỘT */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2">
+                            {q.options.map((opt, oIdx) => {
+                              const isChecked = sherlockAnswers[`q_${q.id}`] === oIdx;
+                              const optionLetters = ['A', 'B', 'C', 'D'];
+                              return (
+                                <label 
+                                  key={oIdx} 
+                                  className={`sherlock-quiz-option-card ${isChecked ? 'selected' : ''}`}
+                                >
+                                  <input 
+                                    type="radio" 
+                                    name={`q_${q.id}`} 
+                                    checked={isChecked}
+                                    onChange={() => setSherlockAnswers(prev => ({ ...prev, [`q_${q.id}`]: oIdx }))}
+                                    className="sr-only"
+                                  />
+                                  <span className={`sherlock-option-badge ${isChecked ? 'selected' : ''}`}>
+                                    {optionLetters[oIdx]}
+                                  </span>
+                                  <span className="sherlock-option-text">{opt}</span>
+                                </label>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
-                {/* PART 2: CÂU HỎI BÍ ẨN PHỤ */}
-                <div className="space-y-4 pt-2">
-                  <h3 className="font-extrabold text-amber-400 text-sm uppercase tracking-wider">PHẦN 2: CÂU HỎI BÍ ẨN PHỤ (SIDE MYSTERIES)</h3>
-                  {SHERLOCK_CASE_1.questions.part_2_side_mysteries.map((q, idx) => (
-                    <div key={q.id} className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2">
-                      <p className="font-bold text-sm text-slate-200">{idx + 6}. {q.question}</p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
-                        {q.options.map((opt, oIdx) => (
-                          <label key={oIdx} className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-all flex items-center gap-2 ${sherlockAnswers[`q_${q.id}`] === oIdx ? 'bg-amber-500/20 border-amber-400 text-amber-200 font-bold' : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:bg-slate-800'}`}>
-                            <input 
-                              type="radio" 
-                              name={`q_${q.id}`} 
-                              checked={sherlockAnswers[`q_${q.id}`] === oIdx}
-                              onChange={() => setSherlockAnswers(prev => ({ ...prev, [`q_${q.id}`]: oIdx }))}
-                            />
-                            <span>{opt}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                {/* PHẦN 2: CÂU HỎI BÍ ẨN PHỤ */}
+                <div className="space-y-4 pt-4">
+                  <div className="flex items-center gap-2 bg-amber-500/10 border-l-4 border-amber-500 px-3 py-2 rounded-r-lg">
+                    <h3 className="font-extrabold text-amber-400 text-sm uppercase tracking-wider">PHẦN 2: CÂU HỎI BÍ ẨN PHỤ (SIDE MYSTERIES - 5 CÂU)</h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {SHERLOCK_CASE_1.questions.part_2_side_mysteries.map((q, idx) => {
+                      const isSelectedAny = sherlockAnswers[`q_${q.id}`] !== undefined;
+                      return (
+                        <div 
+                          key={q.id} 
+                          className={`sherlock-quiz-question-card ${isSelectedAny ? 'answered' : ''}`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <span className="sherlock-question-number">
+                              {idx + 6}
+                            </span>
+                            <div className="flex-1">
+                              <h4 className="font-bold text-sm text-amber-100 leading-snug">{q.question}</h4>
+                            </div>
+                          </div>
+
+                          {/* GRID 4 LỰA CHỌN CHUẨN CARD HÀNG NGANG / 2 CỘT */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2">
+                            {q.options.map((opt, oIdx) => {
+                              const isChecked = sherlockAnswers[`q_${q.id}`] === oIdx;
+                              const optionLetters = ['A', 'B', 'C', 'D'];
+                              return (
+                                <label 
+                                  key={oIdx} 
+                                  className={`sherlock-quiz-option-card ${isChecked ? 'selected' : ''}`}
+                                >
+                                  <input 
+                                    type="radio" 
+                                    name={`q_${q.id}`} 
+                                    checked={isChecked}
+                                    onChange={() => setSherlockAnswers(prev => ({ ...prev, [`q_${q.id}`]: oIdx }))}
+                                    className="sr-only"
+                                  />
+                                  <span className={`sherlock-option-badge ${isChecked ? 'selected' : ''}`}>
+                                    {optionLetters[oIdx]}
+                                  </span>
+                                  <span className="sherlock-option-text">{opt}</span>
+                                </label>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
-                <div className="pt-4 border-t border-amber-500/20 text-center">
+                {/* FOOTER NỘP BÀI */}
+                <div className="pt-6 border-t border-amber-500/20 text-center">
                   <button 
                     onClick={handleSubmitSherlockSolution}
-                    className="btn btn-lg btn-gold-draw w-full font-black tracking-wider shadow-lg"
+                    className="btn btn-lg btn-gold-draw w-full font-black tracking-widest text-base shadow-2xl py-4 flex items-center justify-center gap-2"
                   >
-                    🏁 NỘP BÀI & XEM ĐÁP ÁN CHÍNH XÁC
+                    <Trophy size={20} /> NỘP BÀI & XEM ĐÁP ÁN CHÍNH XÁC <ArrowRight size={20} />
                   </button>
                 </div>
+
               </div>
             )}
 
