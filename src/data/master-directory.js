@@ -155,13 +155,23 @@ export const MASTER_DIRECTORY = [
   },
   {
     code: "28WC",
-    name: "Cửa hàng súng sáu & Vũ khí Derringer",
-    category: "Cửa hàng",
+    name: "Cửa hàng súng sáu & Vũ khí Derringer / Căn hộ Davenport",
+    category: "Cửa hàng & Tay súng",
     address: "28 Holborn Street, WC",
     map_coords: { x: 430, y: 315 },
-    desc: "Tiệm bán súng ngắn sáu nòng. Dr. Trevelyan trực tiếp đi mua Derringer đứng tên Frances vu khống. (Case 3)",
-    appeared_in: ["case_3"]
+    desc: "Tiệm bán súng nòng ngắn (Case 3) và căn hộ cất rương súng ám sát của Chandler Davenport (Case 2).",
+    appeared_in: ["case_2", "case_3"]
   },
+  {
+    code: "34WC",
+    name: "Căn hộ Gerald Locke (Anh em sinh đôi John Locke)",
+    category: "Cư dân",
+    address: "34 West Central St, WC",
+    map_coords: { x: 380, y: 340 },
+    desc: "Căn hộ của Gerald Locke - anh em sinh đôi với phạm nhân buôn lậu John Locke. Tiết lộ cuộc họp nhóm 'The Pentacle'. (Case 2)",
+    appeared_in: ["case_2"]
+  },
+
   {
     code: "42WC",
     name: "Nhà riêng nạn nhân Oswald Mason",

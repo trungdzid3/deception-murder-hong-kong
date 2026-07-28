@@ -1,17 +1,24 @@
 export const SHERLOCK_CASE_2 = {
   "case_id": "sherlock_case_2",
-  "title": "Vụ án 2: Cái Chết Của Sherlock Holmes",
-  "author": "Cody Fleming (SHCD Master Edition)",
+  "title": "Vụ án 3: Cái Chết Của Sherlock Holmes (The Death of Sherlock Holmes)",
+  "author": "Cody Fleming (SHCD Official Case)",
   "setting_date": "Ngày 2 tháng 12 năm 1893",
+  "holmes_clues": 4,
+  "scoring": {
+    "part1_max": 100,
+    "part2_max": 30,
+    "total_max": 130,
+    "penalty_per_extra_clue": 5
+  },
   "intro": {
-    "story_text": "Bầu trời London xám xịt chìm trong nỗi bàng hoàng sâu sắc. Căn hộ 221B Baker Street của Sherlock Holmes vừa hứng chịu một vụ hỏa hoạn kinh hoàng và một thi thể cháy xém được phát hiện ngay bên trong căn phòng làm việc tan hoang. Bác sĩ John Watson bàng hoàng không thể thốt lên lời. Toàn bộ Scotland Yard và giới báo chí đều tin rằng vị thám tử lừng danh đã tử thương. Tuy nhiên, các thiếu niên nhóm thám tử phố Baker phát hiện vết đạn bắn từ sau lưng thi thể và những cuộn tài liệu mật liên quan đến Tập đoàn Vũ khí Hoàng gia bị biến mất. Liệu đây là cái chết thực sự của Holmes hay là một hạ sách vượt ngoài dự đoán của vị thiên tài?",
+    "story_text": "Ngày 2 tháng 12 năm 1893, vụ hỏa hoạn kinh hoàng thiêu rụi căn hộ 221B Baker Street. Một thi thể cháy xém được phát hiện trong phòng làm việc với vết đạn bắn từ đằng sau. Bác sĩ Watson và Scotland Yard bàng hoàng tin rằng Sherlock Holmes đã bị sát hại. Tuy nhiên, sự thật là nhóm sát thủ trả thù mang tên 'The Pentacle' - gồm người thân của băng nhóm buôn lậu Outer Docks bị Holmes bắt 2 năm trước - đã hợp mưu ám sát Holmes. Chúng chuốc độc Cyanide, ném thùng hàng gây thương tích chân Holmes, bắn qua cửa sổ từ căn hộ Camden House, và phóng hỏa đốt 221B. Kẻ bị bắn nhầm là Marvin Pemberton! Holmes đã khéo léo để lại mật thư cho Lestrade và đang ẩn náu bí mật tại cửa hàng văn phòng phẩm A. W. Faber!",
     "initial_clues": [
-      "Vụ hỏa hoạn và thi thể cháy xém mang vết đạn sau lưng tại 221B Baker Street.",
-      "Cuộn tài liệu mật về Tập đoàn Vũ khí Hoàng gia Harrington bị biến mất khỏi két sắt.",
-      "Nhật báo đưa tin về mâu thuẫn giữa Lord Harrington và Huân tước Moriarty.",
-      "Tin đồn về căn biệt thự bí mật của Moriarty tại khu ngoại ô phía Đông."
+      "Vụ hỏa hoạn thiêu rụi 221B Baker Street và thi thể cháy xém bị bắn từ đằng sau.",
+      "Mật thư kỳ lạ gửi tới Lestrade với quy luật lấy chữ cái đầu tiên của từng từ.",
+      "Tập hồ sơ án cũ vụ án buôn lậu Outer Docks năm 1891 liên quan tới băng sát thủ 'The Pentacle'.",
+      "Dấu vết thuốc độc Cyanide trong tách trà và tiếng gậy shillelagh rải rác quanh hiện trường."
     ],
-    "unlocked_nodes": ["221B", "13SW", "38EC", "10EC"]
+    "unlocked_nodes": ["221B", "13SW", "38EC", "28WC", "34WC", "49SE"]
   },
   "nodes": {
     "221B": {
@@ -19,59 +26,109 @@ export const SHERLOCK_CASE_2 = {
       "title": "Căn hộ 221B Baker Street (Hiện trường hỏa hoạn)",
       "area": "NW",
       "type": "crime_scene",
-      "map_coords": { "x": 180, "y": 260 },
-      "content": "Căn hộ 221B chìm trong tro tàn. Bác sĩ Watson ngồi thần thờ trên bậc cửa. Khám xét góc làm việc bị cháy, thám tử phát hiện két sắt bí mật đã bị mở bằng chìa khóa chuẩn xác. Dưới sàn nhà còn sót lại một mảnh huy hiệu kim loại mang biểu tượng của Tập đoàn Vũ khí Harrington.",
+      "map_coords": { "x": 110, "y": 85 },
+      "content": "Căn hộ 221B chìm trong tro tàn sau ngọn lửa dữ dội. Thi thể bị cháy xém nằm cạnh bàn làm việc. Khám xét vết đạn trên lưng nạn nhân và vết chai xước tay, thám tử nhận ra người bị bắn chết thực chất là Marvin Pemberton - vị khách đến gặp Holmes sớm hơn hẹn. Cạnh tách trà bị vỡ tỏa mùi đắng nhẹ của chất độc Cyanide. Holmes đã nhận ra nguy hiểm, thoát ra ngoài và để lại mật thư bí ẩn cho Lestrade.",
       "unlocks": {
-        "nodes": ["13SW", "38EC", "10EC"],
-        "evidence_items": ["Mảnh huy hiệu kim loại của Tập đoàn Vũ khí Harrington tại 221B."]
+        "nodes": ["13SW", "38EC", "28WC", "34WC"],
+        "evidence_items": [
+          "Nạn nhân bị bắn tại 221B là Marvin Pemberton, không phải Sherlock Holmes.",
+          "Trà của Holmes bị chèn chất độc Cyanide bởi Elle Fanning.",
+          "Mật thư của Holmes chứa quy tắc lấy chữ cái đầu tiên."
+        ]
       },
-      "key_hints": ["Thủ phạm có chìa khóa két sắt và mang huy hiệu Harrington."]
+      "key_hints": [
+        "Holmes vẫn sống; thi thể là Marvin Pemberton.",
+        "Mật thư chữ cái đầu tiên chỉ địa điểm ẩn náu của Holmes."
+      ]
     },
     "13SW": {
       "id": "13SW",
       "title": "Sở cảnh sát Scotland Yard (Thanh tra Lestrade)",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 210, "y": 590 },
-      "content": "Thanh tra Lestrade đau đớn xác nhận: 'Chúng tôi nhận được tin báo hỏa hoạn lúc 2 giờ sáng. Thi thể bị cháy xém nặng nhưng có nhân chứng thấy một người đàn ông cao lớn vội vã rời khỏi Baker Street hướng về phía ga chốt chặn Harrington'.",
+      "map_coords": { "x": 280, "y": 385 },
+      "content": "Thanh tra Lestrade đọc lại bức mật thư của Holmes và chợt hiểu ra: 'Đây là vụ trả thù của băng nhóm Pentacle - người thân các phạm nhân vụ buôn lậu Outer Docks 2 năm trước! Elle Fanning (con gái sĩ quan Dick Alpert) chủ mưu gom 5 kẻ liên quan gồm Ambroise Beaupre, Gertrude Helwig, Israel Jacobs và tay súng Chandler Davenport để ám sát Holmes'. Bức mật thư với chữ cái đầu tiên hé lộ Holmes đang an toàn.",
       "unlocks": {
-        "nodes": ["10EC"],
-        "evidence_items": ["Kẻ nghi vấn rời Baker Street hướng về ga chốt chặn Harrington."]
+        "nodes": ["28WC", "34WC", "49SE"],
+        "evidence_items": [
+          "Băng nhóm 'The Pentacle' thành lập nhằm trả thù cho vụ án buôn lậu Outer Docks 1891.",
+          "Holmes an toàn tại cửa hàng văn phòng phẩm A. W. Faber."
+        ]
       },
-      "key_hints": ["Manh mối dẫn trực tiếp tới khu vực Tập đoàn Harrington."]
+      "key_hints": [
+        "Băng 'The Pentacle' gồm 5 kẻ trả thù vụ buôn lậu 1891.",
+        "Holmes giải mã ẩn náu tại cửa hàng A. W. Faber."
+      ]
     },
     "38EC": {
       "id": "38EC",
-      "title": "Phòng khám nghiệm tử thi St. Bartholomew (Sir Jasper Meeks)",
+      "title": "Bệnh viện St. Bartholomew (Phòng khám nghiệm Sir Jasper Meeks)",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": { "x": 550, "y": 320 },
-      "content": "Bác sĩ Sir Jasper Meeks xem xét thi thể và thì thầm chi tiết chấn động: 'Thi thể bị cháy xém này tử vong do vết đạn bắn xuyên tim từ đằng sau trước khi ngọn lửa bùng phát. Tuy nhiên, chiều cao và cấu trúc xương vai của tử thi ngắn hơn Holmes gần 2 inch! Đây không phải là Sherlock Holmes!'.",
+      "map_coords": { "x": 615, "y": 260 },
+      "content": "Bác sĩ pháp y Sir Jasper Meeks khẳng định: Tử thi bị bắn chết từ đằng sau qua cửa sổ trước khi ngọn lửa bùng phát. Cấu trúc xương và chiều cao ngắn hơn Holmes 2 inch – xác nhận đây là Marvin Pemberton. Ngoài ra tử thi có dấu vết ngấm chất độc Cyanide từ trà.",
       "unlocks": {
-        "nodes": ["10EC"],
-        "evidence_items": ["Thi thể bị cháy xém không phải là Sherlock Holmes."]
+        "nodes": ["28WC"],
+        "evidence_items": ["Sir Jasper Meeks xác nhận tử thi là Marvin Pemberton và nhiễm độc Cyanide."]
       },
-      "key_hints": ["Sherlock Holmes vẫn còn sống và đang ẩn mình điều tra ngầm."]
+      "key_hints": ["Tử thi ngấm độc Cyanide và là Marvin Pemberton."]
     },
-    "10EC": {
-      "id": "10EC",
-      "title": "Trụ sở Tập đoàn Vũ khí Harrington",
-      "area": "EC",
+    "28WC": {
+      "id": "28WC",
+      "title": "Căn hộ Chandler Davenport (Tay súng bắn lén)",
+      "area": "WC",
+      "type": "location_search",
+      "map_coords": { "x": 430, "y": 315 },
+      "content": "Khám xét phòng trọ của Chandler Davenport - kẻ duy nhất được tha bổng trong vụ án 1891 vì thiếu chứng cứ. Trong rương cất giấu nhiều khẩu súng săn và súng bắn tỉa cao cấp cùng bài báo 'Án phạt đường dây buôn lậu Outer Docks 25/11/1891'. Hắn là kẻ đứng từ cửa sổ đối diện bắn xuyên qua kính vào 221B.",
+      "unlocks": {
+        "nodes": ["34WC", "49SE"],
+        "evidence_items": [
+          "Chandler Davenport là tay súng bắn tỉa nấp tại Camden House ngắm bắn vào 221B.",
+          "Rương súng và bài báo vụ án buôn lậu Outer Docks năm 1891."
+        ]
+      },
+      "key_hints": ["Chandler Davenport là sát thủ nổ súng ám sát."]
+    },
+    "34WC": {
+      "id": "34WC",
+      "title": "Căn hộ Gerald Locke (Anh em sinh đôi John Locke)",
+      "area": "WC",
       "type": "suspect_interview",
-      "map_coords": { "x": 530, "y": 280 },
-      "content": "Lord Harrington bồn chồn thừa nhận: 'Đêm qua cuộn bản thiết kế pháo đài mật của chúng tôi bị đánh trộm. Chúng tôi đã nhờ Holmes cất giữ nhưng không ngờ kẻ thù đã ra tay trước'.",
+      "map_coords": { "x": 365, "y": 235 },
+      "content": "Gerald Locke (anh em sinh đôi với John Locke - phạm nhân vụ buôn lậu) tiết lộ: 'Băng buôn lậu năm xưa gồm 8 kẻ dùng kho hàng tàu biển để buôn lậu cổ vật và ma túy. Elle Fanning đã đứng ra mời các thân nhân phạm nhân đến nhà hàng The Pavilion của cô ta để lên kế hoạch tàn bạo nhằm vào Holmes'.",
+      "unlocks": {
+        "nodes": ["49SE"],
+        "evidence_items": [
+          "Gerald Locke là anh em sinh đôi của John Locke.",
+          "Elle Fanning chủ mưu cuộc họp 'The Pentacle' tại nhà hàng The Pavilion."
+        ]
+      },
+      "key_hints": ["Elle Fanning triệu tập nhóm Pentacle tại The Pavilion."]
+    },
+    "49SE": {
+      "id": "49SE",
+      "title": "Nhà kho hoang bến tàu (Gertrude Helwig & Ambroise Beaupre)",
+      "area": "SE",
+      "type": "crime_scene",
+      "map_coords": { "x": 520, "y": 460 },
+      "content": "Khám xét căn hộ phóng hỏa của Ambroise Beaupre và Gertrude Helwig. Phát hiện cây gậy gộc gụ shillelagh của Beaupre và quần áo bị bỏng lửa của Gertrude Helwig - kẻ đã hét lên hoảng loạn khi bị lửa táp trúng mặt lúc tưới xăng phóng hỏa 221B Baker Street.",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Tài liệu bị đánh cắp là bản thiết kế pháo đài mật của Lord Harrington."]
+        "evidence_items": [
+          "Gertrude Helwig bị bỏng mặt khi phóng hỏa 221B làm phát ra tiếng kêu thét.",
+          "Ambroise Beaupre mang gậy shillelagh đồng phạm phóng hỏa."
+        ]
       },
-      "key_hints": ["Động cơ vụ án liên quan đến bản thiết kế pháo đài mật."]
+      "key_hints": ["Gertrude Helwig bị bỏng mặt phát ra tiếng thét tại 221B."]
     }
   },
   "directory": [
-    { "name": "Holmes, Sherlock (Căn hộ 221B)", "code": "221B", "category": "Căn hộ", "address": "221B Baker St", "desc": "Căn hộ hiện trường vụ hỏa hoạn bí ẩn." },
-    { "name": "Scotland Yard (Cảnh sát)", "code": "13SW", "category": "Cơ quan", "address": "13 South West St", "desc": "Sở cảnh sát London." },
-    { "name": "Bệnh viện St. Bartholomew", "code": "38EC", "category": "Bệnh viện", "address": "38 East Central St", "desc": "Phòng khám nghiệm tử thi Bác sĩ Sir Jasper Meeks." },
-    { "name": "Tập đoàn Vũ khí Harrington", "code": "10EC", "category": "Tập đoàn", "address": "10 East Central St", "desc": "Trụ sở sản xuất vũ khí quốc phòng Harrington." }
+    { "name": "Holmes, Sherlock (Căn hộ 221B)", "code": "221B", "category": "Căn hộ", "address": "221B Baker St", "desc": "Hiện trường vụ hỏa hoạn và nổ súng bí ẩn." },
+    { "name": "Scotland Yard (Thanh tra Lestrade)", "code": "13SW", "category": "Cơ quan", "address": "13 South West St", "desc": "Sở cảnh sát London giải mã mật thư Holmes." },
+    { "name": "Bệnh viện St. Bartholomew", "code": "38EC", "category": "Bệnh viện", "address": "38 East Central St", "desc": "Phòng khám nghiệm Sir Jasper Meeks." },
+    { "name": "Davenport, Chandler (Tay súng)", "code": "28WC", "category": "Cư dân", "address": "28 West Central St", "desc": "Căn hộ tay súng ám sát nhóm Pentacle." },
+    { "name": "Locke, Gerald (Anh em sinh đôi)", "code": "34WC", "category": "Cư dân", "address": "34 West Central St", "desc": "Anh em sinh đôi của phạm nhân buôn lậu John Locke." },
+    { "name": "Beaupre & Helwig (Kẻ phóng hỏa)", "code": "49SE", "category": "Kho hàng", "address": "49 South East St", "desc": "Căn hộ phóng hỏa mang gậy shillelagh." }
   ],
   "newspaper": {
     "paper_name": "THE DAILY TELEGRAPH",
@@ -79,9 +136,15 @@ export const SHERLOCK_CASE_2 = {
     "articles": [
       {
         "date": "2 THÁNG 12, 1893",
-        "title": "THẢM HỌA TẠI 221B BAKER STREET",
-        "summary": "Vụ hỏa hoạn dữ dội thiêu rụi căn hộ thám tử Sherlock Holmes. Cảnh sát đang điều tra nghi vấn sát hại.",
+        "title": "THẢM HỌA HỎA HOẠN TẠI 221B BAKER STREET",
+        "summary": "Vụ hỏa hoạn và nổ súng dữ dội thiêu rụi căn hộ thám tử Sherlock Holmes. Cảnh sát điều tra băng nhóm The Pentacle.",
         "related_code": "221B"
+      },
+      {
+        "date": "25 THÁNG 11, 1891",
+        "title": "TUYÊN ÁN ĐƯỜNG DÂY BUÔN LẬU OUTER DOCKS",
+        "summary": "Tòa án tuyên phạt 8 đối tượng buôn lậu cổ vật và ma túy. Chandler Davenport được tha bổng vì thiếu chứng cứ.",
+        "related_code": "28WC"
       }
     ]
   },
@@ -89,131 +152,104 @@ export const SHERLOCK_CASE_2 = {
     "part_1_main_case": [
       {
         "id": "q1",
-        "question": "Thi thể cháy xém phát hiện tại hiện trường 221B Baker Street có phải là Sherlock Holmes không?",
+        "question": "Động cơ nào khiến Elle Fanning lên kế hoạch sát hại Sherlock Holmes?",
         "options": [
-          "Không phải, Bác sĩ Sir Jasper Meeks kết luận xương vai và chiều cao ngắn hơn Holmes 2 inch",
-          "Chính là Sherlock Holmes",
-          "Là Bác sĩ John Watson",
-          "Là Thanh tra Lestrade"
+          "Bất bình vì thông tin mật của Holmes khiến cha cô (Dick Alpert) bị bắn chết trong vụ án Outer Docks năm 1891",
+          "Thù hằn cá nhân về nợ nần cờ bạc",
+          "Trộm cướp bộ sưu tập sổ tay của Holmes",
+          "Cạnh tranh danh tiếng thám tử tư"
         ],
         "correct_option_index": 0,
-        "explanation": "Bác sĩ Sir Jasper Meeks tại 38EC xác nhận cấu trúc xương thi thể ngắn hơn Holmes 2 inch, chứng tỏ Holmes vẫn sống."
+        "points": 25,
+        "explanation": "Elle Fanning là con gái sĩ quan Dick Alpert - người bị đọ súng chết trong chiến dịch truy bắt băng buôn lậu Outer Docks theo manh mối của Holmes."
       },
       {
         "id": "q2",
-        "question": "Mục tiêu bị đánh cắp khỏi két sắt tại căn hộ 221B Baker Street là gì?",
+        "question": "Loại độc chất nào đã được Elle Fanning lén bỏ vào tách trà của Holmes?",
         "options": [
-          "Cuộn bản thiết kế pháo đài mật của Tập đoàn Vũ khí Harrington",
-          "Bộ sưu tập kim cương hoàng gia",
-          "Sổ tay nhật ký cá nhân của Watson",
-          "Số tiền mặt 10,000 Bảng"
+          "Xyanua (Cyanide)",
+          "Độc tố Belladonna",
+          "Thạch tín (Arsenic)",
+          "Thuốc phiện liều cao"
         ],
         "correct_option_index": 0,
-        "explanation": "Lord Harrington xác nhận tài liệu bị cắp là bản thiết kế pháo đài mật quốc phòng."
+        "points": 25,
+        "explanation": "Elle Fanning đã lén cho Cyanide vào trà của Holmes tại nhà hàng The Pavilion."
       },
       {
         "id": "q3",
-        "question": "Mảnh bằng chứng nào thu được dưới sàn nhà làm việc 221B chỉ ra liên hệ với Tập đoàn Harrington?",
+        "question": "Tại sao nạn nhân bị nổ súng bắn chết tại phòng làm việc 221B Baker Street lại bị sát hại?",
         "options": [
-          "Mảnh huy hiệu kim loại của Tập đoàn Vũ khí Harrington",
-          "Chiếc kính nhòm mạ vàng",
-          "Hộp thuốc hít bằng bạc",
-          "Tấm danh thiếp của Moriarty"
+          "Kẻ ám sát (Chandler Davenport) nhầm Marvin Pemberton là Sherlock Holmes",
+          "Marvin Pemberton là kẻ phản bội băng nhóm",
+          "Do xô xát cướp tài sản",
+          "Do cướp súng tự sát"
         ],
         "correct_option_index": 0,
-        "explanation": "Thám tử tìm thấy mảnh huy hiệu kim loại mang biểu tượng Harrington dưới sàn nhà."
+        "points": 25,
+        "explanation": "Chandler Davenport nấp từ cửa sổ đối diện bắn nhầm Marvin Pemberton vì tưởng đó là Sherlock Holmes."
       },
       {
         "id": "q4",
-        "question": "Nguyên nhân tử vong thực sự của thi thể tại hiện trường là gì?",
+        "question": "Sherlock Holmes thực sự đang ẩn náu an toàn tại đâu?",
         "options": [
-          "Trúng đạn bắn từ đằng sau trước khi ngọn lửa bùng phát",
-          "Bị chết cháy do khói",
-          "Bị ngạt nước",
-          "Bị trúng độc"
+          "Cửa hàng văn phòng phẩm A. W. Faber (giải mã từ mật thư chữ cái đầu tiên)",
+          "Nhà bác sĩ John Watson",
+          "Biệt thự Mycroft Holmes",
+          "Trụ sở Scotland Yard"
         ],
         "correct_option_index": 0,
-        "explanation": "Khám nghiệm 38EC xác nhận nạn nhân bị bắn từ sau lưng trước khi căn hộ bị đốt cháy."
-      },
-      {
-        "id": "q5",
-        "question": "Sherlock Holmes đang ở đâu sau khi vụ hỏa hoạn xảy ra?",
-        "options": [
-          "Ẩn mình bí mật điều tra ngầm vụ án",
-          "Đã qua đời",
-          "Đang điều trị tại bệnh viện",
-          "Bị bắt giữ tại Scotland Yard"
-        ],
-        "correct_option_index": 0,
-        "explanation": "Holmes cố tình dàn dựng giả chết để đánh lừa kẻ thù và âm thầm truy vết cuộn tài liệu mật."
+        "points": 25,
+        "explanation": "Mật thư gửi cho Lestrade giải mã theo chữ cái đầu tiên của từng từ ghi rõ Holmes đang giấu mình ở cửa hàng A. W. Faber."
       }
     ],
     "part_2_side_mysteries": [
       {
-        "id": "q6",
-        "question": "Tên người bạn đồng hành thân thiết của Sherlock Holmes là gì?",
+        "id": "q5",
+        "question": "Nguyên nhân tạo ra tiếng thét thất thanh tại hiện trường hỏa hoạn 221B Baker Street là gì?",
         "options": [
-          "Bác sĩ John Watson",
-          "Thanh tra Lestrade",
-          "Sir Jasper Meeks",
-          "Wiggins"
+          "Gertrude Helwig bị lửa táp bỏng mặt khi phóng hỏa",
+          "Bác sĩ Watson phát hiện thi thể",
+          "Con mèo bị kẹt trong lửa",
+          "Chủ nhà bà Hudson thét lên"
         ],
         "correct_option_index": 0,
-        "explanation": "Bác sĩ John Watson là bạn thân và người ghi chép các vụ án của Holmes."
+        "points": 10,
+        "explanation": "Gertrude Helwig bị lửa táp trúng mặt khi tưới xăng phóng hỏa phát ra tiếng thét thất thanh."
+      },
+      {
+        "id": "q6",
+        "question": "Nhân vật nào trong băng nhóm luôn mang theo cây gậy gộc gụ shillelagh bên mình?",
+        "options": [
+          "Ambroise Beaupre",
+          "Chandler Davenport",
+          "Israel Jacobs",
+          "Gerald Locke"
+        ],
+        "correct_option_index": 0,
+        "points": 10,
+        "explanation": "Ambroise Beaupre luôn mang theo gậy shillelagh bên mình."
       },
       {
         "id": "q7",
-        "question": "Vụ hỏa hoạn xảy ra vào thời gian nào trong ngày?",
+        "question": "Israel Jacobs đồng thời làm công việc bán thời gian ở hai nơi nào?",
         "options": [
-          "Lúc 2 giờ sáng",
-          "Lúc 12 giờ trưa",
-          "Lúc 6 giờ tối",
-          "Lúc 8 giờ sáng"
+          "Camden House và Nhà hàng Ship and Turtle",
+          "221B Baker St và Scotland Yard",
+          "Nhà hát Lyceum và Khách sạn Clarendon",
+          "Tiệm xì gà Havana và Bệnh viện St. Bartholomew"
         ],
         "correct_option_index": 0,
-        "explanation": "Thanh tra Lestrade cho biết cảnh sát nhận tin báo cháy lúc 2 giờ sáng."
-      },
-      {
-        "id": "q8",
-        "question": "Nhóm thám tử thiếu niên hỗ trợ Holmes có tên là gì?",
-        "options": [
-          "Nhóm thám tử phố Baker (Baker Street Irregulars)",
-          "Nhóm thám tử Scotland Yard",
-          "Biệt đội London",
-          "Hội trinh thám Hoàng gia"
-        ],
-        "correct_option_index": 0,
-        "explanation": "Các thiếu niên đường phố hỗ trợ Holmes có tên Baker Street Irregulars đứng đầu bởi Wiggins."
-      },
-      {
-        "id": "q9",
-        "question": "Tên tờ nhật báo đưa tin về thảm họa 221B Baker Street là gì?",
-        "options": [
-          "The Daily Telegraph",
-          "The Times",
-          "London Gazette",
-          "Daily News"
-        ],
-        "correct_option_index": 0,
-        "explanation": "Nhật báo The Daily Telegraph đăng bài trang nhất về thảm họa."
-      },
-      {
-        "id": "q10",
-        "question": "Bác sĩ khám nghiệm tử thi nổi tiếng tại Bệnh viện St. Bartholomew tên là gì?",
-        "options": [
-          "Sir Jasper Meeks",
-          "Dr. Murray",
-          "Dr. Trevelyan",
-          "Dr. Mason"
-        ],
-        "correct_option_index": 0,
-        "explanation": "Bác sĩ khám nghiệm tử thi chính của London là Sir Jasper Meeks."
+        "points": 10,
+        "explanation": "Israel Jacobs làm việc tại Camden House (để rình rập Holmes) và nhà hàng Ship and Turtle."
       }
     ]
   },
   "solution_summary": {
-    "mastermind": "Sherlock Holmes (dàn dựng) & Kẻ trộm tài liệu Harrington",
-    "motive": "Holmes dàn dựng giả chết để bảo vệ bản thân và âm thầm truy bắt kẻ trộm tài liệu mật quốc phòng.",
-    "full_truth": "Vụ án là màn kịch cao tay do Sherlock Holmes dàn dựng sau khi phát hiện kẻ thù âm mưu đột nhập két sắt 221B để trộm bản thiết kế pháo đài mật của Tập đoàn Harrington. Holmes đã tráo một thi thể vô danh bị bắn chết trước đó vào căn hộ và phóng hỏa đánh lừa dư luận. Nhờ khám nghiệm của Bác sĩ Sir Jasper Meeks (38EC), nhóm thám tử phố Baker đã nhận ra Holmes vẫn còn sống và đang bí mật thu hồi cuộn tài liệu mật!"
+    "mastermind": "Nhóm sát thủ Băng Pentacle (Elle Fanning, Chandler Davenport, Ambroise Beaupre, Gertrude Helwig, Israel Jacobs)",
+    "motive": "Trả thù cho vụ triệt phá đường dây buôn lậu Outer Docks năm 1891.",
+    "holmes_optimal_path": ["221B", "13SW", "38EC", "28WC"],
+    "holmes_clue_count": 4,
+    "full_truth": "Băng nhóm The Pentacle tập hợp người thân các tù nhân vụ buôn lậu 1891 nhằm trả thù Holmes. Elle Fanning cho độc Cyanide vào trà; Israel Jacobs ném thùng dưa chuột làm chấn thương chân Holmes; Chandler Davenport nấp ở Camden House nổ súng bắn nhầm Marvin Pemberton thành Holmes; Gertrude Helwig và Ambroise Beaupre tưới xăng đốt 221B. Sherlock Holmes đã phát hiện ra trước, nhắn mật thư bằng quy luật chữ cái đầu cho Lestrade và giấu mình an toàn tại tiệm văn phòng phẩm A. W. Faber!"
   }
 };
