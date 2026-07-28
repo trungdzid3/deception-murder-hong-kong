@@ -784,7 +784,7 @@ function App() {
                       <h2 className="flex items-center gap-2 text-amber-300">
                         <Search size={24} className="text-amber-400" /> PHÒNG CHỜ ĐIỀU TRA: SHERLOCK HOLMES
                       </h2>
-                      <p className="text-slate-300">Hợp tác cùng đồng đội điều tra giải mã 3 kỳ án trinh thám Sherlock Holmes lừng danh.</p>
+                      <p className="text-slate-300">Hợp tác cùng đồng đội điều tra giải mã các kỳ án trinh thám Sherlock Holmes lừng danh.</p>
                     </>
                   ) : (
                     <>

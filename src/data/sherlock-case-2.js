@@ -1,16 +1,16 @@
 export const SHERLOCK_CASE_2 = {
   "case_id": "sherlock_case_2",
   "title": "Vụ án 2: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
-  "author": "Ystari & Raymond Edwards (SHCD Errata Edition)",
+  "author": "Ystari & Raymond Edwards",
   "setting_date": "Ngày 5 tháng 3 năm 1889",
   "intro": {
     "story_text": "Sáng sớm ngày 5 tháng 3 năm 1889, Thanh tra Lestrade vội vã tìm đến 221B Baker Street với khuôn mặt biến sắc. Ông Clarendon - một quý tộc giàu có tại khu Bloomsbury - được phát hiện bị bắn chết ngay tại bàn làm việc trong phòng riêng. Cảnh sát tìm thấy Frances Nolan, người phụ nữ trẻ quen biết nạn nhân, đang trong trạng thái bần thần hoang tưởng gần hiện trường với vết máu trên tay và không thể nhớ bất kỳ điều gì đã xảy ra trong vài giờ qua. Mọi bằng chứng tại chỗ dường như quy kết Frances là kẻ sát nhân cuồng sát. Tuy nhiên, Holmes nghi ngờ cô gái trẻ đã bị thao túng tâm lý bằng kỹ thuật thôi miên cao tay để làm kẻ thế mạng cho một âm mưu chiếm đoạt gia tài tàn bạo!",
     "initial_clues": [
       "Nạn nhân Clarendon bị bắn chết bằng một viên đạn duy nhất từ súng ngắn Derringer tại bàn làm việc.",
-      "Hiện trường CHỈ CÓ DUY NHẤT 1 LY RƯỢU VANG (Errata PDF 36EC: Loại trừ sự xuất hiện của cô em gái Loretta tại hiện trường).",
-      "Frances Nolan bị cảnh sát tạm giữ trong trạng thái hoang tưởng, ngơ ngác và liên tục bị mất trí nhớ tạm thời (blackout).",
+      "Hiện trường chỉ có duy nhất 1 ly rượu vang, loại trừ sự xuất hiện của cô em gái Loretta tại hiện trường.",
+      "Frances Nolan bị cảnh sát tạm giữ trong trạng thái hoang tưởng, ngơ ngác và liên tục bị mất trí nhớ tạm thời.",
       "Sổ tay ghi chép của nạn nhân đề cập đến cuộc gặp với luật sư Hiram Davenport và Bác sĩ Trevelyan.",
-      "Nhật báo The Times đăng tin về các vụ tấn công bằng khăn thấm thuốc mê bốc hơi (Stupefying liquid) tại khu vực Lombard Street."
+      "Nhật báo The Times đăng tin về các vụ tấn công bằng khăn thấm thuốc mê bốc hơi tại khu vực Lombard Street."
     ],
     "unlocked_nodes": ["36EC", "13WC", "15SW", "38EC"]
   },
@@ -21,16 +21,16 @@ export const SHERLOCK_CASE_2 = {
       "area": "EC",
       "type": "suspect_interview",
       "map_coords": { "x": 580, "y": 280 },
-      "content": "Frances Nolan ngơ ngác chia sẻ: 'Trong 2 tuần qua, tôi liên tục bị ngất xỉu và mất trí nhớ 2 lần mà không rõ lý do. Lần đầu tiên tôi tỉnh dậy thấy mình đang ngồi trên ghế công viên Hyde Park. Lần thứ hai vài ngày sau, khi tôi đến Lambeth Walk (24SE) để hỏi thuê một ngôi nhà nghỉ dưỡng xa thành phố cho hai chị em, tôi lại bị ngất và sau đó tỉnh dậy tại Ga xe lửa Waterloo (Waterloo Station). Tôi đã hỏi ý kiến Bác sĩ Trevelyan và ông ấy bảo tôi chỉ bị kiệt sức. Nếu tôi có bất trắc gì xảy ra (incapacitation), luật sư Hiram Davenport của gia đình vẫn là người quản lý tài sản theo đúng ý nguyện cha mẹ'. Lời khai chứng minh Frances HOÀN TOÀN KHÔNG BIẾT việc di chúc của cô đã bị sửa đổi nhượng quyền cho Dr. Trevelyan!",
+      "content": "Frances Nolan ngơ ngác chia sẻ: 'Trong 2 tuần qua, tôi liên tục bị ngất xỉu và mất trí nhớ 2 lần mà không rõ lý do. Lần đầu tiên tôi tỉnh dậy thấy mình đang ngồi trên ghế công viên Hyde Park. Lần thứ hai vài ngày sau, khi tôi đến Lambeth Walk (24SE) để hỏi thuê một ngôi nhà nghỉ dưỡng xa thành phố cho hai chị em, tôi lại bị ngất và sau đó tỉnh dậy tại Ga xe lửa Waterloo. Tôi đã hỏi ý kiến Bác sĩ Trevelyan và ông ấy bảo tôi chỉ bị kiệt sức. Nếu tôi có bất trắc gì xảy ra, luật sư Hiram Davenport của gia đình vẫn là người quản lý tài sản theo đúng ý nguyện cha mẹ'. Lời khai chứng minh Frances hoàn toàn không biết việc di chúc của cô đã bị sửa đổi nhượng quyền cho Dr. Trevelyan!",
       "unlocks": {
         "nodes": ["24SE", "17WC", "28WC", "52EC"],
         "evidence_items": [
-          "Frances bị ngất xỉu 2 lần (Hyde Park và Lambeth Walk 24SE -> tỉnh ở Ga Waterloo).",
+          "Frances bị ngất xỉu 2 lần tại Hyde Park và Lambeth Walk rồi tỉnh ở Ga Waterloo.",
           "Frances tin rằng Luật sư Davenport vẫn quản lý tài sản, không hề biết di chúc đã bị đổi tên người thừa kế sang Dr. Trevelyan."
         ]
       },
       "key_hints": [
-        "Frances bị thôi miên mất trí nhớ tại Lambeth Walk (24SE).",
+        "Frances bị thôi miên mất trí nhớ tại Lambeth Walk.",
         "Frances không biết di chúc đã bị đổi tên người thừa kế, chứng tỏ cô bị thôi miên khi ký di chúc."
       ]
     },
@@ -40,12 +40,12 @@ export const SHERLOCK_CASE_2 = {
       "area": "EC",
       "type": "clue_inspection",
       "map_coords": { "x": 550, "y": 320 },
-      "content": "Bác sĩ khám nghiệm tử thi Sir Jasper Meeks kết luận: Nạn nhân Clarendon bị bắn ở cự cự kề cận (very close range) bằng một khẩu súng sáu cỡ nhỏ. Tử vong khoảng từ 4 đến 10 tiếng trước 1 giờ chiều.",
+      "content": "Bác sĩ khám nghiệm tử thi Sir Jasper Meeks kết luận: Nạn nhân Clarendon bị bắn ở cự ly kề cận bằng một khẩu súng sáu cỡ nhỏ. Tử vong khoảng từ 4 đến 10 tiếng trước 1 giờ chiều.",
       "unlocks": {
         "nodes": ["28WC"],
         "evidence_items": ["Clarendon bị bắn cận chiến bằng súng sáu nhỏ Derringer."]
       },
-      "key_hints": ["Vết bắn cự cự kề cận trùng khớp với khẩu súng Derringer."]
+      "key_hints": ["Vết bắn cự ly kề cận trùng khớp với khẩu súng Derringer."]
     },
     "52EC": {
       "id": "52EC",
@@ -66,7 +66,7 @@ export const SHERLOCK_CASE_2 = {
       "area": "WC",
       "type": "suspect_interview",
       "map_coords": { "x": 380, "y": 350 },
-      "content": "Luật sư Hiram Davenport xem lại sổ sách và tiết lộ chi tiết Errata cực kỳ quan trọng: 'Tháng trước, cô Frances Nolan có tới đây cùng Bác sĩ Trevelyan - vị bác sĩ riêng phụ trách chăm sóc sức khỏe cho cô em gái Loretta. Cô Frances bày tỏ nguyện vọng muốn Bác sĩ Trevelyan trở thành người giám hộ hợp pháp toàn bộ tài sản gia đình nếu cô gặp bất trắc. Lúc ấy tôi thấy ánh mắt cô Frances đờ đẫn, thần trí vơ vẩn mộng du rất kỳ lạ. Nhưng khi nghe cô ấy bị ngất xỉu sau đó trong ngày, tôi chỉ nghĩ cô ấy bị say nắng'.",
+      "content": "Luật sư Hiram Davenport xem lại sổ sách và tiết lộ: 'Tháng trước, cô Frances Nolan có tới đây cùng Bác sĩ Trevelyan - vị bác sĩ riêng phụ trách chăm sóc sức khỏe cho cô em gái Loretta. Cô Frances bày tỏ nguyện vọng muốn Bác sĩ Trevelyan trở thành người giám hộ hợp pháp toàn bộ tài sản gia đình nếu cô gặp bất trắc. Lúc ấy tôi thấy ánh mắt cô Frances đờ đẫn, thần trí vơ vẩn mộng du rất kỳ lạ. Nhưng khi nghe cô ấy bị ngất xỉu sau đó trong ngày, tôi chỉ nghĩ cô ấy bị say nắng'.",
       "unlocks": {
         "nodes": ["17WC", "14WC"],
         "evidence_items": ["Bác sĩ Trevelyan đi cùng Frances đến văn phòng luật sư khi cô ở trạng thái mộng du để đổi di chúc."]
@@ -82,7 +82,7 @@ export const SHERLOCK_CASE_2 = {
       "area": "WC",
       "type": "clue_inspection",
       "map_coords": { "x": 410, "y": 390 },
-      "content": "Bản di chúc chính thức của Frances Nolan lập tháng 6 xác nhận: Trong trường hợp Frances qua đời hoặc mất khả năng hành vi (incapacitated), Bác sĩ Trevelyan sẽ trở thành người giám hộ duy nhất toàn quyền sở hữu và quản lý khối tài sản thừa kế khổng lồ của gia đình Nolan.",
+      "content": "Bản di chúc chính thức của Frances Nolan lập tháng 6 xác nhận: Trong trường hợp Frances qua đời hoặc mất khả năng hành vi, Bác sĩ Trevelyan sẽ trở thành người giám hộ duy nhất toàn quyền sở hữu và quản lý khối tài sản thừa kế khổng lồ của gia đình Nolan.",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Bác sĩ Trevelyan là người thụ hưởng duy nhất từ bản di chúc mới của Frances."]
@@ -95,7 +95,7 @@ export const SHERLOCK_CASE_2 = {
       "area": "SE",
       "type": "location_search",
       "map_coords": { "x": 620, "y": 700 },
-      "content": "Khám xét căn hộ cho thuê ở Lambeth Walk (nơi Frances bị ngất xỉu lần 2), thám tử phát hiện một phòng kín có dụng cụ thôi miên, đĩa quay con lắc pendulum và lọ thuốc mê ether bốc hơi. Chủ nhà xác nhận Bác sĩ Trevelyan thường xuyên lui tới căn hộ này dưới tên giả.",
+      "content": "Khám xét căn hộ cho thuê ở Lambeth Walk (nơi Frances bị ngất xỉu lần 2), thám tử phát hiện một phòng kín có dụng cụ thôi miên, đĩa quay con lắc và lọ thuốc mê bốc hơi. Chủ nhà xác nhận Bác sĩ Trevelyan thường xuyên lui tới căn hộ này dưới tên giả.",
       "unlocks": {
         "nodes": ["28WC"],
         "evidence_items": ["Phòng điều khiển thôi miên bí mật của Dr. Trevelyan tại Lambeth Walk."]
@@ -108,7 +108,7 @@ export const SHERLOCK_CASE_2 = {
       "area": "SW",
       "type": "suspect_interview",
       "map_coords": { "x": 190, "y": 580 },
-      "content": "Quản lý khách sạn nhớ lại chi tiết Errata bổ sung: 'Trong thời gian lưu trú, ông Clarendon có một phụ nữ ăn mặc rất nổi bật đến thăm. Sau đó xuất hiện người thứ hai: một gã đàn ông lực lưỡng hung tợn, có ria vây cá ngừ (thick walrus moustache) và vết sẹo dài trên má đến đe dọa đòi gặp Clarendon. Khi biết Clarendon không có ở đó, gã tức giận ngồi chực chờ ở quầy bar đến tận chạng vạng tối'. Hiện trường vụ án CHỈ CÓ 1 LY RƯỢU, chứng minh gã người lạ và cô em gái Loretta không có mặt trong phòng lúc nổ súng.",
+      "content": "Quản lý khách sạn nhớ lại chi tiết: 'Trong thời gian lưu trú, ông Clarendon có một phụ nữ ăn mặc rất nổi bật đến thăm. Sau đó xuất hiện người thứ hai: một gã đàn ông lực lưỡng hung tợn, có ria mép dày và vết sẹo dài trên má đến đe dọa đòi gặp Clarendon. Khi biết Clarendon không có ở đó, gã tức giận ngồi chực chờ ở quầy bar đến tận chạng vạng tối'. Hiện trường vụ án chỉ có 1 ly rượu, chứng minh gã người lạ và cô em gái Loretta không có mặt trong phòng lúc nổ súng.",
       "unlocks": {
         "nodes": [],
         "evidence_items": [
@@ -169,7 +169,7 @@ export const SHERLOCK_CASE_2 = {
       {
         "date": "4 THÁNG 3, 1889",
         "title": "CẢNH BÁO THUỐC MÊ BỐC HƠI TẠI LOMBARD STREET",
-        "summary": "Một kẻ lạ mặt đã dùng khăn thấm chất dịch mê (Stupefying liquid) làm ngất xỉu người trông coi giáo đường St. Mary Woolnoth.",
+        "summary": "Một kẻ lạ mặt đã dùng khăn thấm chất dịch mê làm ngất xỉu người trông coi giáo đường St. Mary Woolnoth.",
         "related_code": "24SE"
       }
     ]
@@ -190,15 +190,15 @@ export const SHERLOCK_CASE_2 = {
       },
       {
         "id": "q2",
-        "question": "Chi tiết Errata nào tại hiện trường 15SW khẳng định cô em gái Loretta KHÔNG tham gia nổ súng?",
+        "question": "Chi tiết đặc biệt nào tại hiện trường 15SW khẳng định cô em gái Loretta không tham gia nổ súng?",
         "options": [
-          "Hiện trường CHỈ CÓ DUY NHẤT 1 LY RƯỢU VANG",
+          "Hiện trường chỉ có duy nhất 1 ly rượu vang",
           "Không tìm thấy dấu vân tay",
           "Cửa sổ bị khóa từ bên trong",
           "Có hai ly rượu vang trên bàn"
         ],
         "correct_option_index": 0,
-        "explanation": "Ghi chú Errata đính chính hiện trường chỉ có 1 ly rượu vang duy nhất (thay vì 2 ly như bản cũ), đập tan nghi vấn Loretta có mặt tại hiện trường."
+        "explanation": "Hiện trường chỉ có 1 ly rượu vang duy nhất (thay vì 2 ly như bản cũ), đập tan nghi vấn Loretta có mặt tại hiện trường."
       },
       {
         "id": "q3",
@@ -210,13 +210,13 @@ export const SHERLOCK_CASE_2 = {
           "Bảo vệ bí mật y khoa"
         ],
         "correct_option_index": 0,
-        "explanation": "Dr. Trevelyan muốn chiếm đoạt khối tài sản gia đình Nolan bằng cách gạt Frances vào tù/án tử và làm người giám hộ duy nhất của Loretta."
+        "explanation": "Dr. Trevelyan muốn chiếm đoạt khối tài sản gia đình Nolan bằng cách gạt Frances vào tù hoặc án tử và làm người giám hộ duy nhất của Loretta."
       },
       {
         "id": "q4",
         "question": "Frances Nolan tỉnh dậy ở đâu sau lần bị thôi miên ngất xỉu thứ hai tại Lambeth Walk (24SE)?",
         "options": [
-          "Tại ga xe lửa Waterloo (Waterloo Station)",
+          "Tại ga xe lửa Waterloo",
           "Tại công viên Hyde Park",
           "Tại nhà nghỉ Camden House",
           "Tại bệnh viện St. Bartholomew"
@@ -240,7 +240,7 @@ export const SHERLOCK_CASE_2 = {
     "part_2_side_mysteries": [
       {
         "id": "q6",
-        "question": "Frances Nolan bị ngất xỉu (blackout) mấy lần trong 2 tuần trước khi vụ án xảy ra?",
+        "question": "Frances Nolan bị ngất xỉu mất trí nhớ mấy lần trong 2 tuần trước khi vụ án xảy ra?",
         "options": [
           "2 lần",
           "1 lần",
@@ -290,7 +290,7 @@ export const SHERLOCK_CASE_2 = {
         "id": "q10",
         "question": "Chất dịch nào được kẻ lạ mặt sử dụng để làm ngất xỉu người trông coi giáo đường St. Mary Woolnoth?",
         "options": [
-          "Thuốc mê bốc hơi (Ether / Stupefying liquid)",
+          "Thuốc mê bốc hơi",
           "Khí độc Carbon monoxide",
           "Rượu Gin nồng độ cao",
           "Bột ớt cay"
@@ -303,6 +303,6 @@ export const SHERLOCK_CASE_2 = {
   "solution_summary": {
     "mastermind": "Bác sĩ Dr. Trevelyan",
     "motive": "Thôi miên Frances Nolan làm kẻ thế mạng để chiếm đoạt khối tài sản thừa kế khổng lồ của hai chị em nhà Nolan.",
-    "full_truth": "Bác sĩ Dr. Trevelyan là kẻ chủ mưu nham hiểm đứng sau toàn bộ vụ án. Hắn lợi dụng vị trí bác sĩ riêng để lén lút đưa Frances Nolan tới căn hộ bí mật ở Lambeth Walk (24SE) và thực hiện các buổi thôi miên làm mất trí nhớ (blackout). Hắn thao túng Frances đến gặp Luật sư Davenport (13WC) để lập di chúc mới chỉ định Dr. Trevelyan làm người giám hộ hợp pháp toàn quyền quản lý tài sản (Frances hoàn toàn không biết việc này). Sau đó, Dr. Trevelyan mua súng Derringer đứng tên Frances (28WC), trực tiếp sát hại ông Clarendon (hiện trường chỉ có 1 ly rượu) và dàn dựng để Frances trở thành kẻ cuồng sát hoang tưởng. Nhờ các chi tiết bổ sung Errata, âm mưu thôi miên tàn bạo của Dr. Trevelyan đã bị vạch trần trước ánh sáng pháp lý!"
+    "full_truth": "Bác sĩ Dr. Trevelyan là kẻ chủ mưu nham hiểm đứng sau toàn bộ vụ án. Hắn lợi dụng vị trí bác sĩ riêng để lén lút đưa Frances Nolan tới căn hộ bí mật ở Lambeth Walk (24SE) và thực hiện các buổi thôi miên làm mất trí nhớ. Hắn thao túng Frances đến gặp Luật sư Davenport (13WC) để lập di chúc mới chỉ định Dr. Trevelyan làm người giám hộ hợp pháp toàn quyền quản lý tài sản (Frances hoàn toàn không biết việc này). Sau đó, Dr. Trevelyan mua súng Derringer đứng tên Frances (28WC), trực tiếp sát hại ông Clarendon (hiện trường chỉ có 1 ly rượu) và dàn dựng để Frances trở thành kẻ cuồng sát hoang tưởng. Nhờ các chi tiết bổ sung, âm mưu thôi miên tàn bạo của Dr. Trevelyan đã bị vạch trần trước ánh sáng pháp lý!"
   }
 };
