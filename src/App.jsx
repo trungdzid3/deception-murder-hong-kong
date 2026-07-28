@@ -1385,8 +1385,9 @@ function App() {
                             item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || 
                             item.desc.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) ||
                             item.address.toLowerCase().includes(sherlockSearchQuery.toLowerCase());
+                          const nameWords = item.name.toUpperCase().split(/[\s,.-]+/);
                           const matchLetter = sherlockDirLetterFilter === 'ALL' || 
-                            item.name.toUpperCase().startsWith(sherlockDirLetterFilter);
+                            nameWords.some(w => w.startsWith(sherlockDirLetterFilter));
                           return matchQuery && matchLetter;
                         })
                         .map((item, idx) => {

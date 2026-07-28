@@ -10,7 +10,7 @@ export const SHERLOCK_CASE_1 = {
       "Chiếc hộp sắt trên bàn làm việc bị méo nhẹ phần vành nắp, cho thấy nó được đóng vội vàng trong lúc đám cháy đang diễn ra.",
       "Mảnh giấy nhắn 1 trong hộp sắt: 'S, Sẽ không có hại gì xảy ra đâu, tôi hứa! - M.'",
       "Mảnh giấy nhắn 2 trong hộp sắt: 'Ngày 2 tháng 12 năm 1893. Gửi Lestrade: Hãy phân tích kỹ để được trợ giúp thêm. Tốt nhất nên kiểm tra phần còn lại của hiện trường.'",
-      "Nhân chứng Olivia Robins ở địa điểm mã [50NW] báo cáo đã nhìn thấy Sherlock gặp một người đàn ông giống Mycroft lúc 8:30 tối, và lúc 9:00 tối thấy Edward Beaupre cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà."
+      "Nhân chứng Olivia Robins báo cáo đã nhìn thấy Sherlock gặp một người đàn ông giống Mycroft lúc 8:30 tối, và lúc 9:00 tối thấy Edward Beaupre cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà."
     ],
     "unlocked_nodes": ["50NW", "8SW", "22SW"]
   },
@@ -565,10 +565,11 @@ export const SHERLOCK_CASE_1 = {
     { "name": "Andrew Montgomery", "category": "Ngân hàng", "address": "39 EC Fleet St", "code": "39EC", "desc": "Giám đốc chi nhánh Barings Bank." },
     { "name": "Annette Verlaine", "category": "Phục vụ", "address": "20 NW Marylebone", "code": "20NW", "desc": "Phục vụ tại quán rượu The Pavilion." },
     { "name": "Arthur Pendelton", "category": "Thợ kim hoàn", "address": "12 SW Pall Mall", "code": "12SW", "desc": "Cửa hàng trang sức lâu đời." },
-    { "name": "Bà Beatrice Smith", "category": "Bánh ngọt", "address": "41 NW Regent St", "code": "41NW", "desc": "Tiệm trà và bánh quy bơ béo." },
-    { "name": "Bà Olivia Robins", "category": "Nhân chứng", "address": "50 NW Baker St", "code": "50NW", "desc": "Nhân chứng nhìn thấy vụ đốt nhà." },
-    { "name": "Bác sĩ Charles Darwin", "category": "Y tế", "address": "27 EC Fleet St", "code": "27EC", "desc": "Phòng khám tư nhân lâu đời." },
-    { "name": "Bác sĩ John Watson", "category": "Đồng sự Holmes", "address": "221B Baker Street", "code": "50NW", "desc": "Bác sĩ quân y và người ghi chép các kỳ án." },
+    { "name": "Beatrice Smith", "category": "Bánh ngọt", "address": "41 NW Regent St", "code": "41NW", "desc": "Tiệm trà và bánh quy bơ béo." },
+    { "name": "Olivia Robins", "category": "Nhân chứng", "address": "50 NW Baker St", "code": "50NW", "desc": "Nhân chứng sống đối diện 221B Baker Street." },
+    { "name": "Robins, Olivia", "category": "Nhân chứng", "address": "50 NW Baker St", "code": "50NW", "desc": "Nhân chứng nhìn thấy vụ đốt nhà." },
+    { "name": "Charles Darwin (Bác sĩ)", "category": "Y tế", "address": "27 EC Fleet St", "code": "27EC", "desc": "Phòng khám tư nhân lâu đời." },
+    { "name": "John Watson (Bác sĩ)", "category": "Đồng sự Holmes", "address": "221B Baker Street", "code": "50NW", "desc": "Bác sĩ quân y và người ghi chép các kỳ án." },
     { "name": "Benjamin Finch", "category": "Sách cũ", "address": "63 WC High Holborn", "code": "63WC", "desc": "Tiệm bán sách triết học & lịch sử cổ." },
     { "name": "Bernard Vance", "category": "Luật sư", "address": "81 SW Victoria", "code": "81SW", "desc": "Văn phòng tư vấn pháp lý hoàng gia." },
     { "name": "Bến xe ngựa Trung tâm", "category": "Giao thông", "address": "5 WC High Holborn", "code": "5WC", "desc": "Dịch vụ xe ngựa chở Holmes hôm qua." },
