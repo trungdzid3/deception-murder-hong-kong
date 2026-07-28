@@ -268,5 +268,13 @@ export const SHERLOCK_CASE_4 = {
     "mastermind": "Giáo sư Windibank",
     "motive": "Sát hại Oswald Mason để cướp bản đồ lăng mộ và dựng lên kịch bản Lời Nguyền Xác Ướp che giấu việc buôn lén cổ vật Toutankhamon.",
     "full_truth": "Giáo sư Windibank là kẻ chủ mưu lợi dụng tin đồn mị dân về 'Lời nguyền của Xác ướp Katebet' để thực hiện tội ác. Nhận thấy Oswald Mason sở hữu bản đồ định vị vị trí các lăng mộ cổ vật vô giá, Windibank đã đột nhập phòng làm việc sát hại Mason và lấy đi bản đồ. Hắn đánh tráo các báu vật của Vua Toutankhamon thành cổ vật Katebet rồi đem tuồn bán lén cho các nhà sưu tập tư nhân trên đường Oxford. Nhờ các mẩu tin đính chính trên báo The Times (ngoại phạm của Travis nhờ khu vực trại được canh gác nghiêm ngặt), Sherlock Holmes đã bóc gỡ màn kịch mượn danh tâm linh để vạch trần kẻ sát nhân cướp cổ vật!"
-  }
+  },
+  "directory": [
+    { "name": "Oswald Mason", "category": "Nạn nhân", "address": "42 WC Tottenham", "code": "42WC", "desc": "Trưởng kế toán Ngân hàng Anh bị giết tại phòng riêng." },
+    { "name": "Rose Mason", "category": "Nhân chứng", "address": "42 WC Tottenham", "code": "42WC", "desc": "Vợ nạn nhân Oswald Mason." },
+    { "name": "Giáo sư Windibank", "category": "Giáo sư khảo cổ", "address": "12 NW Gower St", "code": "12NW", "desc": "Trưởng đoàn thám hiểm lăng mộ Katebet." },
+    { "name": "Phóng viên Travis", "category": "Nhà báo", "address": "38 EC Fleet St", "code": "38EC", "desc": "Phóng viên tờ The Times theo dõi lời nguyền Ai Cập." },
+    { "name": "Violette Blue", "category": "Ca sĩ", "address": "15 WC Oxford", "code": "15WC", "desc": "Nữ ca sĩ biểu diễn tại Oxford Music Hall." },
+    { "name": "Cửa hàng đồ cổ Evenson & Co", "category": "Cửa hàng đồ cổ", "address": "29 WC Strand", "code": "29WC", "desc": "Nơi xảy ra vụ đột nhập cửa sau cạy khóa." }
+  ]
 };

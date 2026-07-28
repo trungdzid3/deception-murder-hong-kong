@@ -283,5 +283,14 @@ export const SHERLOCK_CASE_1 = {
     "mastermind": "Victor (Quản lý phòng tranh)",
     "motive": "Lấy trộm bức tranh thật để tuồn ra thị trường đen gạt khoản nợ sòng bạc 5,000 Bảng Anh.",
     "full_truth": "Victor là thủ phạm chính. Hắn nợ sòng bạc Cáo Đỏ 5,000 Bảng và nảy sinh ý định trộm bức tranh thật. Vì có chìa khóa phòng tranh nên hắn ra vào dễ dàng và con chó Brutus không sủa. Hắn âm thầm đến gặp Elias thuê chép bức tranh giả qua ảnh, trả bằng tiền mặt rồi tráo tranh thật lấy tranh giả. Nhờ nhận diện chiếc áo măng-tô xám, mùi xì gà nồng đậm và khoản nợ sòng bạc, Holmes đã phá vụ án chỉ trong 4 bước đi!"
-  }
+  },
+  "directory": [
+    { "name": "Ngài Archibald", "category": "Chủ phòng tranh", "address": "10 EC Strand", "code": "10EC", "desc": "Chủ sở hữu phòng tranh Archibald." },
+    { "name": "Quản lý Victor", "category": "Quản lý", "address": "10 EC Strand", "code": "10EC", "desc": "Quản lý phòng tranh mặc áo măng-tô xám." },
+    { "name": "Họa sĩ Elias", "category": "Họa sĩ", "address": "14 SE Borough", "code": "14SE", "desc": "Họa sĩ chuyên chép tranh giả vừa ra tù." },
+    { "name": "Sòng bạc Cáo Đỏ (Porky)", "category": "Sòng bạc", "address": "22 SW Whitechapel", "code": "22SW", "desc": "Nơi Victor gánh khoản nợ cờ bạc 5,000 Bảng." },
+    { "name": "Ga King's Cross (Tủ đồ số 4)", "category": "Ga tàu", "address": "05 WC Holborn", "code": "05WC", "desc": "Nơi giao gửi bức tranh giả." },
+    { "name": "Julian", "category": "Sưu tầm nghệ thuật", "address": "08 EC Mayfair", "code": "08EC", "desc": "Nhà sưu tầm đối thủ cạnh tranh mua bức tranh." },
+    { "name": "Thanh tra Lestrade", "category": "Cảnh sát", "address": "13 SW Scotland Yard", "code": "13SW", "desc": "Thanh tra phụ trách điều tra án mạng và mất cắp." }
+  ]
 };

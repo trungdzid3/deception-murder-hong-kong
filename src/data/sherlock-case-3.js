@@ -304,5 +304,15 @@ export const SHERLOCK_CASE_3 = {
     "mastermind": "Bác sĩ Dr. Trevelyan",
     "motive": "Thôi miên Frances Nolan làm kẻ thế mạng để chiếm đoạt khối tài sản thừa kế khổng lồ của hai chị em nhà Nolan.",
     "full_truth": "Bác sĩ Dr. Trevelyan là kẻ chủ mưu nham hiểm đứng sau toàn bộ vụ án. Hắn lợi dụng vị trí bác sĩ riêng để lén lút đưa Frances Nolan tới căn hộ bí mật ở Lambeth Walk (24SE) và thực hiện các buổi thôi miên làm mất trí nhớ. Hắn thao túng Frances đến gặp Luật sư Davenport (13WC) để lập di chúc mới chỉ định Dr. Trevelyan làm người giám hộ hợp pháp toàn quyền quản lý tài sản (Frances hoàn toàn không biết việc này). Sau đó, Dr. Trevelyan mua súng Derringer đứng tên Frances (28WC), trực tiếp sát hại ông Clarendon (hiện trường chỉ có 1 ly rượu) và dàn dựng để Frances trở thành kẻ cuồng sát hoang tưởng. Nhờ các chi tiết bổ sung, âm mưu thôi miên tàn bạo của Dr. Trevelyan đã bị vạch trần trước ánh sáng pháp lý!"
-  }
+  },
+  "directory": [
+    { "name": "Frances Nolan", "category": "Nghi phạm", "address": "36 EC Bloomsbury", "code": "36EC", "desc": "Cô gái trẻ bị nghi ngờ mắc chứng hoang tưởng." },
+    { "name": "Loretta Nolan", "category": "Nhân chứng", "address": "36 EC Bloomsbury", "code": "36EC", "desc": "Em gái của Frances Nolan." },
+    { "name": "Dr. Trevelyan", "category": "Bác sĩ", "address": "15 SW Cavendish", "code": "15SW", "desc": "Bác sĩ riêng của Frances Nolan." },
+    { "name": "Hiram Davenport", "category": "Luật sư", "address": "13 WC Strand", "code": "13WC", "desc": "Luật sư phụ trách di chúc gia đình Nolan." },
+    { "name": "Clarendon (Ông)", "category": "Nạn nhân", "address": "38 EC Fleet St", "code": "38EC", "desc": "Nạn nhân quý tộc bị bắn chết tại bàn làm việc." },
+    { "name": "Sở cảnh sát Scotland Yard (14WC)", "category": "Cảnh sát", "address": "14 WC Scotland Yard", "code": "14WC", "desc": "Lưu trữ hồ sơ vụ án cũ năm 1861." },
+    { "name": "Tiệm súng Derringer (28WC)", "category": "Vũ khí", "address": "28 WC Strand", "code": "28WC", "desc": "Nơi bán khẩu súng ngắn nạp 1 viên đạn." },
+    { "name": "Căn hộ Lambeth Walk", "category": "Địa điểm", "address": "24 SE Lambeth", "code": "24SE", "desc": "Căn hộ nơi xảy ra các buổi thôi miên." }
+  ]
 };

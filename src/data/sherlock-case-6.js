@@ -259,5 +259,14 @@ export const SHERLOCK_CASE_6 = {
     "holmes_optimal_path": ["10WC", "12NW", "08EC"],
     "holmes_clue_count": 3,
     "full_truth": "Giáo sư Sterling biết rõ bản thiết kế của Arthur là phát minh xuất sắc duy nhất có thể cứu ngân sách phòng thí nghiệm khỏi bị cắt hoàn toàn. Sau khi bị Arthur từ chối đứng tên đồng tác giả, Sterling quyết định lén vào phòng thí nghiệm bằng chìa khóa cùng của, đập vỡ cửa sổ từ BÊN TRONG để tạo hiện trường đột nhập giả, và lấy đi bản thiết kế. Tuy nhiên khi đập kính, Sterling bị mảnh kính cứa tay để lại vết xước. Thói quen hút xì gà Partagas Cuba đắt tiền của Sterling – không ai ngờ – lại để lại dấu vết trực tiếp ngay cạnh ngăn kéo bị cạy. Nhờ 3 bước suy luận: kính vỡ từ bên trong (10WC) → động cơ bức thiết (12NW) → xì gà và vết xước của Sterling (08EC), Holmes đã phá án chỉ trong một buổi sáng!"
-  }
+  },
+  "directory": [
+    { "name": "Arthur Pendelton", "category": "Sinh viên", "address": "14 SW Kensington", "code": "14SW", "desc": "Sinh viên cơ khí tác giả bản thiết kế." },
+    { "name": "Giáo sư Sterling", "category": "Giáo sư UCL", "address": "8 EC Bloomsbury", "code": "08EC", "desc": "Giáo sư hướng dẫn Khoa Cơ khí." },
+    { "name": "Thomas Higgins", "category": "Sinh viên", "address": "22 SW Whitechapel", "code": "22SW", "desc": "Sinh viên đối thủ cạnh tranh học bổng." },
+    { "name": "Phòng Giáo vụ UCL", "category": "Đại học", "address": "12 NW Gower St", "code": "12NW", "desc": "Nơi quản lý ngân sách và cấp phép phòng thí nghiệm." },
+    { "name": "Phòng thí nghiệm Cơ khí UCL", "category": "Hiện trường", "address": "10 WC Gower St", "code": "10WC", "desc": "Hiện trường vụ mất cắp bản thiết kế." },
+    { "name": "Tiệm xì gà Partagas", "category": "Cửa hàng", "address": "45 NW Oxford St", "code": "45NW", "desc": "Nhà phân phối xì gà Cuba thượng hạng." },
+    { "name": "Bệnh viện St. Bartholomew", "category": "Bệnh viện", "address": "27 EC Fleet St", "code": "27EC", "desc": "Nơi băng bó chấn thương nhẹ." }
+  ]
 };
