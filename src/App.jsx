@@ -565,6 +565,7 @@ function App() {
   const me = roomState?.players?.find(p => p.id === socket.id);
   const isForensic = roomState?.forensicScientistId === socket.id;
   const isMurderer = me?.role?.id === 'murderer';
+  const isHost = roomState?.hostId === socket.id || roomState?.players?.[0]?.id === socket.id;
   const botCount = roomState?.players?.filter(p => p.isBot).length || 0;
   const hasVotedNextRound = roomState?.votesForNextRound?.includes(socket.id);
   const totalPlayersCount = roomState?.players?.length || 1;
@@ -1635,9 +1636,9 @@ function App() {
                 {/* SCORE BANNER */}
                 <div className="text-center bg-gradient-to-b from-amber-950/60 to-slate-950 border border-amber-500/40 rounded-2xl p-6 space-y-2">
                   <span className="text-xs font-bold text-amber-400 tracking-widest uppercase">KẾT QUẢ ĐIỀU TRA TỔNG KẾT</span>
-                  <h2 className="text-5xl font-black text-amber-300">{roomState.sherlockScore} / 100 ĐIỂM</h2>
+                  <h2 className="text-5xl font-black text-amber-300">{(roomState?.sherlockScore ?? 0)} / 100 ĐIỂM</h2>
                   <p className="text-sm font-bold text-amber-100">
-                    {roomState.sherlockScore >= 100 ? '🏆 Tuyệt vời! Bạn đã vượt qua cả Sherlock Holmes!' : roomState.sherlockScore >= 70 ? '🥇 Thám tử lừng danh phố Baker!' : roomState.sherlockScore >= 35 ? '🥈 Phá án thành công!' : '🥉 Cần rèn luyện thêm kỹ năng suy luận!'}
+                    {(roomState?.sherlockScore ?? 0) >= 100 ? '🏆 Tuyệt vời! Bạn đã vượt qua cả Sherlock Holmes!' : (roomState?.sherlockScore ?? 0) >= 70 ? '🥇 Thám tử lừng danh phố Baker!' : (roomState?.sherlockScore ?? 0) >= 35 ? '🥈 Phá án thành công!' : '🥉 Cần rèn luyện thêm kỹ năng suy luận!'}
                   </p>
                   <p className="text-xs text-slate-400">
                     Nhóm đã đi <strong>{roomState.visitedNodes?.length || 0} địa điểm</strong> (Sherlock Holmes đi 6 địa điểm).
