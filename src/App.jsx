@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { io } from 'socket.io-client';
 import { 
   Skull, Shield, Search, Eye, EyeOff, Users, X, 
-  LogOut, CheckCircle, ArrowRight, Volume2, VolumeX, Music,
-  BookOpen, Send, MessageSquare, Crown, Award, Play, UserPlus, UserMinus, Target, RefreshCw, Layers, Trophy, Clock, CheckSquare, AlertTriangle, Sparkles, Check, Copy, KeyRound, Compass, ChevronUp, ChevronDown, Lock, Flame, Zap, FileText, UserCheck, UserX, AlertCircle, MapPin, PhoneCall
+  LogOut, CheckCircle, ArrowRight, ArrowLeft, Volume2, VolumeX, Music,
+  BookOpen, Send, MessageSquare, Crown, Award, Play, UserPlus, UserMinus, Target, RefreshCw, Layers, Trophy, Clock, CheckSquare, AlertTriangle, Sparkles, Check, Copy, KeyRound, Compass, ChevronUp, ChevronDown, Lock, Flame, Zap, FileText, UserCheck, UserX, AlertCircle, MapPin, PhoneCall, HelpCircle
 } from 'lucide-react';
 import { ROLES, MEANS_CARDS, CLUE_CARDS, CAUSE_OF_DEATH, LOCATIONS, SCENE_TILES } from './data/game-data';
 import { SHERLOCK_CASE_1 } from './data/sherlock-case-1';
@@ -546,8 +546,19 @@ function App() {
   };
 
   const handleLeaveRoom = () => {
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('leave-room', { roomCode: code });
+    }
     setInRoom(false);
     setRoomState(null);
+    setSherlockAnswers({});
+    setSherlockSelectedNodeId(null);
+    setShowRoleRevealModal(false);
+    setShowAccuseModal(false);
+    setAccuseTargetId('');
+    setAccusationResultMsg('');
+    setErrorMsg('');
   };
 
   // Helper getters & Vote counting
@@ -1631,6 +1642,22 @@ function App() {
                   <p className="text-xs text-slate-400">
                     Nhóm đã đi <strong>{roomState.visitedNodes?.length || 0} địa điểm</strong> (Sherlock Holmes đi 6 địa điểm).
                   </p>
+                  <div className="flex flex-wrap justify-center gap-3 pt-4 border-t border-amber-500/20">
+                    <button 
+                      onClick={handleLeaveRoom}
+                      className="btn btn-lg btn-secondary font-black flex items-center gap-2"
+                    >
+                      <LogOut size={18} /> TRỞ VỀ SẢNH CHỜ CHÍNH
+                    </button>
+                    {isHost && (
+                      <button 
+                        onClick={() => socket.emit('reset-game', { roomCode: roomState.code })}
+                        className="btn btn-lg btn-gold-draw font-black flex items-center gap-2"
+                      >
+                        <RefreshCw size={18} /> CHƠI LẠI VÁN MỚI (VỀ SẢNH PHÒNG)
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 {/* SỰ THẬT TOÀN BỘ VỤ ÁN */}
@@ -1649,15 +1676,6 @@ function App() {
                       <strong>Động cơ (Motive):</strong> {SHERLOCK_CASE_1.solution_summary.motive}
                     </div>
                   </div>
-                </div>
-
-                <div className="text-center pt-4">
-                  <button 
-                    onClick={() => socket.emit('leave-room', { roomCode: roomState.code })}
-                    className="btn btn-lg btn-primary font-black"
-                  >
-                    TRỞ VỀ SẢNH CHỜ PHÒNG GAME
-                  </button>
                 </div>
 
               </div>
@@ -2548,18 +2566,24 @@ function App() {
                 </div>
               </div>
 
-              {/* FOOTER NÚT BẮT ĐẦU VÁN MỚI */}
-              <div className="modal-footer mt-4 pt-3 border-t border-slate-800 flex justify-center">
+              {/* FOOTER NÚT BẮT ĐẦU VÁN MỚI / RỜI PHÒNG */}
+              <div className="modal-footer mt-4 pt-3 border-t border-slate-800 flex flex-wrap justify-center gap-3">
+                <button 
+                  onClick={handleLeaveRoom} 
+                  className="btn btn-md btn-secondary flex items-center gap-2 font-bold"
+                >
+                  <LogOut size={16} /> TRỜ VỀ SẢNH CHỜ CHÍNH
+                </button>
                 {isHost ? (
                   <button 
                     onClick={() => socket.emit('reset-game', { roomCode: roomState.code })} 
-                    className="btn btn-lg btn-primary btn-launch-game flex items-center gap-2"
+                    className="btn btn-md btn-primary btn-launch-game flex items-center gap-2"
                   >
                     <RefreshCw size={18} /> CHƠI LẠI VÁN MỚI (VỀ PHÒNG CHỜ)
                   </button>
                 ) : (
-                  <div className="text-sm font-bold text-amber-300 animate-pulse py-2">
-                    ⏳ Đang chờ Chủ phòng reset ván chơi mới...
+                  <div className="text-sm font-bold text-amber-300 animate-pulse py-2 flex items-center gap-2">
+                    <Clock size={16} /> Đang chờ Chủ phòng reset ván chơi mới...
                   </div>
                 )}
               </div>

@@ -815,6 +815,39 @@ io.on('connection', (socket) => {
     io.to(roomCode).emit('room-updated', room);
     io.to(roomCode).emit('game-reset');
   });
+
+  // 16. Người chơi chủ động Rời phòng về Sảnh chính / Landing Page
+  socket.on('leave-room', ({ roomCode }) => {
+    const code = (roomCode || '').trim().toUpperCase();
+    const room = rooms[code];
+    if (!room) return;
+
+    // Rời socket room
+    socket.leave(code);
+
+    // Xóa player khỏi phòng
+    room.players = room.players.filter(p => p.id !== socket.id);
+
+    // Nếu không còn người chơi thật nào, xóa phòng
+    const hasHuman = room.players.some(p => !p.isBot);
+    if (!hasHuman) {
+      if (roomTimers[code]) clearInterval(roomTimers[code]);
+      delete rooms[code];
+      return;
+    }
+
+    // Nếu host rời, chuyển host cho người tiếp theo
+    if (room.hostId === socket.id) {
+      const nextHost = room.players.find(p => !p.isBot);
+      if (nextHost) {
+        room.hostId = nextHost.id;
+        nextHost.isReady = true;
+      }
+    }
+
+    room.eventLog.push(`🚪 Một người chơi đã rời phòng.`);
+    io.to(code).emit('room-updated', room);
+  });
 });
 
 const PORT = process.env.PORT || 3001;
