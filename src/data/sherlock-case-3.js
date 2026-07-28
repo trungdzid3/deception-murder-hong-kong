@@ -1,140 +1,176 @@
 export const SHERLOCK_CASE_3 = {
   "case_id": "sherlock_case_3",
-  "title": "Vụ án 3: Lời Nguyền Của Xác Ướp (The Mummy's Curse)",
+  "title": "Vụ án 3: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
   "author": "Ystari & Raymond Edwards",
-  "setting_date": "Ngày 11 tháng 4 năm 1890",
+  "setting_date": "Ngày 5 tháng 3 năm 1889",
   "intro": {
-    "story_text": "Ngày 11 tháng 4 năm 1890, giới thượng lưu và giới khảo cổ học London xôn xao trước chuỗi cái chết kỳ quặc giội xuống các thành viên đoàn thám hiểm khai quật lăng mộ nữ vương Ai Cập Katebet. Báo chí giật tít về 'Lời nguyền của Xác ướp' khi ông Oswald Mason - Trưởng kế toán Ngân hàng Anh và là nhà tài trợ đoàn thám hiểm - được phát hiện bị đập chết thảm khốc tại phòng làm việc 42 Tottenham Court Road. Trong khi dư luận hoảng loạn tin vào sức mạnh siêu nhiên của lời nguyền Ai Cập cổ đại, Sherlock Holmes khẳng định đây chỉ là màn kịch tàn nhẫn được che đậy khéo léo để che giấu các vụ giết người cướp cổ vật và thủ tiêu mâu thuẫn học thuật!",
+    "story_text": "Sáng sớm ngày 5 tháng 3 năm 1889, Thanh tra Lestrade vội vã tìm đến 221B Baker Street với khuôn mặt biến sắc. Ông Clarendon - một quý tộc giàu có tại khu Bloomsbury - được phát hiện bị bắn chết ngay tại bàn làm việc trong phòng riêng. Cảnh sát tìm thấy Frances Nolan, người phụ nữ trẻ quen biết nạn nhân, đang trong trạng thái bần thần hoang tưởng gần hiện trường với vết máu trên tay và không thể nhớ bất kỳ điều gì đã xảy ra trong vài giờ qua. Mọi bằng chứng tại chỗ dường như quy kết Frances là kẻ sát nhân cuồng sát. Tuy nhiên, Holmes nghi ngờ cô gái trẻ đã bị thao túng tâm lý bằng kỹ thuật thôi miên cao tay để làm kẻ thế mạng cho một âm mưu chiếm đoạt gia tài tàn bạo!",
     "initial_clues": [
-      "Nạn nhân Oswald Mason bị đập chết bằng vật nặng vào đầu lúc 10:00 tối tại phòng làm việc 42 Tottenham Court Road.",
-      "Kẻ đột nhập vào nhà bằng cửa sổ tầng trên, phòng làm việc có dấu vết xáo trộn mạnh cho thấy đã xảy ra xô xát.",
-      "Hiện trường thu được thông tin nhà phóng viên báo The Times (Travis) liên tục bị ngăn cản tiếp cận lăng mộ Katebet.",
-      "Nhật báo The Times đăng tin khu cắm trại khai quật Ai Cập được canh gác nghiêm ngặt để tránh trộm cướp.",
-      "Quảng cáo trên báo tin tức nhắc tới điểm biểu diễn ca nhạc Oxford Music Hall của cô Violette Blue."
+      "Nạn nhân Clarendon bị bắn chết bằng một viên đạn duy nhất từ súng ngắn Derringer tại bàn làm việc.",
+      "Hiện trường chỉ có duy nhất 1 ly rượu vang, loại trừ sự xuất hiện của cô em gái Loretta tại hiện trường.",
+      "Frances Nolan bị cảnh sát tạm giữ trong trạng thái hoang tưởng, ngơ ngác và liên tục bị mất trí nhớ tạm thời.",
+      "Sổ tay ghi chép của nạn nhân đề cập đến cuộc gặp với luật sư Hiram Davenport và Bác sĩ Trevelyan.",
+      "Nhật báo The Times đăng tin về các vụ tấn công bằng khăn thấm thuốc mê bốc hơi tại khu vực Lombard Street."
     ],
-    "unlocked_nodes": ["42WC", "12NW", "38EC"]
+    "unlocked_nodes": ["36EC", "13WC", "15SW", "38EC"]
   },
   "nodes": {
-    "42WC": {
-      "id": "42WC",
-      "title": "Nhà riêng nạn nhân Oswald Mason",
-      "area": "WC",
-      "type": "crime_scene",
-      "map_coords": { "x": 390, "y": 290 },
-      "content": "Bà Rose Mason (vợ nạn nhân) nức nở kể lại: 'Chồng tôi trở về nhà lúc 9:30 tối và vào phòng làm việc. Lúc 10:00 tối khi tôi vào phòng thì bàng hoàng thấy ông ấy nằm gục trên bàn làm việc, đầu bị thương nặng. Chiếc két sắt trong phòng có dấu vết bị cạy nhưng không mất tiền mặt, chỉ mất đi cuộn bản đồ định vị cổ vật lăng mộ Katebet mà ông ấy vừa nhận từ Ai Cập'.",
-      "unlocks": {
-        "nodes": ["12NW", "50EC", "43WC"],
-        "evidence_items": ["Oswald Mason bị đập chết, cuộn bản đồ định vị cổ vật Katebet bị lấy mất."]
-      },
-      "key_hints": ["Mục tiêu của kẻ sát nhân là cuộn bản đồ vị trí lăng mộ Katebet chứ không phải tiền bạc."]
-    },
-    "12NW": {
-      "id": "12NW",
-      "title": "Nhà riêng Bà quả phụ Thám hiểm gia Katebet",
-      "area": "NW",
-      "type": "suspect_interview",
-      "map_coords": { "x": 140, "y": 380 },
-      "content": "Bà quả phụ tuyệt đẹp và quyến rũ tiếp đón thám tử trong phòng khách tràn ngập cổ vật Ai Cập. Cô tiết lộ mâu thuẫn nảy lửa trong nội bộ đoàn khai quật: 'Chồng tôi và Giáo sư Windibank tranh cãi nảy lửa về quyền sở hữu các cổ vật của Vua Toutankhamon. Windibank đặc biệt lo lắng và muốn bán lén cổ vật ra thị trường đen cho các nhà sưu tập tư nhân ở London'.",
-      "unlocks": {
-        "nodes": ["38EC", "30EC"],
-        "evidence_items": ["Mâu thuẫn nảy lửa về cổ vật Toutankhamon giữa đoàn thám hiểm và Giáo sư Windibank."]
-      },
-      "key_hints": ["Giáo sư Windibank âm mưu tuồn cổ vật Toutankhamon ra thị trường đen."]
-    },
-    "50EC": {
-      "id": "50EC",
-      "title": "Phóng viên báo The Times (Travis)",
+    "36EC": {
+      "id": "36EC",
+      "title": "Căn hộ hai chị em Frances & Loretta Nolan",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 610, "y": 310 },
-      "content": "Phóng viên Travis trình bày chi tiết: 'Mọi người nghi ngờ tôi là hung thủ vì tôi liên tục đưa tin về đoàn thám hiểm. Nhưng sự thật là hàng rào an ninh quanh khu vực cắm trại khai quật vô cùng nghiêm ngặt. Dù tôi đã nhiều lần đệ đơn xin phép nhưng họ tuyệt đối không cho tôi bước chân vào lăng mộ. Tôi hoàn toàn không thể nào tiếp cận lăng mộ hay nạn nhân để gây ra vụ sát hại đầu tiên được!'. Chi tiết an ninh nghiêm ngặt tạo chứng cứ ngoại phạm sắt đá loại trừ Travis!",
+      "map_coords": { "x": 580, "y": 280 },
+      "content": "Frances Nolan ngơ ngác chia sẻ: 'Trong 2 tuần qua, tôi liên tục bị ngất xỉu và mất trí nhớ 2 lần mà không rõ lý do. Lần đầu tiên tôi tỉnh dậy thấy mình đang ngồi trên ghế công viên Hyde Park. Lần thứ hai vài ngày sau, khi tôi đến Lambeth Walk (24SE) để hỏi thuê một ngôi nhà nghỉ dưỡng xa thành phố cho hai chị em, tôi lại bị ngất và sau đó tỉnh dậy tại Ga xe lửa Waterloo. Tôi đã hỏi ý kiến Bác sĩ Trevelyan và ông ấy bảo tôi chỉ bị kiệt sức. Nếu tôi có bất trắc gì xảy ra, luật sư Hiram Davenport của gia đình vẫn là người quản lý tài sản theo đúng ý nguyện cha mẹ'. Lời khai chứng minh Frances hoàn toàn không biết việc di chúc của cô đã bị sửa đổi nhượng quyền cho Dr. Trevelyan!",
       "unlocks": {
-        "nodes": ["43WC"],
+        "nodes": ["24SE", "17WC", "28WC", "52EC"],
         "evidence_items": [
-          "Trại khai quật canh gác cực kỳ nghiêm ngặt.",
-          "Phóng viên Travis có chứng cứ ngoại phạm chắc chắn, loại trừ khả năng là hung thủ."
+          "Frances bị ngất xỉu 2 lần tại Hyde Park và Lambeth Walk rồi tỉnh ở Ga Waterloo.",
+          "Frances tin rằng Luật sư Davenport vẫn quản lý tài sản, không hề biết di chúc đã bị đổi tên người thừa kế sang Dr. Trevelyan."
         ]
       },
       "key_hints": [
-        "Trại khai quật được bảo vệ cẩn mật khiến Travis không thể tiếp cận lăng mộ.",
-        "Loại trừ Travis khỏi danh sách nghi phạm."
+        "Frances bị thôi miên mất trí nhớ tại Lambeth Walk.",
+        "Frances không biết di chúc đã bị đổi tên người thừa kế, chứng tỏ cô bị thôi miên khi ký di chúc."
       ]
     },
     "38EC": {
       "id": "38EC",
-      "title": "Viện Bảo Tàng Anh (Phòng Ai Cập)",
+      "title": "Bệnh viện St. Bartholomew (Bác sĩ pháp y Sir Jasper Meeks)",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": { "x": 550, "y": 340 },
-      "content": "Chuyên gia bảo tàng đính chính thông tin: 'Chiếc bùa hộ mệnh thu được tại hiện trường không phải của Nữ vương Katebet mà thuộc về lăng mộ Vua Toutankhamon. Nó đã được đánh tráo tinh vi nhằm dựng lên vụ án Lời nguyền siêu nhiên hù dọa dư luận'. Chỉ duy nhất Đại học London là nhà tài trợ chính thức.",
+      "map_coords": { "x": 550, "y": 320 },
+      "content": "Bác sĩ khám nghiệm tử thi Sir Jasper Meeks kết luận: Nạn nhân Clarendon bị bắn ở cự ly kề cận bằng một khẩu súng sáu cỡ nhỏ. Tử vong khoảng từ 4 đến 10 tiếng trước 1 giờ chiều.",
       "unlocks": {
-        "nodes": ["30EC"],
-        "evidence_items": ["Cổ vật bị đánh tráo thuộc về lăng mộ Vua Toutankhamon chứ không phải Ramses II hay Katebet."]
+        "nodes": ["28WC"],
+        "evidence_items": ["Clarendon bị bắn cận chiến bằng súng sáu nhỏ Derringer."]
       },
-      "key_hints": ["Vụ án là màn kịch đánh tráo cổ vật Toutankhamon thành Lời Nguyền Xác Ướp."]
+      "key_hints": ["Vết bắn cự ly kề cận trùng khớp với khẩu súng Derringer."]
     },
-    "43WC": {
-      "id": "43WC",
-      "title": "Đại học tổng hợp London (Khoa Khảo cổ)",
+    "52EC": {
+      "id": "52EC",
+      "title": "Porky Shinwell & Tiệm sòng bạc Kilgore",
+      "area": "EC",
+      "type": "suspect_interview",
+      "map_coords": { "x": 600, "y": 350 },
+      "content": "Porky Shinwell tiết lộ: Clarendon nợ Claude Kilgore khoản tiền nợ cờ bạc khổng lồ 7.000 Bảng Anh và bị gã tay chân Gus Bullock (kẻ có vết sẹo dài trên mặt) đe dọa. Về sau Clarendon bất ngờ trả hết nợ và liên tục gặp gỡ bí mật với Calvin Leach (kẻ chuyên tiêu thụ đồ trộm cắp) vào đêm trước khi bị sát hại.",
+      "unlocks": {
+        "nodes": ["15SW"],
+        "evidence_items": ["Clarendon gặp gỡ buôn bán đồ trộm cắp với Calvin Leach trước đêm bị sát hại."]
+      },
+      "key_hints": ["Mối quan hệ mờ ám giữa Clarendon và kẻ tiêu thụ đồ trộm cắp Calvin Leach."]
+    },
+    "13WC": {
+      "id": "13WC",
+      "title": "Văn phòng Luật sư Hiram Davenport",
       "area": "WC",
       "type": "suspect_interview",
-      "map_coords": { "x": 370, "y": 310 },
-      "content": "Đại diện khoa khảo cổ xác nhận: Trợ lý Turnbull rất khao khát tham gia đoàn thám hiểm Katebet. Sau khi bị từ chối và xảy ra mâu thuẫn lợi nhuận mua bán cổ vật với Giáo sư Windibank, Turnbull đã giận dữ nộp đơn xin từ chức khỏi Đại học và chuyển sang làm phóng viên tự do.",
+      "map_coords": { "x": 380, "y": 350 },
+      "content": "Luật sư Hiram Davenport xem lại sổ sách và tiết lộ: 'Tháng trước, cô Frances Nolan có tới đây cùng Bác sĩ Trevelyan - vị bác sĩ riêng phụ trách chăm sóc sức khỏe cho cô em gái Loretta. Cô Frances bày tỏ nguyện vọng muốn Bác sĩ Trevelyan trở thành người giám hộ hợp pháp toàn bộ tài sản gia đình nếu cô gặp bất trắc. Lúc ấy tôi thấy ánh mắt cô Frances đờ đẫn, thần trí vơ vẩn mộng du rất kỳ lạ. Nhưng khi nghe cô ấy bị ngất xỉu sau đó trong ngày, tôi chỉ nghĩ cô ấy bị say nắng'.",
       "unlocks": {
-        "nodes": [],
-        "evidence_items": ["Trợ lý Turnbull giận dữ từ chức khỏi Đại học sau tranh chấp với Windibank."]
+        "nodes": ["17WC", "14WC"],
+        "evidence_items": ["Bác sĩ Trevelyan đi cùng Frances đến văn phòng luật sư khi cô ở trạng thái mộng du để đổi di chúc."]
       },
-      "key_hints": ["Turnbull từ chức vì mâu thuẫn học thuật và lợi nhuận bán cổ vật."]
+      "key_hints": [
+        "Dr. Trevelyan trực tiếp đi cùng Frances khi đổi di chúc.",
+        "Frances như người mộng du bị thôi miên khi ký văn bản pháp lý."
+      ]
     },
-    "30EC": {
-      "id": "30EC",
-      "title": "Cửa hàng đồ cổ Ai Cập đường Oxford",
-      "area": "EC",
-      "type": "location_search",
-      "map_coords": { "x": 510, "y": 300 },
-      "content": "Chủ tiệm đồ cổ khai báo: 'Một người đàn ông năng nổ kỳ quặc đại diện đoàn thám hiểm đã bán lén cho tôi các bức tượng nhỏ Ai Cập với giá rất cao. Kẻ này hiểu biết rất sâu về cổ vật Toutankhamon'.",
+    "17WC": {
+      "id": "17WC",
+      "title": "Phòng lưu trữ di chúc Chancery",
+      "area": "WC",
+      "type": "clue_inspection",
+      "map_coords": { "x": 410, "y": 390 },
+      "content": "Bản di chúc chính thức của Frances Nolan lập tháng 6 xác nhận: Trong trường hợp Frances qua đời hoặc mất khả năng hành vi, Bác sĩ Trevelyan sẽ trở thành người giám hộ duy nhất toàn quyền sở hữu và quản lý khối tài sản thừa kế khổng lồ của gia đình Nolan.",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Cổ vật Toutankhamon bị tuồn bán lén tại tiệm đồ cổ đường Oxford."]
+        "evidence_items": ["Bác sĩ Trevelyan là người thụ hưởng duy nhất từ bản di chúc mới của Frances."]
       },
-      "key_hints": ["Giáo sư Windibank âm mưu bán lén cổ vật Toutankhamon."]
+      "key_hints": ["Động cơ sát hại Clarendon và hãm hại Frances thuộc về Bác sĩ Trevelyan."]
+    },
+    "24SE": {
+      "id": "24SE",
+      "title": "Căn hộ thuê bí mật Lambeth Walk",
+      "area": "SE",
+      "type": "location_search",
+      "map_coords": { "x": 620, "y": 700 },
+      "content": "Khám xét căn hộ cho thuê ở Lambeth Walk (nơi Frances bị ngất xỉu lần 2), thám tử phát hiện một phòng kín có dụng cụ thôi miên, đĩa quay con lắc và lọ thuốc mê bốc hơi. Chủ nhà xác nhận Bác sĩ Trevelyan thường xuyên lui tới căn hộ này dưới tên giả.",
+      "unlocks": {
+        "nodes": ["28WC"],
+        "evidence_items": ["Phòng điều khiển thôi miên bí mật của Dr. Trevelyan tại Lambeth Walk."]
+      },
+      "key_hints": ["Dr. Trevelyan sử dụng địa điểm Lambeth Walk để thôi miên và điều khiển Frances."]
+    },
+    "15SW": {
+      "id": "15SW",
+      "title": "Khách sạn Clarendon lưu trú",
+      "area": "SW",
+      "type": "suspect_interview",
+      "map_coords": { "x": 190, "y": 580 },
+      "content": "Quản lý khách sạn nhớ lại chi tiết: 'Trong thời gian lưu trú, ông Clarendon có một phụ nữ ăn mặc rất nổi bật đến thăm. Sau đó xuất hiện người thứ hai: một gã đàn ông lực lưỡng hung tợn, có ria mép dày và vết sẹo dài trên má đến đe dọa đòi gặp Clarendon. Khi biết Clarendon không có ở đó, gã tức giận ngồi chực chờ ở quầy bar đến tận chạng vạng tối'. Hiện trường vụ án chỉ có 1 ly rượu, chứng minh gã người lạ và cô em gái Loretta không có mặt trong phòng lúc nổ súng.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": [
+          "Gã đàn ông có sẹo trên má đe dọa Clarendon.",
+          "Chỉ có 1 ly rượu duy nhất tại hiện trường vụ án."
+        ]
+      },
+      "key_hints": ["Chỉ có 1 ly rượu tại hiện trường, đập tan nghi vấn cô em gái Loretta tham gia bắn nổ súng."]
+    },
+    "28WC": {
+      "id": "28WC",
+      "title": "Cửa hàng súng sáu Derringer",
+      "area": "WC",
+      "type": "location_search",
+      "map_coords": { "x": 440, "y": 320 },
+      "content": "Chủ cửa hàng súng xác nhận khẩu súng Derringer gây án được mua bởi một người đàn ông đeo kính có ngoại hình giống Bác sĩ Trevelyan, nhưng biên nhận cố tình ghi tên Frances Nolan để vu khống cô.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": ["Khẩu súng gây án do Dr. Trevelyan trực tiếp đi mua."]
+      },
+      "key_hints": ["Dr. Trevelyan dàn dựng bằng chứng vu khống Frances."]
+    },
+    "14WC": {
+      "id": "14WC",
+      "title": "Sở cảnh sát Scotland Yard - Hồ sơ Yoblinski (1861)",
+      "area": "WC",
+      "type": "clue_inspection",
+      "map_coords": { "x": 360, "y": 420 },
+      "content": "Hồ sơ vụ án năm 1861 ghi rõ: Cha mẹ của Frances và Loretta bị sát hại bởi Zagreb Yoblinski - một kẻ bị tâm thần hành động đơn độc. Vụ án đã khép lại và Yoblinski đã bị trừng phạt nghiêm khắc, không liên quan hung thủ vụ án hiện tại.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": ["Tội phạm quá khứ Zagreb Yoblinski hành động đơn độc năm 1861."]
+      },
+      "key_hints": ["Loại trừ âm mưu liên quan đến vụ án cũ năm 1861."]
     }
   },
   "directory": [
-    { "name": "Mason, Oswald (Kế toán trưởng)", "code": "42WC", "category": "Nạn nhân", "address": "42 Tottenham Court Rd", "desc": "Nhà riêng nạn nhân Oswald Mason - Trưởng kế toán Ngân hàng Anh." },
-    { "name": "Quả phụ Katebet (Bảo tàng tư nhân)", "code": "12NW", "category": "Nhân chứng", "address": "12 North West St", "desc": "Nhà riêng góa phụ thám hiểm gia Katebet." },
-    { "name": "Travis (Phóng viên báo The Times)", "code": "50EC", "category": "Báo chí", "address": "50 East Central St", "desc": "Phóng viên điều tra mảng tin tức khảo cổ." },
-    { "name": "Bảo tàng Anh (Khoa Ai Cập)", "code": "38EC", "category": "Bảo tàng", "address": "38 East Central St", "desc": "Viện bảo tàng lưu trữ và giám định cổ vật Ai Cập." },
-    { "name": "Đại học Khảo cổ London", "code": "43WC", "category": "Trường học", "address": "43 West Central St", "desc": "Khoa nghiên cứu khảo cổ học thuộc Đại học London." },
-    { "name": "Tiệm đồ cổ Ai Cập Oxford", "code": "30EC", "category": "Cửa hàng", "address": "30 East Central St", "desc": "Tiệm mua bán cổ vật Ai Cập tư nhân." }
+    { "name": "Nolan, Frances & Loretta", "code": "36EC", "category": "Cư dân", "address": "36 East Central St", "desc": "Căn hộ hai chị em Frances Nolan và Loretta Nolan." },
+    { "name": "Davenport, Hiram (Luật sư)", "code": "13WC", "category": "Luật sư", "address": "13 West Central St", "desc": "Văn phòng luật sư quản lý tài sản gia đình Nolan." },
+    { "name": "Trevelyan, Dr. (Bác sĩ)", "code": "24SE", "category": "Bác sĩ", "address": "24 South East St", "desc": "Bác sĩ riêng của gia đình Nolan và phòng khám thôi miên bí mật." },
+    { "name": "Chancery Office (Di chúc)", "code": "17WC", "category": "Cơ quan", "address": "17 West Central St", "desc": "Nơi lưu trữ di chúc pháp lý London." },
+    { "name": "Khách sạn Clarendon", "code": "15SW", "category": "Khách sạn", "address": "15 South West St", "desc": "Nơi ông Clarendon lưu trú và xảy ra mâu thuẫn." },
+    { "name": "Bệnh viện St. Bartholomew", "code": "38EC", "category": "Bệnh viện", "address": "38 East Central St", "desc": "Phòng khám nghiệm tử thi Bác sĩ Sir Jasper Meeks." },
+    { "name": "Shinwell, Porky (Tiệm Kilgore)", "code": "52EC", "category": "Cơ sở cờ bạc", "address": "52 East Central St", "desc": "Sòng bạc Kilgore và tay chân Gus Bullock." },
+    { "name": "Cửa hàng súng Derringer", "code": "28WC", "category": "Cửa hàng", "address": "28 West Central St", "desc": "Tiệm bán vũ khí và súng sáu nhỏ." },
+    { "name": "Scotland Yard (Hồ sơ cũ)", "code": "14WC", "category": "Cơ quan", "address": "14 West Central St", "desc": "Hồ sơ vụ án tội phạm quá khứ năm 1861." }
   ],
   "newspaper": {
     "paper_name": "THE TIMES LONDON",
-    "issue_date": "THỨ SÁU, NGÀY 11 THÁNG 4 NĂM 1890",
+    "issue_date": "THỨ BA, NGÀY 5 THÁNG 3 NĂM 1889",
     "articles": [
       {
-        "date": "11 THÁNG 4, 1890",
-        "title": "ÁN MẠNG DÃ DƯỠI TẠI BLOOMSBURY",
-        "summary": "Ông Oswald Mason, Kế toán trưởng Ngân hàng Anh, bị phát hiện sát hại tại phòng làm việc. Nghi vấn liên quan đến 'Lời nguyền Xác ướp' Katebet.",
-        "related_code": "42WC"
+        "date": "5 THÁNG 3, 1889",
+        "title": "VỤ ÁN MẠNG BÍ ẨN TẠI BLOOMSBURY",
+        "summary": "Ông Clarendon được phát hiện bị bắn chết tại nhà riêng. Cảnh sát Scotland Yard đang tạm giữ cô Frances Nolan trong trạng thái bần thần hoang tưởng.",
+        "related_code": "36EC"
       },
       {
-        "date": "11 THÁNG 4, 1890",
-        "title": "NỘI DUNG MỚI: VỤ ĐỘT NHẬP CỬA HÀNG QUÀ TẶNG EVENSON & CO",
-        "summary": "Đêm thứ Tư xảy ra vụ đột nhập cạy khóa cửa sau tiệm Evenson & Co. Gift Store. Không phát hiện đồ đạc bị lấy mất.",
-        "related_code": "30EC"
-      },
-      {
-        "date": "11 THÁNG 4, 1890",
-        "title": "NỘI DUNG MỚI: CA SĨ VIOLETTE BLUE TẠI OXFORD MUSIC HALL",
-        "summary": "Cô Violette Blue biểu diễn các ca khúc mới nhất trong suốt tháng này tại nhà hát Oxford Music Hall. Giá vé từ 1s.",
-        "related_code": "50EC"
-      },
-      {
-        "date": "10 THÁNG 4, 1890",
-        "title": "AN NINH KHU KHAI QUẬT AI CẬP",
-        "summary": "Khu cắm trại thám hiểm Ai Cập được lực lượng canh gác cực kỳ nghiêm ngặt để ngăn chặn trộm cướp.",
-        "related_code": "50EC"
+        "date": "4 THÁNG 3, 1889",
+        "title": "CẢNH BÁO THUỐC MÊ BỐC HƠI TẠI LOMBARD STREET",
+        "summary": "Một kẻ lạ mặt đã dùng khăn thấm chất dịch mê làm ngất xỉu người trông coi giáo đường St. Mary Woolnoth.",
+        "related_code": "24SE"
       }
     ]
   },
@@ -142,131 +178,131 @@ export const SHERLOCK_CASE_3 = {
     "part_1_main_case": [
       {
         "id": "q1",
-        "question": "Bản chất thực sự đằng sau chuỗi cái chết bị đồn là 'Lời nguyền Xác ướp Katebet' là gì?",
+        "question": "Ai là kẻ chủ mưu thực sự lên kế hoạch sát hại Clarendon và đổ tội cho Frances?",
         "options": [
-          "Vụ án mạng đôi do mâu thuẫn tranh chấp và trộm bán cổ vật Toutankhamon",
-          "Lời nguyền quỷ dữ Ai Cập có thật",
-          "Vụ cướp tài sản thông thường của kẻ lang thang",
-          "Vụ tai nạn lao động tại công trường khai quật"
+          "Bác sĩ Trevelyan",
+          "Luật sư Hiram Davenport",
+          "Loretta Nolan",
+          "Zagreb Yoblinski"
         ],
         "correct_option_index": 0,
-        "explanation": "Lời nguyền chỉ là màn kịch do hung thủ dựng lên để che giấu hành vi sát hại Oswald Mason nhằm cướp bản đồ và tuồn bán cổ vật Toutankhamon ra thị trường đen."
+        "explanation": "Bác sĩ Trevelyan đã dùng kỹ thuật thôi miên để ép Frances ký di chúc nhượng quyền giám hộ tài sản cho mình, sau đó dàn dựng vụ sát hại Clarendon để khống chế gia tài."
       },
       {
         "id": "q2",
-        "question": "Chi tiết đặc biệt nào về khu cắm trại khai quật Ai Cập tạo chứng cứ ngoại phạm chắc chắn cho phóng viên Travis?",
+        "question": "Chi tiết đặc biệt nào tại hiện trường 15SW khẳng định cô em gái Loretta không tham gia nổ súng?",
         "options": [
-          "Khu cắm trại được canh gác cực kỳ nghiêm ngặt để ngăn chặn trộm cướp",
-          "Travis bị cảnh sát bắt giữ từ trước",
-          "Travis đang ở New York đưa tin dịch bệnh",
-          "Travis thi đấu bóng đá tại New Zealand"
+          "Hiện trường chỉ có duy nhất 1 ly rượu vang",
+          "Không tìm thấy dấu vân tay",
+          "Cửa sổ bị khóa từ bên trong",
+          "Có hai ly rượu vang trên bàn"
         ],
         "correct_option_index": 0,
-        "explanation": "Chi tiết đính chính xác nhận trại khai quật được bảo vệ nghiêm ngặt khiến Travis không thể tiếp cận lăng mộ hay nạn nhân để gây ra vụ án đầu tiên."
+        "explanation": "Hiện trường chỉ có 1 ly rượu vang duy nhất (thay vì 2 ly như bản cũ), đập tan nghi vấn Loretta có mặt tại hiện trường."
       },
       {
         "id": "q3",
-        "question": "Cổ vật bị đánh tráo tại hiện trường thực chất thuộc về lăng mộ nào?",
+        "question": "Động cơ chính của kẻ thủ mưu Dr. Trevelyan trong vụ án này là gì?",
         "options": [
-          "Vua Toutankhamon",
-          "Nữ vương Katebet",
-          "Ramses II",
-          "Pharaoh Khufu"
+          "Chiếm đoạt toàn bộ khối tài sản thừa kế khổng lồ của gia đình Nolan",
+          "Trả thù mâu thuẫn cá nhân với Clarendon",
+          "Trộm cắp bộ sưu tập súng cổ",
+          "Bảo vệ bí mật y khoa"
         ],
         "correct_option_index": 0,
-        "explanation": "Chuyên gia bảo tàng 38EC đính chính cổ vật bị đánh tráo thuộc về Vua Toutankhamon chứ không phải Ramses II hay Katebet."
+        "explanation": "Dr. Trevelyan muốn chiếm đoạt khối tài sản gia đình Nolan bằng cách gạt Frances vào tù hoặc án tử và làm người giám hộ duy nhất của Loretta."
       },
       {
         "id": "q4",
-        "question": "Quảng cáo bổ sung trên nhật báo The Times chỉ ra địa điểm biểu diễn của ca sĩ Violette Blue ở đâu?",
+        "question": "Frances Nolan tỉnh dậy ở đâu sau lần bị thôi miên ngất xỉu thứ hai tại Lambeth Walk (24SE)?",
         "options": [
-          "Nhà hát Oxford Music Hall",
-          "Triển lãm Irish Exhibition Olympia",
-          "Giáo đường St. Mary Woolnoth",
-          "Bảo tàng Anh"
+          "Tại ga xe lửa Waterloo",
+          "Tại công viên Hyde Park",
+          "Tại nhà nghỉ Camden House",
+          "Tại bệnh viện St. Bartholomew"
         ],
         "correct_option_index": 0,
-        "explanation": "Mục giải trí trên báo The Times đính chính quảng cáo ca sĩ Violette Blue biểu diễn tại Oxford Music Hall."
+        "explanation": "Frances khai báo lần ngất xỉu thứ hai tại Lambeth Walk (24SE) kết thúc khi cô tỉnh dậy tại Ga Waterloo."
       },
       {
         "id": "q5",
-        "question": "Ai là người âm mưu bán lén các cổ vật quý Ai Cập ra thị trường đen tại đường Oxford?",
+        "question": "Ai là người trực tiếp đi mua khẩu súng sáu Derringer dùng làm hung khí gây án?",
         "options": [
-          "Giáo sư Windibank và đồng mưu trong đoàn thám hiểm",
-          "Phóng viên Travis",
-          "Bà quả phụ Katebet",
-          "Cảnh sát Lane"
+          "Bác sĩ Trevelyan (dàn dựng đứng tên Frances)",
+          "Frances Nolan",
+          "Loretta Nolan",
+          "Luật sư Hiram Davenport"
         ],
         "correct_option_index": 0,
-        "explanation": "Giáo sư Windibank đã lén lút tuồn các cổ vật giá trị ra thị trường đen tư nhân ở đường Oxford."
+        "explanation": "Dr. Trevelyan trực tiếp đi mua súng nhưng cố tình ghi tên Frances Nolan vào hóa đơn để vu khống cô."
       }
     ],
     "part_2_side_mysteries": [
       {
         "id": "q6",
-        "question": "Vợ của nạn nhân Oswald Mason tên là gì?",
+        "question": "Frances Nolan bị ngất xỉu mất trí nhớ mấy lần trong 2 tuần trước khi vụ án xảy ra?",
         "options": [
-          "Rose Mason",
-          "Katebet",
-          "Lucretia Prim",
-          "Violette Blue"
+          "2 lần",
+          "1 lần",
+          "3 lần",
+          "5 lần"
         ],
         "correct_option_index": 0,
-        "explanation": "Báo chí và lời khai xác nhận vợ nạn nhân tên là Rose Mason."
+        "explanation": "Frances xác nhận cô bị ngất xỉu mất trí nhớ 2 lần trong vòng 2 tuần."
       },
       {
         "id": "q7",
-        "question": "Trợ lý Turnbull đã có hành động gì sau khi xảy ra bất đồng lợi nhuận cổ vật với Windibank?",
+        "question": "Địa điểm nào được Bác sĩ Trevelyan dùng làm căn phòng thôi miên bí mật?",
         "options": [
-          "Giận dữ nộp đơn xin từ chức khỏi Đại học",
-          "Báo cảnh sát Scotland Yard",
-          "Bỏ trốn sang Ai Cập",
-          "Viết bài tố cáo lên báo The Times"
+          "Căn hộ thuê ở Lambeth Walk (24SE)",
+          "Khách sạn Clarendon (15SW)",
+          "Văn phòng luật sư (13WC)",
+          "Giáo đường Lombard Street"
         ],
         "correct_option_index": 0,
-        "explanation": "Trợ lý Turnbull đã đột ngột giận dữ nộp đơn xin từ chức khỏi Đại học sau khi xảy ra tranh chấp với Windibank."
+        "explanation": "Thám tử khám xét 24SE Lambeth Walk phát hiện căn phòng thôi miên bí mật của Dr. Trevelyan."
       },
       {
         "id": "q8",
-        "question": "Tên nữ vương Ai Cập được đặt tên cho đoàn thám hiểm khai quật là gì?",
+        "question": "Luật sư Hiram Davenport nhận xét gì về trạng thái của Frances khi cô đến lập di chúc mới cùng Dr. Trevelyan?",
         "options": [
-          "Katebet",
-          "Nefertiti",
-          "Cleopatra",
-          "Hatshepsut"
+          "Đờ đẫn, thần trí mộng du bất thường",
+          "Tỉnh táo và minh mẫn",
+          "Tức giận và hoảng loạn",
+          "Say rượu nặng"
         ],
         "correct_option_index": 0,
-        "explanation": "Đoàn thám hiểm khai quật lăng mộ nữ vương Katebet."
+        "explanation": "Luật sư Davenport nhớ lại Frances trông như người mộng du bị thôi miên khi ký di chúc."
       },
       {
         "id": "q9",
-        "question": "Mục tin tức nào được bổ sung liên quan đến tiệm quà tặng Evenson & Co?",
+        "question": "Vụ án cũ năm 1861 sát hại cha mẹ hai chị em nhà Nolan do ai thực hiện?",
         "options": [
-          "Vụ đột nhập cạy khóa cửa sau tiệm quà tặng Evenson & Co",
-          "Vụ cháy tiệm quà tặng",
-          "Vụ mua bán trang sức trộm cắp",
-          "Vụ cướp két sắt"
+          "Zagreb Yoblinski",
+          "Clarendon",
+          "Dr. Trevelyan",
+          "Hiram Davenport"
         ],
         "correct_option_index": 0,
-        "explanation": "Báo The Times bổ sung mẩu tin về vụ đột nhập cạy khóa cửa sau tại tiệm Evenson & Co."
+        "explanation": "Hồ sơ cảnh sát 14WC xác nhận kẻ sát hại cha mẹ Nolan năm 1861 là Zagreb Yoblinski."
       },
       {
         "id": "q10",
-        "question": "Vật dùng làm hung khí đánh chết Oswald Mason tại phòng làm việc là gì?",
+        "question": "Chất dịch nào được kẻ lạ mặt sử dụng để làm ngất xỉu người trông coi giáo đường St. Mary Woolnoth?",
         "options": [
-          "Vật nặng nện vào đầu",
-          "Súng ngắn Derringer",
-          "Thuốc độc Xyanua",
-          "Dao găm Ai Cập"
+          "Thuốc mê bốc hơi",
+          "Khí độc Carbon monoxide",
+          "Rượu Gin nồng độ cao",
+          "Bột ớt cay"
         ],
         "correct_option_index": 0,
-        "explanation": "Cảnh sát kết luận Mason tử vong do bị một đòn đánh rất mạnh bằng vật nặng vào đầu."
+        "explanation": "Nhật báo The Times đưa tin kẻ lạ mặt dùng khăn thấm thuốc mê bốc hơi dán vào mặt người trông coi giáo đường."
       }
     ]
   },
   "solution_summary": {
-    "mastermind": "Giáo sư Windibank",
-    "motive": "Sát hại Oswald Mason để cướp bản đồ lăng mộ và dựng lên kịch bản Lời Nguyền Xác Ướp che giấu việc buôn lén cổ vật Toutankhamon.",
-    "full_truth": "Giáo sư Windibank là kẻ chủ mưu lợi dụng tin đồn mị dân về 'Lời nguyền của Xác ướp Katebet' để thực hiện tội ác. Nhận thấy Oswald Mason sở hữu bản đồ định vị vị trí các lăng mộ cổ vật vô giá, Windibank đã đột nhập phòng làm việc sát hại Mason và lấy đi bản đồ. Hắn đánh tráo các báu vật của Vua Toutankhamon thành cổ vật Katebet rồi đem tuồn bán lén cho các nhà sưu tập tư nhân trên đường Oxford. Nhờ các mẩu tin đính chính trên báo The Times (ngoại phạm của Travis nhờ khu vực trại được canh gác nghiêm ngặt), Sherlock Holmes đã bóc gỡ màn kịch mượn danh tâm linh để vạch trần kẻ sát nhân cướp cổ vật!"
+    "mastermind": "Bác sĩ Dr. Trevelyan",
+    "motive": "Thôi miên Frances Nolan làm kẻ thế mạng để chiếm đoạt khối tài sản thừa kế khổng lồ của hai chị em nhà Nolan.",
+    "full_truth": "Bác sĩ Dr. Trevelyan là kẻ chủ mưu nham hiểm đứng sau toàn bộ vụ án. Hắn lợi dụng vị trí bác sĩ riêng để lén lút đưa Frances Nolan tới căn hộ bí mật ở Lambeth Walk (24SE) và thực hiện các buổi thôi miên làm mất trí nhớ. Hắn thao túng Frances đến gặp Luật sư Davenport (13WC) để lập di chúc mới chỉ định Dr. Trevelyan làm người giám hộ hợp pháp toàn quyền quản lý tài sản (Frances hoàn toàn không biết việc này). Sau đó, Dr. Trevelyan mua súng Derringer đứng tên Frances (28WC), trực tiếp sát hại ông Clarendon (hiện trường chỉ có 1 ly rượu) và dàn dựng để Frances trở thành kẻ cuồng sát hoang tưởng. Nhờ các chi tiết bổ sung, âm mưu thôi miên tàn bạo của Dr. Trevelyan đã bị vạch trần trước ánh sáng pháp lý!"
   }
 };
