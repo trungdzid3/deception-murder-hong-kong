@@ -42,7 +42,7 @@ Deception - Murder in Hong Kong/
 ├── .agent/                    # Quy chuẩn & Hướng dẫn đặc tả Agents (GEMINI, UI, Database...)
 ├── docs/                      # Tài liệu tham khảo & Luật chơi PDF
 │   ├── references/            # Hình ảnh bản đồ & Tài nguyên tham khảo
-│   └── rulebooks/             # File luật chơi PDF (Sherlock Holmes, Deception)
+│   └── rulebooks/             # File luật chơi PDF (Luat-Choi-Sherlock-Holmes.pdf, Luat-Choi-Deception-Murder-in-Hong-Kong.pdf)
 ├── public/                    # Tài nguyên tĩnh web (Assets)
 │   ├── audio/                 # Nhạc nền Sherlock Holmes BGM (Audio MP3)
 │   ├── fonts/                 # Font chữ tùy chỉnh (KK7 Dia Dao)
