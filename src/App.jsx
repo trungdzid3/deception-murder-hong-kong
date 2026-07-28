@@ -1301,13 +1301,12 @@ function App() {
                         className="sherlock-map-img"
                       />
 
-                      {/* GHIM CÁC CON SỐ NGUYÊN BẢN TRÊN BẢN ĐỒ CHUẨN ĐỊA LÝ KHU VỰC (COPY 100% TỪ BẢN BACKUP) */}
+                      {/* GHIM CÁC CON SỐ NGUYÊN BẢN TRÊN BẢN ĐỒ CHUẨN ĐỊA LÝ DÀNH RIÊNG TỪNG VỤ ÁN */}
                       {Object.values(activeSherlockCase?.nodes || {}).map((n) => {
                         const isVisited = roomState.visitedNodes?.includes(n.id);
                         
-                        // Tọa độ % phân vùng địa lý chuẩn 100% từ bản backup nguyên gốc
-                        const coordsMap = {
-                          // NW (North West - Top Left)
+                        // Tọa độ % phân vùng địa lý: Ưu tiên n.map_coords của chính vụ án đó
+                        const coordsMapFallback = {
                           '221B': { left: '18%', top: '22%' },
                           '50NW': { left: '22%', top: '16%' },
                           '53NW': { left: '26%', top: '28%' },
@@ -1322,8 +1321,6 @@ function App() {
                           '45NW': { left: '20%', top: '30%' },
                           '78NW': { left: '34%', top: '42%' },
                           '99NW': { left: '16%', top: '48%' },
-
-                          // WC (West Central - Upper Middle)
                           '18WC': { left: '46%', top: '36%' },
                           '28WC': { left: '42%', top: '42%' },
                           '34WC': { left: '52%', top: '38%' },
@@ -1333,8 +1330,6 @@ function App() {
                           '67WC': { left: '50%', top: '44%' },
                           '24WC': { left: '48%', top: '22%' },
                           '31WC': { left: '54%', top: '34%' },
-
-                          // EC (East Central - Top Right)
                           '5EC': { left: '78%', top: '18%' },
                           '30EC': { left: '72%', top: '32%' },
                           '35EC': { left: '76%', top: '26%' },
@@ -1352,8 +1347,6 @@ function App() {
                           '39EC': { left: '70%', top: '38%' },
                           '66EC': { left: '92%', top: '18%' },
                           '82EC': { left: '86%', top: '44%' },
-
-                          // SW (South West - Bottom Left)
                           '8SW': { left: '28%', top: '74%' },
                           '22SW': { left: '34%', top: '84%' },
                           '14SW': { left: '20%', top: '66%' },
@@ -1362,12 +1355,18 @@ function App() {
                           '79SW': { left: '38%', top: '72%' },
                           '98SW': { left: '30%', top: '88%' },
                           '54SW': { left: '28%', top: '82%' },
-
-                          // SE (South East - Bottom Right)
                           '88SE': { left: '80%', top: '76%' }
                         };
 
-                        const pos = coordsMap[n.id] || { left: '50%', top: '50%' };
+                        let pos = { left: '50%', top: '50%' };
+                        if (n.map_coords) {
+                          pos = {
+                            left: `${((n.map_coords.x / 860) * 100).toFixed(2)}%`,
+                            top: `${((n.map_coords.y / 570) * 100).toFixed(2)}%`
+                          };
+                        } else if (coordsMapFallback[n.id]) {
+                          pos = coordsMapFallback[n.id];
+                        }
                         const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
 
                         return (
@@ -1432,7 +1431,7 @@ function App() {
                     </div>
 
                     <div className="sherlock-directory-grid">
-                      {MASTER_DIRECTORY
+                      {(activeSherlockCase?.directory || MASTER_DIRECTORY)
                         .slice()
                         .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
                         .filter(item => {

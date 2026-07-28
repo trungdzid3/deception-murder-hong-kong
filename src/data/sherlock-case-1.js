@@ -4,7 +4,7 @@ export const SHERLOCK_CASE_1 = {
   "author": "Sherlock Holmes Fan Case (Tân thủ)",
   "setting_date": "Ngày 10 tháng 9 năm 1890",
   "intro": {
-    "story_text": "Sáng thứ Tư, ngày 10 tháng 9 năm 1890, Ngài Archibald - chủ sở hữu Phòng tranh Archibald danh giá bậc nhất London - hớt hải tìm đến 221B Baker Street. Kiệt tác duy nhất 'Hoàng hôn trên sông Thames' của danh họa Turner đã bị đánh tráo thành hàng giả ngay trước buổi đấu giá quốc tế lớn nhất thập kỷ! Phòng tranh được khóa cẩn thận từ bên trong, không có dấu hiệu cạy phá. Con chó ngao gác đêm Brutus dữ tợn nhưng sáng ra vẫn nằm ngủ ngon lành. Hai nghi phạm chính xuất hiện: họa sĩ Elias vừa ra tù chuyên chép tranh giả, và Julian - gã sưu tầm nghệ thuật đối thủ không đội trời chung.",
+    "story_text": "Sáng thứ Tư, ngày 10 tháng 9 năm 1890, Ngài Archibald - chủ sở hữu Phòng tranh Archibald danh giá bậc nhất London - hớt hải tìm đến 221B Baker Street. Kiệt tác duy nhất 'Hoàng hôn trên sông Thames' của danh họa Turner đã bị đánh tráo thành hàng giả ngay trước buổi đấu giá quốc tế lớn nhất thập kỷ!\n\n\"Anh Holmes, tôi tiêu đời rồi! Bức tranh kiệt tác duy nhất của Turner đã bị tráo thành hàng giả! Sáng nay lúc 8 giờ mở cửa phòng tranh, bức tranh vẫn nằm trong khung nhưng màu sắc dại hơn. Đêm qua phòng tranh khóa cẩn thận từ bên trong, con chó ngao canh gác Brutus dữ tợn nhưng sáng ra vẫn nằm ngủ ngon lành.\"\n\nHolmes điềm tĩnh hỏi: \"Ngài nghi ngờ ai không?\"\n\n\"Có chứ! Julian - gã sưu tầm đối thủ thề làm mọi cách để bôi nhọ buổi đấu giá này. Ngoài ra còn có Elias, gã họa sĩ từng đi tù vì chép tranh giả.\" Holmes mỉm cười: \"Thú vị đây, Watson. Chúng ta bắt đầu dạo chơi quanh London thôi!\"",
     "initial_clues": [
       "Bức tranh 'Hoàng hôn trên sông Thames' trị giá lớn bị đánh tráo thành hàng giả ngay tại phòng tranh.",
       "Phòng tranh 10EC được khóa kỹ từ bên trong, con chó ngao canh gác Brutus không hề sủa hay phản ứng.",
@@ -16,17 +16,17 @@ export const SHERLOCK_CASE_1 = {
   "nodes": {
     "10EC": {
       "id": "10EC",
-      "title": "Phòng tranh Archibald (Hiện trường)",
+      "title": "Phòng tranh Archibald (Hiện trường vụ án)",
       "area": "EC",
       "type": "crime_scene",
-      "map_coords": { "x": 540, "y": 280 },
-      "content": "Hiện trường không có dấu hiệu bị đột nhập. Ổ khóa và kính nguyên vẹn. Con chó ngao Brutus vẫy đuôi thân thiện khi thám tử bước vào. Tiến gần bức tranh giả, Holmes nhận thấy mùi dầu lanh và sơn dầu vẫn còn rất mới, mới được vẽ chưa quá một tuần. Quản lý Victor đứng ghi chép gần đó mặc áo măng-tô màu xám, ngón tay trỏ ám vàng vì hút nhiều xì gà nồng đậm.",
+      "map_coords": { "x": 620, "y": 190 },
+      "content": "Hiện trường không có dấu hiệu bị đột nhập. Kính và ổ khóa nguyên vẹn. Con chó ngao Brutus vẫy đuôi thân thiện khi chúng tôi bước vào. Tiến gần bức tranh giả, Holmes đưa mũi ngửi: \"Mùi dầu lanh và sơn dầu vẫn còn rất mới, bức tranh này mới được vẽ chưa quá một tuần.\" Quản lý Victor đang đứng ghi chép sổ sách gần đó. Anh ta mặc chiếc áo măng-tô màu xám, trông khá bồn chồn và nhợt nhạt. Căn phòng thoang thoảng mùi khói xì gà nồng đậm. Holmes liếc nhìn ngón tay trỏ và ngón giữa của Victor, chúng bị ám vàng vì hút thuốc lá nhiều.",
       "unlocks": {
         "nodes": ["14SE", "22SW", "05WC"],
         "evidence_items": [
-          "Chó Brutus thân thiện chứng tỏ thủ phạm là người quen.",
+          "Chó Brutus thân thiện chứng tỏ thủ phạm là người quen có chìa khóa.",
           "Bức tranh giả mới vẽ chưa tới 1 tuần.",
-          "Quản lý Victor mặc áo măng-tô xám và nghiện hút xì gà."
+          "Quản lý Victor mặc áo măng-tô xám và nghiện hút xì gà nồng đậm."
         ]
       },
       "key_hints": [
@@ -39,8 +39,8 @@ export const SHERLOCK_CASE_1 = {
       "title": "Sở cảnh sát Scotland Yard (Thanh tra Lestrade)",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 210, "y": 590 },
-      "content": "Thanh tra Lestrade khẳng định chắc nịch: 'Vụ đánh tráo à? Chắc chắn là do gã họa sĩ Elias làm. Hắn vừa ra tù tháng trước. Chiều nay tôi sẽ cho người đến tóm cổ hắn là xong chuyện!'.",
+      "map_coords": { "x": 280, "y": 440 },
+      "content": "Thanh tra Lestrade gãi đầu gãi tai: \"Vụ đánh tráo à? Chắc chắn là do gã họa sĩ Elias làm. Hắn vừa ra tù tháng trước. Các anh không cần điều tra đâu, chiều nay tôi sẽ cho người đến tóm cổ hắn là xong chuyện!\"",
       "unlocks": {
         "nodes": ["14SE"],
         "evidence_items": ["Lestrade vội vã quy kết cho họa sĩ Elias mà không có bằng chứng."]
@@ -52,13 +52,13 @@ export const SHERLOCK_CASE_1 = {
       "title": "Xưởng vẽ của họa sĩ Elias",
       "area": "SE",
       "type": "suspect_interview",
-      "map_coords": { "x": 630, "y": 680 },
-      "content": "Họa sĩ Elias hoảng hốt phân trần: 'Tôi thề tôi không trộm tranh! Tuần trước, một gã mặc áo măng-tô xám, đội mũ sụp mặt đã đến thuê tôi chép lại bức Hoàng hôn trên sông Thames qua ảnh chụp. Hắn trả bằng tiền mặt và sực nức mùi xì gà đắt tiền. Hắn yêu cầu tôi bỏ bức tranh giả vào tủ đồ số 4 ở ga King's Cross cách đây 2 ngày'.",
+      "map_coords": { "x": 650, "y": 440 },
+      "content": "Elias đang sống trong một căn gác xép tồi tàn. Anh ta hoảng hốt khi thấy chúng tôi: \"Tôi thề tôi không biết gì về vụ trộm! Tuần trước, một gã mặc áo măng-tô xám, đội mũ sụp mặt đã đến thuê tôi vẽ chép lại bức 'Hoàng hôn trên sông Thames' qua một tấm ảnh chụp. Hắn trả bằng tiền mặt, giấu mặt rất kỹ, nhưng tôi nhớ rõ hắn sực nức mùi xì gà đắt tiền. Hắn yêu cầu tôi bỏ bức tranh giả vào tủ đồ số 4 ở ga King's Cross cách đây 2 ngày.\"",
       "unlocks": {
         "nodes": ["05WC", "22SW"],
         "evidence_items": [
           "Elias bị kẻ lạ mặt mặc áo măng-tô xám, hút xì gà đắt tiền thuê chép tranh giả.",
-          "Tranh giả được giao tại ga King's Cross."
+          "Tranh giả được giao tại tủ đồ số 4 ga King's Cross."
         ]
       },
       "key_hints": [
@@ -70,8 +70,8 @@ export const SHERLOCK_CASE_1 = {
       "title": "Dinh thự của Julian",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 510, "y": 250 },
-      "content": "Quản gia cho biết: Ngài Julian đã đi nghỉ dưỡng ở Paris từ hai tuần trước và phải đến cuối tháng mới trở về. Ngài ấy không liên lạc hay gửi thư từ gì về London trong suốt thời gian qua.",
+      "map_coords": { "x": 580, "y": 150 },
+      "content": "Người quản gia ra mở cửa và cau mày: \"Ngài Julian không có nhà. Ngài ấy đã đi nghỉ dưỡng ở Paris từ hai tuần trước và phải đến cuối tháng này mới trở về. Ngài ấy không liên lạc hay gửi thư từ gì về London cả.\"",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Julian có bằng chứng ngoại phạm hoàn hảo tại Paris từ 2 tuần trước."]
@@ -83,8 +83,8 @@ export const SHERLOCK_CASE_1 = {
       "title": "Cửa hàng Họa cụ xóm Đông",
       "area": "WC",
       "type": "location_search",
-      "map_coords": { "x": 390, "y": 330 },
-      "content": "Chủ cửa hàng lật sổ tay: 'Khoảng một tuần trước, Elias có đến mua toan vẽ và lượng lớn sơn dầu. Đi cùng anh ta là một gã mặc áo măng-tô xám đứng chờ ngoài cửa trả tiền, khói xì gà bay mù mịt cả góc phố'.",
+      "map_coords": { "x": 380, "y": 180 },
+      "content": "Ông chủ cửa hàng lật cuốn sổ tay: \"Khoảng một tuần trước, Elias có đến mua toan vẽ và một lượng lớn sơn dầu. Đi cùng anh ta là một gã mặc áo măng-tô xám đứng chờ ngoài cửa. Gã đó là người trả tiền. Tôi không thấy mặt hắn, nhưng lúc hắn đứng đó, khói xì gà bay mù mịt cả góc phố.\"",
       "unlocks": {
         "nodes": ["22SW"],
         "evidence_items": ["Gã mặc áo măng-tô xám trả tiền nguyên liệu cho Elias vẽ tranh giả."]
@@ -96,8 +96,8 @@ export const SHERLOCK_CASE_1 = {
       "title": "Quán rượu & Sòng bạc Cáo Đỏ (Porky)",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 230, "y": 610 },
-      "content": "Ông trùm Porky nhếch mép: 'Tên quản lý Victor là khách VIP ở đây. Hắn đang nợ sòng bạc này tới 5,000 Bảng Anh. Tối qua hắn vừa hứa với tôi là sắp có một món hàng lớn để thế chấp trừ nợ'.",
+      "map_coords": { "x": 320, "y": 480 },
+      "content": "Ông trùm Porky nhếch mép khi nghe hỏi thăm: \"Phòng tranh Archibald à? Tôi không biết gì về nghệ thuật. Nhưng tên quản lý Victor của chỗ đó thì là khách VIP ở đây. Hắn đang nợ sòng bạc này tới 5,000 bảng Anh. Tối qua hắn vừa hứa với tôi là 'sắp có một món hàng lớn' để thế chấp trừ nợ.\"",
       "unlocks": {
         "nodes": ["17WC"],
         "evidence_items": ["Victor nợ sòng bạc 5,000 Bảng Anh và hứa thế chấp món hàng lớn trừ nợ."]
@@ -109,8 +109,8 @@ export const SHERLOCK_CASE_1 = {
       "title": "Ngân hàng Trung tâm",
       "area": "WC",
       "type": "clue_inspection",
-      "map_coords": { "x": 420, "y": 380 },
-      "content": "Nhân viên giao dịch xác nhận: Tài khoản của Phòng tranh Archibald rất khỏe mạnh. Tuy nhiên, tài khoản cá nhân của quản lý Victor đã cạn kiệt từ ba tháng nay.",
+      "map_coords": { "x": 420, "y": 220 },
+      "content": "Nhân viên giao dịch kiểm tra sổ sách: \"Tài khoản của Phòng tranh Archibald rất khỏe mạnh. Tuy nhiên, tài khoản cá nhân của Victor - người quản lý - thì đã cạn kiệt từ ba tháng nay.\"",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Tài khoản cá nhân của Victor cạn kiệt hoàn toàn."]
@@ -122,13 +122,130 @@ export const SHERLOCK_CASE_1 = {
       "title": "Tòa soạn báo The Times",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": { "x": 570, "y": 310 },
-      "content": "Tổng biên tập Henry Ellis cho biết Ngài Archibald vừa mua bảo hiểm cho bức 'Hoàng hôn trên sông Thames' trị giá 20,000 Bảng Anh.",
+      "map_coords": { "x": 600, "y": 220 },
+      "content": "Tổng biên tập Henry Ellis lật tờ báo ngày hôm qua: \"Phòng tranh Archibald dạo này rất nổi tiếng. Ngài Archibald vừa mua bảo hiểm cho bức 'Hoàng hôn trên sông Thames' trị giá 20,000 bảng Anh. Ngoài ra không có tin tức tội phạm nào đáng chú ý ở khu vực đó.\"",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Bức tranh thật được bảo hiểm trị giá 20,000 Bảng."]
       },
       "key_hints": ["Giá trị tài sản khổng lồ của bức tranh thật."]
+    },
+    "96NW": {
+      "id": "96NW",
+      "title": "Tiệm thuộc da Henderson",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": { "x": 150, "y": 260 },
+      "content": "Xưởng chế tác da thuộc hoạt động bình thường. Không có manh mối nào liên quan tới vụ đánh tráo bức tranh.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "98SW": {
+      "id": "98SW",
+      "title": "Khách sạn Victoria Club",
+      "area": "SW",
+      "type": "decoy",
+      "map_coords": { "x": 200, "y": 480 },
+      "content": "Khách sạn dành cho khách du lịch. Không phát hiện dấu vết hay đối tượng nghi vấn.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "11EC": {
+      "id": "11EC",
+      "title": "Chủ xưởng đóng tàu Albert Jenkins",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": { "x": 700, "y": 100 },
+      "content": "Xưởng đóng tàu Albert Jenkins làm việc bận rộn. Không có thông tin gì về vụ tráo tranh.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "14SW": {
+      "id": "14SW",
+      "title": "Kensington Tea Rooms",
+      "area": "SW",
+      "type": "decoy",
+      "map_coords": { "x": 180, "y": 380 },
+      "content": "Quán trà quý tộc Kensington hoạt động bình thường, không có dấu vết khả nghi.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "21EC": {
+      "id": "21EC",
+      "title": "Văn phòng quản ngục Newgate",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": { "x": 640, "y": 140 },
+      "content": "Hồ sơ phạm nhân Newgate được lưu trữ cẩn thận. Không có manh mối nào liên quan.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "24WC": {
+      "id": "24WC",
+      "title": "Tiệm đồng hồ Alfred Higgins",
+      "area": "WC",
+      "type": "decoy",
+      "map_coords": { "x": 440, "y": 190 },
+      "content": "Tiệm sửa đồng hồ cổ Alfred Higgins buôn bán bình thường, không liên quan vụ án.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "31WC": {
+      "id": "31WC",
+      "title": "Phòng tranh William Blake",
+      "area": "WC",
+      "type": "decoy",
+      "map_coords": { "x": 470, "y": 200 },
+      "content": "Phòng triển lãm tranh nghệ thuật yên tĩnh, không có manh mối nào.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "45NW": {
+      "id": "45NW",
+      "title": "Tiệm đồng hồ Oxford Street",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": { "x": 170, "y": 170 },
+      "content": "Cửa hàng bán đồng hồ quả lắc bình thường, không có manh mối khả nghi.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "54SW": {
+      "id": "54SW",
+      "title": "Hội trường Victoria Memorial",
+      "area": "SW",
+      "type": "decoy",
+      "map_coords": { "x": 260, "y": 460 },
+      "content": "Hội trường sinh hoạt cộng đồng yên tĩnh, không phát hiện sự cố.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "66EC": {
+      "id": "66EC",
+      "title": "Union Bank of London",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": { "x": 740, "y": 160 },
+      "content": "Chi nhánh ngân hàng Union Bank hoạt động bình thường, không có liên hệ vụ án.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "78NW": {
+      "id": "78NW",
+      "title": "Bệnh viện đại học University College",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": { "x": 250, "y": 100 },
+      "content": "Bệnh viện tiếp nhận bệnh nhân thông thường, không có báo cáo nghi vấn.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "82EC": {
+      "id": "82EC",
+      "title": "Đại lý vận tải biển Xavier",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": { "x": 720, "y": 240 },
+      "content": "Đại lý tàu biển Xavier làm việc bình thường, không có lịch trình khả nghi.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "99NW": {
+      "id": "99NW",
+      "title": "Hội động vật học Zoological Society",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": { "x": 130, "y": 80 },
+      "content": "Trụ sở hội nghiên cứu động vật yên tĩnh, không có dấu vết nào.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
     }
   },
   "directory": [
@@ -139,7 +256,20 @@ export const SHERLOCK_CASE_1 = {
     { "name": "Cửa hàng Họa cụ xóm Đông", "code": "05WC", "category": "Cửa hàng", "address": "05 West Central St", "desc": "Tiệm bán sơn dầu và toan vẽ." },
     { "name": "Sòng bạc Cáo Đỏ (Porky)", "code": "22SW", "category": "Sòng bạc", "address": "22 South West St", "desc": "Quán rượu và sòng bạc ngầm của Porky." },
     { "name": "Ngân hàng Trung tâm", "code": "17WC", "category": "Ngân hàng", "address": "17 West Central St", "desc": "Ngân hàng quản lý tài khoản cá nhân và phòng tranh." },
-    { "name": "Tòa soạn báo The Times", "code": "30EC", "category": "Báo chí", "address": "30 East Central St", "desc": "Tòa soạn nhật báo London." }
+    { "name": "Tòa soạn báo The Times", "code": "30EC", "category": "Báo chí", "address": "30 East Central St", "desc": "Tòa soạn nhật báo London." },
+    { "name": "Henderson Leather", "code": "96NW", "category": "Chế tác da", "address": "96 North West St", "desc": "Xưởng sản xuất đồ da thuộc." },
+    { "name": "Khách sạn Victoria Club", "code": "98SW", "category": "Khách sạn", "address": "98 South West St", "desc": "Khách sạn sang trọng khu Victoria." },
+    { "name": "Albert Jenkins Shipyard", "code": "11EC", "category": "Xưởng tàu", "address": "11 East Central St", "desc": "Xưởng đóng tàu sông Thames." },
+    { "name": "Kensington Tea Rooms", "code": "14SW", "category": "Quán trà", "address": "14 South West St", "desc": "Quán trà cao cấp." },
+    { "name": "Newgate Prison Office", "code": "21EC", "category": "Quản ngục", "address": "21 East Central St", "desc": "Văn phòng nhà tù Newgate." },
+    { "name": "Alfred Higgins Watchmaker", "code": "24WC", "category": "Đồng hồ", "address": "24 West Central St", "desc": "Tiệm đồng hồ cổ." },
+    { "name": "William Blake Gallery", "code": "31WC", "category": "Phòng tranh", "address": "31 West Central St", "desc": "Phòng trưng bày nghệ thuật." },
+    { "name": "Oxford Street Watchmaker", "code": "45NW", "category": "Đồng hồ", "address": "45 North West St", "desc": "Tiệm đồng hồ Oxford." },
+    { "name": "Victoria Memorial Hall", "code": "54SW", "category": "Hội trường", "address": "54 South West St", "desc": "Hội trường sinh hoạt." },
+    { "name": "Union Bank of London", "code": "66EC", "category": "Ngân hàng", "address": "66 East Central St", "desc": "Chi nhánh ngân hàng thương mại." },
+    { "name": "University College Hospital", "code": "78NW", "category": "Bệnh viện", "address": "78 North West St", "desc": "Bệnh viện đại học." },
+    { "name": "Xavier Shipping Agency", "code": "82EC", "category": "Vận tải", "address": "82 East Central St", "desc": "Đại lý vé tàu biển." },
+    { "name": "Zoological Society", "code": "99NW", "category": "Hội nghiên cứu", "address": "99 North West St", "desc": "Hội động vật học London." }
   ],
   "newspaper": {
     "paper_name": "THE TIMES LONDON",
@@ -148,8 +278,9 @@ export const SHERLOCK_CASE_1 = {
       {
         "date": "10 THÁNG 9, 1890",
         "title": "BUỔI ĐẤU GIÁ NGHỆ THUẬT QUỐC TẾ TẠI BLOOMSBURY",
-        "summary": "Phòng tranh Archibald chuẩn bị đấu giá kiệt tác Hoàng hôn trên sông Thames của danh họa Turner với gói bảo hiểm 20,000 Bảng Anh.",
-        "related_code": "10EC"
+        "summary": "Phòng tranh Archibald chuẩn bị đấu giá kiệt tác 'Hoàng hôn trên sông Thames' của danh họa Turner với gói bảo hiểm 20,000 Bảng Anh.",
+        "related_code": "10EC",
+        "full_text": "BLOOMSBURY INTERNATIONAL ART AUCTION (10 Sept 1890)\nThe Archibald Gallery will host the grandest international art auction of the decade tomorrow. The centerpiece of the event is the famous masterpiece 'Sunset on the Thames' by J.M.W. Turner, recently insured for £20,000. Elite collectors from Paris, Vienna, and New York have arrived in London for this momentous occasion."
       }
     ]
   },
@@ -283,14 +414,5 @@ export const SHERLOCK_CASE_1 = {
     "mastermind": "Victor (Quản lý phòng tranh)",
     "motive": "Lấy trộm bức tranh thật để tuồn ra thị trường đen gạt khoản nợ sòng bạc 5,000 Bảng Anh.",
     "full_truth": "Victor là thủ phạm chính. Hắn nợ sòng bạc Cáo Đỏ 5,000 Bảng và nảy sinh ý định trộm bức tranh thật. Vì có chìa khóa phòng tranh nên hắn ra vào dễ dàng và con chó Brutus không sủa. Hắn âm thầm đến gặp Elias thuê chép bức tranh giả qua ảnh, trả bằng tiền mặt rồi tráo tranh thật lấy tranh giả. Nhờ nhận diện chiếc áo măng-tô xám, mùi xì gà nồng đậm và khoản nợ sòng bạc, Holmes đã phá vụ án chỉ trong 4 bước đi!"
-  },
-  "directory": [
-    { "name": "Ngài Archibald", "category": "Chủ phòng tranh", "address": "10 EC Strand", "code": "10EC", "desc": "Chủ sở hữu phòng tranh Archibald." },
-    { "name": "Quản lý Victor", "category": "Quản lý", "address": "10 EC Strand", "code": "10EC", "desc": "Quản lý phòng tranh mặc áo măng-tô xám." },
-    { "name": "Họa sĩ Elias", "category": "Họa sĩ", "address": "14 SE Borough", "code": "14SE", "desc": "Họa sĩ chuyên chép tranh giả vừa ra tù." },
-    { "name": "Sòng bạc Cáo Đỏ (Porky)", "category": "Sòng bạc", "address": "22 SW Whitechapel", "code": "22SW", "desc": "Nơi Victor gánh khoản nợ cờ bạc 5,000 Bảng." },
-    { "name": "Ga King's Cross (Tủ đồ số 4)", "category": "Ga tàu", "address": "05 WC Holborn", "code": "05WC", "desc": "Nơi giao gửi bức tranh giả." },
-    { "name": "Julian", "category": "Sưu tầm nghệ thuật", "address": "08 EC Mayfair", "code": "08EC", "desc": "Nhà sưu tầm đối thủ cạnh tranh mua bức tranh." },
-    { "name": "Thanh tra Lestrade", "category": "Cảnh sát", "address": "13 SW Scotland Yard", "code": "13SW", "desc": "Thanh tra phụ trách điều tra án mạng và mất cắp." }
-  ]
+  }
 };

@@ -9,10 +9,10 @@ export const SHERLOCK_CASE_6 = {
     "part2_max": 30,
     "total_max": 130,
     "penalty_per_extra_clue": 5,
-    "note": "Holmes đạt 100 điểm với 3 bước đi tối ưu. Điểm tối đa của người chơi là 130 điểm. Trừ 5 điểm cho mỗi địa điểm thừa so với Holmes."
+    "note": "Holmes đạt 100 điểm với 3 bước đi tối ưu (10WC -> 12NW -> 08EC). Điểm tối đa của người chơi là 130 điểm. Trừ 5 điểm cho mỗi địa điểm thừa so với Holmes."
   },
   "intro": {
-    "story_text": "Sáng thứ Ba, ngày 14 tháng 10 năm 1890, Arthur Pendelton - một sinh viên cơ khí xuất sắc - hốt hoảng lao vào căn hộ 221B Baker Street. Bản thiết kế hệ thống điều khiển vòng kín dùng cho động cơ hơi nước của anh đã bị đánh cắp ngay trong đêm, chỉ vài tiếng trước kỳ nộp bài tốt nghiệp quan trọng. Cửa sổ phòng thí nghiệm bị đập vỡ, ngăn kéo bị cạy tung. Hai nghi phạm duy nhất biết về dự án bí mật này là Thomas Higgins - gã sinh viên ganh tị - và chính Giáo sư Sterling - người hướng dẫn đã bị từ chối đứng tên đồng tác giả tuần trước.",
+    "story_text": "Sáng thứ Ba, ngày 14 tháng 10 năm 1890, Arthur Pendelton - một sinh viên cơ khí xuất sắc - hốt hoảng lao vào căn hộ 221B Baker Street.\n\n\"Anh Holmes, bản thiết kế tâm huyết của tôi đã bị đánh cắp đêm qua khỏi phòng thí nghiệm! Đó là sơ đồ của một hệ thống điều khiển vòng kín dùng cho động cơ hơi nước. Nếu không có nó để nộp cho hội đồng vào chiều nay, tôi sẽ trượt tốt nghiệp!\"\n\n\"Cậu rời phòng lúc nào? Có ai khả nghi không?\" Holmes điềm tĩnh hỏi.\n\n\"Tôi rời đi lúc 9 giờ tối qua. Sáng nay đến, cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, ngăn kéo bàn bị cạy tung. Chỉ có hai người biết chi tiết về dự án này: Thomas Higgins – gã sinh viên cùng khóa luôn ganh tị; và Giáo sư Sterling – người hướng dẫn của tôi. Tuần trước, Giáo sư đòi đứng tên đồng tác giả nhưng tôi từ chối vì toàn bộ thuật toán phản hồi đều do tôi tự tính toán.\"\n\nHolmes quay sang bạn: \"Một bài toán logic thú vị đây. Chúng ta bắt đầu từ đâu nào?\"",
     "initial_clues": [
       "Cửa sổ phòng thí nghiệm 10WC bị đập vỡ và ngăn kéo bàn của Arthur bị cạy tung trong đêm qua.",
       "Bản thiết kế hệ thống điều khiển vòng kín dùng cho động cơ hơi nước biến mất.",
@@ -27,8 +27,8 @@ export const SHERLOCK_CASE_6 = {
       "title": "Phòng thí nghiệm Cơ khí (Hiện trường vụ án)",
       "area": "WC",
       "type": "crime_scene",
-      "map_coords": { "x": 390, "y": 310 },
-      "content": "Ngăn kéo bàn của Arthur bị cạy tung bằng vật cứng. Cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, tạo ra một lỗ hổng vừa đủ để thò tay vào mở chốt. Tuy nhiên, toàn bộ những mảnh kính vỡ đều rơi lả tả trên bãi cỏ bên ngoài, sàn nhà bên trong lại hoàn toàn sạch sẽ. Điều này chứng minh cửa sổ bị đập từ BÊN TRONG ra ngoài! Ngay cạnh rãnh trượt ngăn kéo, có một vệt tro màu xám trắng rất mịn, tỏa ra mùi thơm ngầy ngậy đặc trưng của một điếu xì gà đắt tiền rụng xuống chưa quá 12 tiếng.",
+      "map_coords": { "x": 390, "y": 190 },
+      "content": "Ngăn kéo bàn của Arthur bị cạy tung bằng vật cứng. Cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, tạo ra một lỗ hổng vừa đủ để thò tay vào mở chốt. Tuy nhiên, nhìn kỹ rìa bệ cửa sổ, toàn bộ những mảnh kính vỡ vụn đều rơi lả tả trên bãi cỏ bên ngoài – sàn nhà bên trong lại hoàn toàn sạch sẽ. Điều này chứng minh cửa sổ bị đập từ BÊN TRONG ra ngoài!\n\nNgay cạnh rãnh trượt của ngăn kéo, có một vệt tro màu xám trắng rất mịn, tỏa ra mùi thơm ngầy ngậy đặc trưng của một điếu xì gà đắt tiền rụng xuống chưa quá 12 tiếng.",
       "unlocks": {
         "nodes": ["08EC", "12NW", "17EC"],
         "evidence_items": [
@@ -46,8 +46,8 @@ export const SHERLOCK_CASE_6 = {
       "title": "Căn hộ của sinh viên Thomas Higgins",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 180, "y": 580 },
-      "content": "Căn hộ tồi tàn và bừa bộn. Higgins nhồi những nhúm thuốc lá sợi rẻ tiền vào một chiếc tẩu gỗ cộc kệch. Anh ta gắt gỏng: 'Tôi ăn cắp bản thiết kế đó làm gì? Các ma trận điều khiển của nó tôi còn chẳng hiểu! Tối qua tôi ở quán rượu Cáo Trắng (22WC) đến tận nửa đêm. Các anh đi mà hỏi Giáo sư Sterling ấy, viện trợ nghiên cứu của ông ta sắp bị cắt sạch rồi!' Thuốc lá sợi rẻ tiền loại trừ hoàn toàn Higgins là chủ nhân của tàn xì gà đắt tiền tại hiện trường.",
+      "map_coords": { "x": 220, "y": 380 },
+      "content": "Căn hộ tồi tàn và bừa bộn. Higgins nhồi những nhúm thuốc lá sợi rẻ tiền vào một chiếc tẩu gỗ cộc kệch, gắt gỏng: \"Tôi ăn cắp bản thiết kế đó làm gì? Các ma trận điều khiển của nó tôi còn chẳng hiểu! Tối qua tôi ở quán rượu Cáo Trắng đến tận nửa đêm. Các anh đi mà hỏi Giáo sư Sterling ấy, viện trợ nghiên cứu của ông ta sắp bị cắt sạch rồi!\"\n\nThuốc lá sợi rẻ tiền loại trừ hoàn toàn Higgins là chủ nhân của tàn xì gà đắt tiền tại hiện trường.",
       "unlocks": {
         "nodes": ["22WC"],
         "evidence_items": [
@@ -62,8 +62,8 @@ export const SHERLOCK_CASE_6 = {
       "title": "Văn phòng Giáo sư Sterling",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 560, "y": 280 },
-      "content": "Giáo sư Sterling bệ vệ ngồi sau bàn làm việc bằng gỗ sồi, tay kẹp một điếu xì gà Cuba tỏa khói nghi ngút. Khi hỏi về tối qua, ông ta tuyên bố làm việc đến khuya tại đây nhưng không ai xác nhận điều đó. Quan sát kỹ, trên mu bàn tay phải của Giáo sư có một vết xước rướm máu tươi còn mới. Ông ta vội giấu tay xuống gầm bàn. Vết xước khớp hoàn toàn với vết thương do mảnh kính cứa khi đập cửa sổ từ bên trong phòng thí nghiệm.",
+      "map_coords": { "x": 580, "y": 150 },
+      "content": "Giáo sư Sterling bệ vệ ngồi sau bàn làm việc bằng gỗ sồi, tay kẹp một điếu xì gà Cuba tỏa khói nghi ngút. \"Thật đáng tiếc cho Arthur. Nếu cậu ta chịu hợp tác với tôi, hệ thống đó đã có thể cứu vãn nhiều thứ.\"\n\nQuan sát kỹ, trên mu bàn tay phải của Giáo sư có một vết xước rướm máu tươi còn mới. Ông ta vội giấu tay xuống gầm bàn: \"Tối qua tôi làm việc ở đây đến khuya. Thật xui xẻo cho cậu sinh viên kia.\" Vết xước khớp hoàn toàn với vết thương do mảnh kính cứa khi đập cửa sổ từ bên trong phòng thí nghiệm.",
       "unlocks": {
         "nodes": ["12NW", "17EC"],
         "evidence_items": [
@@ -81,8 +81,8 @@ export const SHERLOCK_CASE_6 = {
       "title": "Quán rượu Cáo Trắng",
       "area": "WC",
       "type": "suspect_interview",
-      "map_coords": { "x": 420, "y": 350 },
-      "content": "Ông chủ quán lau ly, gật gù: 'Thomas Higgins hả? Tối qua nó ngồi ở góc kia uống rượu ực ực từ 8 giờ tối đến gần 1 giờ sáng mới lảo đảo đi về. Nó cứ lải nhải phàn nàn về mấy phương trình tự động hóa của thằng nhóc Arthur'. Xác nhận chứng cứ ngoại phạm hoàn hảo cho Thomas Higgins.",
+      "map_coords": { "x": 420, "y": 220 },
+      "content": "Ông chủ quán lau ly, gật gù: \"Thomas Higgins hả? Tối qua nó ngồi ở góc kia uống rượu từ 8 giờ tối đến gần 1 giờ sáng mới lảo đảo đi về. Nó cứ lải nhải phàn nàn về mấy phương trình tự động hóa của thằng nhóc Arthur.\" Lời khai xác nhận chứng cứ ngoại phạm hoàn hảo cho Thomas Higgins.",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Thomas Higgins có ngoại phạm chắc chắn: uống rượu tại Cáo Trắng từ 8 giờ tối đến 1 giờ sáng."]
@@ -94,8 +94,8 @@ export const SHERLOCK_CASE_6 = {
       "title": "Phòng Giáo vụ Đại học UCL",
       "area": "NW",
       "type": "clue_inspection",
-      "map_coords": { "x": 150, "y": 270 },
-      "content": "Trưởng phòng Giáo vụ mở sổ cái tài chính: 'Khoa Cơ khí của Giáo sư Sterling đang gặp khủng hoảng nghiêm trọng. Nếu cuối tháng này ông ấy không trình làng được một phát minh hoặc bằng sáng chế mới nào có tính ứng dụng cao, hội đồng quản trị sẽ cắt 100% ngân sách và đóng cửa phòng thí nghiệm của ông ấy.'",
+      "map_coords": { "x": 260, "y": 120 },
+      "content": "Trưởng phòng Giáo vụ mở sổ cái tài chính: \"Khoa Cơ khí của Giáo sư Sterling đang gặp khủng hoảng nghiêm trọng. Nếu cuối tháng này ông ấy không trình làng được một phát minh hoặc bằng sáng chế mới nào có tính ứng dụng cao, hội đồng quản trị sẽ cắt 100% ngân sách và đóng cửa phòng thí nghiệm của ông ấy.\"",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Giáo sư Sterling sẽ bị cắt 100% ngân sách và đóng cửa phòng thí nghiệm nếu không có phát minh mới cuối tháng này."]
@@ -107,8 +107,8 @@ export const SHERLOCK_CASE_6 = {
       "title": "Cửa hàng Xì gà Havana",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": { "x": 590, "y": 270 },
-      "content": "Người bán hàng kiểm tra lọ tro mà Holmes mang tới: 'Mùi hương và chất tro này? Đây là loại xì gà Partagas thượng hạng nhập từ Cuba. Khách quen mua loại này của tôi không nhiều, Giáo sư Sterling là một trong số những người luôn đặt hàng đều đặn mỗi tuần.' Xác nhận thêm bằng chứng liên kết trực tiếp tàn xì gà tại hiện trường với Giáo sư Sterling.",
+      "map_coords": { "x": 640, "y": 170 },
+      "content": "Người bán hàng kiểm tra lọ tro mà Holmes mang tới: \"Mùi hương và chất tro này? Đây là loại xì gà Partagas thượng hạng nhập từ Cuba. Khách quen mua loại này của tôi không nhiều, Giáo sư Sterling là một trong số những người luôn đặt hàng đều đặn mỗi tuần.\" Xác nhận thêm bằng chứng liên kết trực tiếp tàn xì gà tại hiện trường với Giáo sư Sterling.",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Tàn xì gà Partagas tại hiện trường được xác nhận thuộc về Giáo sư Sterling – khách quen duy nhất mua hàng tuần."]
@@ -120,23 +120,144 @@ export const SHERLOCK_CASE_6 = {
       "title": "Sở Cảnh sát Scotland Yard (Thanh tra Lestrade)",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 200, "y": 600 },
-      "content": "Thanh tra Lestrade ngáp dài: 'Vụ vỡ cửa kính ở trường đại học à? Chắc chắn là do bọn trộm vặt quanh phố nhòm ngó đồ đồng nát thôi. Hoặc là cậu sinh viên Higgins kia ghen tị nên đập phá. Tôi sẽ phái người đi bắt Higgins dọa cho một trận là nó khai ngay!' Lestrade vội vã quy kết cho Higgins mà không có bằng chứng – phán đoán sai lầm điển hình.",
+      "map_coords": { "x": 280, "y": 440 },
+      "content": "Thanh tra Lestrade ngáp dài: \"Vụ vỡ cửa kính ở trường đại học à? Chắc chắn là do bọn trộm vặt quanh phố nhòm ngó đồ đồng nát thôi. Hoặc là cậu sinh viên Higgins kia ghen tị nên đập phá. Tôi sẽ phái người đi bắt Higgins dọa cho một trận là nó khai ngay!\" Lestrade vội vã quy kết cho Higgins mà không có bằng chứng.",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Lestrade kết luận vội vàng quy tội cho Higgins mà không có bằng chứng."]
       },
       "key_hints": ["Lời kết luận vội của Lestrade chỉ là đánh lạc hướng điều tra."]
+    },
+    "96NW": {
+      "id": "96NW",
+      "title": "Tiệm thuộc da Henderson",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": { "x": 150, "y": 260 },
+      "content": "Xưởng chế tác da thuộc hoạt động bình thường, không có manh mối liên quan vụ án.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "98SW": {
+      "id": "98SW",
+      "title": "Khách sạn Victoria Club",
+      "area": "SW",
+      "type": "decoy",
+      "map_coords": { "x": 200, "y": 480 },
+      "content": "Khách sạn dành cho khách du lịch. Không phát hiện dấu vết hay đối tượng nghi vấn.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "11EC": {
+      "id": "11EC",
+      "title": "Chủ xưởng đóng tàu Albert Jenkins",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": { "x": 700, "y": 100 },
+      "content": "Xưởng đóng tàu Albert Jenkins làm việc bận rộn. Không có thông tin gì về vụ án.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "21EC": {
+      "id": "21EC",
+      "title": "Văn phòng quản ngục Newgate",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": { "x": 640, "y": 140 },
+      "content": "Hồ sơ phạm nhân Newgate được lưu trữ cẩn thận. Không có manh mối nào liên quan.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "24WC": {
+      "id": "24WC",
+      "title": "Tiệm đồng hồ Alfred Higgins",
+      "area": "WC",
+      "type": "decoy",
+      "map_coords": { "x": 440, "y": 190 },
+      "content": "Tiệm sửa đồng hồ cổ Alfred Higgins buôn bán bình thường, không liên quan vụ án.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "31WC": {
+      "id": "31WC",
+      "title": "Phòng tranh William Blake",
+      "area": "WC",
+      "type": "decoy",
+      "map_coords": { "x": 470, "y": 200 },
+      "content": "Phòng triển lãm tranh nghệ thuật yên tĩnh, không có manh mối nào.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "45NW": {
+      "id": "45NW",
+      "title": "Tiệm đồng hồ Oxford Street",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": { "x": 170, "y": 170 },
+      "content": "Cửa hàng bán đồng hồ quả lắc bình thường, không có manh mối khả nghi.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "54SW": {
+      "id": "54SW",
+      "title": "Hội trường Victoria Memorial",
+      "area": "SW",
+      "type": "decoy",
+      "map_coords": { "x": 260, "y": 460 },
+      "content": "Hội trường sinh hoạt cộng đồng yên tĩnh, không phát hiện sự cố.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "66EC": {
+      "id": "66EC",
+      "title": "Union Bank of London",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": { "x": 740, "y": 160 },
+      "content": "Chi nhánh ngân hàng Union Bank hoạt động bình thường, không có liên hệ vụ án.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "78NW": {
+      "id": "78NW",
+      "title": "Bệnh viện đại học University College",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": { "x": 250, "y": 100 },
+      "content": "Bệnh viện tiếp nhận bệnh nhân thông thường, không có báo cáo nghi vấn.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "82EC": {
+      "id": "82EC",
+      "title": "Đại lý vận tải biển Xavier",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": { "x": 720, "y": 240 },
+      "content": "Đại lý tàu biển Xavier làm việc bình thường, không có lịch trình khả nghi.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "99NW": {
+      "id": "99NW",
+      "title": "Hội động vật học Zoological Society",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": { "x": 130, "y": 80 },
+      "content": "Trụ sở hội nghiên cứu động vật yên tĩnh, không có dấu vết nào.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
     }
   },
   "directory": [
-    { "name": "Phòng thí nghiệm Cơ khí UCL", "code": "10WC", "category": "Trường học", "address": "10 West Central St", "desc": "Hiện trường vụ đánh cắp bản thiết kế của Arthur Pendelton." },
-    { "name": "Higgins, Thomas (Sinh viên)", "code": "14SW", "category": "Cư dân", "address": "14 South West St", "desc": "Sinh viên cùng khóa ganh tị với Arthur." },
-    { "name": "Sterling (Giáo sư)", "code": "08EC", "category": "Giáo sư", "address": "08 East Central St", "desc": "Văn phòng Giáo sư Sterling, người hướng dẫn của Arthur." },
-    { "name": "Quán rượu Cáo Trắng", "code": "22WC", "category": "Quán rượu", "address": "22 West Central St", "desc": "Nơi sinh viên tụ tập sau giờ học." },
-    { "name": "Giáo vụ Đại học UCL", "code": "12NW", "category": "Cơ quan", "address": "12 North West St", "desc": "Phòng hành chính quản lý ngân sách các khoa." },
-    { "name": "Cửa hàng Xì gà Havana", "code": "17EC", "category": "Cửa hàng", "address": "17 East Central St", "desc": "Tiệm bán xì gà cao cấp nhập khẩu Cuba." },
-    { "name": "Scotland Yard (Lestrade)", "code": "13SW", "category": "Cơ quan", "address": "13 South West St", "desc": "Sở cảnh sát London." }
+    { "name": "Arthur Pendelton", "category": "Sinh viên", "address": "14 SW Kensington", "code": "14SW", "desc": "Sinh viên cơ khí tác giả bản thiết kế bị đánh cắp." },
+    { "name": "Giáo sư Sterling", "category": "Giáo sư UCL", "address": "08 EC Bloomsbury", "code": "08EC", "desc": "Giáo sư hướng dẫn Khoa Cơ khí." },
+    { "name": "Higgins, Thomas (Sinh viên)", "category": "Sinh viên", "address": "14 SW Whitechapel", "code": "14SW", "desc": "Sinh viên cùng khóa ganh tị với Arthur." },
+    { "name": "Phòng Giáo vụ UCL", "category": "Đại học", "address": "12 NW Gower St", "code": "12NW", "desc": "Nơi quản lý ngân sách và cấp phép phòng thí nghiệm." },
+    { "name": "Phòng thí nghiệm Cơ khí UCL", "category": "Hiện trường", "address": "10 WC Gower St", "code": "10WC", "desc": "Hiện trường vụ mất cắp bản thiết kế." },
+    { "name": "Quán rượu Cáo Trắng", "category": "Quán rượu", "address": "22 WC Strand", "code": "22WC", "desc": "Quán rượu nơi Higgins uống đến 1 giờ sáng." },
+    { "name": "Cửa hàng Xì gà Havana", "category": "Cửa hàng", "address": "17 EC Minories", "code": "17EC", "desc": "Tiệm bán xì gà Partagas nhập khẩu Cuba." },
+    { "name": "Scotland Yard (Lestrade)", "category": "Cơ quan", "address": "13 SW Victoria", "code": "13SW", "desc": "Sở cảnh sát London." },
+    { "name": "Henderson Leather", "category": "Chế tác da", "address": "96 NW Marylebone", "code": "96NW", "desc": "Xưởng sản xuất đồ da thuộc." },
+    { "name": "Khách sạn Victoria Club", "category": "Khách sạn", "address": "98 SW Victoria", "code": "98SW", "desc": "Khách sạn sang trọng khu Victoria." },
+    { "name": "Albert Jenkins Shipyard", "category": "Xưởng tàu", "address": "11 EC Minories", "code": "11EC", "desc": "Xưởng đóng tàu sông Thames." },
+    { "name": "Newgate Prison Office", "category": "Quản ngục", "address": "21 EC Fleet St", "code": "21EC", "desc": "Văn phòng nhà tù Newgate." },
+    { "name": "Alfred Higgins Watchmaker", "category": "Đồng hồ", "address": "24 WC Strand", "code": "24WC", "desc": "Tiệm đồng hồ cổ." },
+    { "name": "William Blake Gallery", "category": "Phòng tranh", "address": "31 WC High Holborn", "code": "31WC", "desc": "Phòng trưng bày nghệ thuật." },
+    { "name": "Oxford Street Watchmaker", "category": "Đồng hồ", "address": "45 NW Oxford St", "code": "45NW", "desc": "Tiệm đồng hồ Oxford." },
+    { "name": "Victoria Memorial Hall", "category": "Hội trường", "address": "54 SW Victoria St", "code": "54SW", "desc": "Hội trường sinh hoạt." },
+    { "name": "Union Bank of London", "category": "Ngân hàng", "address": "66 EC Threadneedle St", "code": "66EC", "desc": "Chi nhánh ngân hàng thương mại." },
+    { "name": "University College Hospital", "category": "Bệnh viện", "address": "78 NW Gower St", "code": "78NW", "desc": "Bệnh viện đại học." },
+    { "name": "Xavier Shipping Agency", "category": "Vận tải", "address": "82 EC Minories", "code": "82EC", "desc": "Đại lý vé tàu biển." },
+    { "name": "Zoological Society", "category": "Hội nghiên cứu", "address": "99 NW Regent's Park", "code": "99NW", "desc": "Hội động vật học London." }
   ],
   "newspaper": {
     "paper_name": "THE TIMES LONDON",
@@ -146,13 +267,15 @@ export const SHERLOCK_CASE_6 = {
         "date": "14 THÁNG 10, 1890",
         "title": "ĐÁNH CẮP TÀI SẢN TRÍ TUỆ TẠI ĐẠI HỌC UCL",
         "summary": "Phòng thí nghiệm Cơ khí Đại học UCL bị đột nhập ban đêm. Bản thiết kế hệ thống điều khiển động cơ hơi nước của sinh viên Arthur Pendelton bị đánh cắp trước kỳ nộp bài tốt nghiệp.",
-        "related_code": "10WC"
+        "related_code": "10WC",
+        "full_text": "INTELLECTUAL PROPERTY STOLEN AT UCL (14 Oct 1890)\nThe Engineering Laboratory at University College London was broken into last night. The blueprint for a closed-loop steam engine control system developed by student Arthur Pendelton was stolen hours before the final evaluation by the board."
       },
       {
         "date": "13 THÁNG 10, 1890",
         "title": "KHỦNG HOẢNG NGÂN SÁCH NGHIÊN CỨU TẠI UCL",
         "summary": "Hội đồng quản trị UCL chuẩn bị đánh giá lại ngân sách các khoa. Nhiều phòng thí nghiệm đứng trước nguy cơ đóng cửa nếu không đạt kết quả nghiên cứu cuối tháng.",
-        "related_code": "12NW"
+        "related_code": "12NW",
+        "full_text": "RESEARCH BUDGET CRISIS AT UCL (13 Oct 1890)\nThe Board of Governors at UCL is scheduled to review departmental grants at the end of the month. Laboratories that fail to present actionable innovations or patents risk a 100% budget cut and immediate closure."
       }
     ]
   },
@@ -259,14 +382,5 @@ export const SHERLOCK_CASE_6 = {
     "holmes_optimal_path": ["10WC", "12NW", "08EC"],
     "holmes_clue_count": 3,
     "full_truth": "Giáo sư Sterling biết rõ bản thiết kế của Arthur là phát minh xuất sắc duy nhất có thể cứu ngân sách phòng thí nghiệm khỏi bị cắt hoàn toàn. Sau khi bị Arthur từ chối đứng tên đồng tác giả, Sterling quyết định lén vào phòng thí nghiệm bằng chìa khóa cùng của, đập vỡ cửa sổ từ BÊN TRONG để tạo hiện trường đột nhập giả, và lấy đi bản thiết kế. Tuy nhiên khi đập kính, Sterling bị mảnh kính cứa tay để lại vết xước. Thói quen hút xì gà Partagas Cuba đắt tiền của Sterling – không ai ngờ – lại để lại dấu vết trực tiếp ngay cạnh ngăn kéo bị cạy. Nhờ 3 bước suy luận: kính vỡ từ bên trong (10WC) → động cơ bức thiết (12NW) → xì gà và vết xước của Sterling (08EC), Holmes đã phá án chỉ trong một buổi sáng!"
-  },
-  "directory": [
-    { "name": "Arthur Pendelton", "category": "Sinh viên", "address": "14 SW Kensington", "code": "14SW", "desc": "Sinh viên cơ khí tác giả bản thiết kế." },
-    { "name": "Giáo sư Sterling", "category": "Giáo sư UCL", "address": "8 EC Bloomsbury", "code": "08EC", "desc": "Giáo sư hướng dẫn Khoa Cơ khí." },
-    { "name": "Thomas Higgins", "category": "Sinh viên", "address": "22 SW Whitechapel", "code": "22SW", "desc": "Sinh viên đối thủ cạnh tranh học bổng." },
-    { "name": "Phòng Giáo vụ UCL", "category": "Đại học", "address": "12 NW Gower St", "code": "12NW", "desc": "Nơi quản lý ngân sách và cấp phép phòng thí nghiệm." },
-    { "name": "Phòng thí nghiệm Cơ khí UCL", "category": "Hiện trường", "address": "10 WC Gower St", "code": "10WC", "desc": "Hiện trường vụ mất cắp bản thiết kế." },
-    { "name": "Tiệm xì gà Partagas", "category": "Cửa hàng", "address": "45 NW Oxford St", "code": "45NW", "desc": "Nhà phân phối xì gà Cuba thượng hạng." },
-    { "name": "Bệnh viện St. Bartholomew", "category": "Bệnh viện", "address": "27 EC Fleet St", "code": "27EC", "desc": "Nơi băng bó chấn thương nhẹ." }
-  ]
+  }
 };
