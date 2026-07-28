@@ -827,51 +827,6 @@ function App() {
                 </div>
               </div>
 
-              {/* BẢNG CHỌN VỤ ÁN TRONG PHÒNG CHỜ SHERLOCK */}
-              {isSherlock && (
-                <div className="game-settings-section mb-4">
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
-                    <span className="text-xs font-black text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
-                      <BookOpen size={16} className="text-amber-400" /> CHỌN KỲ ÁN ĐIỀU TRA (CASE SELECTION):
-                    </span>
-                    <span className="text-xs text-amber-200 font-bold bg-amber-950/60 border border-amber-500/30 px-3 py-1 rounded-full">
-                      Vụ án đang chọn: <strong>{activeSherlockCase.title}</strong>
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                    {SHERLOCK_CASES_LIST.map((c, index) => {
-                      const isSelected = (roomState?.selectedCaseId || 'sherlock_case_1') === c.id;
-                      return (
-                        <div
-                          key={c.id}
-                          onClick={() => handleSelectSherlockCase(c.id)}
-                          className={`p-3 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
-                            isSelected 
-                              ? 'bg-amber-950/80 border-amber-500 shadow-lg shadow-amber-500/20' 
-                              : 'bg-slate-900/60 border-slate-700/60 hover:border-amber-500/40 hover:bg-slate-800/80'
-                          }`}
-                        >
-                          <div>
-                            <div className="flex items-center justify-between text-[0.68rem] font-bold mb-1">
-                              <span className="text-amber-400 uppercase">VỤ ÁN #{index + 1}</span>
-                              <span className="text-amber-200">⚡ {c.difficulty}</span>
-                            </div>
-                            <h5 className="font-extrabold text-amber-100 text-xs leading-snug">{c.title}</h5>
-                          </div>
-                          <div className="mt-2.5 pt-2 border-t border-amber-500/10 flex items-center justify-between text-[0.65rem]">
-                            <span className="text-slate-400">{c.setting_date}</span>
-                            <span className={`font-black ${isSelected ? 'text-amber-400' : 'text-slate-400'}`}>
-                              {isSelected ? '✓ Đang chọn' : 'Nhấp để chọn'}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
               <div className="lobby-members-section">
                 <span className="section-label-amber">
                   {isSherlock ? 'DANH SÁCH THÁM TỬ TRONG PHÒNG CHỜ:' : 'NHẤP VÀO THÀNH VIÊN BẠN MUỐN BẦU LÀM NHÀ KHOA HỌC PHÁP Y:'}
