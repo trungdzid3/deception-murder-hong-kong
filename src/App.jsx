@@ -1300,46 +1300,96 @@ function App() {
                         className="sherlock-map-img"
                       />
 
-                      {/* GHIM TẤT CẢ ĐỊA ĐIỂM TRÊN BẢN ĐỒ VỤ ÁN */}
-                      {(activeSherlockCase.directory && activeSherlockCase.directory.length > 0 
-                        ? activeSherlockCase.directory 
-                        : MASTER_DIRECTORY.filter(item => item.appeared_in?.includes(activeSherlockCase.case_id)))
-                        .map((entry) => {
-                          const code = entry.code;
-                          const caseNode = activeSherlockCase?.nodes?.[code];
-                          const masterEntry = MASTER_DIRECTORY.find(e => e.code === code) || entry;
-                          const coords = caseNode?.map_coords || masterEntry?.map_coords;
-                          if (!coords) return null;
+                      {/* GHIM CÁC CON SỐ NGUYÊN BẢN TRÊN BẢN ĐỒ CHUẨN ĐỊA LÝ KHU VỰC (COPY 100% TỪ BẢN BACKUP) */}
+                      {Object.values(activeSherlockCase?.nodes || {}).map((n) => {
+                        const isVisited = roomState.visitedNodes?.includes(n.id);
+                        
+                        // Tọa độ % phân vùng địa lý chuẩn 100% từ bản backup
+                        const coordsMap = {
+                          // NW (North West - Top Left)
+                          '221B': { left: '18%', top: '22%' },
+                          '50NW': { left: '22%', top: '16%' },
+                          '53NW': { left: '26%', top: '28%' },
+                          '16NW': { left: '32%', top: '14%' },
+                          '20NW': { left: '14%', top: '34%' },
+                          '72NW': { left: '24%', top: '38%' },
+                          '89NW': { left: '30%', top: '36%' },
+                          '90NW': { left: '28%', top: '44%' },
+                          '41NW': { left: '12%', top: '12%' },
+                          '49NW': { left: '36%', top: '22%' },
+                          '96NW': { left: '18%', top: '46%' },
+                          '45NW': { left: '20%', top: '30%' },
+                          '78NW': { left: '34%', top: '42%' },
+                          '99NW': { left: '16%', top: '48%' },
 
-                          const isVisited = roomState.visitedNodes?.includes(code);
-                          const isUnlocked = roomState.unlockedNodes?.includes(code);
-                          const bareNumber = code.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+                          // WC (West Central - Upper Middle)
+                          '18WC': { left: '46%', top: '36%' },
+                          '28WC': { left: '42%', top: '42%' },
+                          '34WC': { left: '52%', top: '38%' },
+                          '85WC': { left: '48%', top: '30%' },
+                          '5WC': { left: '40%', top: '26%' },
+                          '15WC': { left: '44%', top: '20%' },
+                          '67WC': { left: '50%', top: '44%' },
+                          '24WC': { left: '48%', top: '22%' },
+                          '31WC': { left: '54%', top: '34%' },
 
-                          // Tỷ lệ % vị trí trên bản đồ 860 × 570 px chuẩn London Map 1888
-                          const leftPct = ((coords.x / 860) * 100).toFixed(2);
-                          const topPct  = ((coords.y / 570) * 100).toFixed(2);
+                          // EC (East Central - Top Right)
+                          '5EC': { left: '78%', top: '18%' },
+                          '30EC': { left: '72%', top: '32%' },
+                          '35EC': { left: '76%', top: '26%' },
+                          '42EC': { left: '84%', top: '30%' },
+                          '53EC': { left: '80%', top: '36%' },
+                          '73EC': { left: '82%', top: '14%' },
+                          '74EC': { left: '88%', top: '22%' },
+                          '83EC': { left: '84%', top: '40%' },
+                          '98E': { left: '94%', top: '28%' },
+                          '27EC': { left: '68%', top: '20%' },
+                          '61EC': { left: '74%', top: '42%' },
+                          '91EC': { left: '90%', top: '38%' },
+                          '11EC': { left: '74%', top: '16%' },
+                          '21EC': { left: '86%', top: '24%' },
+                          '39EC': { left: '70%', top: '38%' },
+                          '66EC': { left: '92%', top: '18%' },
+                          '82EC': { left: '86%', top: '44%' },
 
-                          return (
-                            <div
-                              key={code}
-                              onClick={() => {
-                                if (caseNode) {
-                                  handleVisitNode(code);
-                                  setSherlockSelectedNodeId(code);
-                                  setSherlockActiveTab('casebook');
-                                } else {
-                                  setSherlockSearchQuery(masterEntry.name);
-                                  setSherlockActiveTab('directory');
-                                }
-                              }}
-                              style={{ left: `${leftPct}%`, top: `${topPct}%` }}
-                              className={`sherlock-map-pin ${isVisited ? 'visited' : isUnlocked ? 'unlocked' : 'general'}`}
-                              title={`[${code}] ${masterEntry.name}`}
-                            >
-                              <span className="sherlock-pin-number">[{bareNumber}]</span>
+                          // SW (South West - Bottom Left)
+                          '8SW': { left: '28%', top: '74%' },
+                          '22SW': { left: '34%', top: '84%' },
+                          '14SW': { left: '20%', top: '66%' },
+                          '52SW': { left: '24%', top: '80%' },
+                          '12SW': { left: '16%', top: '76%' },
+                          '79SW': { left: '38%', top: '72%' },
+                          '98SW': { left: '30%', top: '88%' },
+                          '54SW': { left: '28%', top: '82%' },
+
+                          // SE (South East - Bottom Right)
+                          '88SE': { left: '80%', top: '76%' }
+                        };
+
+                        const pos = coordsMap[n.id] || { left: '50%', top: '50%' };
+                        const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+
+                        return (
+                          <div
+                            key={n.id}
+                            style={{ 
+                              left: pos.left, 
+                              top: pos.top
+                            }}
+                            className={`sherlock-map-pin ${isVisited ? 'visited' : ''}`}
+                            onClick={() => {
+                              setSherlockSelectedNodeId(n.id);
+                              setSherlockActiveTab('casebook');
+                              if (!isVisited) handleVisitNode(n.id);
+                            }}
+                            title={`Địa điểm [${bareNumber}] - ${n.title}`}
+                          >
+                            <div className="sherlock-map-pin-badge">
+                              [{bareNumber}]
                             </div>
-                          );
-                        })}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
