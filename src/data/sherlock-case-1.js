@@ -10,7 +10,7 @@ export const SHERLOCK_CASE_1 = {
       "Chiếc hộp sắt trên bàn làm việc bị méo nhẹ phần vành nắp, cho thấy nó được đóng vội vàng trong lúc đám cháy đang diễn ra.",
       "Mảnh giấy nhắn 1 trong hộp sắt: 'S, Sẽ không có hại gì xảy ra đâu, tôi hứa! - M.'",
       "Mảnh giấy nhắn 2 trong hộp sắt: 'Ngày 2 tháng 12 năm 1893. Gửi Lestrade: Hãy phân tích kỹ để được trợ giúp thêm. Tốt nhất nên kiểm tra phần còn lại của hiện trường.'",
-      "Nhân chứng Olivia Robins ở địa điểm mã [50] báo cáo đã nhìn thấy Sherlock gặp một người đàn ông giống Mycroft lúc 8:30 tối, và lúc 9:00 tối thấy Edward Beaupre cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà."
+      "Nhân chứng Olivia Robins ở địa điểm mã [50NW] báo cáo đã nhìn thấy Sherlock gặp một người đàn ông giống Mycroft lúc 8:30 tối, và lúc 9:00 tối thấy Edward Beaupre cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà."
     ],
     "unlocked_nodes": ["50NW", "8SW", "22SW"]
   },
