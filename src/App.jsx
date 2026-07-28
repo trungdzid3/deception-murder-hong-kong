@@ -1305,66 +1305,77 @@ function App() {
                       {Object.values(activeSherlockCase?.nodes || {}).map((n) => {
                         const isVisited = roomState.visitedNodes?.includes(n.id);
                         
-                        // Tọa độ % phân vùng địa lý chuẩn 100% từ bản backup
+                        // Tọa độ % phân vùng địa lý chuẩn 100% khớp đúng từng con số màu vàng/đỏ trên bản đồ London 1888
                         const coordsMap = {
-                          // NW (North West - Top Left)
-                          '221B': { left: '18%', top: '22%' },
-                          '50NW': { left: '22%', top: '16%' },
-                          '53NW': { left: '26%', top: '28%' },
-                          '16NW': { left: '32%', top: '14%' },
-                          '20NW': { left: '14%', top: '34%' },
-                          '72NW': { left: '24%', top: '38%' },
-                          '89NW': { left: '30%', top: '36%' },
-                          '90NW': { left: '28%', top: '44%' },
-                          '41NW': { left: '12%', top: '12%' },
-                          '49NW': { left: '36%', top: '22%' },
-                          '96NW': { left: '18%', top: '46%' },
-                          '45NW': { left: '20%', top: '30%' },
-                          '78NW': { left: '34%', top: '42%' },
-                          '99NW': { left: '16%', top: '48%' },
+                          // NW (North West - Phía trên bên trái: Regent's Park, Baker Street, Marylebone)
+                          '221B': { left: '16.5%', top: '23.5%' }, // Baker Street
+                          '50NW': { left: '15.5%', top: '25.0%' }, // Phố Baker Street đối diện
+                          '53NW': { left: '26.5%', top: '10.5%' }, // Camden House (Phía bắc NW)
+                          '16NW': { left: '13.0%', top: '27.5%' }, // Tetley & Butler
+                          '20NW': { left: '14.5%', top: '35.0%' }, // Pavilion Pub
+                          '72NW': { left: '19.5%', top: '25.5%' }, // Taylor Chemist
+                          '89NW': { left: '16.0%', top: '21.0%' }, // Tichfield Police
+                          '90NW': { left: '21.0%', top: '28.0%' }, // Elle Fanning House
+                          '41NW': { left: '10.5%', top: '16.0%' },
+                          '49NW': { left: '11.0%', top: '23.0%' },
+                          '96NW': { left: '14.0%', top: '19.0%' },
+                          '45NW': { left: '10.0%', top: '21.0%' },
+                          '78NW': { left: '24.0%', top: '14.0%' },
+                          '99NW': { left: '12.0%', top: '10.0%' },
 
-                          // WC (West Central - Upper Middle)
-                          '18WC': { left: '46%', top: '36%' },
-                          '28WC': { left: '42%', top: '42%' },
-                          '34WC': { left: '52%', top: '38%' },
-                          '85WC': { left: '48%', top: '30%' },
-                          '5WC': { left: '40%', top: '26%' },
-                          '15WC': { left: '44%', top: '20%' },
-                          '67WC': { left: '50%', top: '44%' },
-                          '24WC': { left: '48%', top: '22%' },
-                          '31WC': { left: '54%', top: '34%' },
+                          // WC (West Central - Trung Tây: High Holborn, Strand, Soho, Bloomsbury)
+                          '5WC': { left: '39.0%', top: '36.5%' },  // Central Carriage
+                          '18WC': { left: '48.5%', top: '33.0%' }, // Lyceum Theater
+                          '28WC': { left: '44.0%', top: '36.0%' }, // Davenport Flat
+                          '34WC': { left: '45.0%', top: '31.0%' }, // Gerald Locke
+                          '85WC': { left: '46.0%', top: '37.5%' }, // Laura Parker
+                          '15WC': { left: '44.5%', top: '28.0%' },
+                          '67WC': { left: '47.0%', top: '36.0%' },
+                          '24WC': { left: '43.0%', top: '33.5%' },
+                          '31WC': { left: '45.5%', top: '32.0%' },
+                          '63WC': { left: '46.0%', top: '28.5%' },
+                          '92WC': { left: '51.0%', top: '38.0%' }, // Nevill's Baths
+                          '78WC': { left: '48.0%', top: '36.5%' }, // Pearl Jones
+                          '43WC': { left: '42.5%', top: '23.0%' }, // UCL Gower St
 
-                          // EC (East Central - Top Right)
-                          '5EC': { left: '78%', top: '18%' },
-                          '30EC': { left: '72%', top: '32%' },
-                          '35EC': { left: '76%', top: '26%' },
-                          '42EC': { left: '84%', top: '30%' },
-                          '53EC': { left: '80%', top: '36%' },
-                          '73EC': { left: '82%', top: '14%' },
-                          '74EC': { left: '88%', top: '22%' },
-                          '83EC': { left: '84%', top: '40%' },
-                          '98E': { left: '94%', top: '28%' },
-                          '27EC': { left: '68%', top: '20%' },
-                          '61EC': { left: '74%', top: '42%' },
-                          '91EC': { left: '90%', top: '38%' },
-                          '11EC': { left: '74%', top: '16%' },
-                          '21EC': { left: '86%', top: '24%' },
-                          '39EC': { left: '70%', top: '38%' },
-                          '66EC': { left: '92%', top: '18%' },
-                          '82EC': { left: '86%', top: '44%' },
+                          // EC (East Central - Phía trên bên phải: Fleet Street, Minories, Whitechapel, cảng)
+                          '5EC': { left: '76.0%', top: '33.0%' },  // Grant Arms Minories
+                          '30EC': { left: '59.5%', top: '36.5%' }, // Fleet Street / London Times
+                          '35EC': { left: '71.5%', top: '31.0%' }, // Police Gazette
+                          '42EC': { left: '77.0%', top: '24.0%' },
+                          '53EC': { left: '77.5%', top: '35.0%' }, // Israel Jacobs
+                          '73EC': { left: '74.0%', top: '15.0%' }, // Marvin Pemberton
+                          '74EC': { left: '74.5%', top: '20.0%' }, // Gertrude Helwig
+                          '83EC': { left: '69.0%', top: '36.0%' }, // Ship & Turtle Leadenhall
+                          '98E': { left: '92.5%', top: '37.0%' },  // Outer Docks Wapping
+                          '27EC': { left: '60.5%', top: '36.0%' },
+                          '61EC': { left: '73.0%', top: '36.0%' },
+                          '91EC': { left: '81.5%', top: '37.0%' },
+                          '11EC': { left: '79.0%', top: '14.0%' },
+                          '21EC': { left: '65.5%', top: '35.0%' },
+                          '39EC': { left: '69.5%', top: '32.5%' },
+                          '66EC': { left: '76.5%', top: '29.0%' },
+                          '82EC': { left: '78.0%', top: '42.0%' },
+                          '63EC': { left: '58.5%', top: '36.5%' }, // 63 Fleet Street
 
-                          // SW (South West - Bottom Left)
-                          '8SW': { left: '28%', top: '74%' },
-                          '22SW': { left: '34%', top: '84%' },
-                          '14SW': { left: '20%', top: '66%' },
-                          '52SW': { left: '24%', top: '80%' },
-                          '12SW': { left: '16%', top: '76%' },
-                          '79SW': { left: '38%', top: '72%' },
-                          '98SW': { left: '30%', top: '88%' },
-                          '54SW': { left: '28%', top: '82%' },
+                          // SW (South West - Phía dưới bên trái: Victoria, Pall Mall, St. James, Lambeth)
+                          '8SW': { left: '30.0%', top: '56.0%' },  // Mycroft / Diogenes Club Pall Mall
+                          '22SW': { left: '37.0%', top: '80.0%' }, // Murray Lab Whitechapel
+                          '14SW': { left: '19.0%', top: '56.0%' },
+                          '52SW': { left: '33.0%', top: '79.0%' }, // Ambroise Beaupre
+                          '12SW': { left: '33.0%', top: '58.0%' },
+                          '79SW': { left: '26.5%', top: '78.0%' },
+                          '98SW': { left: '22.0%', top: '80.0%' },
+                          '54SW': { left: '27.5%', top: '72.0%' },
+                          '2SW': { left: '31.0%', top: '55.0%' },   // Langdale Pike Pall Mall
+                          '5SW': { left: '29.5%', top: '57.0%' },   // Lomax London Library
+                          '13SW': { left: '38.5%', top: '68.0%' },  // Scotland Yard
 
-                          // SE (South East - Bottom Right)
-                          '88SE': { left: '80%', top: '76%' }
+                          // SE (South East - Phía dưới bên phải: Borough, Elephant & Castle, Wallington)
+                          '88SE': { left: '72.5%', top: '71.5%' }, // Roberts & Parfitt Borough
+                          '90SE': { left: '50.5%', top: '74.0%' }, // Archbishop's Park
+                          '66SE': { left: '62.0%', top: '80.0%' }, // Alby Sam
+                          '11SE': { left: '68.0%', top: '73.0%' }  // Dirk Stephen
                         };
 
                         const pos = coordsMap[n.id] || { left: '50%', top: '50%' };
