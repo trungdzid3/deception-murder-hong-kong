@@ -9,7 +9,8 @@ export const SHERLOCK_CASE_3 = {
       "Nạn nhân Oswald Mason bị đập chết bằng vật nặng vào đầu lúc 10:00 tối tại phòng làm việc 42 Tottenham Court Road.",
       "Kẻ đột nhập vào nhà bằng cửa sổ tầng trên, phòng làm việc có dấu vết xáo trộn mạnh cho thấy đã xảy ra xô xát.",
       "Hiện trường thu được thông tin nhà phóng viên báo The Times (Travis) liên tục bị ngăn cản tiếp cận lăng mộ Katebet.",
-      "Văn bản khảo cổ đề cập đến quan tài Nữ vương Katebet và bảo vật vua Toutankhamon."
+      "Nhật báo The Times đăng tin khu cắm trại khai quật Ai Cập được canh gác nghiêm ngặt để tránh trộm cướp (The camp was highly guarded to prevent plunder).",
+      "Quảng cáo trên báo tin tức nhắc tới điểm biểu diễn ca nhạc Oxford Music Hall của cô Violette Blue."
     ],
     "unlocked_nodes": ["42WC", "12NW", "38EC"]
   },
@@ -33,12 +34,12 @@ export const SHERLOCK_CASE_3 = {
       "area": "NW",
       "type": "suspect_interview",
       "map_coords": { "x": 140, "y": 380 },
-      "content": "Bà quả phụ quyến rũ tuyệt đẹp tiếp đón thám tử trong phòng khách tràn ngập cổ vật Ai Cập. Cô tiết lộ mâu thuẫn nảy lửa trong nội bộ đoàn khai quật: 'Chồng tôi và Giáo sư Windibank tranh cãi nảy lửa về quyền sở hữu các cổ vật của Toutankhamon. Windibank muốn bán lén cổ vật ra thị trường đen cho các nhà sưu tập tư nhân ở London'.",
+      "content": "Bà quả phụ tuyệt đẹp và quyến rũ (magnificent widow) tiếp đón thám tử trong phòng khách tràn ngập cổ vật Ai Cập. Cô tiết lộ mâu thuẫn nảy lửa trong nội bộ đoàn khai quật: 'Chồng tôi và Giáo sư Windibank tranh cãi nảy lửa về quyền sở hữu các cổ vật của Vua Toutankhamon. Windibank đặc biệt lo lắng và muốn bán lén cổ vật ra thị trường đen cho các nhà sưu tập tư nhân ở London'.",
       "unlocks": {
         "nodes": ["38EC", "30EC"],
         "evidence_items": ["Mâu thuẫn nảy lửa về cổ vật Toutankhamon giữa đoàn thám hiểm và Giáo sư Windibank."]
       },
-      "key_hints": ["Giáo sư Windibank âm mưu tuồn cổ vật Ai Cập ra thị trường đen."]
+      "key_hints": ["Giáo sư Windibank âm mưu tuồn cổ vật Toutankhamon ra thị trường đen."]
     },
     "50EC": {
       "id": "50EC",
@@ -46,12 +47,18 @@ export const SHERLOCK_CASE_3 = {
       "area": "EC",
       "type": "suspect_interview",
       "map_coords": { "x": 610, "y": 310 },
-      "content": "Phóng viên Travis bức xúc trình bày: 'Mọi người nghi ngờ tôi là hung thủ vì tôi theo sát đoàn thám hiểm. Nhưng sự thật là hàng rào an ninh quanh khu vực khai quật vô cùng nghiêm ngặt. Dù tôi đã nhiều lần xin phép nhưng họ tuyệt đối không cho tôi bước chân vào lăng mộ. Tôi không thể nào tiếp cận nạn nhân hay lăng mộ để gây án được!'.",
+      "content": "Phóng viên Travis trình bày chi tiết Errata bổ sung: 'Mọi người nghi ngờ tôi là hung thủ vì tôi liên tục đưa tin về đoàn thám hiểm. Nhưng sự thật là hàng rào an ninh quanh khu vực cắm trại khai quật vô cùng nghiêm ngặt (The camp was highly guarded to prevent plunder). Dù tôi đã nhiều lần đệ đơn xin phép nhưng họ tuyệt đối không cho tôi bước chân vào lăng mộ. Tôi hoàn toàn không thể nào tiếp cận lăng mộ hay nạn nhân để gây ra vụ sát hại đầu tiên được!'. Chi tiết an ninh nghiêm ngặt tạo chứng cứ ngoại phạm sắt đá loại trừ Travis!",
       "unlocks": {
         "nodes": ["43WC"],
-        "evidence_items": ["Phóng viên Travis có chứng cứ ngoại phạm vì bị vây chặt bởi hàng rào an ninh nghiêm ngặt."]
+        "evidence_items": [
+          "Trại khai quật canh gác cực kỳ nghiêm ngặt (Highly guarded).",
+          "Phóng viên Travis có chứng cứ ngoại phạm chắc chắn, loại trừ khả năng là hung thủ."
+        ]
       },
-      "key_hints": ["Travis không thể lọt vào khu vực lăng mộ hay gây án, loại trừ khả năng Travis là hung thủ."]
+      "key_hints": [
+        "Trại khai quật được bảo vệ cẩn mật khiến Travis không thể tiếp cận lăng mộ.",
+        "Loại trừ Travis khỏi danh sách nghi phạm."
+      ]
     },
     "38EC": {
       "id": "38EC",
@@ -59,12 +66,12 @@ export const SHERLOCK_CASE_3 = {
       "area": "EC",
       "type": "clue_inspection",
       "map_coords": { "x": 550, "y": 340 },
-      "content": "Chuyên gia bảo tàng giám định chiếc bùa hộ mệnh thu được và khẳng định: 'Chiếc bùa này không phải của Nữ vương Katebet mà thuộc về lăng mộ Vua Toutankhamon (King Tut). Nó đã được đánh tráo tinh vi nhằm dựng lên vụ án Lời nguyền siêu nhiên hù dọa dư luận'.",
+      "content": "Chuyên gia bảo tàng đính chính thông tin Errata: 'Chiếc bùa hộ mệnh thu được tại hiện trường không phải của Nữ vương Katebet mà thuộc về lăng mộ Vua Toutankhamon (King Tut). Nó đã được đánh tráo tinh vi nhằm dựng lên vụ án Lời nguyền siêu nhiên hù dọa dư luận'. Chỉ duy nhất Đại học London là nhà tài trợ chính thức.",
       "unlocks": {
         "nodes": ["30EC"],
-        "evidence_items": ["Cổ vật bị đánh tráo thuộc về Toutankhamon để dựng hiện trường giả Lời Nguyền."]
+        "evidence_items": ["Cổ vật bị đánh tráo thuộc về lăng mộ Vua Toutankhamon chứ không phải Ramses II hay Katebet."]
       },
-      "key_hints": ["Vụ án là mạng kịch đánh tráo cổ vật Toutankhamon thành Lời Nguyền Xác Ướp."]
+      "key_hints": ["Vụ án là màn kịch đánh tráo cổ vật Toutankhamon thành Lời Nguyền Xác Ướp."]
     },
     "43WC": {
       "id": "43WC",
@@ -72,12 +79,12 @@ export const SHERLOCK_CASE_3 = {
       "area": "WC",
       "type": "suspect_interview",
       "map_coords": { "x": 370, "y": 310 },
-      "content": "Đại diện khoa khảo cổ xác nhận: Trợ lý Turnbull đã bất ngờ xin từ chức khỏi Đại học sau khi xảy ra bất đồng sâu sắc với Oswald Mason và Windibank về việc phân chia lợi nhuận bán cổ vật.",
+      "content": "Đại diện khoa khảo cổ xác nhận chi tiết Errata: Trợ lý Turnbull rất khao khát tham gia đoàn thám hiểm Katebet. Sau khi bị từ chối và xảy ra mâu thuẫn lợi nhuận mua bán cổ vật với Giáo sư Windibank, Turnbull đã giận dữ nộp đơn xin từ chức khỏi Đại học và chuyển sang làm phóng viên tự do.",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Trợ lý Turnbull bất ngờ từ chức vì bất đồng lợi nhuận cổ vật."]
+        "evidence_items": ["Trợ lý Turnbull giận dữ từ chức khỏi Đại học sau tranh chấp với Windibank."]
       },
-      "key_hints": ["Mâu thuẫn lợi nhuận mua bán cổ vật Ai Cập giữa các thành viên."]
+      "key_hints": ["Turnbull từ chức vì mâu thuẫn học thuật và lợi nhuận bán cổ vật."]
     },
     "30EC": {
       "id": "30EC",
@@ -85,12 +92,12 @@ export const SHERLOCK_CASE_3 = {
       "area": "EC",
       "type": "location_search",
       "map_coords": { "x": 510, "y": 300 },
-      "content": "Chủ tiệm đồ cổ khai báo: 'Một người đàn ông tự xưng là đại diện đoàn Katebet đã bán lén cho tôi 3 bức tượng nhỏ Ai Cập với giá rất cao. Người này có trình độ chuyên môn rất giỏi về đồ cổ Ai Cập'.",
+      "content": "Chủ tiệm đồ cổ khai báo: 'Một người đàn ông năng nổ kỳ quặc (strange duck though competent) đại diện đoàn thám hiểm đã bán lén cho tôi các bức tượng nhỏ Ai Cập với giá rất cao. Kẻ này hiểu biết rất sâu về cổ vật Toutankhamon'.",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Cổ vật lăng mộ bị tuồn bán lén tại đường Oxford."]
+        "evidence_items": ["Cổ vật Toutankhamon bị tuồn bán lén tại tiệm đồ cổ đường Oxford."]
       },
-      "key_hints": ["Cổ vật bị tuồn bán lén bởi thành viên chuyên môn trong đoàn khai quật."]
+      "key_hints": ["Giáo sư Windibank âm mưu bán lén cổ vật Toutankhamon."]
     }
   },
   "directory": [
@@ -112,10 +119,22 @@ export const SHERLOCK_CASE_3 = {
         "related_code": "42WC"
       },
       {
+        "date": "11 THÁNG 4, 1890",
+        "title": "NỘI DUNG MỚI (ERRATA): VỤ ĐỘT NHẬP CỬA HÀNG QUÀ TẶNG EVENSON & CO",
+        "summary": "Đêm thứ Tư xảy ra vụ đột nhập cạy khóa cửa sau tiệm Evenson & Co. Gift Store. Không phát hiện đồ đạc bị lấy mất.",
+        "related_code": "30EC"
+      },
+      {
+        "date": "11 THÁNG 4, 1890",
+        "title": "NỘI DUNG MỚI (ERRATA): CA SĨ VIOLETTE BLUE TẠI OXFORD MUSIC HALL",
+        "summary": "Cô Violette Blue biểu diễn các ca khúc mới nhất trong suốt tháng này tại nhà hát Oxford Music Hall. Giá vé từ 1s.",
+        "related_code": "50EC"
+      },
+      {
         "date": "10 THÁNG 4, 1890",
-        "title": "TRIỂN LÃM CỔ VẬT AI CẬP TẠI OLYMPIA",
-        "summary": "Đoàn thám hiểm trưng bày các cổ vật được cho là của Nữ vương Katebet và Vua Toutankhamon.",
-        "related_code": "38EC"
+        "title": "AN NINH KHU KHAI QUẬT AI CẬP (ERRATA)",
+        "summary": "Khu cắm trại thám hiểm Ai Cập được lực lượng canh gác cực kỳ nghiêm ngặt để ngăn chặn trộm cướp (The camp was highly guarded to prevent plunder).",
+        "related_code": "50EC"
       }
     ]
   },
@@ -135,39 +154,39 @@ export const SHERLOCK_CASE_3 = {
       },
       {
         "id": "q2",
-        "question": "Mục tiêu chính mà hung thủ lấy đi khi sát hại Oswald Mason tại 42 Tottenham Court Road là gì?",
+        "question": "Chi tiết Errata nào về khu cắm trại khai quật Ai Cập tạo chứng cứ ngoại phạm chắc chắn cho phóng viên Travis?",
         "options": [
-          "Cuộn bản đồ định vị lăng mộ cổ vật Ai Cập",
-          "Toàn bộ tiền mặt trong két sắt",
-          "Bộ trang sức kim cương của phu nhân Rose",
-          "Chiếc đồng hồ bỏ túi vàng"
+          "Khu cắm trại được canh gác cực kỳ nghiêm ngặt (Highly guarded to prevent plunder)",
+          "Travis bị cảnh sát bắt giữ từ trước",
+          "Travis đang ở New York đưa tin dịch bệnh",
+          "Travis thi đấu bóng đá tại New Zealand"
         ],
         "correct_option_index": 0,
-        "explanation": "Chiếc két sắt không mất tiền mặt mà bị lấy mất cuộn bản đồ định vị vị trí lăng mộ Ai Cập."
+        "explanation": "Chi tiết đính chính Errata xác nhận trại khai quật được bảo vệ nghiêm ngặt khiến Travis không thể tiếp cận lăng mộ hay nạn nhân để gây ra vụ án đầu tiên."
       },
       {
         "id": "q3",
-        "question": "Cổ vật bị đánh tráo tại hiện trường thực chất thuộc về lăng mộ nào?",
+        "question": "Cổ vật bị đánh tráo tại hiện trường thực chất thuộc về lăng mộ nào (đã được đính chính Errata)?",
         "options": [
-          "Vua Toutankhamon (Ramses II / King Tut)",
+          "Vua Toutankhamon (King Tut)",
           "Nữ vương Katebet",
-          "Nữ hoàng Cleopatra",
+          "Ramses II",
           "Pharaoh Khufu"
         ],
         "correct_option_index": 0,
-        "explanation": "Chuyên gia bảo tàng 38EC xác nhận cổ vật bị đánh tráo thuộc về Toutankhamon chứ không phải Katebet."
+        "explanation": "Chuyên gia bảo tàng 38EC đính chính cổ vật bị đánh tráo thuộc về Vua Toutankhamon chứ không phải Ramses II hay Katebet."
       },
       {
         "id": "q4",
-        "question": "Tại sao phóng viên Travis báo The Times lại có chứng cứ ngoại phạm chắc chắn?",
+        "question": "Quảng cáo Errata bổ sung trên nhật báo The Times chỉ ra địa điểm biểu diễn của ca sĩ Violette Blue ở đâu?",
         "options": [
-          "Vì bị lực lượng an ninh vây chặt bên ngoài và tuyệt đối không được bước vào lăng mộ",
-          "Vì đang ở New York đưa tin dịch bệnh",
-          "Vì bị cảnh sát bắt giữ từ trước",
-          "Vì đang thi đấu bóng đá tại New Zealand"
+          "Nhà hát Oxford Music Hall",
+          "Triển lãm Irish Exhibition Olympia",
+          "Giáo đường St. Mary Woolnoth",
+          "Bảo tàng British Museum"
         ],
         "correct_option_index": 0,
-        "explanation": "Travis xác nhận hàng rào an ninh nghiêm ngặt khiến ông không thể tiếp cận lăng mộ hay nạn nhân."
+        "explanation": "Mục giải trí trên báo The Times đính chính quảng cáo ca sĩ Violette Blue biểu diễn tại Oxford Music Hall."
       },
       {
         "id": "q5",
@@ -197,15 +216,15 @@ export const SHERLOCK_CASE_3 = {
       },
       {
         "id": "q7",
-        "question": "Trợ lý Turnbull đã có hành động gì sau khi xảy ra bất đồng lợi nhuận cổ vật?",
+        "question": "Trợ lý Turnbull đã có hành động gì sau khi xảy ra bất đồng lợi nhuận cổ vật với Windibank?",
         "options": [
-          "Bất ngờ nộp đơn xin từ chức khỏi Đại học",
+          "Giận dữ nộp đơn xin từ chức khỏi Đại học",
           "Báo cảnh sát Scotland Yard",
           "Bỏ trốn sang Ai Cập",
           "Viết bài tố cáo lên báo The Times"
         ],
         "correct_option_index": 0,
-        "explanation": "Trợ lý Turnbull đã đột ngột nộp đơn xin từ chức khỏi Đại học sau khi xảy ra tranh chấp."
+        "explanation": "Trợ lý Turnbull đã đột ngột giận dữ nộp đơn xin từ chức khỏi Đại học sau khi xảy ra tranh chấp với Windibank."
       },
       {
         "id": "q8",
@@ -221,15 +240,15 @@ export const SHERLOCK_CASE_3 = {
       },
       {
         "id": "q9",
-        "question": "Sự kiện biểu diễn nổi bật nào diễn ra tại nhà hát Oxford Music Hall theo tin báo chí?",
+        "question": "Mục tin tức Errata nào được bổ sung liên quan đến tiệm quà tặng Evenson & Co?",
         "options": [
-          "Miss Violette Blue hát các ca khúc mới nhất",
-          "Bắt giữ băng nhôm Anarchist",
-          "Đua bóng đá New Zealand",
-          "Triển lãm cừu giống mới"
+          "Vụ đột nhập cạy khóa cửa sau tiệm quà tặng Evenson & Co",
+          "Vụ cháy tiệm quà tặng",
+          "Vụ mua bán trang sức trộm cắp",
+          "Vụ cướp két sắt"
         ],
         "correct_option_index": 0,
-        "explanation": "Nhật báo The Times đăng tin Miss Violette Blue biểu diễn tại Oxford Music Hall."
+        "explanation": "Báo The Times bổ sung mẩu tin về vụ đột nhập cạy khóa cửa sau tại tiệm Evenson & Co."
       },
       {
         "id": "q10",
@@ -248,6 +267,6 @@ export const SHERLOCK_CASE_3 = {
   "solution_summary": {
     "mastermind": "Giáo sư Windibank",
     "motive": "Sát hại Oswald Mason để cướp bản đồ lăng mộ và dựng lên kịch bản Lời Nguyền Xác Ướp che giấu việc buôn lén cổ vật Toutankhamon.",
-    "full_truth": "Giáo sư Windibank là kẻ chủ mưu lợi dụng tin đồn mị dân về 'Lời nguyền của Xác ướp Katebet' để thực hiện tội ác. Nhận thấy Oswald Mason sở hữu bản đồ định vị vị trí các lăng mộ cổ vật vô giá, Windibank đã đột nhập phòng làm việc sát hại Mason và lấy đi bản đồ. Hắn đánh tráo các báu vật của Vua Toutankhamon thành cổ vật Katebet rồi đem tuồn bán lén cho các nhà sưu tập tư nhân trên đường Oxford. Nhờ sự suy luận sắc bén, Sherlock Holmes đã bóc gỡ màn kịch mượn danh tâm linh để vạch trần kẻ sát nhân cướp cổ vật!"
+    "full_truth": "Giáo sư Windibank là kẻ chủ mưu lợi dụng tin đồn mị dân về 'Lời nguyền của Xác ướp Katebet' để thực hiện tội ác. Nhận thấy Oswald Mason sở hữu bản đồ định vị vị trí các lăng mộ cổ vật vô giá, Windibank đã đột nhập phòng làm việc sát hại Mason và lấy đi bản đồ. Hắn đánh tráo các báu vật của Vua Toutankhamon thành cổ vật Katebet rồi đem tuồn bán lén cho các nhà sưu tập tư nhân trên đường Oxford. Nhờ các mẩu tin Errata đính chính trên báo The Times (ngoại phạm của Travis nhờ khu vực trại được canh gác nghiêm ngặt), Sherlock Holmes đã bóc gỡ màn kịch mượn danh tâm linh để vạch trần kẻ sát nhân cướp cổ vật!"
   }
 };
