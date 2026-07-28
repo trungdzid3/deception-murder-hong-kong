@@ -1212,46 +1212,42 @@ function App() {
                         </div>
                       </div>
 
-                      {/* DANH SÁCH ĐỊA ĐIỂM CÓ THỂ KHÁM XÉT – BẤM ĐỂ ĐỌC LỜI KHAI / MANH MỐI */}
+                      {/* DANH SÁCH ĐỊA ĐIỂM CÓ THỂ KHÁM XÉT – DANH SÁCH TĨNH (TRA CỨU TRÊN BẢN ĐỒ/DANH BẠ) */}
                       <div className="sherlock-panel space-y-2">
                         <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider border-b border-amber-500/20 pb-2 flex items-center gap-1.5">
                           <Search size={14} /> ĐỊA ĐIỂM CÓ THỂ KHÁM XÉT ({roomState.unlockedNodes?.length || 0}):
                         </h4>
-                        <div className="flex flex-col gap-1 pt-1">
+                        <div className="flex flex-col gap-1.5 pt-1">
                           {roomState.unlockedNodes?.map((nodeId) => {
                             const isVisited = roomState.visitedNodes?.includes(nodeId);
                             const node = activeSherlockCase.nodes?.[nodeId];
                             const masterEntry = MASTER_DIRECTORY.find(e => e.code === nodeId);
                             
-                            // Chỉ hiển thị TÊN (Tên người hoặc tên tòa nhà) — tuyệt đối không hiện địa chỉ hay mã số
+                            // Chỉ hiển thị TÊN (Tên người hoặc tên tòa nhà) — không hiện địa chỉ/mã số
                             let displayName = nodeId;
                             if (node?.title) {
-                              // Nếu node.title có dạng "Tên (Mô tả)" -> lấy phần tên
                               displayName = node.title.split('(')[0].trim();
                             } else if (masterEntry?.name) {
                               displayName = masterEntry.name.split('(')[0].trim();
                             }
 
-                            const isSelected = sherlockSelectedNodeId === nodeId;
                             return (
-                              <button
+                              <div
                                 key={nodeId}
-                                onClick={() => {
-                                  handleVisitNode(nodeId);
-                                  setSherlockSelectedNodeId(nodeId);
-                                }}
-                                className={`sherlock-unlocked-btn text-left ${
-                                  isSelected ? 'selected' : isVisited ? 'visited' : ''
-                                } cursor-pointer`}
-                                title={`Bấm để xem lời khai / manh mối tại địa điểm này`}
+                                className={`sherlock-unlocked-btn text-left cursor-default select-none ${
+                                  isVisited ? 'visited' : ''
+                                }`}
                               >
-                                <Compass size={12} className="shrink-0 text-amber-400" />
+                                <Compass size={12} className="shrink-0 text-amber-400/80" />
                                 <span className="truncate">{displayName}</span>
-                                {isVisited && <span className="ml-auto text-emerald-400 text-[0.6rem] font-bold shrink-0">✓</span>}
-                              </button>
+                                {isVisited && <span className="ml-auto text-emerald-400 text-[0.65rem] font-bold shrink-0">Đã ghé</span>}
+                              </div>
                             );
                           })}
                         </div>
+                        <p className="text-[0.7rem] text-slate-400 italic pt-1 leading-relaxed border-t border-slate-800">
+                          Lưu ý: Hãy tra cứu tên trên Danh Bạ / Bản Đồ và bấm trực tiếp vào ghim con số trên Bản Đồ để tiến hành khám xét.
+                        </p>
                       </div>
 
                     </div>
@@ -1279,18 +1275,6 @@ function App() {
                               <div className="sherlock-reading-text">
                                 {node.content}
                               </div>
-
-                              {/* VẬT CHỨNG GHI NHẬN */}
-                              {node.unlocks?.evidence_items?.length > 0 && (
-                                <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3.5 space-y-1">
-                                  <h5 className="text-xs font-extrabold text-amber-300 uppercase flex items-center gap-1.5">
-                                    <Sparkles size={14} /> Bằng chứng & Thông tin thu thập thêm:
-                                  </h5>
-                                  {node.unlocks.evidence_items.map((item, idx) => (
-                                    <p key={idx} className="text-xs text-amber-100 font-semibold">• {item}</p>
-                                  ))}
-                                </div>
-                              )}
                             </div>
                           );
                         })() : (
