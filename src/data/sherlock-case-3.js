@@ -12,7 +12,7 @@ export const SHERLOCK_CASE_3 = {
       "Sổ tay ghi chép của nạn nhân đề cập đến cuộc gặp với luật sư Hiram Davenport và Bác sĩ Trevelyan.",
       "Nhật báo The Times đăng tin về các vụ tấn công bằng khăn thấm thuốc mê bốc hơi tại khu vực Lombard Street."
     ],
-    "unlocked_nodes": ["36EC", "13WC", "15SW", "38EC"]
+    "unlocked_nodes": ["36EC"]
   },
   "nodes": {
     "36EC": {

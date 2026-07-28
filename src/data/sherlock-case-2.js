@@ -18,7 +18,7 @@ export const SHERLOCK_CASE_2 = {
       "Bức thư viết tay gốc gửi Lestrade: \"Analysis will further aid. Best examine remaining\" (Chữ cái đầu ghép thành AWFABER — A. W. Faber).",
       "Thông tin về đợt tuyên án đường dây buôn lậu tại Outer Docks 2 năm trước (25/11/1891)."
     ],
-    "unlocked_nodes": ["221B", "13SW", "38EC", "28WC", "34WC", "49SE"]
+    "unlocked_nodes": ["221B"]
   },
   "nodes": {
     "221B": {

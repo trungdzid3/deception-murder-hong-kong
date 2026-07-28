@@ -12,7 +12,7 @@ export const SHERLOCK_CASE_5 = {
       "Tin tức báo chí đăng tải bài phỏng vấn nhân chứng Angus McAllister tại khách sạn Metropolitan Hotel.",
       "Cuốn sách triết học cổ đại về 4 nguyên tố của tác giả K. Raikos đã bị mua sạch tại tiệm sách Gilbert & Field."
     ],
-    "unlocked_nodes": ["7EC", "63EC", "41EC", "31NW"]
+    "unlocked_nodes": ["63EC", "7EC"]
   },
   "nodes": {
     "7EC": {

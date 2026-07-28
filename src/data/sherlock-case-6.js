@@ -19,7 +19,7 @@ export const SHERLOCK_CASE_6 = {
       "Thomas Higgins và Giáo sư Sterling là 2 người duy nhất biết chi tiết dự án.",
       "Giáo sư Sterling vừa bị Arthur từ chối đứng tên đồng tác giả tuần trước."
     ],
-    "unlocked_nodes": ["10WC", "14SW", "08EC"]
+    "unlocked_nodes": ["10WC"]
   },
   "nodes": {
     "10WC": {

@@ -12,7 +12,7 @@ export const SHERLOCK_CASE_4 = {
       "Nhật báo The Times đăng tin khu cắm trại khai quật Ai Cập được canh gác nghiêm ngặt để tránh trộm cướp.",
       "Quảng cáo trên báo tin tức nhắc tới điểm biểu diễn ca nhạc Oxford Music Hall của cô Violette Blue."
     ],
-    "unlocked_nodes": ["42WC", "12NW", "38EC"]
+    "unlocked_nodes": ["42WC"]
   },
   "nodes": {
     "42WC": {

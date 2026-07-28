@@ -11,7 +11,7 @@ export const SHERLOCK_CASE_1 = {
       "Bức tranh giả có mùi sơn dầu và dầu lanh vẫn còn rất mới, mới được vẽ chưa quá một tuần.",
       "Người quản lý Victor bồn chồn, mặc áo măng-tô màu xám và ngón tay ám vàng do thói quen hút xì gà nồng đậm."
     ],
-    "unlocked_nodes": ["10EC", "13SW", "14SE", "08EC"]
+    "unlocked_nodes": ["10EC"]
   },
   "nodes": {
     "10EC": {
