@@ -302,7 +302,7 @@ export const SHERLOCK_CASE_1 = {
       "key_hints": ["Ambroise Beaupre chính là gã mang gậy shillelagh họp kín với Elle Fanning."]
     },
     "30EC": {
-      "id": "30EC",
+"id": "30EC",
       "title": "Tòa soạn báo London Times (Henry Ellis)",
       "area": "EC",
       "type": "suspect_interview",
@@ -314,97 +314,12 @@ export const SHERLOCK_CASE_1 = {
       },
       "key_hints": ["Bóng đen mặc đồ đen chính là Sherlock Holmes thật trốn thoát sau khi ngôi nhà bị phóng hỏa."]
     },
-    "35EC": {
-      "id": "35EC",
-      "title": "Văn phòng Quintin Hogg",
-      "area": "EC",
-      "type": "suspect_interview",
-      "map_coords": { "x": 670, "y": 350 },
-      "content": "Quintin Hogg cung cấp tin tức: 'Tôi nhận được thư nặc danh nói rằng kẻ đứng sau điều hành băng buôn lậu Outer Docks hai năm trước thực chất không phải những kẻ bị bắt. Có một bộ não thiên tài đứng sau chỉ đạo toàn bộ'.",
-      "unlocks": {
-        "nodes": [],
-        "evidence_items": ["Chủ mưu thực sự của băng buôn lậu vẫn nằm trong bóng tối."]
-      },
-      "key_hints": ["Gợi ý về sự nhúng tay của Giáo sư Moriarty."]
-    },
-    "12SW": {
-      "id": "12SW",
-      "title": "Tiệm kim hoàn Arthur Pendelton",
-      "area": "SW",
-      "type": "decoy",
-      "content": "Tiệm kim hoàn vắng vẻ. Ông Arthur Pendelton cho biết: 'Tôi làm việc ở đây từ sáng đến tối, chẳng thấy ai khả nghi đi qua cả. Sherlock Holmes cũng không đến đây'.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
-    "15WC": {
-      "id": "15WC",
-      "title": "Nhà máy in ấn Hansard",
-      "area": "WC",
-      "type": "decoy",
-      "content": "Tiếng máy in xình xịch vang lên khắp xưởng. Người quản lý báo cáo công việc in ấn diễn ra bình thường, không có manh mối nào liên quan tới vụ án 221B Baker Street.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
-    "27EC": {
-      "id": "27EC",
-      "title": "Phòng khám y tế Bác sĩ Charles Darwin",
-      "area": "EC",
-      "type": "decoy",
-      "content": "Y sĩ phụ tá tiếp đón bạn. Ông cho biết Bác sĩ Darwin đang đi thăm bệnh ở vùng nông thôn và không hề khám cho ai tên là Holmes hay Beaupre trong tuần này.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
-    "41NW": {
-      "id": "41NW",
-      "title": "Tiệm trà bánh Bà Beatrice Smith",
-      "area": "NW",
-      "type": "decoy",
-      "content": "Mùi bánh quy bơ thơm nức căn phòng. Bà Smith đon đả chào hỏi nhưng khẳng định chưa từng gặp nhân vật nào giống mô tả của bạn.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
-    "49NW": {
-      "id": "49NW",
-      "title": "Cửa hàng dụng cụ câu cá Miller",
-      "area": "NW",
-      "type": "decoy",
-      "content": "Cửa hàng bày bán đủ loại cần câu và dây cước. Chủ tiệm cho biết hôm qua chỉ có vài vị khách quen mua mồi câu cá chép.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
-    "61EC": {
-      "id": "61EC",
-      "title": "Công ty Vận tải Blackwood",
-      "area": "EC",
-      "type": "decoy",
-      "content": "Sổ sách vận chuyển hàng hóa được kiểm tra kỹ lưỡng. Tất cả các lô hàng đều có giấy tờ hợp lệ của hải quan, không phát hiện dấu hiệu hàng lậu.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
-    "67WC": {
-      "id": "67WC",
-      "title": "Hội luật gia Middle Temple",
-      "area": "WC",
-      "type": "decoy",
-      "content": "Các luật sư đang bận rộn thảo luận hồ sơ án dân sự. Không có tin tức hay tài liệu nào liên quan tới vụ phóng hỏa tại Baker Street.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
-    "79SW": {
-      "id": "79SW",
-      "title": "Rạp xiếc Royal Amphitheatre",
-      "area": "SW",
-      "type": "decoy",
-      "content": "Đoàn xiếc đang tổng duyệt màn nhào lộn. Ban quản lý xác nhận toàn bộ nhân sự đều có mặt tại rạp trong suốt buổi tối qua.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
-    "91EC": {
-      "id": "91EC",
-      "title": "Quán rượu Blind Beggar (Whitechapel)",
-      "area": "EC",
-      "type": "decoy",
-      "content": "Quán ồn ào tiếng hô hố uống rượu. Chủ quán gạt đi: 'Nơi này chỉ có dân lao động nghèo uống bia đen, không có thám tử hay quý ông mặc áo burgundy nào cả'.",
-      "unlocks": { "nodes": [], "evidence_items": [] }
-    },
     "96NW": {
       "id": "96NW",
       "title": "Tiệm thuộc da Henderson",
       "area": "NW",
       "type": "decoy",
-      "content": "Xưởng thuộc da bốc mùi nồng nặc. Những người thợ da khẳng định họ nghỉ làm từ 6 giờ chiều và không thấy ai lảng vảng quanh đây.",
+      "content": "Xưởng chế tác da thuộc hoạt động bình thường. Không có manh mối nào liên quan tới vụ án.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
     "98SW": {
@@ -412,7 +327,103 @@ export const SHERLOCK_CASE_1 = {
       "title": "Khách sạn Victoria Club",
       "area": "SW",
       "type": "decoy",
-      "content": "Lễ tân khách sạn kiểm tra sổ nhật ký lưu trú. Không có khách hàng nào đăng ký dưới tên Beaupre, Pemberton hay Jacobs.",
+      "content": "Khách sạn dành cho khách du lịch. Không phát hiện dấu vết hay đối tượng nghi vấn.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "11EC": {
+      "id": "11EC",
+      "title": "Chủ xưởng đóng tàu Albert Jenkins",
+      "area": "EC",
+      "type": "decoy",
+      "content": "Xưởng đóng tàu Albert Jenkins làm việc bận rộn. Không có thông tin gì về vụ án mạng.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "14SW": {
+      "id": "14SW",
+      "title": "Kensington Tea Rooms",
+      "area": "SW",
+      "type": "decoy",
+      "content": "Quán trà quý tộc Kensington hoạt động bình thường, không có dấu vết khả nghi.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "21EC": {
+      "id": "21EC",
+      "title": "Văn phòng quản ngục Newgate",
+      "area": "EC",
+      "type": "decoy",
+      "content": "Hồ sơ phạm nhân Newgate được lưu trữ cẩn thận. Không có manh mối nào liên quan.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "24WC": {
+      "id": "24WC",
+      "title": "Tiệm đồng hồ Alfred Higgins",
+      "area": "WC",
+      "type": "decoy",
+      "content": "Tiệm sửa đồng hồ cổ Alfred Higgins buôn bán bình thường, không liên quan vụ án.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "31WC": {
+      "id": "31WC",
+      "title": "Phòng tranh William Blake",
+      "area": "WC",
+      "type": "decoy",
+      "content": "Phòng triển lãm tranh nghệ thuật yên tĩnh, không có manh mối nào.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "39EC": {
+      "id": "39EC",
+      "title": "Ngân hàng Barings",
+      "area": "EC",
+      "type": "decoy",
+      "content": "Ngân hàng Barings giao dịch chứng khoán bình thường, không có ghi chép bất thường.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "45NW": {
+      "id": "45NW",
+      "title": "Tiệm đồng hồ Oxford Street",
+      "area": "NW",
+      "type": "decoy",
+      "content": "Cửa hàng bán đồng hồ quả lắc bình thường, không có manh mối khả nghi.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "54SW": {
+      "id": "54SW",
+      "title": "Hội trường Victoria Memorial",
+      "area": "SW",
+      "type": "decoy",
+      "content": "Hội trường sinh hoạt cộng đồng yên tĩnh, không phát hiện sự cố.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "66EC": {
+      "id": "66EC",
+      "title": "Union Bank of London",
+      "area": "EC",
+      "type": "decoy",
+      "content": "Chi nhánh ngân hàng Union Bank hoạt động bình thường, không có liên hệ vụ án.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "78NW": {
+      "id": "78NW",
+      "title": "Bệnh viện đại học University College",
+      "area": "NW",
+      "type": "decoy",
+      "content": "Bệnh viện tiếp nhận bệnh nhân thông thường, không tiếp nhận nạn nhân nào liên quan vụ cháy.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "82EC": {
+      "id": "82EC",
+      "title": "Đại lý vận tải biển Xavier",
+      "area": "EC",
+      "type": "decoy",
+      "content": "Đại lý tàu biển Xavier làm việc bình thường, không có lịch trình khả nghi.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "99NW": {
+      "id": "99NW",
+      "title": "Hội động vật học Zoological Society",
+      "area": "NW",
+      "type": "decoy",
+      "content": "Trụ sở hội nghiên cứu động vật yên tĩnh, không có dấu vết nào.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     }
   },
@@ -420,14 +431,14 @@ export const SHERLOCK_CASE_1 = {
     "part_1_main_case": [
       {
         "id": "q1",
-        "question": "Động cơ nào khiến Elle Fanning muốn sát hại Sherlock Holmes?",
+        "question": "Động cơ chính khiến Elle Fanning đứng ra tổ chức kế hoạch trả thù Sherlock Holmes là gì?",
         "options": [
-          "Để cướp đoạt cổ vật buôn lậu",
-          "Vì Sherlock Holmes đã từ chối tình cảm của cô",
-          "Để trả thù cho cái chết của cha cô (Cảnh sát Dick Alpert) do tin báo của Sherlock",
-          "Theo lệnh bắt buộc của Giáo sư Moriarty"
+          "Muốn chiếm đoạt số tiền bảo hiểm căn hộ 221B Baker Street",
+          "Trả thù cho cha cô (Officer Dick Alpert) vì gián tiếp thiệt mạng trong đợt triệt phá cảng Outer Docks",
+          "Do bị Giáo sư Moriarty tống tiền buộc phải làm theo",
+          "Muốn giải cứu Edward Beaupre ra khỏi tù"
         ],
-        "correct_option_index": 2,
+        "correct_option_index": 1,
         "explanation": "Elle Fanning là con gái của Officer Dick Alpert, người bị bắn chết trong vụ vây bắt băng buôn lậu Outer Docks 2 năm trước. Cô đổ lỗi cho Sherlock Holmes vì tin báo của ông gián tiếp khiến cha cô thiệt mạng."
       },
       {
@@ -548,12 +559,6 @@ export const SHERLOCK_CASE_1 = {
     "motive": "Trả thù Sherlock Holmes vì đã triệt phá băng nhóm buôn lậu Outer Docks hai năm trước và đòi lại công lý méo mó cho những người thân bị đi tù."
   },
   "directory": [
-    { "name": "Bác sĩ John Watson", "category": "Nhân vật chính", "address": "221B Baker Street", "code": "50NW", "desc": "Bạn thân và đồng sự của Sherlock Holmes." },
-    { "name": "Bà Olivia Robins", "category": "Nhân chứng", "address": "50 NW Baker St", "code": "50NW", "desc": "Nhân chứng nhìn thấy vụ đốt nhà." },
-    { "name": "Mycroft Holmes", "category": "Thủ tướng / Anh trai", "address": "Club Diogenes, Pall Mall", "code": "8SW", "desc": "Anh trai Sherlock Holmes." },
-    { "name": "Phòng thí nghiệm của Murray", "category": "Pháp y", "address": "22 SW Whitechapel", "code": "22SW", "desc": "Khám nghiệm vật chứng và chiếc hộp sắt." },
-    { "name": "Nhà nghỉ Camden House", "category": "Hiện trường súng bắn", "address": "53 NW Camden St", "code": "53NW", "desc": "Nơi phát hiện vỏ đạn súng bắn tỉa." },
-    { "name": "Cửa hàng súng Grant Arms", "category": "Vũ khí", "address": "5 EC Minories", "code": "5EC", "desc": "Tiệm bán súng Webley .44 Bull Dog của Oliver Perkins." },
     { "name": "Israel Jacobs", "category": "Nghi phạm", "address": "53 EC Whitechapel", "code": "53EC", "desc": "Nhân viên dọn dẹp có chìa khóa Camden House." },
     { "name": "Chandler Davenport", "category": "Sát thủ súng", "address": "28 WC Strand", "code": "28WC", "desc": "Tay súng bắn tỉa giải vô địch London." },
     { "name": "Nhà hát Lyceum", "category": "Sân khấu kịch", "address": "18 WC Wellington St", "code": "18WC", "desc": "Vở kịch 'The Initiative of Dharma' & Gertrude Helwig." },

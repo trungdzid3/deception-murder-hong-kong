@@ -1105,29 +1105,54 @@ function App() {
                         </div>
                       </div>
 
-                      {/* KHUNG THỐNG KÊ MANH MỐI MỞ KHÓA (KHÔNG BẤM ĐƯỢC - CHỈ THỐNG KÊ) */}
-                      <div className="sherlock-panel">
-                        <h4 className="font-extrabold text-slate-300 text-xs uppercase tracking-wider border-b border-slate-800 pb-2 mb-2">
-                          🔍 Mã manh mối đã thu thập ({roomState.unlockedNodes?.length || 0}):
+                      {/* KHUNG THỐNG KÊ MANH MỐI MỞ KHÓA (TRÌNH BÀY THEO HÀNG TÁCH BIỆT) */}
+                      <div className="sherlock-panel space-y-2">
+                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider border-b border-amber-500/20 pb-2 flex items-center justify-between">
+                          <span>🔍 Mã manh mối đã thu thập ({roomState.unlockedNodes?.length || 0}):</span>
                         </h4>
-                        <div className="flex flex-wrap gap-1.5 pt-1">
+                        <div className="space-y-1.5 pt-1 max-h-52 overflow-y-auto pr-1">
                           {roomState.unlockedNodes?.map((nodeId) => {
                             const bareCode = nodeId.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
                             const isVisited = roomState.visitedNodes?.includes(nodeId);
+                            const n = SHERLOCK_CASE_1.nodes[nodeId];
                             return (
-                              <span
+                              <div
                                 key={nodeId}
-                                className={`text-[0.7rem] px-2 py-1 rounded-md font-bold border ${isVisited ? 'bg-emerald-950/60 border-emerald-500/40 text-emerald-300' : 'bg-slate-900 border-slate-700 text-amber-200'}`}
+                                className={`flex items-center justify-between p-2 rounded-lg border text-xs font-bold transition-all ${
+                                  isVisited 
+                                    ? 'bg-emerald-950/60 border-emerald-500/40 text-emerald-200' 
+                                    : 'bg-slate-900/90 border-amber-500/30 text-amber-200'
+                                }`}
                               >
-                                [{bareCode}] {isVisited ? '✓ Đã tới' : '• Chưa tới'}
-                              </span>
+                                <div className="flex items-center gap-2 truncate">
+                                  <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs">
+                                    📍 Mã [{bareCode}]
+                                  </span>
+                                  <span className="truncate text-[0.75rem] font-medium text-slate-300">
+                                    {n?.title || bareCode}
+                                  </span>
+                                </div>
+                                <span className={`text-[0.65rem] px-2 py-0.5 rounded font-black shrink-0 ${
+                                  isVisited ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                                }`}>
+                                  {isVisited ? '✓ Đã tới' : '⏳ Chưa tới'}
+                                </span>
+                              </div>
                             );
                           })}
                         </div>
-                        <p className="text-[0.7rem] text-slate-400 italic mt-2">
+                        <p className="text-[0.7rem] text-slate-400 italic pt-1 leading-relaxed border-t border-slate-800">
                           💡 Hãy tìm con số tương ứng trên Bản Đồ để tiến hành khám xét địa điểm.
                         </p>
                       </div>
+
+                      {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN (DÀNH CHO CỘT TRÁI SÁCH VỤ ÁN) */}
+                      <button 
+                        onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
+                        className="btn btn-md btn-gold-draw w-full font-black tracking-wider shadow-lg flex items-center justify-center gap-2 py-3"
+                      >
+                        <Trophy size={18} /> 🏁 TRẢ LỜI CÂU HỎI PHÁ ÁN
+                      </button>
 
                     </div>
 
@@ -1269,6 +1294,9 @@ function App() {
                           '41NW': { left: '12%', top: '12%' },
                           '49NW': { left: '36%', top: '22%' },
                           '96NW': { left: '18%', top: '46%' },
+                          '45NW': { left: '20%', top: '30%' },
+                          '78NW': { left: '34%', top: '42%' },
+                          '99NW': { left: '16%', top: '48%' },
 
                           // WC (West Central - Upper Middle)
                           '18WC': { left: '46%', top: '36%' },
@@ -1278,6 +1306,8 @@ function App() {
                           '5WC': { left: '40%', top: '26%' },
                           '15WC': { left: '44%', top: '20%' },
                           '67WC': { left: '50%', top: '44%' },
+                          '24WC': { left: '48%', top: '22%' },
+                          '31WC': { left: '54%', top: '34%' },
 
                           // EC (East Central - Top Right)
                           '5EC': { left: '78%', top: '18%' },
@@ -1292,6 +1322,11 @@ function App() {
                           '27EC': { left: '68%', top: '20%' },
                           '61EC': { left: '74%', top: '42%' },
                           '91EC': { left: '90%', top: '38%' },
+                          '11EC': { left: '74%', top: '16%' },
+                          '21EC': { left: '86%', top: '24%' },
+                          '39EC': { left: '70%', top: '38%' },
+                          '66EC': { left: '92%', top: '18%' },
+                          '82EC': { left: '86%', top: '44%' },
 
                           // SW (South West - Bottom Left)
                           '8SW': { left: '28%', top: '74%' },
@@ -1301,6 +1336,7 @@ function App() {
                           '12SW': { left: '16%', top: '76%' },
                           '79SW': { left: '38%', top: '72%' },
                           '98SW': { left: '30%', top: '88%' },
+                          '54SW': { left: '28%', top: '82%' },
 
                           // SE (South East - Bottom Right)
                           '88SE': { left: '80%', top: '76%' }
