@@ -19,6 +19,41 @@
   font-family: var(--font-sans);
 }
 
+/* =========================================================
+   UNIVERSAL CUSTOM SCROLLBAR DESIGN SYSTEM (NO DEFAULT SCROLLBARS)
+   ========================================================= */
+/* WebKit browsers (Chrome, Safari, Edge, Opera) */
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 6, 16, 0.95) !important;
+  border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d97706 0%, #78350f 100%) !important;
+  border-radius: 10px !important;
+  border: 2px solid rgba(10, 6, 16, 0.95) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%) !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6) !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(10, 6, 16, 0.95) !important;
+}
+
+/* Firefox standard scrollbar */
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: #d97706 rgba(10, 6, 16, 0.95) !important;
+}
+
 :root {
   --bg-app: #090507;
   --bg-panel: #140b0e;
@@ -2580,17 +2615,38 @@ body {
   box-shadow: 0 6px 20px rgba(5, 150, 105, 0.5);
 }
 
+/* MODAL OVERLAY HIGH Z-INDEX DESIGN */
+.modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.88) !important;
+  backdrop-filter: blur(14px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999999 !important;
+  padding: 16px !important;
+}
+
 /* GAME SELECTION MODAL STYLES */
 .select-game-modal-card {
   width: 680px !important;
   max-width: calc(100vw - 32px) !important;
-  background: rgba(12, 9, 20, 0.96) !important;
-  backdrop-filter: blur(20px) !important;
+  background: rgba(12, 9, 20, 0.98) !important;
+  backdrop-filter: blur(25px) !important;
   border: 1px solid rgba(245, 158, 11, 0.35) !important;
   border-radius: 24px !important;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.15) !important;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(245, 158, 11, 0.2) !important;
   padding: 24px !important;
   text-align: left !important;
+  position: relative !important;
+  z-index: 999999 !important;
 }
 
 .select-game-grid {
@@ -2870,6 +2926,9 @@ body {
   overflow: hidden !important;
   border: 2px solid rgba(245, 158, 11, 0.5) !important;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(0, 0, 0, 0.6) !important;
+  isolation: isolate !important;
+  contain: layout paint !important;
+  z-index: 1 !important;
 }
 
 .sherlock-map-img {
@@ -2883,7 +2942,7 @@ body {
   position: absolute !important;
   transform: translate(-50%, -50%) !important;
   cursor: pointer !important;
-  z-index: 10 !important;
+  z-index: 2 !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
