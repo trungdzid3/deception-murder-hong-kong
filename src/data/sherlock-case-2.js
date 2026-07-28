@@ -11,12 +11,12 @@ export const SHERLOCK_CASE_2 = {
     "penalty_per_extra_clue": 5
   },
   "intro": {
-    "story_text": "Ngày 2 tháng 12 năm 1893, vụ hỏa hoạn kinh hoàng thiêu rụi căn hộ 221B Baker Street. Một thi thể cháy xém được phát hiện trong phòng làm việc với vết đạn bắn từ đằng sau. Bác sĩ Watson và Scotland Yard bàng hoàng tin rằng Sherlock Holmes đã bị sát hại. Tuy nhiên, sự thật là nhóm sát thủ trả thù mang tên 'The Pentacle' - gồm người thân của băng nhóm buôn lậu Outer Docks bị Holmes bắt 2 năm trước - đã hợp mưu ám sát Holmes. Chúng chuốc độc Cyanide, ném thùng hàng gây thương tích chân Holmes, bắn qua cửa sổ từ căn hộ Camden House, và phóng hỏa đốt 221B. Kẻ bị bắn nhầm là Marvin Pemberton! Holmes đã khéo léo để lại mật thư cho Lestrade và đang ẩn náu bí mật tại cửa hàng văn phòng phẩm A. W. Faber!",
+    "story_text": "Chúng tôi chưa từng thấy Bác sĩ John Watson bàng hoàng và sụp đổ đến thế khi bước chân tới hiện trường vụ án. Đầu ông ngoẹo sang một bên, ngồi buông thõng dựa vào thùng gỗ trên vỉa hè, chìm trong cơn thẫn thờ như không nghe thấy tiếng gọi của chúng tôi. Căn hộ 221B Baker Street chỉ còn là đống tàn tích bốc khói nghi ngút. Cảnh sát hối hả chạy ngược chạy xuôi trong sự hoảng loạn. Phía sau hàng rào bảo vệ, đám đông hiếu kỳ mỗi lúc một đông. Dưới tấm khăn trải ngay gần Bác sĩ Watson là một thi thể... thi thể của Sherlock Holmes.\n\nBác sĩ Watson kiểm tra thi thể trong sự đau đớn: khoảng 85% cơ thể bị bỏng độ hai và độ ba. Tuy nhiên, ngoài tổn thương do ngọn lửa, thi thể còn có một vết thương thứ hai — vết đạn bắn xuyên từ đằng sau lưng và thoát ra ở bụng. Cùng lúc đó, nhóm thám tử phố Baker tìm thấy một hộp sắt nhỏ trên bàn làm việc của Holmes sống sót qua ngọn lửa, bên trong chứa vài cuộn chương trình kịch hát (The Allegro, The Lyceum, The Olympia), một biên lai xe ngựa và hai bức thư mật...",
     "initial_clues": [
-      "Vụ hỏa hoạn thiêu rụi 221B Baker Street và thi thể cháy xém bị bắn từ đằng sau.",
-      "Mật thư kỳ lạ gửi tới Lestrade với quy luật lấy chữ cái đầu tiên của từng từ.",
-      "Tập hồ sơ án cũ vụ án buôn lậu Outer Docks năm 1891 liên quan tới băng sát thủ 'The Pentacle'.",
-      "Dấu vết thuốc độc Cyanide trong tách trà và tiếng gậy shillelagh rải rác quanh hiện trường."
+      "Thi thể cháy xém tại 221B Baker Street mang vết đạn bắn xuyên từ đằng sau lưng thoát ra bụng.",
+      "Chiếc hộp sắt trên bàn làm việc chứa vé xem kịch (The Allegro, The Lyceum, The Olympia) và biên lai xe ngựa.",
+      "Văn phòng phẩm A. W. Faber (28WC) - Địa điểm nghi vấn tra cứu qua mật thư chữ cái.",
+      "Thông tin về đợt tuyên án đường dây buôn lậu tại Outer Docks 2 năm trước (25/11/1891)."
     ],
     "unlocked_nodes": ["221B", "13SW", "38EC", "28WC", "34WC", "49SE"]
   },
