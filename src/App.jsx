@@ -6,7 +6,7 @@ import {
   BookOpen, Send, MessageSquare, Crown, Award, Play, UserPlus, UserMinus, Target, RefreshCw, Layers, Trophy, Clock, CheckSquare, AlertTriangle, Sparkles, Check, Copy, KeyRound, Compass, ChevronUp, ChevronDown, Lock, Flame, Zap, FileText, UserCheck, UserX, AlertCircle, MapPin, PhoneCall, HelpCircle
 } from 'lucide-react';
 import { ROLES, MEANS_CARDS, CLUE_CARDS, CAUSE_OF_DEATH, LOCATIONS, SCENE_TILES } from './data/game-data';
-import { SHERLOCK_CASE_1 } from './data/sherlock-case-1';
+import { ALL_SHERLOCK_CASES, SHERLOCK_CASES_LIST } from './data/sherlock-cases';
 
 // Khởi tạo Socket.IO an toàn - Hỗ trợ Railway backend
 const getSocketUrl = () => {
@@ -566,6 +566,14 @@ function App() {
   const isForensic = roomState?.forensicScientistId === socket.id;
   const isMurderer = me?.role?.id === 'murderer';
   const isHost = roomState?.hostId === socket.id || roomState?.players?.[0]?.id === socket.id;
+  const activeSherlockCase = ALL_SHERLOCK_CASES[roomState?.selectedCaseId || 'sherlock_case_1'] || ALL_SHERLOCK_CASES.sherlock_case_1;
+
+  const handleSelectSherlockCase = (caseId) => {
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('select-sherlock-case', { roomCode: code, caseId });
+    }
+  };
   const botCount = roomState?.players?.filter(p => p.isBot).length || 0;
   const hasVotedNextRound = roomState?.votesForNextRound?.includes(socket.id);
   const totalPlayersCount = roomState?.players?.length || 1;
@@ -937,17 +945,37 @@ function App() {
             {roomState?.phase === 'SHERLOCK_INTRO' && (
               <div className="sherlock-intro-card">
                 
+                {/* CHỌN VỤ ÁN SHERLOCK (DÀNH CHO CHỦ PHÒNG HOẶC XEM BẢNG CHỌN) */}
+                <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3.5 mb-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <BookOpen size={18} className="text-amber-400" />
+                    <span className="text-xs font-extrabold text-amber-200 uppercase tracking-wider">CHỌN VỤ ÁN ĐIỀU TRA:</span>
+                  </div>
+                  <select 
+                    value={roomState?.selectedCaseId || 'sherlock_case_1'}
+                    onChange={(e) => handleSelectSherlockCase(e.target.value)}
+                    disabled={!isHost}
+                    className="bg-slate-900 border border-amber-500/40 text-amber-100 rounded-lg px-3 py-1.5 text-xs font-bold focus:outline-none cursor-pointer w-full sm:w-auto"
+                  >
+                    {SHERLOCK_CASES_LIST.map(c => (
+                      <option key={c.id} value={c.id}>
+                        {c.title} ({c.setting_date})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 {/* TIÊU ĐỀ KỲ ÁN SHERLOCK */}
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
                   <div>
                     <span className="text-xs font-bold text-slate-400 tracking-widest uppercase flex items-center gap-1.5 mb-1">
-                      <Search size={14} className="text-slate-300" /> Vụ án Sherlock Holmes #1
+                      <Search size={14} className="text-slate-300" /> {activeSherlockCase.title}
                     </span>
-                    <h2 className="text-2xl md:text-3xl font-black text-amber-100">{SHERLOCK_CASE_1.title}</h2>
+                    <h2 className="text-2xl md:text-3xl font-black text-amber-100">{activeSherlockCase.title}</h2>
                     <div className="flex items-center gap-4 text-xs text-slate-400 mt-2">
-                      <span>Tác giả: <strong className="text-slate-200">{SHERLOCK_CASE_1.author}</strong></span>
+                      <span>Tác giả: <strong className="text-slate-200">{activeSherlockCase.author}</strong></span>
                       <span>•</span>
-                      <span>Bối cảnh: <strong className="text-slate-200">{SHERLOCK_CASE_1.setting_date}</strong></span>
+                      <span>Bối cảnh: <strong className="text-slate-200">{activeSherlockCase.setting_date}</strong></span>
                     </div>
                   </div>
                 </div>
@@ -958,7 +986,7 @@ function App() {
                     <BookOpen size={16} className="text-slate-300" /> BỐI CẢNH BAN ĐẦU (INTRO STORY):
                   </h3>
                   <div className="sherlock-story-text">
-                    {SHERLOCK_CASE_1.intro.story_text}
+                    {activeSherlockCase.intro?.story_text}
                   </div>
                 </div>
 
@@ -971,7 +999,7 @@ function App() {
                       <Skull size={14} className="text-slate-300" /> Manh mối ban đầu thu thập được tại hiện trường:
                     </h4>
                     <ul className="sherlock-clue-list">
-                      {SHERLOCK_CASE_1.intro.initial_clues.map((clue, i) => (
+                      {activeSherlockCase.intro?.initial_clues?.map((clue, i) => (
                         <li key={i} className="sherlock-clue-item">
                           <span className="sherlock-clue-bullet">•</span>
                           <span>{clue}</span>
@@ -986,8 +1014,8 @@ function App() {
                       <Compass size={14} className="text-slate-300" /> Tọa độ manh mối gợi ý khởi đầu:
                     </h4>
                     <div className="flex flex-wrap gap-2 my-1">
-                      {SHERLOCK_CASE_1.intro.unlocked_nodes.map((nodeId) => {
-                        const node = SHERLOCK_CASE_1.nodes[nodeId];
+                      {activeSherlockCase.intro?.unlocked_nodes?.map((nodeId) => {
+                        const node = activeSherlockCase.nodes?.[nodeId];
                         const name = node?.title || nodeId;
                         return (
                           <span
@@ -1031,8 +1059,8 @@ function App() {
                         <BookOpen size={24} />
                       </div>
                       <div>
-                        <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-widest">KỲ ÁN SHERLOCK HOLMES #01</span>
-                        <h3 className="font-black text-amber-100 text-base md:text-lg">{SHERLOCK_CASE_1.title}</h3>
+                        <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-widest">KỲ ÁN SHERLOCK HOLMES</span>
+                        <h3 className="font-black text-amber-100 text-base md:text-lg">{activeSherlockCase.title}</h3>
                       </div>
                     </div>
 
@@ -1092,7 +1120,7 @@ function App() {
                             <p className="text-xs text-slate-500 italic p-2">Chưa tới địa điểm nào. Hãy tra cứu con số trên Bản Đồ để tiến hành khám xét.</p>
                           )}
                           {roomState.visitedNodes?.map((nodeId) => {
-                            const n = SHERLOCK_CASE_1.nodes[nodeId];
+                            const n = activeSherlockCase.nodes?.[nodeId];
                             const isSelected = sherlockSelectedNodeId === nodeId;
                             return (
                               <div 
@@ -1119,7 +1147,7 @@ function App() {
                         <div className="flex flex-wrap gap-1.5 pt-1">
                           {roomState.unlockedNodes?.map((nodeId) => {
                             const isVisited = roomState.visitedNodes?.includes(nodeId);
-                            const node = SHERLOCK_CASE_1.nodes[nodeId];
+                            const node = activeSherlockCase.nodes?.[nodeId];
                             const name = node?.title || nodeId;
                             return (
                               <span
@@ -1141,8 +1169,8 @@ function App() {
                     {/* CỘT PHẢI: HIỂN THỊ NỘI DUNG SÁCH VỤ ÁN */}
                     <div>
                       <div className="sherlock-reading-panel">
-                        {sherlockSelectedNodeId && SHERLOCK_CASE_1.nodes[sherlockSelectedNodeId] ? (() => {
-                          const node = SHERLOCK_CASE_1.nodes[sherlockSelectedNodeId];
+                        {sherlockSelectedNodeId && activeSherlockCase.nodes?.[sherlockSelectedNodeId] ? (() => {
+                          const node = activeSherlockCase.nodes[sherlockSelectedNodeId];
                           return (
                             <div className="space-y-4">
                               <div className="border-b border-amber-500/20 pb-3 flex items-center justify-between">
@@ -1179,11 +1207,11 @@ function App() {
                           <div className="space-y-6 py-4">
                             <div className="border-b border-amber-500/20 pb-3">
                               <h3 className="text-xl font-black text-amber-300">LỜI MỞ ĐẦU VỤ ÁN (CASE INTRODUCTION)</h3>
-                              <p className="text-xs text-slate-400 mt-1">2 December 1893 • 221B Baker Street, London</p>
+                              <p className="text-xs text-slate-400 mt-1">{activeSherlockCase.setting_date} • London</p>
                             </div>
 
                             <div className="sherlock-reading-text">
-                              {SHERLOCK_CASE_1.intro.story_text}
+                              {activeSherlockCase.intro.story_text}
                             </div>
 
                             <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-4 space-y-2">
@@ -1191,7 +1219,7 @@ function App() {
                                 <Skull size={14} /> Manh mối đầu tiên phát hiện tại hiện trường:
                               </h4>
                               <ul className="sherlock-clue-list">
-                                {SHERLOCK_CASE_1.intro.initial_clues.map((clue, i) => (
+                                {activeSherlockCase.intro.initial_clues.map((clue, i) => (
                                   <li key={i} className="sherlock-clue-item">
                                     <span className="sherlock-clue-bullet">•</span>
                                     <span>{clue.replace(/^[\s•\-]+/, '')}</span>
@@ -1229,27 +1257,6 @@ function App() {
                       </div>
                     </div>
 
-                    {/* QUY TRÌNH ĐIỀU TRA VỤ ÁN (DETECTIVE MANUAL) */}
-                    <div className="bg-slate-950/80 border border-amber-500/30 rounded-xl p-3.5 text-xs space-y-2">
-                      <div className="font-black text-amber-300 flex items-center gap-2 text-xs border-b border-amber-500/20 pb-2 uppercase tracking-wider">
-                        <BookOpen size={15} className="text-amber-400" /> QUY TRÌNH ĐIỀU TRA VỤ ÁN HOLMES
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-slate-300 font-medium">
-                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
-                          <span className="font-bold text-amber-400">1. Tra cứu Danh Bạ:</span> Tìm tên/địa chỉ trong Danh Bạ London để lấy tọa độ (VD: 89 SW, 50 NW).
-                        </div>
-                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
-                          <span className="font-bold text-amber-400">2. Định vị Bản Đồ:</span> Tìm con số tương ứng thuộc 6 khu vực (NW, WC, EC, SW, SC, SE).
-                        </div>
-                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
-                          <span className="font-bold text-amber-400">3. Đọc Sách Vụ Án:</span> Nhấp mã địa điểm để đọc lời khai/thông tin trong Sách Vụ Án.
-                        </div>
-                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
-                          <span className="font-bold text-amber-400">4. Ghi Chép Manh Mối:</span> Nên ghi lại các địa điểm đã tìm thấy ra giấy để xâu chuỗi sự thật.
-                        </div>
-                      </div>
-                    </div>
-
                     {/* VIEWPORT BẢN ĐỒ TƯƠNG TÁC */}
                     <div className="sherlock-map-viewport">
                       <img 
@@ -1259,94 +1266,24 @@ function App() {
                       />
 
                       {/* GHIM CÁC CON SỐ NGUYÊN BẢN TRÊN BẢN ĐỒ CHUẨN ĐỊA LÝ */}
-                      {Object.values(SHERLOCK_CASE_1.nodes).map((n) => {
+                      {Object.values(activeSherlockCase.nodes || {}).map((n) => {
                         const isVisited = roomState.visitedNodes?.includes(n.id);
-                        
-                        // Tọa độ % phân vùng địa lý chuẩn 100% trên bản đồ Holmes London (Bản đồ 5 mảnh)
-                        const coordsMap = {
-                          // NW (North West - Top Left)
-                          '221B': { left: '18%', top: '22%' },
-                          '50NW': { left: '22%', top: '16%' },
-                          '53NW': { left: '26%', top: '28%' },
-                          '16NW': { left: '32%', top: '14%' },
-                          '20NW': { left: '14%', top: '34%' },
-                          '72NW': { left: '24%', top: '38%' },
-                          '89NW': { left: '30%', top: '36%' },
-                          '90NW': { left: '28%', top: '44%' },
-                          '41NW': { left: '12%', top: '12%' },
-                          '49NW': { left: '36%', top: '22%' },
-                          '96NW': { left: '18%', top: '46%' },
-                          '45NW': { left: '20%', top: '30%' },
-                          '78NW': { left: '34%', top: '42%' },
-                          '99NW': { left: '16%', top: '48%' },
-
-                          // WC (West Central - Upper Middle)
-                          '18WC': { left: '46%', top: '36%' },
-                          '28WC': { left: '42%', top: '42%' },
-                          '34WC': { left: '52%', top: '38%' },
-                          '85WC': { left: '48%', top: '30%' },
-                          '5WC': { left: '40%', top: '26%' },
-                          '15WC': { left: '44%', top: '20%' },
-                          '67WC': { left: '50%', top: '44%' },
-                          '24WC': { left: '48%', top: '22%' },
-                          '31WC': { left: '54%', top: '34%' },
-
-                          // EC (East Central - Top Right)
-                          '5EC': { left: '78%', top: '18%' },
-                          '30EC': { left: '72%', top: '32%' },
-                          '35EC': { left: '76%', top: '26%' },
-                          '42EC': { left: '84%', top: '30%' },
-                          '53EC': { left: '80%', top: '36%' },
-                          '73EC': { left: '82%', top: '14%' },
-                          '74EC': { left: '88%', top: '22%' },
-                          '83EC': { left: '84%', top: '40%' },
-                          '98E': { left: '94%', top: '28%' },
-                          '27EC': { left: '68%', top: '20%' },
-                          '61EC': { left: '74%', top: '42%' },
-                          '91EC': { left: '90%', top: '38%' },
-                          '11EC': { left: '74%', top: '16%' },
-                          '21EC': { left: '86%', top: '24%' },
-                          '39EC': { left: '70%', top: '38%' },
-                          '66EC': { left: '92%', top: '18%' },
-                          '82EC': { left: '86%', top: '44%' },
-
-                          // SW (South West - Bottom Left)
-                          '8SW': { left: '28%', top: '74%' },
-                          '22SW': { left: '34%', top: '84%' },
-                          '14SW': { left: '20%', top: '66%' },
-                          '52SW': { left: '24%', top: '80%' },
-                          '12SW': { left: '16%', top: '76%' },
-                          '79SW': { left: '38%', top: '72%' },
-                          '98SW': { left: '30%', top: '88%' },
-                          '54SW': { left: '28%', top: '82%' },
-
-                          // SE (South East - Bottom Right)
-                          '88SE': { left: '80%', top: '76%' }
-                        };
-
-                        const pos = coordsMap[n.id] || { left: '50%', top: '50%' };
-
-                        // Số nguyên bản (bỏ kí tự khu vực NW, SW, EC...)
+                        const isUnlocked = roomState.unlockedNodes?.includes(n.id);
                         const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
 
                         return (
                           <div
                             key={n.id}
-                            style={{ 
-                              left: pos.left, 
-                              top: pos.top
-                            }}
-                            className={`sherlock-map-pin ${isVisited ? 'visited' : ''} ${n.type === 'decoy' ? 'decoy' : ''}`}
                             onClick={() => {
+                              handleVisitNode(n.id);
                               setSherlockSelectedNodeId(n.id);
                               setSherlockActiveTab('casebook');
-                              if (!isVisited) handleVisitNode(n.id);
                             }}
-                            title={`Địa điểm [${bareNumber}] - ${n.title}`}
+                            style={{ left: `${n.map_coords?.x}px`, top: `${n.map_coords?.y}px` }}
+                            className={`sherlock-map-pin ${isVisited ? 'visited' : isUnlocked ? 'unlocked' : ''}`}
+                            title={`Mã [${n.id}] - ${n.title}`}
                           >
-                            <div className="sherlock-map-pin-badge">
-                              [{bareNumber}]
-                            </div>
+                            <span className="sherlock-pin-number">[{bareNumber}]</span>
                           </div>
                         );
                       })}
@@ -1354,10 +1291,10 @@ function App() {
                   </div>
                 )}
 
-                {/* TAB 3: DANH BẠ LONDON (LONDON DIRECTORY 1893) */}
+                {/* TAB 3: NIÊN GIÁM DANH BẠ LONDON (POST OFFICE DIRECTORY) */}
                 {sherlockActiveTab === 'directory' && (
-                  <div className="sherlock-directory-wrapper">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-3 border-b border-amber-500/20 pb-3">
+                  <div className="sherlock-directory-paper">
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-amber-500/20 pb-3">
                       <div>
                         <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
                           <PhoneCall size={22} className="text-amber-400" /> NIÊN GIÁM DANH BẠ LONDON (POST OFFICE DIRECTORY)
@@ -1389,7 +1326,7 @@ function App() {
                     </div>
 
                     <div className="sherlock-directory-grid">
-                      {SHERLOCK_CASE_1.directory
+                      {activeSherlockCase.directory
                         ?.slice()
                         .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
                         .filter(item => {
@@ -1427,15 +1364,15 @@ function App() {
                 {sherlockActiveTab === 'newspaper' && (
                   <div className="sherlock-newspaper-paper">
                     <div className="sherlock-newspaper-header">
-                      <span className="text-xs font-sans tracking-widest text-amber-800 uppercase font-black">{SHERLOCK_CASE_1.newspaper?.issue_date}</span>
-                      <h2 className="sherlock-newspaper-title">{SHERLOCK_CASE_1.newspaper?.paper_name}</h2>
+                      <span className="text-xs font-sans tracking-widest text-amber-800 uppercase font-black">{activeSherlockCase.newspaper?.issue_date}</span>
+                      <h2 className="sherlock-newspaper-title">{activeSherlockCase.newspaper?.paper_name}</h2>
                       <div className="sherlock-newspaper-meta">
-                        <span>Số 12,458</span> • <span>LONDON, THỨ BẢY, NGÀY 2 THÁNG 12 NĂM 1893</span> • <span>GIÁ BÁN: 1 XU</span>
+                        <span>Số 12,458</span> • <span>LONDON • {activeSherlockCase.newspaper?.issue_date}</span> • <span>GIÁ BÁN: 1 XU</span>
                       </div>
                     </div>
 
                     <div className="sherlock-newspaper-grid">
-                      {SHERLOCK_CASE_1.newspaper?.articles?.map((art, i) => {
+                      {activeSherlockCase.newspaper?.articles?.map((art, i) => {
                         const bareCode = art.related_code ? art.related_code.replace(/(NW|SW|EC|WC|SE|E)$/i, '') : '';
                         return (
                           <div 
@@ -1515,7 +1452,7 @@ function App() {
                   </div>
 
                   <div className="space-y-4">
-                    {SHERLOCK_CASE_1.questions.part_1_main_case.map((q, idx) => {
+                    {activeSherlockCase.questions?.part_1_main_case?.map((q, idx) => {
                       const isSelectedAny = sherlockAnswers[`q_${q.id}`] !== undefined;
                       return (
                         <div 
@@ -1569,7 +1506,7 @@ function App() {
                   </div>
 
                   <div className="space-y-4">
-                    {SHERLOCK_CASE_1.questions.part_2_side_mysteries.map((q, idx) => {
+                    {activeSherlockCase.questions?.part_2_side_mysteries?.map((q, idx) => {
                       const isSelectedAny = sherlockAnswers[`q_${q.id}`] !== undefined;
                       return (
                         <div 
@@ -1667,11 +1604,11 @@ function App() {
                     <Sparkles size={18} /> VẠCH TRẦN TOÀN BỘ SỰ THẬT VỤ ÁN (FULL TRUTH):
                   </h3>
                   <p className="text-sm leading-relaxed text-slate-200 font-serif whitespace-pre-line">
-                    {SHERLOCK_CASE_1.solution_summary.full_truth}
+                    {activeSherlockCase.solution_summary?.full_truth}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 text-xs">
                     <div className="p-3 rounded-lg bg-rose-950/30 border border-rose-500/30 text-rose-300">
-                      <strong>Kẻ đứng sau (Mastermind):</strong> {SHERLOCK_CASE_1.solution_summary.mastermind}
+                      <strong>Kẻ đứng sau (Mastermind):</strong> {activeSherlockCase.solution_summary?.mastermind}
                     </div>
                     <div className="p-3 rounded-lg bg-amber-950/30 border border-amber-500/30 text-amber-300">
                       <strong>Động cơ (Motive):</strong> {SHERLOCK_CASE_1.solution_summary.motive}

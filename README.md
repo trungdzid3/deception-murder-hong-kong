@@ -50,7 +50,10 @@ Deception - Murder in Hong Kong/
 ├── src/                       # Mã nguồn Frontend (React)
 │   ├── data/                  # Dữ liệu thẻ bài & Kịch bản vụ án Sherlock
 │   │   ├── game-data.js       # Dữ liệu thẻ Deception (Roles, Means, Clues, Scene Tiles)
-│   │   ├── sherlock-case-1.js # Kịch bản Vụ án 1 Sherlock (Nodes, Directory, Questions)
+│   │   ├── sherlock-cases.js  # Registry quản lý danh sách & chọn Vụ án Sherlock Holmes
+│   │   ├── sherlock-case-1.js # Vụ án 1: Cái Chết Của Sherlock Holmes (Baker Street)
+│   │   ├── sherlock-case-2.js # Vụ án 2: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)
+│   │   ├── sherlock-case-3.js # Vụ án 3: Lời Nguyền Của Xác Ướp (The Mummy's Curse)
 │   │   └── spyfall-data.js    # Dữ liệu cho mode Spyfall
 │   ├── App.css                # Style phụ trợ
 │   ├── App.jsx                # Component chính điều phối game & UI
