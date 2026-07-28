@@ -731,87 +731,7 @@ function App() {
                   </button>
                 </div>
               </div>
-
             </div>
-
-            {/* MODAL CHỌN GAME TRINH THÁM */}
-            {showGameSelectModal && (
-              <div className="modal-overlay" onClick={() => setShowGameSelectModal(false)}>
-                <div className="modal-card select-game-modal-card" onClick={(e) => e.stopPropagation()}>
-                  <div className="modal-header border-b border-amber-500/20 pb-3 flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-black text-white flex items-center gap-2">
-                      <Search size={22} className="text-amber-400" /> CHỌN TỰA GAME ĐỂ TẠO PHÒNG MỚI
-                    </h3>
-                    <button onClick={() => setShowGameSelectModal(false)} className="text-slate-400 hover:text-white"><X size={20} /></button>
-                  </div>
-                  
-                  <div className="modal-body">
-                    <div className="select-game-grid">
-                      
-                      {/* CARD GAME DECEPTION */}
-                      <div 
-                        onClick={() => handleCreateRoom('deception')}
-                        className="select-game-option-card deception-option space-y-4"
-                      >
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <Skull className="text-rose-500" size={24} />
-                              <h4 className="font-black text-white text-lg">DECEPTION</h4>
-                            </div>
-                            <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">Ẩn vai trò</span>
-                          </div>
-                          <p className="text-xs text-slate-300 leading-relaxed">
-                            Vụ án mạng tại Hồng Kông. Pháp Y ra hiệu manh mối, Hung thủ ẩn mình đổ tội, Thám tử truy tìm sự thật.
-                          </p>
-                        </div>
-
-                        <div className="space-y-2 pt-2 border-t border-slate-800">
-                          <div className="flex items-center justify-between text-xs font-bold text-slate-400">
-                            <span>👥 3 - 12 Người</span>
-                            <span>⏱️ 15 - 20 Phút</span>
-                          </div>
-                          <button className="btn btn-sm btn-primary w-full font-black flex items-center justify-center gap-1.5 py-2">
-                            TẠO PHÒNG DECEPTION <ArrowRight size={14} />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* CARD GAME SHERLOCK HOLMES */}
-                      <div 
-                        onClick={() => handleCreateRoom('sherlock')}
-                        className="select-game-option-card sherlock-option space-y-4"
-                      >
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <Search className="text-amber-500" size={24} />
-                              <h4 className="font-black text-white text-lg">SHERLOCK HOLMES</h4>
-                            </div>
-                            <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Đọc kỳ án</span>
-                          </div>
-                          <p className="text-xs text-slate-300 leading-relaxed">
-                            Hợp tác giải vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ, thẩm vấn nhân chứng và giải mã kỳ án.
-                          </p>
-                        </div>
-
-                        <div className="space-y-2 pt-2 border-t border-slate-800">
-                          <div className="flex items-center justify-between text-xs font-bold text-slate-400">
-                            <span>👥 1 - 8 Người</span>
-                            <span>⏱️ 30 - 45 Phút</span>
-                          </div>
-                          <button className="btn btn-sm btn-gold-draw w-full font-black flex items-center justify-center gap-1.5 py-2">
-                            TẠO PHÒNG SHERLOCK <ArrowRight size={14} />
-                          </button>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
           </div>
         </main>
       )}
@@ -1374,45 +1294,6 @@ function App() {
                         );
                       })}
                     </div>
-
-                    {/* DANH SÁCH KHU VỰC & ĐỊA ĐIỂM BẢN ĐỒ */}
-                    <div className="space-y-3 pt-2">
-                      <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center gap-1.5">
-                        <Compass size={14} /> Danh sách địa điểm tra cứu theo vùng London:
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                        {Object.values(SHERLOCK_CASE_1.nodes).map((n) => {
-                          const isVisited = roomState.visitedNodes?.includes(n.id);
-                          const isUnlocked = roomState.unlockedNodes?.includes(n.id);
-                          return (
-                            <div
-                              key={n.id}
-                              onClick={() => {
-                                setSherlockSelectedNodeId(n.id);
-                                setSherlockActiveTab('casebook');
-                                if (!isVisited) handleVisitNode(n.id);
-                              }}
-                              className={`p-3.5 rounded-xl border cursor-pointer transition-all flex flex-col justify-between space-y-2 ${isVisited ? 'bg-emerald-950/40 border-emerald-500/50 hover:bg-emerald-900/50' : isUnlocked ? 'bg-amber-950/40 border-amber-500/60 hover:bg-amber-900/50 shadow-lg' : 'bg-slate-900/60 border-slate-800 hover:bg-slate-800/60'}`}
-                            >
-                              <div className="flex items-center justify-between">
-                                <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-500/30">
-                                  Mã [{n.id}]
-                                </span>
-                                <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                                  Vùng {n.area}
-                                </span>
-                              </div>
-                              <h4 className="font-extrabold text-amber-100 text-xs">{n.title}</h4>
-                              <div className="flex items-center justify-between pt-1 border-t border-slate-800 text-xs">
-                                <span className="text-slate-400 text-[0.7rem]">{isVisited ? '✅ Đã ghé thăm' : '📍 Chưa ghé'}</span>
-                                <span className="text-amber-400 font-bold text-xs flex items-center gap-1">Khám xét <ArrowRight size={12} /></span>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
                   </div>
                 )}
 
@@ -2502,6 +2383,84 @@ function App() {
           </div>
         );
       })()}
+
+      {/* MODAL CHỌN GAME TRINH THÁM (ROOT LEVEL OVERLAY) */}
+      {showGameSelectModal && (
+        <div className="modal-overlay" onClick={() => setShowGameSelectModal(false)}>
+          <div className="modal-card select-game-modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header border-b border-amber-500/20 pb-3 flex items-center justify-between mb-4">
+              <h3 className="text-lg font-black text-white flex items-center gap-2">
+                <Search size={22} className="text-amber-400" /> CHỌN TỰA GAME ĐỂ TẠO PHÒNG MỚI
+              </h3>
+              <button onClick={() => setShowGameSelectModal(false)} className="text-slate-400 hover:text-white"><X size={20} /></button>
+            </div>
+            
+            <div className="modal-body">
+              <div className="select-game-grid">
+                
+                {/* CARD GAME DECEPTION */}
+                <div 
+                  onClick={() => handleCreateRoom('deception')}
+                  className="select-game-option-card deception-option space-y-4"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Skull className="text-rose-500" size={24} />
+                        <h4 className="font-black text-white text-lg">DECEPTION</h4>
+                      </div>
+                      <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">Ẩn vai trò</span>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Vụ án mạng tại Hồng Kông. Pháp Y ra hiệu manh mối, Hung thủ ẩn mình đổ tội, Thám tử truy tìm sự thật.
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 pt-2 border-t border-slate-800">
+                    <div className="flex items-center justify-between text-xs font-bold text-slate-400">
+                      <span>👥 3 - 12 Người</span>
+                      <span>⏱️ 15 - 20 Phút</span>
+                    </div>
+                    <button className="btn btn-sm btn-primary w-full font-black flex items-center justify-center gap-1.5 py-2">
+                      TẠO PHÒNG DECEPTION <ArrowRight size={14} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* CARD GAME SHERLOCK HOLMES */}
+                <div 
+                  onClick={() => handleCreateRoom('sherlock')}
+                  className="select-game-option-card sherlock-option space-y-4"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Search className="text-amber-500" size={24} />
+                        <h4 className="font-black text-white text-lg">SHERLOCK HOLMES</h4>
+                      </div>
+                      <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Đọc kỳ án</span>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Hợp tác giải vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ, thẩm vấn nhân chứng và giải mã kỳ án.
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 pt-2 border-t border-slate-800">
+                    <div className="flex items-center justify-between text-xs font-bold text-slate-400">
+                      <span>👥 1 - 8 Người</span>
+                      <span>⏱️ 30 - 45 Phút</span>
+                    </div>
+                    <button className="btn btn-sm btn-gold-draw w-full font-black flex items-center justify-center gap-1.5 py-2">
+                      TẠO PHÒNG SHERLOCK <ArrowRight size={14} />
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* TRÌNH PHÁT NHẠC NỀN SHERLOCK HOLMES BGM */}
       <audio ref={audioBgmRef} src="/audio/bgm.mp3" loop />
