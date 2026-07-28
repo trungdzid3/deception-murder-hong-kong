@@ -1304,44 +1304,71 @@ function App() {
                   </div>
                 )}
 
-                {/* TAB 2: BẢN ĐỒ LONDON (LONDON MAP) */}
+                {/* TAB 2: BẢN ĐỒ LONDON INTERACTIVE (MAP 1888) */}
                 {sherlockActiveTab === 'map' && (
-                  <div className="bg-slate-950/90 border border-amber-500/30 rounded-2xl p-6 backdrop-blur space-y-4 shadow-2xl">
-                    <div className="border-b border-amber-500/20 pb-3 flex items-center justify-between">
+                  <div className="sherlock-map-wrapper">
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-amber-500/20 pb-3">
                       <div>
                         <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
-                          <MapPin size={22} className="text-amber-400" /> BẢN ĐỒ ĐỊA ĐIỂM LONDON 1888
+                          <MapPin size={22} className="text-amber-400" /> BẢN ĐỒ TỔNG THỂ LONDON 1888 (HOLMES' LONDON MAP)
                         </h3>
-                        <p className="text-xs text-slate-400">Các khu vực chính: NW (Marylebone), WC (Strand), EC (City), SW (Westminster), E (Docks).</p>
+                        <p className="text-xs text-slate-400">
+                          Nhấp trực tiếp vào các ghim tròn trên bản đồ để di chuyển và lấy lời khai / khám xét địa điểm.
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3 text-xs">
+                        <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> Đã đến
+                        </span>
+                        <span className="flex items-center gap-1.5 text-amber-300 font-bold">
+                          <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Khả nghi
+                        </span>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {/* VIEWPORT BẢN ĐỒ TƯƠNG TÁC */}
+                    <div className="sherlock-map-viewport">
+                      <img 
+                        src="/images/london-map-1888.jpg" 
+                        alt="Holmes London Map 1888" 
+                        className="sherlock-map-img"
+                      />
+
+                      {/* GHIM TRÒN CÁC ĐỊA ĐIỂM TRÊN BẢN ĐỒ */}
                       {Object.values(SHERLOCK_CASE_1.nodes).map((n) => {
                         const isVisited = roomState.visitedNodes?.includes(n.id);
-                        const isUnlocked = roomState.unlockedNodes?.includes(n.id);
+                        
+                        // Tọa độ % tương đối chuẩn trên bản đồ Holmes London
+                        const coordsMap = {
+                          '221B': { left: '26%', top: '24%' },
+                          '50NW': { left: '30%', top: '20%' },
+                          '53NW': { left: '34%', top: '30%' },
+                          '8SW': { left: '32%', top: '78%' },
+                          '22SW': { left: '38%', top: '84%' },
+                          '14SW': { left: '26%', top: '68%' },
+                          '5EC': { left: '78%', top: '28%' },
+                          '42EC': { left: '84%', top: '34%' },
+                          '18WC': { left: '54%', top: '48%' },
+                          '30WC': { left: '48%', top: '56%' }
+                        };
+
+                        const pos = coordsMap[n.id] || { left: '50%', top: '50%' };
+
                         return (
-                          <div 
+                          <div
                             key={n.id}
+                            style={{ left: pos.left, top: pos.top }}
+                            className={`sherlock-map-pin ${isVisited ? 'visited' : ''}`}
                             onClick={() => {
                               setSherlockSelectedNodeId(n.id);
                               setSherlockActiveTab('casebook');
                               if (!isVisited) handleVisitNode(n.id);
                             }}
-                            className={`p-4 rounded-xl border cursor-pointer transition-all flex flex-col justify-between space-y-2 ${isVisited ? 'bg-emerald-950/40 border-emerald-500/50 hover:bg-emerald-900/50' : isUnlocked ? 'bg-amber-950/40 border-amber-500/60 hover:bg-amber-900/50 shadow-lg' : 'bg-slate-900/60 border-slate-800 hover:bg-slate-800/60'}`}
+                            title={`📍 Mã [${n.id}] - ${n.title}`}
                           >
-                            <div className="flex items-center justify-between">
-                              <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-500/30">
-                                Mã [{n.id}]
-                              </span>
-                              <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                                Vùng {n.area}
-                              </span>
-                            </div>
-                            <h4 className="font-extrabold text-white text-sm">{n.title}</h4>
-                            <div className="flex items-center justify-between pt-1 border-t border-slate-800 text-xs">
-                              <span className="text-slate-400 text-[0.7rem]">{isVisited ? '✅ Đã ghé thăm' : '📍 Chưa ghé'}</span>
-                              <span className="text-amber-400 font-bold flex items-center gap-1">Khám xét <ArrowRight size={12} /></span>
+                            <div className="sherlock-map-pin-badge">
+                              <span>📍 [{n.id}]</span>
+                              <span className="hidden md:inline font-bold">{n.title}</span>
                             </div>
                           </div>
                         );
@@ -1350,28 +1377,28 @@ function App() {
                   </div>
                 )}
 
-                {/* TAB 3: DANH BẠ LONDON (LONDON DIRECTORY) */}
+                {/* TAB 3: DANH BẠ LONDON (LONDON DIRECTORY 1893) */}
                 {sherlockActiveTab === 'directory' && (
-                  <div className="bg-slate-950/90 border border-amber-500/30 rounded-2xl p-6 backdrop-blur space-y-4 shadow-2xl">
-                    <div className="border-b border-amber-500/20 pb-3 flex flex-col md:flex-row items-center justify-between gap-3">
+                  <div className="sherlock-directory-wrapper">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-3 border-b border-amber-500/20 pb-3">
                       <div>
                         <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
-                          <PhoneCall size={22} className="text-amber-400" /> DANH BẠ NIÊN GIÁM LONDON (LONDON DIRECTORY)
+                          <PhoneCall size={22} className="text-amber-400" /> NIÊN GIÁM DANH BẠ LONDON (POST OFFICE DIRECTORY)
                         </h3>
                         <p className="text-xs text-slate-400">Tra cứu tên nhân vật, cơ quan hoặc tiệm buôn để lấy mã tọa độ địa điểm.</p>
                       </div>
 
-                      <div className="w-full md:w-64">
+                      <div className="sherlock-input-group w-full md:w-72">
                         <input 
                           type="text"
-                          placeholder="Tìm kiếm nhân vật / địa chỉ..."
-                          className="w-full bg-slate-900 border border-amber-500/40 rounded-xl px-3 py-2 text-xs text-amber-100 placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                          placeholder="Tìm nhân vật / địa chỉ..."
+                          className="sherlock-search-input"
                           onChange={(e) => setSherlockSearchQuery(e.target.value)}
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div className="sherlock-directory-grid">
                       {SHERLOCK_CASE_1.directory
                         ?.filter(item => !sherlockSearchQuery || item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || item.desc.toLowerCase().includes(sherlockSearchQuery.toLowerCase()))
                         .map((item, idx) => (
@@ -1382,20 +1409,20 @@ function App() {
                               setSherlockActiveTab('casebook');
                               handleVisitNode(item.code);
                             }}
-                            className="bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 p-4 rounded-xl cursor-pointer transition-all flex flex-col justify-between space-y-2 hover:bg-slate-800/80"
+                            className="sherlock-directory-card"
                           >
                             <div>
-                              <div className="flex items-center justify-between mb-1">
+                              <div className="flex items-center justify-between mb-1.5">
                                 <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
-                                <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-500/30">
-                                  [{item.code}]
+                                <span className="sherlock-directory-code">
+                                  Mã [{item.code}]
                                 </span>
                               </div>
-                              <span className="text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">{item.category} • {item.address}</span>
-                              <p className="text-xs text-slate-300 mt-2">{item.desc}</p>
+                              <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
+                              <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
                             </div>
-                            <button className="btn btn-xs btn-primary w-full mt-2 font-bold flex items-center justify-center gap-1">
-                              Tới địa chỉ này ({item.code}) <ArrowRight size={12} />
+                            <button className="sherlock-search-btn w-full mt-2 text-xs flex items-center justify-center gap-1.5">
+                              🔍 ĐI THEO ĐỊA CHỈ NÀY ({item.code}) <ArrowRight size={13} />
                             </button>
                           </div>
                         ))}
@@ -1403,16 +1430,18 @@ function App() {
                   </div>
                 )}
 
-                {/* TAB 4: BÁO HÀNG NGÀY (DAILY TELEGRAPH NEWSPAPER) */}
+                {/* TAB 4: BÁO HÀNG NGÀY (THE DAILY TELEGRAPH NEWSPAPER) */}
                 {sherlockActiveTab === 'newspaper' && (
-                  <div className="bg-amber-950/20 border border-amber-500/40 rounded-2xl p-6 backdrop-blur space-y-6 shadow-2xl font-serif">
-                    <div className="text-center border-b-2 border-amber-500/30 pb-4 space-y-1">
-                      <span className="text-xs font-sans tracking-widest text-amber-400 uppercase font-black">{SHERLOCK_CASE_1.newspaper?.issue_date}</span>
-                      <h2 className="text-3xl font-black text-amber-100 tracking-wider uppercase font-serif">{SHERLOCK_CASE_1.newspaper?.paper_name}</h2>
-                      <p className="text-xs text-slate-400 font-sans">Ấn bản tin tức hàng ngày số 4.821 • Giá 1 Penny</p>
+                  <div className="sherlock-newspaper-paper">
+                    <div className="sherlock-newspaper-header">
+                      <span className="text-xs font-sans tracking-widest text-amber-800 uppercase font-black">{SHERLOCK_CASE_1.newspaper?.issue_date}</span>
+                      <h2 className="sherlock-newspaper-title">{SHERLOCK_CASE_1.newspaper?.paper_name}</h2>
+                      <div className="sherlock-newspaper-meta">
+                        <span>No. 12,458</span> • <span>LONDON, SATURDAY, DECEMBER 2, 1893</span> • <span>PRICE ONE PENNY</span>
+                      </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="sherlock-newspaper-grid">
                       {SHERLOCK_CASE_1.newspaper?.articles?.map((art, i) => (
                         <div 
                           key={i}
@@ -1423,15 +1452,15 @@ function App() {
                               handleVisitNode(art.related_code);
                             }
                           }}
-                          className="bg-slate-950/80 border border-amber-500/30 p-5 rounded-xl space-y-3 cursor-pointer hover:border-amber-400 transition-all shadow-lg"
+                          className="sherlock-newspaper-art"
                         >
-                          <div className="border-b border-amber-500/20 pb-2 flex items-center justify-between">
-                            <h4 className="font-extrabold text-amber-200 text-sm leading-snug">{art.title}</h4>
-                            <span className="text-[0.65rem] font-sans font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 shrink-0">[{art.related_code}]</span>
+                          <div className="border-b border-stone-300 pb-2 flex items-center justify-between">
+                            <h4 className="font-extrabold text-stone-900 text-base leading-snug">{art.title}</h4>
+                            <span className="text-[0.7rem] font-sans font-bold px-2 py-0.5 rounded bg-amber-200 text-amber-900 border border-amber-400 shrink-0">[{art.related_code}]</span>
                           </div>
-                          <p className="text-xs text-slate-300 leading-relaxed">{art.summary}</p>
-                          <div className="text-right text-[0.7rem] font-sans text-amber-400 font-bold flex items-center justify-end gap-1">
-                            Khám xét tin tức này <ArrowRight size={12} />
+                          <p className="text-xs text-stone-800 leading-relaxed font-serif">{art.summary}</p>
+                          <div className="text-right text-[0.75rem] font-sans text-amber-900 font-bold flex items-center justify-end gap-1 pt-2 border-t border-stone-300">
+                            🔍 Khám xét tin tức này <ArrowRight size={13} />
                           </div>
                         </div>
                       ))}
