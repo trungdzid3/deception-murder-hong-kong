@@ -943,42 +943,95 @@ function App() {
             
             {/* 1. GIAI ĐOẠN INTRO / GIỚI THIỆU VỤ ÁN */}
             {roomState?.phase === 'SHERLOCK_INTRO' && (
-              <div className="sherlock-intro-card">
+              <div className="sherlock-intro-card space-y-6">
                 
-                {/* CHỌN VỤ ÁN SHERLOCK (DÀNH CHO CHỦ PHÒNG HOẶC XEM BẢNG CHỌN) */}
-                <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3.5 mb-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    <BookOpen size={18} className="text-amber-400" />
-                    <span className="text-xs font-extrabold text-amber-200 uppercase tracking-wider">CHỌN VỤ ÁN ĐIỀU TRA:</span>
+                {/* BỘ SƯU TẬP KỊCH BẢN VỤ ÁN SHERLOCK (VICTORIAN CASE SHOWCASE) */}
+                <div className="space-y-3">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-amber-500/20 pb-3">
+                    <div>
+                      <span className="text-[0.68rem] font-black text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                        <Crown size={14} className="text-amber-400" /> THƯ VIỆN KỊCH BẢN VỤ ÁN (CASE SELECTION)
+                      </span>
+                      <h2 className="text-xl md:text-2xl font-black text-amber-100">CHỌN KỲ ÁN ĐIỀU TRA</h2>
+                    </div>
+                    {!isHost && (
+                      <span className="text-xs text-amber-300 font-bold bg-amber-950/60 border border-amber-500/30 px-3 py-1 rounded-full">
+                        👑 Chủ phòng đang chọn Vụ án
+                      </span>
+                    )}
                   </div>
-                  <select 
-                    value={roomState?.selectedCaseId || 'sherlock_case_1'}
-                    onChange={(e) => handleSelectSherlockCase(e.target.value)}
-                    disabled={!isHost}
-                    className="bg-slate-900 border border-amber-500/40 text-amber-100 rounded-lg px-3 py-1.5 text-xs font-bold focus:outline-none cursor-pointer w-full sm:w-auto"
-                  >
-                    {SHERLOCK_CASES_LIST.map(c => (
-                      <option key={c.id} value={c.id}>
-                        {c.title} ({c.setting_date})
-                      </option>
-                    ))}
-                  </select>
+
+                  {/* GRID 3 CARD KỊCH BẢN VỤ ÁN */}
+                  <div className="sherlock-case-selection-grid">
+                    {SHERLOCK_CASES_LIST.map((c, index) => {
+                      const isSelected = (roomState?.selectedCaseId || 'sherlock_case_1') === c.id;
+                      const diffClass = c.difficulty === 'Trung bình' ? 'medium' : c.difficulty === 'Khó' ? 'hard' : 'hard';
+
+                      return (
+                        <div 
+                          key={c.id}
+                          onClick={() => isHost && handleSelectSherlockCase(c.id)}
+                          className={`sherlock-case-card ${isSelected ? 'selected' : ''}`}
+                        >
+                          <div>
+                            <div className="sherlock-case-header">
+                              <span className="sherlock-case-number-tag">
+                                VỤ ÁN #{index + 1}
+                              </span>
+                              <span className={`sherlock-difficulty-badge ${diffClass}`}>
+                                ⚡ {c.difficulty}
+                              </span>
+                            </div>
+
+                            <h3 className="sherlock-case-title">{c.title}</h3>
+                            
+                            <div className="sherlock-case-date">
+                              <Clock size={12} className="text-amber-400 shrink-0" />
+                              <span>{c.setting_date}</span>
+                            </div>
+
+                            <p className="sherlock-case-desc">{c.desc}</p>
+                          </div>
+
+                          <div className="pt-2 border-t border-amber-500/10 mt-2">
+                            {isSelected ? (
+                              <button className="sherlock-case-action-btn active cursor-default">
+                                <CheckCircle size={16} /> {isHost ? 'VỤ ÁN ĐANG ĐƯỢC CHỌN' : 'VỤ ÁN ĐÃ CHỌN'}
+                              </button>
+                            ) : (
+                              <button 
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (isHost) handleSelectSherlockCase(c.id);
+                                }}
+                                disabled={!isHost}
+                                className="sherlock-case-action-btn inactive"
+                              >
+                                {isHost ? 'CHỌN VỤ ÁN NÀY' : 'XEM KỊCH BẢN'}
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
-                {/* TIÊU ĐỀ KỲ ÁN SHERLOCK */}
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
-                  <div>
-                    <span className="text-xs font-bold text-slate-400 tracking-widest uppercase flex items-center gap-1.5 mb-1">
-                      <Search size={14} className="text-slate-300" /> {activeSherlockCase.title}
-                    </span>
-                    <h2 className="text-2xl md:text-3xl font-black text-amber-100">{activeSherlockCase.title}</h2>
-                    <div className="flex items-center gap-4 text-xs text-slate-400 mt-2">
+                {/* THÔNG TIN BỐI CẢNH VỤ ÁN ĐÃ CHỌN (KHÔNG LẶP TIÊU ĐỀ) */}
+                <div className="bg-slate-950/80 border border-amber-500/30 rounded-2xl p-4 md:p-6 space-y-4">
+                  <div className="border-b border-amber-500/20 pb-3 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                    <div>
+                      <span className="text-[0.65rem] font-extrabold text-amber-400 uppercase tracking-widest">
+                        NỘI DUNG KHỞI ĐẦU VỤ ÁN
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-black text-amber-100">{activeSherlockCase.title}</h3>
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-slate-400">
                       <span>Tác giả: <strong className="text-slate-200">{activeSherlockCase.author}</strong></span>
                       <span>•</span>
                       <span>Bối cảnh: <strong className="text-slate-200">{activeSherlockCase.setting_date}</strong></span>
                     </div>
                   </div>
-                </div>
 
                 {/* BỐI CẢNH BAN ĐẦU (INTRO STORY) */}
                 <div className="sherlock-section-box">
@@ -1033,6 +1086,7 @@ function App() {
                   </div>
 
                 </div>
+              </div>
 
                 {/* NÚT BẮT ĐẦU - GÓC PHẢI BÊN DƯỚI */}
                 <div className="flex justify-end pt-4 border-t border-amber-500/20">

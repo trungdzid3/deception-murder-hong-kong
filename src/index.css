@@ -3448,6 +3448,170 @@ body {
   font-weight: 800 !important;
 }
 
+/* ==========================================================================
+   SHERLOCK CASE SELECTION CARD GRID SYSTEM (VICTORIAN PREMIUM)
+   ========================================================================== */
+.sherlock-case-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.sherlock-case-card {
+  background: linear-gradient(145deg, rgba(20, 15, 26, 0.85) 0%, rgba(12, 8, 16, 0.95) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.25);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.sherlock-case-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.sherlock-case-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15);
+  background: linear-gradient(145deg, rgba(35, 24, 42, 0.9) 0%, rgba(18, 12, 24, 0.98) 100%);
+}
+
+.sherlock-case-card.selected {
+  border: 2px solid #f59e0b !important;
+  background: linear-gradient(145deg, rgba(45, 26, 12, 0.9) 0%, rgba(20, 12, 6, 0.95) 100%) !important;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.3) !important;
+}
+
+.sherlock-case-card.selected::before {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+}
+
+.sherlock-case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.sherlock-case-number-tag {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.sherlock-case-card.selected .sherlock-case-number-tag {
+  background: #f59e0b;
+  color: #0f172a;
+}
+
+.sherlock-difficulty-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+
+.sherlock-difficulty-badge.easy {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.sherlock-difficulty-badge.medium {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.sherlock-difficulty-badge.hard {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.sherlock-case-title {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #fef3c7;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.sherlock-case-date {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.sherlock-case-desc {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sherlock-case-action-btn {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.sherlock-case-action-btn.active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #0f172a;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.sherlock-case-action-btn.inactive {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f1f5f9;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.sherlock-case-action-btn.inactive:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #f59e0b;
+  color: #fef3c7;
+}
+
 
 
 
