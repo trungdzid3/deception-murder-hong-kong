@@ -974,14 +974,18 @@ function App() {
                       <Compass size={14} className="text-slate-300" /> Tọa độ manh mối gợi ý khởi đầu:
                     </h4>
                     <div className="flex flex-wrap gap-2 my-1">
-                      {SHERLOCK_CASE_1.intro.unlocked_nodes.map((nodeId) => (
-                        <span
-                          key={nodeId}
-                          className="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-amber-500/30 text-amber-200 text-xs font-black"
-                        >
-                          Mã [{nodeId}]
-                        </span>
-                      ))}
+                      {SHERLOCK_CASE_1.intro.unlocked_nodes.map((nodeId) => {
+                        const node = SHERLOCK_CASE_1.nodes[nodeId];
+                        const name = node?.title || nodeId;
+                        return (
+                          <span
+                            key={nodeId}
+                            className="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-amber-500/30 text-amber-200 text-xs font-black flex items-center gap-1.5"
+                          >
+                            <Compass size={13} className="text-amber-400" /> {name}
+                          </span>
+                        );
+                      })}
                     </div>
                     <p className="text-[0.72rem] text-slate-400 italic mt-1 leading-relaxed">
                       Lưu ý: Thám tử cần tự tra cứu vị trí các con số này trên Bản đồ hoặc Danh bạ London để tiến hành khám xét thủ công.
@@ -1024,12 +1028,6 @@ function App() {
                       <span className="text-xs px-3 py-1.5 rounded-lg bg-amber-950/80 border border-amber-500/40 text-amber-300 font-extrabold flex items-center gap-1.5">
                         <Compass size={14} className="text-amber-400" /> Đã khám xét: <strong>{roomState.visitedNodes?.length || 0} địa điểm</strong>
                       </span>
-                      <button 
-                        onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
-                        className="btn btn-sm btn-gold-draw font-extrabold flex items-center gap-1.5 shadow-lg"
-                      >
-                        <Trophy size={15} /> TRẢ LỜI CÂU HỎI PHÁ ÁN
-                      </button>
                     </div>
                   </div>
 
@@ -1109,12 +1107,14 @@ function App() {
                         <div className="flex flex-wrap gap-1.5 pt-1">
                           {roomState.unlockedNodes?.map((nodeId) => {
                             const isVisited = roomState.visitedNodes?.includes(nodeId);
+                            const node = SHERLOCK_CASE_1.nodes[nodeId];
+                            const name = node?.title || nodeId;
                             return (
                               <span
                                 key={nodeId}
                                 className={`sherlock-unlocked-btn cursor-default opacity-90 ${isVisited ? 'visited' : ''}`}
                               >
-                                <Compass size={12} /> [{nodeId}] {isVisited ? '• Đã tới' : '• Chưa tới'}
+                                <Compass size={12} /> {name} {isVisited ? '• Đã tới' : '• Chưa tới'}
                               </span>
                             );
                           })}
@@ -1390,30 +1390,23 @@ function App() {
                             nameWords.some(w => w.startsWith(sherlockDirLetterFilter));
                           return matchQuery && matchLetter;
                         })
-                        .map((item, idx) => {
-                          const bareCode = item.code.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
-                          const region = item.code.match(/(NW|SW|EC|WC|SE|E)$/i)?.[0] || '';
-                          return (
-                            <div 
-                              key={idx}
-                              className="sherlock-directory-card cursor-default"
-                            >
-                              <div>
-                                <div className="flex items-center justify-between mb-1.5">
-                                  <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
-                                  <span className="sherlock-directory-code">
-                                    Mã [{item.code}]
-                                  </span>
-                                </div>
-                                <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
-                                <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
+                        .map((item, idx) => (
+                          <div 
+                            key={idx}
+                            className="sherlock-directory-card cursor-default"
+                          >
+                            <div>
+                              <div className="flex items-center justify-between mb-1.5">
+                                <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
+                                <span className="sherlock-directory-code">
+                                  Mã [{item.code}]
+                                </span>
                               </div>
-                              <div className="text-[0.7rem] text-amber-300/90 font-bold bg-amber-500/10 border border-amber-500/20 rounded-lg p-1.5 text-center mt-2.5">
-                                Tìm con số [{bareCode}] ở khu vực {region} trên Bản Đồ để khám xét
-                              </div>
+                              <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
+                              <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
                             </div>
-                          );
-                        })}
+                          </div>
+                        ))}
                     </div>
                   </div>
                 )}
@@ -1453,6 +1446,16 @@ function App() {
                     </div>
                   </div>
                 )}
+
+                {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT Ở GÓC PHẢI BÊN DƯỚI RÕ RÀNG */}
+                <div className="flex justify-end pt-4 border-t border-amber-500/20 mt-4">
+                  <button 
+                    onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
+                    className="btn btn-md btn-gold-draw font-black tracking-wider shadow-lg flex items-center gap-2 px-6 py-2.5"
+                  >
+                    <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
+                  </button>
+                </div>
 
               </div>
             )}
