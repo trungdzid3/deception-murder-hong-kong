@@ -1057,7 +1057,7 @@ function App() {
                     <h4 className="font-extrabold text-amber-400 text-xs uppercase tracking-wider flex items-center gap-1.5">
                       <Compass size={14} /> Địa điểm gợi ý mở sẵn từ đầu:
                     </h4>
-                    <div className="flex flex-wrap gap-2 pt-1">
+                    <div className="sherlock-intro-node-list">
                       {SHERLOCK_CASE_1.intro.unlocked_nodes.map((nodeId) => (
                         <button
                           key={nodeId}
@@ -1065,9 +1065,9 @@ function App() {
                             setSherlockSelectedNodeId(nodeId);
                             handleSherlockNextPhase('SHERLOCK_PLAYING');
                           }}
-                          className="px-3 py-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 font-black text-xs hover:bg-amber-500/40 transition-all flex items-center gap-1.5 shadow"
+                          className="sherlock-intro-node-btn"
                         >
-                          <Compass size={13} /> Ghé thăm mã [{nodeId}]
+                          <Compass size={14} /> Ghé thăm mã [{nodeId}]
                         </button>
                       ))}
                     </div>
