@@ -1300,36 +1300,46 @@ function App() {
                         className="sherlock-map-img"
                       />
 
-                      {/* CHỈ GHIM CÁC ĐỊA ĐIỂM THUỘC VỤ ÁN HIỆN TẠI TRÊN BẢN ĐỒ */}
-                      {Object.values(activeSherlockCase.nodes || {}).map((n) => {
-                        const isVisited = roomState.visitedNodes?.includes(n.id);
-                        const isUnlocked = roomState.unlockedNodes?.includes(n.id);
-                        const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+                      {/* GHIM TẤT CẢ ĐỊA ĐIỂM TRÊN BẢN ĐỒ VỤ ÁN */}
+                      {(activeSherlockCase.directory && activeSherlockCase.directory.length > 0 
+                        ? activeSherlockCase.directory 
+                        : MASTER_DIRECTORY.filter(item => item.appeared_in?.includes(activeSherlockCase.case_id)))
+                        .map((entry) => {
+                          const code = entry.code;
+                          const caseNode = activeSherlockCase?.nodes?.[code];
+                          const masterEntry = MASTER_DIRECTORY.find(e => e.code === code) || entry;
+                          const coords = caseNode?.map_coords || masterEntry?.map_coords;
+                          if (!coords) return null;
 
-                        const masterEntry = MASTER_DIRECTORY.find(e => e.code === n.id);
-                        const coords = n.map_coords || masterEntry?.map_coords;
-                        if (!coords) return null;
+                          const isVisited = roomState.visitedNodes?.includes(code);
+                          const isUnlocked = roomState.unlockedNodes?.includes(code);
+                          const bareNumber = code.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
 
-                        // Tỷ lệ % vị trí trên bản đồ 860 × 570 px
-                        const leftPct = ((coords.x / 860) * 100).toFixed(2);
-                        const topPct  = ((coords.y / 570) * 100).toFixed(2);
+                          // Tỷ lệ % vị trí trên bản đồ 860 × 570 px chuẩn London Map 1888
+                          const leftPct = ((coords.x / 860) * 100).toFixed(2);
+                          const topPct  = ((coords.y / 570) * 100).toFixed(2);
 
-                        return (
-                          <div
-                            key={n.id}
-                            onClick={() => {
-                              handleVisitNode(n.id);
-                              setSherlockSelectedNodeId(n.id);
-                              setSherlockActiveTab('casebook');
-                            }}
-                            style={{ left: `${leftPct}%`, top: `${topPct}%` }}
-                            className={`sherlock-map-pin ${isVisited ? 'visited' : isUnlocked ? 'unlocked' : ''}`}
-                            title={`[${n.id}] ${n.title}`}
-                          >
-                            <span className="sherlock-pin-number">[{bareNumber}]</span>
-                          </div>
-                        );
-                      })}
+                          return (
+                            <div
+                              key={code}
+                              onClick={() => {
+                                if (caseNode) {
+                                  handleVisitNode(code);
+                                  setSherlockSelectedNodeId(code);
+                                  setSherlockActiveTab('casebook');
+                                } else {
+                                  setSherlockSearchQuery(masterEntry.name);
+                                  setSherlockActiveTab('directory');
+                                }
+                              }}
+                              style={{ left: `${leftPct}%`, top: `${topPct}%` }}
+                              className={`sherlock-map-pin ${isVisited ? 'visited' : isUnlocked ? 'unlocked' : 'general'}`}
+                              title={`[${code}] ${masterEntry.name}`}
+                            >
+                              <span className="sherlock-pin-number">[{bareNumber}]</span>
+                            </div>
+                          );
+                        })}
                     </div>
                   </div>
                 )}
@@ -1342,7 +1352,7 @@ function App() {
                         <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
                           <PhoneCall size={22} className="text-amber-400" /> NIÊN GIÁM DANH BẠ LONDON (POST OFFICE DIRECTORY)
                         </h3>
-                        <p className="text-xs text-slate-400">Tra cứu tên nhân vật, cơ quan hoặc tiệm buôn thuộc vụ án này.</p>
+                        <p className="text-xs text-slate-400">Tra cứu tên nhân vật, cơ quan hoặc tiệm buôn để tìm địa chỉ & mã tọa độ.</p>
                       </div>
 
                       <div className="relative w-full md:w-64">
@@ -1371,9 +1381,7 @@ function App() {
                     </div>
 
                     <div className="sherlock-directory-grid">
-                      {(activeSherlockCase.directory && activeSherlockCase.directory.length > 0 
-                        ? activeSherlockCase.directory 
-                        : MASTER_DIRECTORY.filter(item => item.appeared_in?.includes(activeSherlockCase.case_id)))
+                      {MASTER_DIRECTORY
                         .slice()
                         .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
                         .filter(item => {
@@ -1386,23 +1394,33 @@ function App() {
                             nameWords.some(w => w.startsWith(sherlockDirLetterFilter));
                           return matchQuery && matchLetter;
                         })
-                        .map((item, idx) => (
-                          <div 
-                            key={idx}
-                            className="sherlock-directory-card cursor-default border-amber-500/40 bg-amber-950/30"
-                          >
-                            <div>
-                              <div className="flex items-center justify-between mb-1.5 gap-2">
-                                <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
-                                <span className="sherlock-directory-code shrink-0">
-                                  Mã [{item.code}]
-                                </span>
+                        .map((item, idx) => {
+                          const isCurrentCaseLoc = item.appeared_in?.includes(activeSherlockCase?.case_id);
+                          return (
+                            <div 
+                              key={idx}
+                              className={`sherlock-directory-card cursor-default ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/30' : ''}`}
+                            >
+                              <div>
+                                <div className="flex items-center justify-between mb-1.5 gap-2">
+                                  <h4 className="font-extrabold text-amber-200 text-sm flex items-center gap-1.5">
+                                    {item.name}
+                                    {isCurrentCaseLoc && (
+                                      <span className="text-[0.6rem] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                                        Vụ án hiện tại
+                                      </span>
+                                    )}
+                                  </h4>
+                                  <span className="sherlock-directory-code shrink-0">
+                                    Mã [{item.code}]
+                                  </span>
+                                </div>
+                                <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
+                                <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
                               </div>
-                              <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
-                              <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                     </div>
 
                   </div>
