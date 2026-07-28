@@ -1246,6 +1246,27 @@ function App() {
                       </div>
                     </div>
 
+                    {/* QUY TRÌNH ĐIỀU TRA VỤ ÁN (DETECTIVE MANUAL) */}
+                    <div className="bg-slate-950/80 border border-amber-500/30 rounded-xl p-3.5 text-xs space-y-2">
+                      <div className="font-black text-amber-300 flex items-center gap-2 text-xs border-b border-amber-500/20 pb-2 uppercase tracking-wider">
+                        <BookOpen size={15} className="text-amber-400" /> QUY TRÌNH ĐIỀU TRA VỤ ÁN HOLMES
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-slate-300 font-medium">
+                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                          <span className="font-bold text-amber-400">1. Tra cứu Danh Bạ:</span> Tìm tên/địa chỉ trong Danh Bạ London để lấy tọa độ (VD: 89 SW, 50 NW).
+                        </div>
+                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                          <span className="font-bold text-amber-400">2. Định vị Bản Đồ:</span> Tìm con số tương ứng thuộc 6 khu vực (NW, WC, EC, SW, SC, SE).
+                        </div>
+                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                          <span className="font-bold text-amber-400">3. Đọc Sách Vụ Án:</span> Nhấp mã địa điểm để đọc lời khai/thông tin trong Sách Vụ Án.
+                        </div>
+                        <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                          <span className="font-bold text-amber-400">4. Ghi Chép Manh Mối:</span> Nên ghi lại các địa điểm đã tìm thấy ra giấy để xâu chuỗi sự thật.
+                        </div>
+                      </div>
+                    </div>
+
                     {/* VIEWPORT BẢN ĐỒ TƯƠNG TÁC */}
                     <div className="sherlock-map-viewport">
                       <img 
@@ -1287,8 +1308,7 @@ function App() {
                             title={`📍 Mã [${n.id}] - ${n.title}`}
                           >
                             <div className="sherlock-map-pin-badge">
-                              <span>📍 [{n.id}]</span>
-                              <span className="hidden md:inline font-bold">{n.title}</span>
+                              📍 [{n.id}]
                             </div>
                           </div>
                         );
