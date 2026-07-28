@@ -924,31 +924,25 @@ function App() {
             {roomState?.phase === 'SHERLOCK_INTRO' && (
               <div className="sherlock-intro-card">
                 
-                {/* HEADER BÀI VỤ ÁN */}
-                <div className="sherlock-intro-header">
+                {/* TIÊU ĐỀ KỲ ÁN SHERLOCK */}
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
                   <div>
-                    <span className="text-xs font-bold text-amber-400 tracking-widest uppercase flex items-center gap-1.5 mb-1">
-                      <Search size={14} /> Vụ án Sherlock Holmes #1
+                    <span className="text-xs font-bold text-slate-400 tracking-widest uppercase flex items-center gap-1.5 mb-1">
+                      <Search size={14} className="text-slate-300" /> Vụ án Sherlock Holmes #1
                     </span>
                     <h2 className="text-2xl md:text-3xl font-black text-amber-100">{SHERLOCK_CASE_1.title}</h2>
                     <div className="flex items-center gap-4 text-xs text-slate-400 mt-2">
-                      <span>Tác giả: <strong className="text-white">{SHERLOCK_CASE_1.author}</strong></span>
+                      <span>Tác giả: <strong className="text-slate-200">{SHERLOCK_CASE_1.author}</strong></span>
                       <span>•</span>
-                      <span>Bối cảnh: <strong className="text-amber-300">{SHERLOCK_CASE_1.setting_date}</strong></span>
+                      <span>Bối cảnh: <strong className="text-slate-200">{SHERLOCK_CASE_1.setting_date}</strong></span>
                     </div>
                   </div>
-                  <button 
-                    onClick={() => handleSherlockNextPhase('SHERLOCK_PLAYING')}
-                    className="btn btn-md btn-gold-draw font-extrabold flex items-center gap-2 whitespace-nowrap shadow-lg"
-                  >
-                    <Compass size={18} /> BẮT ĐẦU ĐIỀU TRA KỲ ÁN <ArrowRight size={16} />
-                  </button>
                 </div>
 
                 {/* BỐI CẢNH BAN ĐẦU (INTRO STORY) */}
                 <div className="sherlock-section-box">
-                  <h3 className="font-extrabold text-amber-300 text-sm flex items-center gap-2">
-                    <BookOpen size={16} /> BỐI CẢNH BAN ĐẦU (INTRO STORY):
+                  <h3 className="font-extrabold text-slate-200 text-sm flex items-center gap-2">
+                    <BookOpen size={16} className="text-slate-300" /> BỐI CẢNH BAN ĐẦU (INTRO STORY):
                   </h3>
                   <div className="sherlock-story-text">
                     {SHERLOCK_CASE_1.intro.story_text}
@@ -960,8 +954,8 @@ function App() {
                   
                   {/* MANH MỐI KHỞI ĐẦU */}
                   <div className="sherlock-section-box clues-box">
-                    <h4 className="font-extrabold text-rose-400 text-xs uppercase tracking-wider flex items-center gap-1.5">
-                      <Skull size={14} /> Manh mối ban đầu thu thập được tại hiện trường:
+                    <h4 className="font-extrabold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                      <Skull size={14} className="text-slate-300" /> Manh mối ban đầu thu thập được tại hiện trường:
                     </h4>
                     <ul className="sherlock-clue-list">
                       {SHERLOCK_CASE_1.intro.initial_clues.map((clue, i) => (
@@ -975,8 +969,8 @@ function App() {
 
                   {/* ĐỊA ĐIỂM GỢI Ý MỞ KHÓA */}
                   <div className="sherlock-section-box">
-                    <h4 className="font-extrabold text-amber-400 text-xs uppercase tracking-wider flex items-center gap-1.5">
-                      <Compass size={14} /> Địa điểm gợi ý mở sẵn từ đầu:
+                    <h4 className="font-extrabold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                      <Compass size={14} className="text-slate-300" /> Địa điểm gợi ý mở sẵn từ đầu:
                     </h4>
                     <div className="sherlock-intro-node-list">
                       {SHERLOCK_CASE_1.intro.unlocked_nodes.map((nodeId) => (
@@ -988,7 +982,7 @@ function App() {
                           }}
                           className="sherlock-intro-node-btn"
                         >
-                          <Compass size={14} /> Ghé thăm mã [{nodeId}]
+                          <Compass size={14} className="text-slate-300" /> Ghé thăm mã [{nodeId}]
                         </button>
                       ))}
                     </div>
@@ -996,12 +990,13 @@ function App() {
 
                 </div>
 
-                <div className="text-center pt-2">
+                {/* NÚT BẮT ĐẦU ĐIỀU TRA KỲ ÁN - GÓC PHẢI BÊN DƯỚI */}
+                <div className="flex justify-end pt-4 border-t border-amber-500/20">
                   <button 
                     onClick={() => handleSherlockNextPhase('SHERLOCK_PLAYING')}
-                    className="btn btn-lg btn-gold-draw w-full font-black tracking-wider shadow-lg flex items-center justify-center gap-2 py-3"
+                    className="btn btn-md btn-gold-draw font-black tracking-wider shadow-lg flex items-center gap-2 px-6 py-2.5"
                   >
-                    <Play size={20} /> VÀO BẢN ĐỒ & TRA CỨU ĐỊA ĐIỂM
+                    BẮT ĐẦU ĐIỀU TRA KỲ ÁN <ArrowRight size={18} />
                   </button>
                 </div>
 
