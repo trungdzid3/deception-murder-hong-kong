@@ -1105,39 +1105,22 @@ function App() {
                         </div>
                       </div>
 
-                      {/* KHUNG THỐNG KÊ MANH MỐI MỞ KHÓA (TRÌNH BÀY THEO HÀNG TÁCH BIỆT) */}
+                      {/* KHUNG THỐNG KÊ MANH MỐI MỞ KHÓA (DẠNG NÚT PILL CỦ NHƯ XƯA - KHÔNG BẤM ĐƯỢC) */}
                       <div className="sherlock-panel space-y-2">
-                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider border-b border-amber-500/20 pb-2 flex items-center justify-between">
-                          <span>🔍 Mã manh mối đã thu thập ({roomState.unlockedNodes?.length || 0}):</span>
+                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider border-b border-amber-500/20 pb-2">
+                          🔍 Mã manh mối đã thu thập ({roomState.unlockedNodes?.length || 0}):
                         </h4>
-                        <div className="space-y-1.5 pt-1 max-h-52 overflow-y-auto pr-1">
+                        <div className="flex flex-wrap gap-1.5 pt-1">
                           {roomState.unlockedNodes?.map((nodeId) => {
                             const bareCode = nodeId.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
                             const isVisited = roomState.visitedNodes?.includes(nodeId);
-                            const n = SHERLOCK_CASE_1.nodes[nodeId];
                             return (
-                              <div
+                              <span
                                 key={nodeId}
-                                className={`flex items-center justify-between p-2 rounded-lg border text-xs font-bold transition-all ${
-                                  isVisited 
-                                    ? 'bg-emerald-950/60 border-emerald-500/40 text-emerald-200' 
-                                    : 'bg-slate-900/90 border-amber-500/30 text-amber-200'
-                                }`}
+                                className={`sherlock-unlocked-btn cursor-default opacity-90 ${isVisited ? 'visited' : ''}`}
                               >
-                                <div className="flex items-center gap-2 truncate">
-                                  <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs">
-                                    📍 Mã [{bareCode}]
-                                  </span>
-                                  <span className="truncate text-[0.75rem] font-medium text-slate-300">
-                                    {n?.title || bareCode}
-                                  </span>
-                                </div>
-                                <span className={`text-[0.65rem] px-2 py-0.5 rounded font-black shrink-0 ${
-                                  isVisited ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                                }`}>
-                                  {isVisited ? '✓ Đã tới' : '⏳ Chưa tới'}
-                                </span>
-                              </div>
+                                <Compass size={12} /> [{bareCode}] {isVisited ? '✓ Đã tới' : '• Chưa tới'}
+                              </span>
                             );
                           })}
                         </div>

@@ -17,7 +17,7 @@ export const SHERLOCK_CASE_1 = {
   "nodes": {
     "50NW": {
       "id": "50NW",
-      "title": "Nhà bà Olivia Robins (Witness)",
+      "title": "Nhà bà Olivia Robins (Nhân chứng)",
       "area": "NW",
       "type": "suspect_interview",
       "map_coords": { "x": 120, "y": 420 },
