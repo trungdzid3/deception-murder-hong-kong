@@ -650,28 +650,18 @@ export const SHERLOCK_CASE_2 = {
     "paper_name": "THE DAILY TELEGRAPH - LONDON EDITION",
     "articles": [
       {
-        "title": "HỎA HOẠN KINH HOÀNG TẠI 221B BAKER STREET: NGHI VẤN VỤ MẠNG",
-        "date": "2 Dec 1893",
-        "summary": "Đêm qua lúc 9:00 tối, ngọn lửa đã thiêu rụi căn hộ của vị thám tử nổi tiếng Sherlock Holmes. Thi thể cháy xém được tìm thấy tại hiện trường với vết đạn xuyên tim. Cảnh sát Scotland Yard đang phong tỏa khu vực.",
-        "related_code": "50NW"
+        "title": "BẮT GIỮ BĂNG NHÓM BUÔN LẬU TẠI CẢNG OUTER DOCKS (SMUGGLING RING APPREHENDED AT OUTER DOCKS)",
+        "date": "18 Nov 1891",
+        "summary": "Trong một đợt truy bắt được mô tả là lớn nhất lịch sử London gần đây, Đồn cảnh sát Tichfield hợp tác cùng Đồn cảnh sát khu vực Thames đã phá thành công đường dây buôn lậu cổ vật quý hiếm và đồ ăn trộm tại bến cảng Outer Docks. 5 kẻ buôn lậu đã bị bắt giữ tại hiện trường. Cộng đồng tiếc thương sự hy sinh của Sĩ quan Dick Alpert - người bị bắn chết trong khi làm nhiệm vụ bởi một tay súng không rõ danh tính. Các đối tượng bị bắt gồm: Edward Beaupre, Jonathon Helwig, Chandler Davenport, Faynola Jacobs, và John Locke. Lực lượng cảnh sát London được một công dân ẩn danh cung cấp mật báo.",
+        "related_code": "98E",
+        "full_text": "SMUGGLING RING APPREHENDED AT OUTER DOCKS (18 Nov 1891)\nIn what can only be described as one of the largest apprehensions in recent London history, the Tichfield Police Station working in cooperation with the Thames Division Police Station were tipped off about a smuggling ring involving rare artifacts and other precious items being stolen and sold on the docks of Outer Dock. Five smugglers were apprehended in the arrest, and officers believe everyone involved with the operation was present. The community will mourn of the loss of Officer Dick Alpert, who was killed in the operation. Alpert was a long-standing, respected member of the Tichfield Police Station. He was shot in the line of duty by an unknown shooter. Constituting the apprehended were Edward Beaupre, Jonathon Helwig, Chandler Davenport, Faynola Jacobs, and John Locke. The operation has been going on from some months according to documents seized at the scene of apprehension. London police agencies were tipped off by an anonymous citizen, and remind denizens of London to report suspicious activity to local police forces."
       },
       {
-        "title": "TRUY NÃ TÊN TỘI PHẠM NGUY HIỂM EDWARD BEAUPRE VƯỢT NGỤC",
-        "date": "1 Dec 1893",
-        "summary": "Bộ Nội An phát lệnh truy nã Edward Beaupre - gã trùm buôn lậu bị bắt 2 năm trước tại cảng Outer Docks. Y được nhìn thấy lảng vảng gần khu vực Regent's Park và Marylebone.",
-        "related_code": "98E"
-      },
-      {
-        "title": "VỞ KỊCH MỚI 'THE INITIATIVE OF DHARMA' TẠI NHÀ HÁT LYCEUM",
-        "date": "29 Nov 1893",
-        "summary": "Đạo diễn Wayne Nelson ra mắt vở kịch đầy kịch tính với sự tham gia của nữ minh tinh Gertrude Helwig trong trang phục dạ hội màu đỏ nổi bật.",
-        "related_code": "18WC"
-      },
-      {
-        "title": "CẢNH BÁO MẤT TRỘM HÓA CHẤT ĐỘC TẠI MARYLEBONE",
-        "date": "30 Nov 1893",
-        "summary": "Cửa hàng hóa chất John Taylor báo cáo bán lượng lớn chất xyanua cho khách hàng mua rửa ảnh. Cảnh sát khuyến cáo công chúng cẩn trọng.",
-        "related_code": "72NW"
+        "title": "TUYÊN ÁN CÁC ĐỐI TƯỢNG BUÔN LẬU (SENTENCES HANDED OUT TO WOULD-BE SMUGGLERS)",
+        "date": "25 Nov 1891",
+        "summary": "Sở Cảnh sát Scotland Yard công bố bản án dành cho 8 đối tượng liên quan đến đường dây buôn lậu tại London. 7 nghi phạm bị bắt tại hiện trường, nghi phạm thứ 8 bị bắt tại nhà riêng. Nghi phạm thứ 9, Chandler Davenport, được tuyên trắng án do thiếu chứng cứ tại hiện trường. Những kẻ bị kết tội nhận mức án từ 10 đến 30 năm tù.",
+        "related_code": "28WC",
+        "full_text": "SENTENCES HANDED OUT TO WOULD-BE SMUGGLERS (25 Nov 1891)\nScotland Yard has made public the fate of the eight persons arrested in relation to a would-be smuggling ring at a London establishment. Evidence has implicated eight in an underground smuggling scheme. Seven suspects were arrested on site, while an eighth was picked up at her home. A ninth, Chandler Davenport was found innocent due to lack of evidence found at the crime scene. Those found guilty have been issued sentences ranging from ten to thirty years in prison."
       }
     ]
   }
