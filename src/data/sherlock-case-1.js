@@ -326,6 +326,94 @@ export const SHERLOCK_CASE_1 = {
         "evidence_items": ["Chủ mưu thực sự của băng buôn lậu vẫn nằm trong bóng tối."]
       },
       "key_hints": ["Gợi ý về sự nhúng tay của Giáo sư Moriarty."]
+    },
+    "12SW": {
+      "id": "12SW",
+      "title": "Tiệm kim hoàn Arthur Pendelton",
+      "area": "SW",
+      "type": "decoy",
+      "content": "Tiệm kim hoàn vắng vẻ. Ông Arthur Pendelton cho biết: 'Tôi làm việc ở đây từ sáng đến tối, chẳng thấy ai khả nghi đi qua cả. Sherlock Holmes cũng không đến đây'.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "15WC": {
+      "id": "15WC",
+      "title": "Nhà máy in ấn Hansard",
+      "area": "WC",
+      "type": "decoy",
+      "content": "Tiếng máy in xình xịch vang lên khắp xưởng. Người quản lý báo cáo công việc in ấn diễn ra bình thường, không có manh mối nào liên quan tới vụ án 221B Baker Street.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "27EC": {
+      "id": "27EC",
+      "title": "Phòng khám y tế Bác sĩ Charles Darwin",
+      "area": "EC",
+      "type": "decoy",
+      "content": "Y sĩ phụ tá tiếp đón bạn. Ông cho biết Bác sĩ Darwin đang đi thăm bệnh ở vùng nông thôn và không hề khám cho ai tên là Holmes hay Beaupre trong tuần này.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "41NW": {
+      "id": "41NW",
+      "title": "Tiệm trà bánh Bà Beatrice Smith",
+      "area": "NW",
+      "type": "decoy",
+      "content": "Mùi bánh quy bơ thơm nức căn phòng. Bà Smith đon đả chào hỏi nhưng khẳng định chưa từng gặp nhân vật nào giống mô tả của bạn.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "49NW": {
+      "id": "49NW",
+      "title": "Cửa hàng dụng cụ câu cá Miller",
+      "area": "NW",
+      "type": "decoy",
+      "content": "Cửa hàng bày bán đủ loại cần câu và dây cước. Chủ tiệm cho biết hôm qua chỉ có vài vị khách quen mua mồi câu cá chép.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "61EC": {
+      "id": "61EC",
+      "title": "Công ty Vận tải Blackwood",
+      "area": "EC",
+      "type": "decoy",
+      "content": "Sổ sách vận chuyển hàng hóa được kiểm tra kỹ lưỡng. Tất cả các lô hàng đều có giấy tờ hợp lệ của hải quan, không phát hiện dấu hiệu hàng lậu.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "67WC": {
+      "id": "67WC",
+      "title": "Hội luật gia Middle Temple",
+      "area": "WC",
+      "type": "decoy",
+      "content": "Các luật sư đang bận rộn thảo luận hồ sơ án dân sự. Không có tin tức hay tài liệu nào liên quan tới vụ phóng hỏa tại Baker Street.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "79SW": {
+      "id": "79SW",
+      "title": "Rạp xiếc Royal Amphitheatre",
+      "area": "SW",
+      "type": "decoy",
+      "content": "Đoàn xiếc đang tổng duyệt màn nhào lộn. Ban quản lý xác nhận toàn bộ nhân sự đều có mặt tại rạp trong suốt buổi tối qua.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "91EC": {
+      "id": "91EC",
+      "title": "Quán rượu Blind Beggar (Whitechapel)",
+      "area": "EC",
+      "type": "decoy",
+      "content": "Quán ồn ào tiếng hô hố uống rượu. Chủ quán gạt đi: 'Nơi này chỉ có dân lao động nghèo uống bia đen, không có thám tử hay quý ông mặc áo burgundy nào cả'.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "96NW": {
+      "id": "96NW",
+      "title": "Tiệm thuộc da Henderson",
+      "area": "NW",
+      "type": "decoy",
+      "content": "Xưởng thuộc da bốc mùi nồng nặc. Những người thợ da khẳng định họ nghỉ làm từ 6 giờ chiều và không thấy ai lảng vảng quanh đây.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
+    },
+    "98SW": {
+      "id": "98SW",
+      "title": "Khách sạn Victoria Club",
+      "area": "SW",
+      "type": "decoy",
+      "content": "Lễ tân khách sạn kiểm tra sổ nhật ký lưu trú. Không có khách hàng nào đăng ký dưới tên Beaupre, Pemberton hay Jacobs.",
+      "unlocks": { "nodes": [], "evidence_items": [] }
     }
   },
   "questions": {
@@ -348,35 +436,35 @@ export const SHERLOCK_CASE_1 = {
         "options": [
           "Vì cửa sổ bị kẹt chốt không mở được",
           "Sát thủ Chandler Davenport cố ý để cửa đóng và bắn xuyên kính để tăng độ khó phát bắn nhằm khẳng định mình là xạ thủ giỏi nhất",
-          "Do Israel Jacobs quên mở cửa",
-          "Tránh tiếng nổ súng đánh động cảnh sát bên dưới"
+          "Do gió to giật mạnh làm sập cửa",
+          "Để tránh tiếng nổ súng vang ra ngoài"
         ],
         "correct_option_index": 1,
-        "explanation": "Oliver Perkins cho biết Chandler Davenport rất kiêu ngạo, luôn muốn chứng minh mình là xạ thủ giỏi nhất London. Hắn bắn xuyên qua kính cửa sổ đóng kín để tự tạo thử thách khó hơn cho bản thân."
+        "explanation": "Davenport là một tay súng kiêu ngạo. Hắn chọn bắn xuyên qua hai lớp kính để phô diễn trình độ bắn tỉa thượng thừa của mình."
       },
       {
         "id": "q3",
-        "question": "Chất độc nào đã được sử dụng trong nỗ lực đầu tiên nhằm sát hại Sherlock Holmes?",
+        "question": "Ai là nạn nhân thực sự bị bắn chết dưới tấm vải liệm cháy xém tại 221B Baker Street?",
         "options": [
-          "Arsenic (Thạch tín)",
-          "Cyanide (Chất độc Xyanua)",
-          "Nicotine nồng độ cao",
-          "Strychnine"
+          "Sherlock Holmes",
+          "Marvin Pemberton (kẻ đóng giả Sherlock Holmes)",
+          "Edward Beaupre",
+          "Israel Jacobs"
         ],
         "correct_option_index": 1,
-        "explanation": "Elle Fanning đã mua Cyanide từ John Taylor Chemist dưới danh nghĩa rửa ảnh sepia và bỏ vào tách trà của Sherlock lúc 2 giờ chiều."
+        "explanation": "Marvin Pemberton - kẻ chuyên đóng giả Holmes để quỵt tiền và thể hiện - đến nhà Holmes lúc 8:30 tối và bị Davenport bắn nhầm từ Camden House qua cửa kính."
       },
       {
         "id": "q4",
-        "question": "Tại sao nạn nhân xấu số trong phòng làm việc 221B lại bị sát hại?",
+        "question": "Người phụ nữ mặc váy đỏ đeo mặt nạ kịch châm lửa đốt nhà Sherlock là ai?",
         "options": [
-          "Vì hắn là kẻ đồng phạm muốn phản bội băng nhóm",
-          "Băng nhóm Pentacle (Davenport, Beaupre, Helwig) đã nhầm tưởng hắn là Sherlock Holmes thật do hắn hóa trang giống hệt",
-          "Vì hắn phát hiện ra mật mã của Moriarty",
-          "Hắn bị Mycroft thuê sát thủ diệt khẩu"
+          "Elle Fanning",
+          "Olivia Robins",
+          "Gertrude Helwig",
+          "Laura Parker"
         ],
-        "correct_option_index": 1,
-        "explanation": "Nạn nhân bị bắn chết là Marvin Pemberton - một diễn viên đóng giả Sherlock Holmes để quỵt tiền. Hắn mặc vest đỏ burgundy giả danh và bước vào phòng của Holmes đúng lúc sát thủ Davenport đang ngắm bắn tỉa."
+        "correct_option_index": 2,
+        "explanation": "Gertrude Helwig là diễn viên kịch tại Lyceum Theatre. Cô ta mặc trang phục kịch váy đỏ, đeo mặt nạ trộm từ nhà hát và bị lửa bén làm bỏng tay phải lúc châm hỏa hoạn."
       },
       {
         "id": "q5",
@@ -474,7 +562,18 @@ export const SHERLOCK_CASE_1 = {
     { "name": "Quán rượu The Pavilion", "category": "Quán rượu / Độc tố", "address": "20 NW Marylebone", "code": "20NW", "desc": "Nơi Elle Fanning pha trà kịch độc." },
     { "name": "John Taylor Chemist", "category": "Hóa chất độc", "address": "72 NW Baker St", "code": "72NW", "desc": "Tiệm bán chất kịch độc Cyanide." },
     { "name": "Elle Fanning", "category": "Nghi phạm", "address": "90 NW Marylebone", "code": "90NW", "desc": "Con gái cố cảnh sát Dick Alpert." },
-    { "name": "Cảng Outer Docks", "category": "Bến cảng", "address": "98 E Wapping", "code": "98E", "desc": "Trụ sở cũ của băng buôn lậu bị Holmes phá." }
+    { "name": "Cảng Outer Docks", "category": "Bến cảng", "address": "98 E Wapping", "code": "98E", "desc": "Trụ sở cũ của băng buôn lậu bị Holmes phá." },
+    { "name": "Arthur Pendelton", "category": "Thợ kim hoàn", "address": "12 SW Pall Mall", "code": "12SW", "desc": "Cửa hàng trang sức lâu đời." },
+    { "name": "Nhà máy in ấn Hansard", "category": "Xưởng in", "address": "15 WC High Holborn", "code": "15WC", "desc": "In ấn hồ sơ nghị viện và báo chí." },
+    { "name": "Bác sĩ Charles Darwin", "category": "Y tế", "address": "27 EC Fleet St", "code": "27EC", "desc": "Phòng khám đa khoa tư nhân." },
+    { "name": "Bà Beatrice Smith", "category": "Bánh ngọt", "address": "41 NW Regent St", "code": "41NW", "desc": "Tiệm trà và bánh quy bơ béo." },
+    { "name": "Dụng cụ câu cá Miller", "category": "Thể thao", "address": "49 NW Oxford St", "code": "49NW", "desc": "Bán cần câu và mồi câu cá sông." },
+    { "name": "Công ty Vận tải Blackwood", "category": "Vận chuyển", "address": "61 EC Minories", "code": "61EC", "desc": "Dịch vụ kho bãi và vận tải biển." },
+    { "name": "Hội luật gia Middle Temple", "category": "Luật pháp", "address": "67 WC Fleet St", "code": "67WC", "desc": "Văn phòng tư vấn pháp lý dân sự." },
+    { "name": "Rạp xiếc Royal Amphitheatre", "category": "Giải trí", "address": "79 SW Victoria St", "code": "79SW", "desc": "Sân khấu diễn xiếc và thú lạ." },
+    { "name": "Quán rượu Blind Beggar", "category": "Quán bia", "address": "91 EC Whitechapel", "code": "91EC", "desc": "Quán rượu nghèo bình dân đông đúc." },
+    { "name": "Tiệm thuộc da Henderson", "category": "Sản xuất", "address": "96 NW Marylebone", "code": "96NW", "desc": "Xưởng chế tác sản phẩm da thuộc." },
+    { "name": "Khách sạn Victoria Club", "category": "Khách sạn", "address": "98 SW Victoria", "code": "98SW", "desc": "Nơi lưu trú cho du khách phương xa." }
   ],
   "newspaper": {
     "issue_date": "Saturday, 2 December 1893",
