@@ -1396,34 +1396,37 @@ function App() {
                     </div>
 
                     <div className="sherlock-directory-grid">
-                      {(() => {
-                        const caseId = activeSherlockCase?.case_id;
-                        // Ưu tiên hiển thị địa điểm của vụ án hiện tại + địa điểm chung (appeared_in rỗng)
-                        const entries = MASTER_DIRECTORY.filter(entry =>
-                          entry.appeared_in.length === 0 || entry.appeared_in.includes(caseId)
-                        );
-                        return entries
-                          .slice()
-                          .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
-                          .filter(item => {
-                            const matchQuery = !sherlockSearchQuery ||
-                              item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) ||
-                              item.desc.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) ||
-                              item.address.toLowerCase().includes(sherlockSearchQuery.toLowerCase());
-                            const nameWords = item.name.toUpperCase().split(/[\s,.-]+/);
-                            const matchLetter = sherlockDirLetterFilter === 'ALL' ||
-                              nameWords.some(w => w.startsWith(sherlockDirLetterFilter));
-                            return matchQuery && matchLetter;
-                          })
-                          .map((item, idx) => (
-                            <div
+                      {MASTER_DIRECTORY
+                        .slice()
+                        .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
+                        .filter(item => {
+                          const matchQuery = !sherlockSearchQuery || 
+                            item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || 
+                            item.desc.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) ||
+                            item.address.toLowerCase().includes(sherlockSearchQuery.toLowerCase());
+                          const nameWords = item.name.toUpperCase().split(/[\s,.-]+/);
+                          const matchLetter = sherlockDirLetterFilter === 'ALL' || 
+                            nameWords.some(w => w.startsWith(sherlockDirLetterFilter));
+                          return matchQuery && matchLetter;
+                        })
+                        .map((item, idx) => {
+                          const isCurrentCaseLoc = item.appeared_in?.includes(activeSherlockCase?.case_id);
+                          return (
+                            <div 
                               key={idx}
-                              className="sherlock-directory-card cursor-default"
+                              className={`sherlock-directory-card cursor-default ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/20' : ''}`}
                             >
                               <div>
-                                <div className="flex items-center justify-between mb-1.5">
-                                  <h4 className="font-extrabold text-amber-200 text-sm">{item.name}</h4>
-                                  <span className="sherlock-directory-code">
+                                <div className="flex items-center justify-between mb-1.5 gap-2">
+                                  <h4 className="font-extrabold text-amber-200 text-sm flex items-center gap-1.5">
+                                    {item.name}
+                                    {isCurrentCaseLoc && (
+                                      <span className="text-[0.6rem] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                                        Vụ án hiện tại
+                                      </span>
+                                    )}
+                                  </h4>
+                                  <span className="sherlock-directory-code shrink-0">
                                     Mã [{item.code}]
                                   </span>
                                 </div>
@@ -1431,9 +1434,10 @@ function App() {
                                 <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
                               </div>
                             </div>
-                          ));
-                      })()}
+                          );
+                        })}
                     </div>
+
                   </div>
                 )}
 
