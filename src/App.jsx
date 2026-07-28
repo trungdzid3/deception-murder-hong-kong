@@ -1339,32 +1339,44 @@ function App() {
                         className="sherlock-map-img"
                       />
 
-                      {/* GHIM CÁC ĐỊA ĐIỂM THUỘC VỤ ÁN HẠN ĐỊNH TRÊN BẢN ĐỒ */}
-                      {Object.values(activeSherlockCase.nodes || {}).map((n) => {
-                        const isVisited = roomState.visitedNodes?.includes(n.id);
-                        const isUnlocked = roomState.unlockedNodes?.includes(n.id);
-                        const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+                      {/* GHIM TOÀN BỘ ĐỊA ĐIỂM TRÊN BẢN ĐỒ LONDON (BAO GỒM ĐỊA ĐIỂM THẬT & ĐỊA ĐIỂM NHIỄU DANH BẠ) */}
+                      {MASTER_DIRECTORY.map((entry) => {
+                        const code = entry.code;
+                        const caseNode = activeSherlockCase?.nodes?.[code];
+                        const isVisited = roomState.visitedNodes?.includes(code);
+                        const isUnlocked = roomState.unlockedNodes?.includes(code);
+                        const bareNumber = code.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
 
-                        // Ưu tiên map_coords từ master directory hoặc node data
-                        const masterEntry = MASTER_DIRECTORY.find(e => e.code === n.id);
-                        const coords = n.map_coords || masterEntry?.map_coords;
+                        const coords = entry.map_coords || caseNode?.map_coords;
                         if (!coords) return null;
 
                         // Tỷ lệ % vị trí trên bản đồ 860 × 570 px
                         const leftPct = ((coords.x / 860) * 100).toFixed(2);
                         const topPct  = ((coords.y / 570) * 100).toFixed(2);
 
+                        // Phân loại kiểu ghim
+                        let pinClass = 'general'; // Địa điểm danh bạ chung
+                        if (caseNode) {
+                          if (isVisited) pinClass = 'visited';
+                          else if (isUnlocked) pinClass = 'unlocked';
+                        }
+
                         return (
                           <div
-                            key={n.id}
+                            key={code}
                             onClick={() => {
-                              handleVisitNode(n.id);
-                              setSherlockSelectedNodeId(n.id);
-                              setSherlockActiveTab('casebook');
+                              if (caseNode) {
+                                handleVisitNode(code);
+                                setSherlockSelectedNodeId(code);
+                                setSherlockActiveTab('casebook');
+                              } else {
+                                setSherlockSearchQuery(entry.name);
+                                setSherlockActiveTab('directory');
+                              }
                             }}
                             style={{ left: `${leftPct}%`, top: `${topPct}%` }}
-                            className={`sherlock-map-pin ${isVisited ? 'visited' : isUnlocked ? 'unlocked' : ''}`}
-                            title={`[${n.id}] ${n.title}`}
+                            className={`sherlock-map-pin ${pinClass}`}
+                            title={`[${code}] ${entry.name} (${entry.address})`}
                           >
                             <span className="sherlock-pin-number">[{bareNumber}]</span>
                           </div>
@@ -1382,7 +1394,7 @@ function App() {
                         <h3 className="text-lg font-black text-amber-200 flex items-center gap-2">
                           <PhoneCall size={22} className="text-amber-400" /> NIÊN GIÁM DANH BẠ LONDON (POST OFFICE DIRECTORY)
                         </h3>
-                        <p className="text-xs text-slate-400">Tra cứu tên nhân vật, cơ quan hoặc tiệm buôn thuộc vụ án để lấy mã tọa độ địa điểm.</p>
+                        <p className="text-xs text-slate-400">Tra cứu toàn bộ nhân vật, cơ quan hoặc tiệm buôn toàn London để lấy mã tọa độ địa điểm.</p>
                       </div>
 
                       <div className="relative w-full md:w-64">
@@ -1411,53 +1423,46 @@ function App() {
                     </div>
 
                     <div className="sherlock-directory-grid">
-                      {(() => {
-                        // Lấy danh bạ riêng của từng vụ án (từ case.directory hoặc filter MASTER_DIRECTORY theo case_id)
-                        const caseDir = activeSherlockCase.directory && activeSherlockCase.directory.length > 0 
-                          ? activeSherlockCase.directory 
-                          : MASTER_DIRECTORY.filter(item => item.appeared_in?.includes(activeSherlockCase.case_id));
-
-                        return caseDir
-                          .slice()
-                          .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
-                          .filter(item => {
-                            const matchQuery = !sherlockSearchQuery || 
-                              item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || 
-                              item.desc?.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) ||
-                              item.address?.toLowerCase().includes(sherlockSearchQuery.toLowerCase());
-                            const nameWords = item.name.toUpperCase().split(/[\s,.-]+/);
-                            const matchLetter = sherlockDirLetterFilter === 'ALL' || 
-                              nameWords.some(w => w.startsWith(sherlockDirLetterFilter));
-                            return matchQuery && matchLetter;
-                          })
-                          .map((item, idx) => {
-                            const isCurrentCaseLoc = item.appeared_in?.includes(activeSherlockCase?.case_id);
-                            return (
-                              <div 
-                                key={idx}
-                                className={`sherlock-directory-card cursor-default ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/20' : ''}`}
-                              >
-                                <div>
-                                  <div className="flex items-center justify-between mb-1.5 gap-2">
-                                    <h4 className="font-extrabold text-amber-200 text-sm flex items-center gap-1.5">
-                                      {item.name}
-                                      {isCurrentCaseLoc && (
-                                        <span className="text-[0.6rem] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                                          Vụ án hiện tại
-                                        </span>
-                                      )}
-                                    </h4>
-                                    <span className="sherlock-directory-code shrink-0">
-                                      Mã [{item.code}]
-                                    </span>
-                                  </div>
-                                  <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
-                                  <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
+                      {MASTER_DIRECTORY
+                        .slice()
+                        .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
+                        .filter(item => {
+                          const matchQuery = !sherlockSearchQuery || 
+                            item.name.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) || 
+                            item.desc?.toLowerCase().includes(sherlockSearchQuery.toLowerCase()) ||
+                            item.address?.toLowerCase().includes(sherlockSearchQuery.toLowerCase());
+                          const nameWords = item.name.toUpperCase().split(/[\s,.-]+/);
+                          const matchLetter = sherlockDirLetterFilter === 'ALL' || 
+                            nameWords.some(w => w.startsWith(sherlockDirLetterFilter));
+                          return matchQuery && matchLetter;
+                        })
+                        .map((item, idx) => {
+                          const isCurrentCaseLoc = item.appeared_in?.includes(activeSherlockCase?.case_id);
+                          return (
+                            <div 
+                              key={idx}
+                              className={`sherlock-directory-card cursor-default ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/30' : ''}`}
+                            >
+                              <div>
+                                <div className="flex items-center justify-between mb-1.5 gap-2">
+                                  <h4 className="font-extrabold text-amber-200 text-sm flex items-center gap-1.5">
+                                    {item.name}
+                                    {isCurrentCaseLoc && (
+                                      <span className="text-[0.6rem] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                                        Vụ án hiện tại
+                                      </span>
+                                    )}
+                                  </h4>
+                                  <span className="sherlock-directory-code shrink-0">
+                                    Mã [{item.code}]
+                                  </span>
                                 </div>
+                                <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
+                                <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
                               </div>
-                            );
-                          });
-                      })()}
+                            </div>
+                          );
+                        })}
                     </div>
 
                   </div>
