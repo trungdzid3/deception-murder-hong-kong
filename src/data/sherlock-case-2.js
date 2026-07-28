@@ -8,8 +8,8 @@ export const SHERLOCK_CASE_2 = {
     "initial_clues": [
       "Thi thể cháy xém có vết đạn bắn xuyên từ lưng ra bụng của một khẩu .44 Webley.",
       "Chiếc hộp sắt trên bàn làm việc bị méo nhẹ phần vành nắp, cho thấy nó được đóng vội vàng trong lúc đám cháy đang diễn ra.",
-      "Mảnh giấy nhắn 1 trong hộp sắt: 'S, Sẽ không có hại gì xảy ra đâu, tôi hứa! - M.'",
-      "Mảnh giấy nhắn 2 trong hộp sắt: 'Ngày 2 tháng 12 năm 1893. Gửi Lestrade: Hãy phân tích kỹ để được trợ giúp thêm. Tốt nhất nên kiểm tra phần còn lại của hiện trường.'",
+      "Mảnh giấy nhắn 1 trong hộp sắt: \"S, No harm will come of it, I promise! - M.\" (S, Sẽ không có hại gì xảy ra đâu, tôi hứa! - M.)",
+      "Mảnh giấy nhắn 2 trong hộp sắt: \"Lestrade, Analysis will further aid. Best examine remaining\" (Lestrade, Việc phân tích sẽ giúp ích thêm. Tốt nhất nên kiểm tra phần còn lại)",
       "Nhân chứng Olivia Robins báo cáo đã nhìn thấy Sherlock gặp một người đàn ông giống Mycroft lúc 8:30 tối, và lúc 9:00 tối thấy Edward Beaupre cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà."
     ],
     "unlocked_nodes": ["50NW", "8SW", "22SW"]
