@@ -1212,7 +1212,7 @@ function App() {
                         </div>
                       </div>
 
-                      {/* DANH SÁCH ĐỊA ĐIỂM CÓ THỂ KHÁM XÉT – BẤM ĐỂ ĐỌC MANH MỐI */}
+                      {/* DANH SÁCH ĐỊA ĐIỂM CÓ THỂ KHÁM XÉT – BẤM ĐỂ ĐỌC LỜI KHAI / MANH MỐI */}
                       <div className="sherlock-panel space-y-2">
                         <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider border-b border-amber-500/20 pb-2 flex items-center gap-1.5">
                           <Search size={14} /> ĐỊA ĐIỂM CÓ THỂ KHÁM XÉT ({roomState.unlockedNodes?.length || 0}):
@@ -1222,25 +1222,31 @@ function App() {
                             const isVisited = roomState.visitedNodes?.includes(nodeId);
                             const node = activeSherlockCase.nodes?.[nodeId];
                             const masterEntry = MASTER_DIRECTORY.find(e => e.code === nodeId);
-                            // Chỉ hiện TÊN địa điểm – không hiển thị mã hay trạng thái
-                            const name = node?.title || masterEntry?.name || nodeId;
+                            
+                            // Chỉ hiển thị TÊN (Tên người hoặc tên tòa nhà) — tuyệt đối không hiện địa chỉ hay mã số
+                            let displayName = nodeId;
+                            if (node?.title) {
+                              // Nếu node.title có dạng "Tên (Mô tả)" -> lấy phần tên
+                              displayName = node.title.split('(')[0].trim();
+                            } else if (masterEntry?.name) {
+                              displayName = masterEntry.name.split('(')[0].trim();
+                            }
+
                             const isSelected = sherlockSelectedNodeId === nodeId;
                             return (
                               <button
                                 key={nodeId}
                                 onClick={() => {
-                                  if (node) {
-                                    handleVisitNode(nodeId);
-                                    setSherlockSelectedNodeId(nodeId);
-                                  }
+                                  handleVisitNode(nodeId);
+                                  setSherlockSelectedNodeId(nodeId);
                                 }}
                                 className={`sherlock-unlocked-btn text-left ${
                                   isSelected ? 'selected' : isVisited ? 'visited' : ''
-                                } ${node ? 'cursor-pointer' : 'cursor-default opacity-60'}`}
-                                title={node ? `Bấm để đọc manh mối tại địa điểm này` : `Tra mã ${nodeId} trong Danh Bạ`}
+                                } cursor-pointer`}
+                                title={`Bấm để xem lời khai / manh mối tại địa điểm này`}
                               >
-                                <Compass size={12} className="shrink-0" />
-                                <span className="truncate">{name}</span>
+                                <Compass size={12} className="shrink-0 text-amber-400" />
+                                <span className="truncate">{displayName}</span>
                                 {isVisited && <span className="ml-auto text-emerald-400 text-[0.6rem] font-bold shrink-0">✓</span>}
                               </button>
                             );
