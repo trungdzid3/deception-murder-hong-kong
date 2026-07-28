@@ -147,7 +147,46 @@ function startRoomTimer(roomCode) {
 io.on('connection', (socket) => {
   console.log(`User connected: ${socket.id}`);
 
+  // Handler Chọn Vụ Án Sherlock
+  socket.on('select-sherlock-case', ({ roomCode, caseId }) => {
+    const code = roomCode?.toUpperCase();
+    const room = rooms[code];
+    if (!room) return;
+
+    const targetCase = ALL_SHERLOCK_CASES[caseId] || ALL_SHERLOCK_CASES.sherlock_case_1;
+    room.selectedCaseId = caseId;
+    room.unlockedNodes = [...(targetCase.intro?.unlocked_nodes || [])];
+    room.visitedNodes = [];
+    io.to(code).emit('room-updated', room);
+  });
+
+  // Handler Ghé Thăm Địa Điểm Node Sherlock
+  socket.on('visit-node', ({ roomCode, nodeId }) => {
+    const code = roomCode?.toUpperCase();
+    const room = rooms[code];
+    if (!room) return;
+
+    if (!room.visitedNodes) room.visitedNodes = [];
+    if (!room.visitedNodes.includes(nodeId)) {
+      room.visitedNodes.push(nodeId);
+    }
+
+    const currentCase = ALL_SHERLOCK_CASES[room.selectedCaseId || 'sherlock_case_1'];
+    const node = currentCase?.nodes?.[nodeId];
+    if (node?.unlocks?.nodes) {
+      if (!room.unlockedNodes) room.unlockedNodes = [];
+      node.unlocks.nodes.forEach(unlockedId => {
+        if (!room.unlockedNodes.includes(unlockedId)) {
+          room.unlockedNodes.push(unlockedId);
+        }
+      });
+    }
+
+    io.to(code).emit('room-updated', room);
+  });
+
   // 1. Tạo phòng
+
   socket.on('create-room', ({ playerName, gameType }) => {
     let roomCode = generateRoomCode();
     while (rooms[roomCode]) {

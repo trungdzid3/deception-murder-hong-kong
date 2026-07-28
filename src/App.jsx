@@ -39,8 +39,12 @@ function App() {
   const [errorMsg, setErrorMsg] = useState('');
   const [copiedMsg, setCopiedMsg] = useState(false);
 
+  // Sherlock Case Selected State
+  const [selectedCaseId, setSelectedCaseId] = useState('sherlock_case_1');
+
   // Optional Roles Settings (Mặc định tắt hoàn toàn, chỉ mở khi >= 6 người)
   const [enableAccomplice, setEnableAccomplice] = useState(false);
+
   const [enableWitness, setEnableWitness] = useState(false);
 
   // Floating Chat Bubble Open State & Mobile Active Tab
@@ -567,21 +571,29 @@ function App() {
   const isForensic = roomState?.forensicScientistId === socket.id;
   const isMurderer = me?.role?.id === 'murderer';
   const isHost = roomState?.hostId === socket.id || roomState?.players?.[0]?.id === socket.id;
-  const activeSherlockCase = ALL_SHERLOCK_CASES[roomState?.selectedCaseId || 'sherlock_case_1'] || ALL_SHERLOCK_CASES.sherlock_case_1;
+  const currentCaseId = roomState?.selectedCaseId || selectedCaseId || 'sherlock_case_1';
+  const activeSherlockCase = ALL_SHERLOCK_CASES[currentCaseId] || ALL_SHERLOCK_CASES.sherlock_case_1;
 
   const handleSelectSherlockCase = (caseId) => {
+    setSelectedCaseId(caseId);
+    const initialUnlocked = ALL_SHERLOCK_CASES[caseId]?.intro?.unlocked_nodes || [];
     setRoomState(prev => prev ? {
       ...prev,
       selectedCaseId: caseId,
-      unlockedNodes: [...(ALL_SHERLOCK_CASES[caseId]?.intro?.unlocked_nodes || [])],
+      unlockedNodes: [...initialUnlocked],
       visitedNodes: []
-    } : prev);
+    } : {
+      selectedCaseId: caseId,
+      unlockedNodes: [...initialUnlocked],
+      visitedNodes: []
+    });
 
     const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
     if (code) {
       socket.emit('select-sherlock-case', { roomCode: code, caseId });
     }
   };
+
   const botCount = roomState?.players?.filter(p => p.isBot).length || 0;
   const hasVotedNextRound = roomState?.votesForNextRound?.includes(socket.id);
   const totalPlayersCount = roomState?.players?.length || 1;
