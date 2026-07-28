@@ -52,12 +52,13 @@ Deception - Murder in Hong Kong/
 │   ├── data/                  # Dữ liệu thẻ bài & Kịch bản vụ án Sherlock
 │   │   ├── game-data.js       # Dữ liệu thẻ Deception (Roles, Means, Clues, Scene Tiles)
 │   │   ├── sherlock-cases.js  # Registry quản lý danh sách & chọn Vụ án Sherlock Holmes
-│   │   ├── sherlock-case-1.js # Vụ án 1: Bức Tranh Bị Đánh Tráo (The Swapped Canvas - Tân thủ)
-│   │   ├── sherlock-case-2.js # Vụ án 2: Cái Chết Của Sherlock Holmes (Baker Street)
-│   │   ├── sherlock-case-3.js # Vụ án 3: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)
-│   │   ├── sherlock-case-4.js # Vụ án 4: Lời Nguyền Của Xác Ướp (The Mummy's Curse)
-│   │   ├── sherlock-case-5.js # Vụ án 5: Cán Cân Công Lý Bất Ổn (The Case of the Unsettled Balance)
-│   │   └── spyfall-data.js    # Dữ liệu cho mode Spyfall
+│   │   ├── sherlock-case-6.js # Vụ án 1: Bản Thiết Kế Bị Đánh Cắp (The Stolen Blueprint - Tân thủ)
+│   │   ├── sherlock-case-1.js # Vụ án 2: Bức Tranh Bị Đánh Tráo (The Swapped Canvas - Nhập môn)
+│   │   ├── sherlock-case-2.js # Vụ án 3: Cái Chết Của Sherlock Holmes (Baker Street - Nhập môn nâng cao)
+│   │   ├── sherlock-case-3.js # Vụ án 4: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess - Trung bình)
+│   │   ├── sherlock-case-4.js # Vụ án 5: Lời Nguyền Của Xác Ướp (The Mummy's Curse - Khó)
+│   │   └── sherlock-case-5.js # Vụ án 6: Cán Cân Công Lý Bất Ổn (The Case of the Unsettled Balance - Chuyên gia)
+
 ├── App.css                # Style phụ trợ
 ├── App.jsx                # Component chính điều phối game & UI
 ├── index.css              # Style hệ thống UI Design System (Crimson Cyber & Victorian)
