@@ -77,6 +77,7 @@ function App() {
   const [sherlockSelectedNodeId, setSherlockSelectedNodeId] = useState(null);
   const [sherlockAnswers, setSherlockAnswers] = useState({});
   const [sherlockActiveTab, setSherlockActiveTab] = useState('casebook'); // 'casebook' | 'map' | 'directory' | 'newspaper' | 'quiz'
+  const [sherlockSelectedAreaFilter, setSherlockSelectedAreaFilter] = useState('ALL'); // 'ALL' | 'NW' | 'WC' | 'EC' | 'SW' | 'SE'
 
   // Bốc Thẻ Bối Cảnh Mới Modal (Pháp Y Vòng 2 & 3)
   const [showDrawTileModal, setShowDrawTileModal] = useState(false);
@@ -1267,6 +1268,46 @@ function App() {
                       </div>
                     </div>
 
+                    {/* BỘ LỌC PHÂN VÙNG BẢN ĐỒ LONDON (REGION FILTER BAR) */}
+                    <div className="sherlock-map-filter-bar border-t border-b border-amber-500/20 py-2">
+                      <button 
+                        onClick={() => setSherlockSelectedAreaFilter('ALL')}
+                        className={`sherlock-map-filter-btn ${sherlockSelectedAreaFilter === 'ALL' ? 'active' : ''}`}
+                      >
+                        🌏 TẤT CẢ KHU VỰC
+                      </button>
+                      <button 
+                        onClick={() => setSherlockSelectedAreaFilter('NW')}
+                        className={`sherlock-map-filter-btn ${sherlockSelectedAreaFilter === 'NW' ? 'active' : ''}`}
+                      >
+                        📍 KHU NW (NORTH WEST)
+                      </button>
+                      <button 
+                        onClick={() => setSherlockSelectedAreaFilter('WC')}
+                        className={`sherlock-map-filter-btn ${sherlockSelectedAreaFilter === 'WC' ? 'active' : ''}`}
+                      >
+                        📍 KHU WC (WEST CENTRAL)
+                      </button>
+                      <button 
+                        onClick={() => setSherlockSelectedAreaFilter('EC')}
+                        className={`sherlock-map-filter-btn ${sherlockSelectedAreaFilter === 'EC' ? 'active' : ''}`}
+                      >
+                        📍 KHU EC (EAST CENTRAL)
+                      </button>
+                      <button 
+                        onClick={() => setSherlockSelectedAreaFilter('SW')}
+                        className={`sherlock-map-filter-btn ${sherlockSelectedAreaFilter === 'SW' ? 'active' : ''}`}
+                      >
+                        📍 KHU SW (SOUTH WEST)
+                      </button>
+                      <button 
+                        onClick={() => setSherlockSelectedAreaFilter('SE')}
+                        className={`sherlock-map-filter-btn ${sherlockSelectedAreaFilter === 'SE' ? 'active' : ''}`}
+                      >
+                        📍 KHU SE (SOUTH EAST)
+                      </button>
+                    </div>
+
                     {/* VIEWPORT BẢN ĐỒ TƯƠNG TÁC */}
                     <div className="sherlock-map-viewport">
                       <img 
@@ -1275,22 +1316,42 @@ function App() {
                         className="sherlock-map-img"
                       />
 
-                      {/* GHIM TRÒN CÁC ĐỊA ĐIỂM TRÊN BẢN ĐỒ */}
+                      {/* GHIM TRÒN CÁC ĐỊA ĐIỂM TRÊN BẢN ĐỒ CHUẨN ĐỊA LÝ */}
                       {Object.values(SHERLOCK_CASE_1.nodes).map((n) => {
                         const isVisited = roomState.visitedNodes?.includes(n.id);
+                        const isSelectedArea = sherlockSelectedAreaFilter === 'ALL' || n.area === sherlockSelectedAreaFilter;
                         
-                        // Tọa độ % tương đối chuẩn trên bản đồ Holmes London
+                        // Tọa độ % phân vùng địa lý chuẩn 100% trên bản đồ Holmes London
                         const coordsMap = {
-                          '221B': { left: '26%', top: '24%' },
-                          '50NW': { left: '30%', top: '20%' },
-                          '53NW': { left: '34%', top: '30%' },
-                          '8SW': { left: '32%', top: '78%' },
-                          '22SW': { left: '38%', top: '84%' },
-                          '14SW': { left: '26%', top: '68%' },
-                          '5EC': { left: '78%', top: '28%' },
-                          '42EC': { left: '84%', top: '34%' },
-                          '18WC': { left: '54%', top: '48%' },
-                          '30WC': { left: '48%', top: '56%' }
+                          // NW (North West - Top Left)
+                          '221B': { left: '22%', top: '24%' },
+                          '50NW': { left: '16%', top: '16%' },
+                          '53NW': { left: '28%', top: '26%' },
+                          '16NW': { left: '34%', top: '18%' },
+
+                          // WC (West Central - Upper Center)
+                          '18WC': { left: '46%', top: '38%' },
+                          '28WC': { left: '40%', top: '44%' },
+                          '34WC': { left: '52%', top: '42%' },
+                          '85WC': { left: '48%', top: '34%' },
+
+                          // EC (East Central - Top Right)
+                          '5EC': { left: '80%', top: '20%' },
+                          '35EC': { left: '74%', top: '28%' },
+                          '42EC': { left: '86%', top: '32%' },
+                          '53EC': { left: '76%', top: '38%' },
+                          '73EC': { left: '82%', top: '16%' },
+                          '74EC': { left: '88%', top: '24%' },
+                          '83EC': { left: '84%', top: '42%' },
+
+                          // SW (South West - Bottom Left)
+                          '8SW': { left: '28%', top: '76%' },
+                          '22SW': { left: '36%', top: '84%' },
+                          '14SW': { left: '20%', top: '68%' },
+                          '52SW': { left: '26%', top: '82%' },
+
+                          // SE (South East - Bottom Right)
+                          '88SE': { left: '80%', top: '78%' }
                         };
 
                         const pos = coordsMap[n.id] || { left: '50%', top: '50%' };
@@ -1298,14 +1359,20 @@ function App() {
                         return (
                           <div
                             key={n.id}
-                            style={{ left: pos.left, top: pos.top }}
+                            style={{ 
+                              left: pos.left, 
+                              top: pos.top,
+                              opacity: isSelectedArea ? 1 : 0.2,
+                              pointerEvents: isSelectedArea ? 'auto' : 'none',
+                              transform: isSelectedArea ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0.85)'
+                            }}
                             className={`sherlock-map-pin ${isVisited ? 'visited' : ''}`}
                             onClick={() => {
                               setSherlockSelectedNodeId(n.id);
                               setSherlockActiveTab('casebook');
                               if (!isVisited) handleVisitNode(n.id);
                             }}
-                            title={`📍 Mã [${n.id}] - ${n.title}`}
+                            title={`📍 Mã [${n.id}] - ${n.title} (Vùng ${n.area})`}
                           >
                             <div className="sherlock-map-pin-badge">
                               📍 [{n.id}]
