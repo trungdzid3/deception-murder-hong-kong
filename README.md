@@ -40,7 +40,8 @@
 ```
 Deception - Murder in Hong Kong/
 ├── .agent/                    # Quy chuẩn & Hướng dẫn đặc tả Agents (GEMINI, UI, Database...)
-├── docs/                      # Tài liệu tham khảo & Luật chơi PDF
+├── docs/                      # Tài liệu tham khảo & Kịch bản / Luật chơi PDF
+│   ├── cases/                 # Tài liệu PDF kịch bản mở rộng (Case-4-The-Unsettled-Balance.pdf)
 │   ├── references/            # Hình ảnh tham khảo (Anh-Tham-Khao-Ban-Do-London-1888.jpg, Anh-Tham-Khao-Background-Game.jpg)
 │   └── rulebooks/             # File luật chơi PDF (Luat-Choi-Sherlock-Holmes.pdf, Luat-Choi-Deception-Murder-in-Hong-Kong.pdf)
 ├── public/                    # Tài nguyên tĩnh web (Assets)
@@ -54,10 +55,11 @@ Deception - Murder in Hong Kong/
 │   │   ├── sherlock-case-1.js # Vụ án 1: Cái Chết Của Sherlock Holmes (Baker Street)
 │   │   ├── sherlock-case-2.js # Vụ án 2: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)
 │   │   ├── sherlock-case-3.js # Vụ án 3: Lời Nguyền Của Xác Ướp (The Mummy's Curse)
+│   │   ├── sherlock-case-4.js # Vụ án 4: Cán Cân Công Lý Bất Ổn (The Case of the Unsettled Balance)
 │   │   └── spyfall-data.js    # Dữ liệu cho mode Spyfall
-│   ├── App.css                # Style phụ trợ
-│   ├── App.jsx                # Component chính điều phối game & UI
-│   ├── index.css              # Style hệ thống UI Design System (Crimson Cyber & Victorian)
+├── App.css                # Style phụ trợ
+├── App.jsx                # Component chính điều phối game & UI
+├── index.css              # Style hệ thống UI Design System (Crimson Cyber & Victorian)
 │   └── main.jsx               # Entrypoint React
 ├── server.js                  # Socket.IO Realtime Server (Backend Node.js)
 ├── package.json               # Cấu hình dự án & Dependencies

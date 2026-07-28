@@ -1,13 +1,15 @@
 import { SHERLOCK_CASE_1 } from './sherlock-case-1';
 import { SHERLOCK_CASE_2 } from './sherlock-case-2';
 import { SHERLOCK_CASE_3 } from './sherlock-case-3';
+import { SHERLOCK_CASE_4 } from './sherlock-case-4';
 
-export { SHERLOCK_CASE_1, SHERLOCK_CASE_2, SHERLOCK_CASE_3 };
+export { SHERLOCK_CASE_1, SHERLOCK_CASE_2, SHERLOCK_CASE_3, SHERLOCK_CASE_4 };
 
 export const ALL_SHERLOCK_CASES = {
   sherlock_case_1: SHERLOCK_CASE_1,
   sherlock_case_2: SHERLOCK_CASE_2,
-  sherlock_case_3: SHERLOCK_CASE_3
+  sherlock_case_3: SHERLOCK_CASE_3,
+  sherlock_case_4: SHERLOCK_CASE_4
 };
 
 export const SHERLOCK_CASES_LIST = [
@@ -34,5 +36,13 @@ export const SHERLOCK_CASES_LIST = [
     difficulty: "Chuyên gia (Rất khó)",
     diffLevel: "hard",
     desc: "Chuỗi cái chết kỳ quặc giội xuống đoàn thám hiểm khai quật lăng mộ nữ vương Ai Cập Katebet. Vụ án có độ phức tạp rất cao với mạo danh tâm linh, cổ vật bị đánh tráo và buôn lén thị trường đen."
+  },
+  {
+    id: "sherlock_case_4",
+    title: "Vụ Án 4: Cán Cân Công Lý Bất Ổn (The Case of the Unsettled Balance)",
+    setting_date: "Ngày 4 tháng 6 năm 1890",
+    difficulty: "Chuyên gia (Rất khó)",
+    diffLevel: "hard",
+    desc: "Chuỗi cái chết bí ẩn giội xuống London theo biểu tượng nghi thức 4 nguyên tố cổ đại Thủy, Hỏa, Phong, Thổ. Đòi hỏi thám tử lột trần thủ đoạn triết học cuồng tín và chất độc Belladonna."
   }
 ];
