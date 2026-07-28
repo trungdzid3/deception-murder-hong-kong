@@ -1,176 +1,87 @@
 export const SHERLOCK_CASE_2 = {
   "case_id": "sherlock_case_2",
-  "title": "Vụ án 2: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
-  "author": "Ystari & Raymond Edwards",
-  "setting_date": "Ngày 5 tháng 3 năm 1889",
+  "title": "Vụ án 2: Cái Chết Của Sherlock Holmes",
+  "author": "Cody Fleming (SHCD Master Edition)",
+  "setting_date": "Ngày 2 tháng 12 năm 1893",
   "intro": {
-    "story_text": "Sáng sớm ngày 5 tháng 3 năm 1889, Thanh tra Lestrade vội vã tìm đến 221B Baker Street với khuôn mặt biến sắc. Ông Clarendon - một quý tộc giàu có tại khu Bloomsbury - được phát hiện bị bắn chết ngay tại bàn làm việc trong phòng riêng. Cảnh sát tìm thấy Frances Nolan, người phụ nữ trẻ quen biết nạn nhân, đang trong trạng thái bần thần hoang tưởng gần hiện trường với vết máu trên tay và không thể nhớ bất kỳ điều gì đã xảy ra trong vài giờ qua. Mọi bằng chứng tại chỗ dường như quy kết Frances là kẻ sát nhân cuồng sát. Tuy nhiên, Holmes nghi ngờ cô gái trẻ đã bị thao túng tâm lý bằng kỹ thuật thôi miên cao tay để làm kẻ thế mạng cho một âm mưu chiếm đoạt gia tài tàn bạo!",
+    "story_text": "Bầu trời London xám xịt chìm trong nỗi bàng hoàng sâu sắc. Căn hộ 221B Baker Street của Sherlock Holmes vừa hứng chịu một vụ hỏa hoạn kinh hoàng và một thi thể cháy xém được phát hiện ngay bên trong căn phòng làm việc tan hoang. Bác sĩ John Watson bàng hoàng không thể thốt lên lời. Toàn bộ Scotland Yard và giới báo chí đều tin rằng vị thám tử lừng danh đã tử thương. Tuy nhiên, các thiếu niên nhóm thám tử phố Baker phát hiện vết đạn bắn từ sau lưng thi thể và những cuộn tài liệu mật liên quan đến Tập đoàn Vũ khí Hoàng gia bị biến mất. Liệu đây là cái chết thực sự của Holmes hay là một hạ sách vượt ngoài dự đoán của vị thiên tài?",
     "initial_clues": [
-      "Nạn nhân Clarendon bị bắn chết bằng một viên đạn duy nhất từ súng ngắn Derringer tại bàn làm việc.",
-      "Hiện trường chỉ có duy nhất 1 ly rượu vang, loại trừ sự xuất hiện của cô em gái Loretta tại hiện trường.",
-      "Frances Nolan bị cảnh sát tạm giữ trong trạng thái hoang tưởng, ngơ ngác và liên tục bị mất trí nhớ tạm thời.",
-      "Sổ tay ghi chép của nạn nhân đề cập đến cuộc gặp với luật sư Hiram Davenport và Bác sĩ Trevelyan.",
-      "Nhật báo The Times đăng tin về các vụ tấn công bằng khăn thấm thuốc mê bốc hơi tại khu vực Lombard Street."
+      "Vụ hỏa hoạn và thi thể cháy xém mang vết đạn sau lưng tại 221B Baker Street.",
+      "Cuộn tài liệu mật về Tập đoàn Vũ khí Hoàng gia Harrington bị biến mất khỏi két sắt.",
+      "Nhật báo đưa tin về mâu thuẫn giữa Lord Harrington và Huân tước Moriarty.",
+      "Tin đồn về căn biệt thự bí mật của Moriarty tại khu ngoại ô phía Đông."
     ],
-    "unlocked_nodes": ["36EC", "13WC", "15SW", "38EC"]
+    "unlocked_nodes": ["221B", "13SW", "38EC", "10EC"]
   },
   "nodes": {
-    "36EC": {
-      "id": "36EC",
-      "title": "Căn hộ hai chị em Frances & Loretta Nolan",
-      "area": "EC",
-      "type": "suspect_interview",
-      "map_coords": { "x": 580, "y": 280 },
-      "content": "Frances Nolan ngơ ngác chia sẻ: 'Trong 2 tuần qua, tôi liên tục bị ngất xỉu và mất trí nhớ 2 lần mà không rõ lý do. Lần đầu tiên tôi tỉnh dậy thấy mình đang ngồi trên ghế công viên Hyde Park. Lần thứ hai vài ngày sau, khi tôi đến Lambeth Walk (24SE) để hỏi thuê một ngôi nhà nghỉ dưỡng xa thành phố cho hai chị em, tôi lại bị ngất và sau đó tỉnh dậy tại Ga xe lửa Waterloo. Tôi đã hỏi ý kiến Bác sĩ Trevelyan và ông ấy bảo tôi chỉ bị kiệt sức. Nếu tôi có bất trắc gì xảy ra, luật sư Hiram Davenport của gia đình vẫn là người quản lý tài sản theo đúng ý nguyện cha mẹ'. Lời khai chứng minh Frances hoàn toàn không biết việc di chúc của cô đã bị sửa đổi nhượng quyền cho Dr. Trevelyan!",
+    "221B": {
+      "id": "221B",
+      "title": "Căn hộ 221B Baker Street (Hiện trường hỏa hoạn)",
+      "area": "NW",
+      "type": "crime_scene",
+      "map_coords": { "x": 180, "y": 260 },
+      "content": "Căn hộ 221B chìm trong tro tàn. Bác sĩ Watson ngồi thần thờ trên bậc cửa. Khám xét góc làm việc bị cháy, thám tử phát hiện két sắt bí mật đã bị mở bằng chìa khóa chuẩn xác. Dưới sàn nhà còn sót lại một mảnh huy hiệu kim loại mang biểu tượng của Tập đoàn Vũ khí Harrington.",
       "unlocks": {
-        "nodes": ["24SE", "17WC", "28WC", "52EC"],
-        "evidence_items": [
-          "Frances bị ngất xỉu 2 lần tại Hyde Park và Lambeth Walk rồi tỉnh ở Ga Waterloo.",
-          "Frances tin rằng Luật sư Davenport vẫn quản lý tài sản, không hề biết di chúc đã bị đổi tên người thừa kế sang Dr. Trevelyan."
-        ]
+        "nodes": ["13SW", "38EC", "10EC"],
+        "evidence_items": ["Mảnh huy hiệu kim loại của Tập đoàn Vũ khí Harrington tại 221B."]
       },
-      "key_hints": [
-        "Frances bị thôi miên mất trí nhớ tại Lambeth Walk.",
-        "Frances không biết di chúc đã bị đổi tên người thừa kế, chứng tỏ cô bị thôi miên khi ký di chúc."
-      ]
+      "key_hints": ["Thủ phạm có chìa khóa két sắt và mang huy hiệu Harrington."]
+    },
+    "13SW": {
+      "id": "13SW",
+      "title": "Sở cảnh sát Scotland Yard (Thanh tra Lestrade)",
+      "area": "SW",
+      "type": "suspect_interview",
+      "map_coords": { "x": 210, "y": 590 },
+      "content": "Thanh tra Lestrade đau đớn xác nhận: 'Chúng tôi nhận được tin báo hỏa hoạn lúc 2 giờ sáng. Thi thể bị cháy xém nặng nhưng có nhân chứng thấy một người đàn ông cao lớn vội vã rời khỏi Baker Street hướng về phía ga chốt chặn Harrington'.",
+      "unlocks": {
+        "nodes": ["10EC"],
+        "evidence_items": ["Kẻ nghi vấn rời Baker Street hướng về ga chốt chặn Harrington."]
+      },
+      "key_hints": ["Manh mối dẫn trực tiếp tới khu vực Tập đoàn Harrington."]
     },
     "38EC": {
       "id": "38EC",
-      "title": "Bệnh viện St. Bartholomew (Bác sĩ pháp y Sir Jasper Meeks)",
+      "title": "Phòng khám nghiệm tử thi St. Bartholomew (Sir Jasper Meeks)",
       "area": "EC",
       "type": "clue_inspection",
       "map_coords": { "x": 550, "y": 320 },
-      "content": "Bác sĩ khám nghiệm tử thi Sir Jasper Meeks kết luận: Nạn nhân Clarendon bị bắn ở cự ly kề cận bằng một khẩu súng sáu cỡ nhỏ. Tử vong khoảng từ 4 đến 10 tiếng trước 1 giờ chiều.",
+      "content": "Bác sĩ Sir Jasper Meeks xem xét thi thể và thì thầm chi tiết chấn động: 'Thi thể bị cháy xém này tử vong do vết đạn bắn xuyên tim từ đằng sau trước khi ngọn lửa bùng phát. Tuy nhiên, chiều cao và cấu trúc xương vai của tử thi ngắn hơn Holmes gần 2 inch! Đây không phải là Sherlock Holmes!'.",
       "unlocks": {
-        "nodes": ["28WC"],
-        "evidence_items": ["Clarendon bị bắn cận chiến bằng súng sáu nhỏ Derringer."]
+        "nodes": ["10EC"],
+        "evidence_items": ["Thi thể bị cháy xém không phải là Sherlock Holmes."]
       },
-      "key_hints": ["Vết bắn cự ly kề cận trùng khớp với khẩu súng Derringer."]
+      "key_hints": ["Sherlock Holmes vẫn còn sống và đang ẩn mình điều tra ngầm."]
     },
-    "52EC": {
-      "id": "52EC",
-      "title": "Porky Shinwell & Tiệm sòng bạc Kilgore",
+    "10EC": {
+      "id": "10EC",
+      "title": "Trụ sở Tập đoàn Vũ khí Harrington",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 600, "y": 350 },
-      "content": "Porky Shinwell tiết lộ: Clarendon nợ Claude Kilgore khoản tiền nợ cờ bạc khổng lồ 7.000 Bảng Anh và bị gã tay chân Gus Bullock (kẻ có vết sẹo dài trên mặt) đe dọa. Về sau Clarendon bất ngờ trả hết nợ và liên tục gặp gỡ bí mật với Calvin Leach (kẻ chuyên tiêu thụ đồ trộm cắp) vào đêm trước khi bị sát hại.",
-      "unlocks": {
-        "nodes": ["15SW"],
-        "evidence_items": ["Clarendon gặp gỡ buôn bán đồ trộm cắp với Calvin Leach trước đêm bị sát hại."]
-      },
-      "key_hints": ["Mối quan hệ mờ ám giữa Clarendon và kẻ tiêu thụ đồ trộm cắp Calvin Leach."]
-    },
-    "13WC": {
-      "id": "13WC",
-      "title": "Văn phòng Luật sư Hiram Davenport",
-      "area": "WC",
-      "type": "suspect_interview",
-      "map_coords": { "x": 380, "y": 350 },
-      "content": "Luật sư Hiram Davenport xem lại sổ sách và tiết lộ: 'Tháng trước, cô Frances Nolan có tới đây cùng Bác sĩ Trevelyan - vị bác sĩ riêng phụ trách chăm sóc sức khỏe cho cô em gái Loretta. Cô Frances bày tỏ nguyện vọng muốn Bác sĩ Trevelyan trở thành người giám hộ hợp pháp toàn bộ tài sản gia đình nếu cô gặp bất trắc. Lúc ấy tôi thấy ánh mắt cô Frances đờ đẫn, thần trí vơ vẩn mộng du rất kỳ lạ. Nhưng khi nghe cô ấy bị ngất xỉu sau đó trong ngày, tôi chỉ nghĩ cô ấy bị say nắng'.",
-      "unlocks": {
-        "nodes": ["17WC", "14WC"],
-        "evidence_items": ["Bác sĩ Trevelyan đi cùng Frances đến văn phòng luật sư khi cô ở trạng thái mộng du để đổi di chúc."]
-      },
-      "key_hints": [
-        "Dr. Trevelyan trực tiếp đi cùng Frances khi đổi di chúc.",
-        "Frances như người mộng du bị thôi miên khi ký văn bản pháp lý."
-      ]
-    },
-    "17WC": {
-      "id": "17WC",
-      "title": "Phòng lưu trữ di chúc Chancery",
-      "area": "WC",
-      "type": "clue_inspection",
-      "map_coords": { "x": 410, "y": 390 },
-      "content": "Bản di chúc chính thức của Frances Nolan lập tháng 6 xác nhận: Trong trường hợp Frances qua đời hoặc mất khả năng hành vi, Bác sĩ Trevelyan sẽ trở thành người giám hộ duy nhất toàn quyền sở hữu và quản lý khối tài sản thừa kế khổng lồ của gia đình Nolan.",
+      "map_coords": { "x": 530, "y": 280 },
+      "content": "Lord Harrington bồn chồn thừa nhận: 'Đêm qua cuộn bản thiết kế pháo đài mật của chúng tôi bị đánh trộm. Chúng tôi đã nhờ Holmes cất giữ nhưng không ngờ kẻ thù đã ra tay trước'.",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Bác sĩ Trevelyan là người thụ hưởng duy nhất từ bản di chúc mới của Frances."]
+        "evidence_items": ["Tài liệu bị đánh cắp là bản thiết kế pháo đài mật của Lord Harrington."]
       },
-      "key_hints": ["Động cơ sát hại Clarendon và hãm hại Frances thuộc về Bác sĩ Trevelyan."]
-    },
-    "24SE": {
-      "id": "24SE",
-      "title": "Căn hộ thuê bí mật Lambeth Walk",
-      "area": "SE",
-      "type": "location_search",
-      "map_coords": { "x": 620, "y": 700 },
-      "content": "Khám xét căn hộ cho thuê ở Lambeth Walk (nơi Frances bị ngất xỉu lần 2), thám tử phát hiện một phòng kín có dụng cụ thôi miên, đĩa quay con lắc và lọ thuốc mê bốc hơi. Chủ nhà xác nhận Bác sĩ Trevelyan thường xuyên lui tới căn hộ này dưới tên giả.",
-      "unlocks": {
-        "nodes": ["28WC"],
-        "evidence_items": ["Phòng điều khiển thôi miên bí mật của Dr. Trevelyan tại Lambeth Walk."]
-      },
-      "key_hints": ["Dr. Trevelyan sử dụng địa điểm Lambeth Walk để thôi miên và điều khiển Frances."]
-    },
-    "15SW": {
-      "id": "15SW",
-      "title": "Khách sạn Clarendon lưu trú",
-      "area": "SW",
-      "type": "suspect_interview",
-      "map_coords": { "x": 190, "y": 580 },
-      "content": "Quản lý khách sạn nhớ lại chi tiết: 'Trong thời gian lưu trú, ông Clarendon có một phụ nữ ăn mặc rất nổi bật đến thăm. Sau đó xuất hiện người thứ hai: một gã đàn ông lực lưỡng hung tợn, có ria mép dày và vết sẹo dài trên má đến đe dọa đòi gặp Clarendon. Khi biết Clarendon không có ở đó, gã tức giận ngồi chực chờ ở quầy bar đến tận chạng vạng tối'. Hiện trường vụ án chỉ có 1 ly rượu, chứng minh gã người lạ và cô em gái Loretta không có mặt trong phòng lúc nổ súng.",
-      "unlocks": {
-        "nodes": [],
-        "evidence_items": [
-          "Gã đàn ông có sẹo trên má đe dọa Clarendon.",
-          "Chỉ có 1 ly rượu duy nhất tại hiện trường vụ án."
-        ]
-      },
-      "key_hints": ["Chỉ có 1 ly rượu tại hiện trường, đập tan nghi vấn cô em gái Loretta tham gia bắn nổ súng."]
-    },
-    "28WC": {
-      "id": "28WC",
-      "title": "Cửa hàng súng sáu Derringer",
-      "area": "WC",
-      "type": "location_search",
-      "map_coords": { "x": 440, "y": 320 },
-      "content": "Chủ cửa hàng súng xác nhận khẩu súng Derringer gây án được mua bởi một người đàn ông đeo kính có ngoại hình giống Bác sĩ Trevelyan, nhưng biên nhận cố tình ghi tên Frances Nolan để vu khống cô.",
-      "unlocks": {
-        "nodes": [],
-        "evidence_items": ["Khẩu súng gây án do Dr. Trevelyan trực tiếp đi mua."]
-      },
-      "key_hints": ["Dr. Trevelyan dàn dựng bằng chứng vu khống Frances."]
-    },
-    "14WC": {
-      "id": "14WC",
-      "title": "Sở cảnh sát Scotland Yard - Hồ sơ Yoblinski (1861)",
-      "area": "WC",
-      "type": "clue_inspection",
-      "map_coords": { "x": 360, "y": 420 },
-      "content": "Hồ sơ vụ án năm 1861 ghi rõ: Cha mẹ của Frances và Loretta bị sát hại bởi Zagreb Yoblinski - một kẻ bị tâm thần hành động đơn độc. Vụ án đã khép lại và Yoblinski đã bị trừng phạt nghiêm khắc, không liên quan hung thủ vụ án hiện tại.",
-      "unlocks": {
-        "nodes": [],
-        "evidence_items": ["Tội phạm quá khứ Zagreb Yoblinski hành động đơn độc năm 1861."]
-      },
-      "key_hints": ["Loại trừ âm mưu liên quan đến vụ án cũ năm 1861."]
+      "key_hints": ["Động cơ vụ án liên quan đến bản thiết kế pháo đài mật."]
     }
   },
   "directory": [
-    { "name": "Nolan, Frances & Loretta", "code": "36EC", "category": "Cư dân", "address": "36 East Central St", "desc": "Căn hộ hai chị em Frances Nolan và Loretta Nolan." },
-    { "name": "Davenport, Hiram (Luật sư)", "code": "13WC", "category": "Luật sư", "address": "13 West Central St", "desc": "Văn phòng luật sư quản lý tài sản gia đình Nolan." },
-    { "name": "Trevelyan, Dr. (Bác sĩ)", "code": "24SE", "category": "Bác sĩ", "address": "24 South East St", "desc": "Bác sĩ riêng của gia đình Nolan và phòng khám thôi miên bí mật." },
-    { "name": "Chancery Office (Di chúc)", "code": "17WC", "category": "Cơ quan", "address": "17 West Central St", "desc": "Nơi lưu trữ di chúc pháp lý London." },
-    { "name": "Khách sạn Clarendon", "code": "15SW", "category": "Khách sạn", "address": "15 South West St", "desc": "Nơi ông Clarendon lưu trú và xảy ra mâu thuẫn." },
+    { "name": "Holmes, Sherlock (Căn hộ 221B)", "code": "221B", "category": "Căn hộ", "address": "221B Baker St", "desc": "Căn hộ hiện trường vụ hỏa hoạn bí ẩn." },
+    { "name": "Scotland Yard (Cảnh sát)", "code": "13SW", "category": "Cơ quan", "address": "13 South West St", "desc": "Sở cảnh sát London." },
     { "name": "Bệnh viện St. Bartholomew", "code": "38EC", "category": "Bệnh viện", "address": "38 East Central St", "desc": "Phòng khám nghiệm tử thi Bác sĩ Sir Jasper Meeks." },
-    { "name": "Shinwell, Porky (Tiệm Kilgore)", "code": "52EC", "category": "Cơ sở cờ bạc", "address": "52 East Central St", "desc": "Sòng bạc Kilgore và tay chân Gus Bullock." },
-    { "name": "Cửa hàng súng Derringer", "code": "28WC", "category": "Cửa hàng", "address": "28 West Central St", "desc": "Tiệm bán vũ khí và súng sáu nhỏ." },
-    { "name": "Scotland Yard (Hồ sơ cũ)", "code": "14WC", "category": "Cơ quan", "address": "14 West Central St", "desc": "Hồ sơ vụ án tội phạm quá khứ năm 1861." }
+    { "name": "Tập đoàn Vũ khí Harrington", "code": "10EC", "category": "Tập đoàn", "address": "10 East Central St", "desc": "Trụ sở sản xuất vũ khí quốc phòng Harrington." }
   ],
   "newspaper": {
-    "paper_name": "THE TIMES LONDON",
-    "issue_date": "THỨ BA, NGÀY 5 THÁNG 3 NĂM 1889",
+    "paper_name": "THE DAILY TELEGRAPH",
+    "issue_date": "THỨ BẢY, NGÀY 2 THÁNG 12 NĂM 1893",
     "articles": [
       {
-        "date": "5 THÁNG 3, 1889",
-        "title": "VỤ ÁN MẠNG BÍ ẨN TẠI BLOOMSBURY",
-        "summary": "Ông Clarendon được phát hiện bị bắn chết tại nhà riêng. Cảnh sát Scotland Yard đang tạm giữ cô Frances Nolan trong trạng thái bần thần hoang tưởng.",
-        "related_code": "36EC"
-      },
-      {
-        "date": "4 THÁNG 3, 1889",
-        "title": "CẢNH BÁO THUỐC MÊ BỐC HƠI TẠI LOMBARD STREET",
-        "summary": "Một kẻ lạ mặt đã dùng khăn thấm chất dịch mê làm ngất xỉu người trông coi giáo đường St. Mary Woolnoth.",
-        "related_code": "24SE"
+        "date": "2 THÁNG 12, 1893",
+        "title": "THẢM HỌA TẠI 221B BAKER STREET",
+        "summary": "Vụ hỏa hoạn dữ dội thiêu rụi căn hộ thám tử Sherlock Holmes. Cảnh sát đang điều tra nghi vấn sát hại.",
+        "related_code": "221B"
       }
     ]
   },
@@ -178,131 +89,131 @@ export const SHERLOCK_CASE_2 = {
     "part_1_main_case": [
       {
         "id": "q1",
-        "question": "Ai là kẻ chủ mưu thực sự lên kế hoạch sát hại Clarendon và đổ tội cho Frances?",
+        "question": "Thi thể cháy xém phát hiện tại hiện trường 221B Baker Street có phải là Sherlock Holmes không?",
         "options": [
-          "Bác sĩ Trevelyan",
-          "Luật sư Hiram Davenport",
-          "Loretta Nolan",
-          "Zagreb Yoblinski"
+          "Không phải, Bác sĩ Sir Jasper Meeks kết luận xương vai và chiều cao ngắn hơn Holmes 2 inch",
+          "Chính là Sherlock Holmes",
+          "Là Bác sĩ John Watson",
+          "Là Thanh tra Lestrade"
         ],
         "correct_option_index": 0,
-        "explanation": "Bác sĩ Trevelyan đã dùng kỹ thuật thôi miên để ép Frances ký di chúc nhượng quyền giám hộ tài sản cho mình, sau đó dàn dựng vụ sát hại Clarendon để khống chế gia tài."
+        "explanation": "Bác sĩ Sir Jasper Meeks tại 38EC xác nhận cấu trúc xương thi thể ngắn hơn Holmes 2 inch, chứng tỏ Holmes vẫn sống."
       },
       {
         "id": "q2",
-        "question": "Chi tiết đặc biệt nào tại hiện trường 15SW khẳng định cô em gái Loretta không tham gia nổ súng?",
+        "question": "Mục tiêu bị đánh cắp khỏi két sắt tại căn hộ 221B Baker Street là gì?",
         "options": [
-          "Hiện trường chỉ có duy nhất 1 ly rượu vang",
-          "Không tìm thấy dấu vân tay",
-          "Cửa sổ bị khóa từ bên trong",
-          "Có hai ly rượu vang trên bàn"
+          "Cuộn bản thiết kế pháo đài mật của Tập đoàn Vũ khí Harrington",
+          "Bộ sưu tập kim cương hoàng gia",
+          "Sổ tay nhật ký cá nhân của Watson",
+          "Số tiền mặt 10,000 Bảng"
         ],
         "correct_option_index": 0,
-        "explanation": "Hiện trường chỉ có 1 ly rượu vang duy nhất (thay vì 2 ly như bản cũ), đập tan nghi vấn Loretta có mặt tại hiện trường."
+        "explanation": "Lord Harrington xác nhận tài liệu bị cắp là bản thiết kế pháo đài mật quốc phòng."
       },
       {
         "id": "q3",
-        "question": "Động cơ chính của kẻ thủ mưu Dr. Trevelyan trong vụ án này là gì?",
+        "question": "Mảnh bằng chứng nào thu được dưới sàn nhà làm việc 221B chỉ ra liên hệ với Tập đoàn Harrington?",
         "options": [
-          "Chiếm đoạt toàn bộ khối tài sản thừa kế khổng lồ của gia đình Nolan",
-          "Trả thù mâu thuẫn cá nhân với Clarendon",
-          "Trộm cắp bộ sưu tập súng cổ",
-          "Bảo vệ bí mật y khoa"
+          "Mảnh huy hiệu kim loại của Tập đoàn Vũ khí Harrington",
+          "Chiếc kính nhòm mạ vàng",
+          "Hộp thuốc hít bằng bạc",
+          "Tấm danh thiếp của Moriarty"
         ],
         "correct_option_index": 0,
-        "explanation": "Dr. Trevelyan muốn chiếm đoạt khối tài sản gia đình Nolan bằng cách gạt Frances vào tù hoặc án tử và làm người giám hộ duy nhất của Loretta."
+        "explanation": "Thám tử tìm thấy mảnh huy hiệu kim loại mang biểu tượng Harrington dưới sàn nhà."
       },
       {
         "id": "q4",
-        "question": "Frances Nolan tỉnh dậy ở đâu sau lần bị thôi miên ngất xỉu thứ hai tại Lambeth Walk (24SE)?",
+        "question": "Nguyên nhân tử vong thực sự của thi thể tại hiện trường là gì?",
         "options": [
-          "Tại ga xe lửa Waterloo",
-          "Tại công viên Hyde Park",
-          "Tại nhà nghỉ Camden House",
-          "Tại bệnh viện St. Bartholomew"
+          "Trúng đạn bắn từ đằng sau trước khi ngọn lửa bùng phát",
+          "Bị chết cháy do khói",
+          "Bị ngạt nước",
+          "Bị trúng độc"
         ],
         "correct_option_index": 0,
-        "explanation": "Frances khai báo lần ngất xỉu thứ hai tại Lambeth Walk (24SE) kết thúc khi cô tỉnh dậy tại Ga Waterloo."
+        "explanation": "Khám nghiệm 38EC xác nhận nạn nhân bị bắn từ sau lưng trước khi căn hộ bị đốt cháy."
       },
       {
         "id": "q5",
-        "question": "Ai là người trực tiếp đi mua khẩu súng sáu Derringer dùng làm hung khí gây án?",
+        "question": "Sherlock Holmes đang ở đâu sau khi vụ hỏa hoạn xảy ra?",
         "options": [
-          "Bác sĩ Trevelyan (dàn dựng đứng tên Frances)",
-          "Frances Nolan",
-          "Loretta Nolan",
-          "Luật sư Hiram Davenport"
+          "Ẩn mình bí mật điều tra ngầm vụ án",
+          "Đã qua đời",
+          "Đang điều trị tại bệnh viện",
+          "Bị bắt giữ tại Scotland Yard"
         ],
         "correct_option_index": 0,
-        "explanation": "Dr. Trevelyan trực tiếp đi mua súng nhưng cố tình ghi tên Frances Nolan vào hóa đơn để vu khống cô."
+        "explanation": "Holmes cố tình dàn dựng giả chết để đánh lừa kẻ thù và âm thầm truy vết cuộn tài liệu mật."
       }
     ],
     "part_2_side_mysteries": [
       {
         "id": "q6",
-        "question": "Frances Nolan bị ngất xỉu mất trí nhớ mấy lần trong 2 tuần trước khi vụ án xảy ra?",
+        "question": "Tên người bạn đồng hành thân thiết của Sherlock Holmes là gì?",
         "options": [
-          "2 lần",
-          "1 lần",
-          "3 lần",
-          "5 lần"
+          "Bác sĩ John Watson",
+          "Thanh tra Lestrade",
+          "Sir Jasper Meeks",
+          "Wiggins"
         ],
         "correct_option_index": 0,
-        "explanation": "Frances xác nhận cô bị ngất xỉu mất trí nhớ 2 lần trong vòng 2 tuần."
+        "explanation": "Bác sĩ John Watson là bạn thân và người ghi chép các vụ án của Holmes."
       },
       {
         "id": "q7",
-        "question": "Địa điểm nào được Bác sĩ Trevelyan dùng làm căn phòng thôi miên bí mật?",
+        "question": "Vụ hỏa hoạn xảy ra vào thời gian nào trong ngày?",
         "options": [
-          "Căn hộ thuê ở Lambeth Walk (24SE)",
-          "Khách sạn Clarendon (15SW)",
-          "Văn phòng luật sư (13WC)",
-          "Giáo đường Lombard Street"
+          "Lúc 2 giờ sáng",
+          "Lúc 12 giờ trưa",
+          "Lúc 6 giờ tối",
+          "Lúc 8 giờ sáng"
         ],
         "correct_option_index": 0,
-        "explanation": "Thám tử khám xét 24SE Lambeth Walk phát hiện căn phòng thôi miên bí mật của Dr. Trevelyan."
+        "explanation": "Thanh tra Lestrade cho biết cảnh sát nhận tin báo cháy lúc 2 giờ sáng."
       },
       {
         "id": "q8",
-        "question": "Luật sư Hiram Davenport nhận xét gì về trạng thái của Frances khi cô đến lập di chúc mới cùng Dr. Trevelyan?",
+        "question": "Nhóm thám tử thiếu niên hỗ trợ Holmes có tên là gì?",
         "options": [
-          "Đờ đẫn, thần trí mộng du bất thường",
-          "Tỉnh táo và minh mẫn",
-          "Tức giận và hoảng loạn",
-          "Say rượu nặng"
+          "Nhóm thám tử phố Baker (Baker Street Irregulars)",
+          "Nhóm thám tử Scotland Yard",
+          "Biệt đội London",
+          "Hội trinh thám Hoàng gia"
         ],
         "correct_option_index": 0,
-        "explanation": "Luật sư Davenport nhớ lại Frances trông như người mộng du bị thôi miên khi ký di chúc."
+        "explanation": "Các thiếu niên đường phố hỗ trợ Holmes có tên Baker Street Irregulars đứng đầu bởi Wiggins."
       },
       {
         "id": "q9",
-        "question": "Vụ án cũ năm 1861 sát hại cha mẹ hai chị em nhà Nolan do ai thực hiện?",
+        "question": "Tên tờ nhật báo đưa tin về thảm họa 221B Baker Street là gì?",
         "options": [
-          "Zagreb Yoblinski",
-          "Clarendon",
-          "Dr. Trevelyan",
-          "Hiram Davenport"
+          "The Daily Telegraph",
+          "The Times",
+          "London Gazette",
+          "Daily News"
         ],
         "correct_option_index": 0,
-        "explanation": "Hồ sơ cảnh sát 14WC xác nhận kẻ sát hại cha mẹ Nolan năm 1861 là Zagreb Yoblinski."
+        "explanation": "Nhật báo The Daily Telegraph đăng bài trang nhất về thảm họa."
       },
       {
         "id": "q10",
-        "question": "Chất dịch nào được kẻ lạ mặt sử dụng để làm ngất xỉu người trông coi giáo đường St. Mary Woolnoth?",
+        "question": "Bác sĩ khám nghiệm tử thi nổi tiếng tại Bệnh viện St. Bartholomew tên là gì?",
         "options": [
-          "Thuốc mê bốc hơi",
-          "Khí độc Carbon monoxide",
-          "Rượu Gin nồng độ cao",
-          "Bột ớt cay"
+          "Sir Jasper Meeks",
+          "Dr. Murray",
+          "Dr. Trevelyan",
+          "Dr. Mason"
         ],
         "correct_option_index": 0,
-        "explanation": "Nhật báo The Times đưa tin kẻ lạ mặt dùng khăn thấm thuốc mê bốc hơi dán vào mặt người trông coi giáo đường."
+        "explanation": "Bác sĩ khám nghiệm tử thi chính của London là Sir Jasper Meeks."
       }
     ]
   },
   "solution_summary": {
-    "mastermind": "Bác sĩ Dr. Trevelyan",
-    "motive": "Thôi miên Frances Nolan làm kẻ thế mạng để chiếm đoạt khối tài sản thừa kế khổng lồ của hai chị em nhà Nolan.",
-    "full_truth": "Bác sĩ Dr. Trevelyan là kẻ chủ mưu nham hiểm đứng sau toàn bộ vụ án. Hắn lợi dụng vị trí bác sĩ riêng để lén lút đưa Frances Nolan tới căn hộ bí mật ở Lambeth Walk (24SE) và thực hiện các buổi thôi miên làm mất trí nhớ. Hắn thao túng Frances đến gặp Luật sư Davenport (13WC) để lập di chúc mới chỉ định Dr. Trevelyan làm người giám hộ hợp pháp toàn quyền quản lý tài sản (Frances hoàn toàn không biết việc này). Sau đó, Dr. Trevelyan mua súng Derringer đứng tên Frances (28WC), trực tiếp sát hại ông Clarendon (hiện trường chỉ có 1 ly rượu) và dàn dựng để Frances trở thành kẻ cuồng sát hoang tưởng. Nhờ các chi tiết bổ sung, âm mưu thôi miên tàn bạo của Dr. Trevelyan đã bị vạch trần trước ánh sáng pháp lý!"
+    "mastermind": "Sherlock Holmes (dàn dựng) & Kẻ trộm tài liệu Harrington",
+    "motive": "Holmes dàn dựng giả chết để bảo vệ bản thân và âm thầm truy bắt kẻ trộm tài liệu mật quốc phòng.",
+    "full_truth": "Vụ án là màn kịch cao tay do Sherlock Holmes dàn dựng sau khi phát hiện kẻ thù âm mưu đột nhập két sắt 221B để trộm bản thiết kế pháo đài mật của Tập đoàn Harrington. Holmes đã tráo một thi thể vô danh bị bắn chết trước đó vào căn hộ và phóng hỏa đánh lừa dư luận. Nhờ khám nghiệm của Bác sĩ Sir Jasper Meeks (38EC), nhóm thám tử phố Baker đã nhận ra Holmes vẫn còn sống và đang bí mật thu hồi cuộn tài liệu mật!"
   }
 };

@@ -1,0 +1,81 @@
+================================================================================
+VỤ ÁN 1: BỨC TRANH BỊ ĐÁNH TRÁO (The Swapped Canvas)
+Kịch bản dành cho Tân thủ làm quen với luật chơi & quy tắc tính điểm Sherlock Holmes
+================================================================================
+
+1. LỜI MỞ ĐẦU (Đọc đầu tiên)
+--------------------------------------------------------------------------------
+Sáng thứ Tư, ngày 10 tháng 9 năm 1890
+
+Căn phòng 221B Baker Street đón một vị khách đang vã mồ hôi hột, liên tục lấy khăn tay lau trán. Đó là Ngài Archibald, chủ sở hữu của Phòng tranh Archibald danh giá bậc nhất London.
+
+"Anh Holmes, tôi tiêu đời rồi! Bức tranh 'Hoàng hôn trên sông Thames' - kiệt tác duy nhất của danh họa Turner mà tôi sở hữu - đã bị đánh tráo thành hàng giả! Ngày mai là buổi đấu giá quốc tế lớn nhất thập kỷ, nếu giới tinh hoa phát hiện ra, danh tiếng của tôi sẽ tan thành mây khói!"
+
+Holmes điềm tĩnh rót một tách trà. "Ngài phát hiện ra việc đánh tráo khi nào?"
+
+"Sáng nay lúc 8 giờ, khi tôi mở cửa phòng tranh. Bức tranh vẫn nằm trong khung, nhưng màu sắc có vẻ dại hơn. Chắc chắn nó đã bị tráo đêm qua."
+
+"Đêm qua phòng tranh có khóa kỹ không? Có ai canh gác?" Holmes hỏi.
+
+"Khóa từ bên trong rất cẩn thận, không có dấu hiệu cạy phá. Chỉ có tôi và Victor, người quản lý trung thành đã làm việc 5 năm nay, có chìa khóa. Tôi cũng nuôi một con chó ngao tên là Brutus để canh gác ban đêm. Nó cực kỳ dữ tợn với người lạ, nhưng sáng nay tôi thấy nó vẫn nằm ngủ ngon lành."
+
+"Ngài có nghi ngờ ai không?"
+
+"Có! Julian, một gã chuyên sưu tầm nghệ thuật và là đối thủ không đội trời chung của tôi. Hắn từng thề sẽ làm mọi cách để bôi nhọ buổi đấu giá này. Ngoài ra, tôi nghe nói trong vùng có gã họa sĩ tên Elias, kẻ từng phải ngồi tù vì tội chép tranh giả."
+
+Holmes mỉm cười, mắt sáng lên. "Thú vị đây. Watson, chúng ta có một cuộc dạo chơi quanh London rồi."
+
+
+2. DANH BẠ CÁC ĐỊA ĐIỂM DẪN ĐƯỜNG
+--------------------------------------------------------------------------------
+- 10 EC: Phòng tranh Archibald (Hiện trường vụ án)
+- 13 SW: Sở cảnh sát Scotland Yard (Gặp Thanh tra Lestrade)
+- 14 SE: Xưởng vẽ của họa sĩ Elias (Nghi phạm vẽ tranh giả)
+- 08 EC: Dinh thự của Julian (Nghi phạm chủ mưu)
+- 05 WC: Cửa hàng Họa cụ xóm Đông (Nơi bán nguyên liệu vẽ)
+- 22 SW: Quán rượu & Sòng bạc Cáo Đỏ (Nơi thu thập tin đồn)
+- 17 WC: Ngân hàng Trung tâm (Kiểm tra tài chính)
+- 30 EC: Tòa soạn báo The Times (Cập nhật tin tức)
+
+
+3. NỘI DUNG NÚT KHÁM XÉT (NODES)
+--------------------------------------------------------------------------------
+📍 10 EC - Phòng tranh Archibald
+Hiện trường không có dấu hiệu bị đột nhập. Kính và ổ khóa nguyên vẹn. Con chó Brutus vẫy đuôi thân thiện khi chúng tôi bước vào.
+Tiến gần bức tranh giả, Holmes đưa mũi ngửi: "Mùi dầu lanh và sơn dầu vẫn còn rất mới, bức tranh này mới được vẽ chưa quá một tuần."
+Quản lý Victor đang đứng ghi chép sổ sách gần đó. Anh ta mặc chiếc áo măng-tô màu xám, trông khá bồn chồn và nhợt nhạt. Căn phòng thoang thoảng mùi khói xì gà nồng đậm. Holmes liếc nhìn ngón tay trỏ và ngón giữa của Victor, chúng bị ám vàng vì hút thuốc lá nhiều.
+
+📍 13 SW - Sở cảnh sát Scotland Yard
+Thanh tra Lestrade gãi đầu gãi tai: "Vụ đánh tráo à? Chắc chắn là do gã họa sĩ Elias làm. Hắn vừa ra tù tháng trước. Các anh không cần điều tra đâu, chiều nay tôi sẽ cho người đến tóm cổ hắn là xong chuyện!"
+
+📍 14 SE - Xưởng vẽ của họa sĩ Elias
+Elias đang sống trong một căn gác xép tồi tàn. Anh ta hoảng hốt khi thấy chúng tôi: "Tôi thề tôi không biết gì về vụ trộm! Tuần trước, một gã mặc áo măng-tô xám, đội mũ sụp mặt đã đến thuê tôi vẽ chép lại bức 'Hoàng hôn trên sông Thames' qua một tấm ảnh chụp. Hắn trả bằng tiền mặt, giấu mặt rất kỹ, nhưng tôi nhớ rõ hắn sực nức mùi xì gà đắt tiền. Hắn yêu cầu tôi bỏ bức tranh giả vào tủ đồ số 4 ở ga King's Cross cách đây 2 ngày."
+
+📍 08 EC - Dinh thự của Julian
+Người quản gia ra mở cửa và cau mày: "Ngài Julian không có nhà. Ngài ấy đã đi nghỉ dưỡng ở Paris từ hai tuần trước và phải đến cuối tháng này mới trở về. Ngài ấy không liên lạc hay gửi thư từ gì về London cả."
+
+📍 05 WC - Cửa hàng Họa cụ xóm Đông
+Ông chủ cửa hàng lật cuốn sổ tay: "Khoảng một tuần trước, Elias có đến mua toan vẽ và một lượng lớn sơn dầu. Đi cùng anh ta là một gã mặc áo măng-tô xám đứng chờ ngoài cửa. Gã đó là người trả tiền. Tôi không thấy mặt hắn, nhưng lúc hắn đứng đó, khói xì gà bay mù mịt cả góc phố."
+
+📍 22 SW - Quán rượu & Sòng bạc Cáo Đỏ
+Ông trùm Porky nhếch mép khi nghe hỏi thăm: "Phòng tranh Archibald à? Tôi không biết gì về nghệ thuật. Nhưng tên quản lý Victor của chỗ đó thì là khách VIP ở đây. Hắn đang nợ sòng bạc này tới 5,000 bảng Anh. Tối qua hắn vừa hứa với tôi là 'sắp có một món hàng lớn' để thế chấp trừ nợ."
+
+📍 17 WC - Ngân hàng Trung tâm
+Nhân viên giao dịch kiểm tra sổ sách: "Tài khoản của Phòng tranh Archibald rất khỏe mạnh. Tuy nhiên, tài khoản cá nhân của Victor - người quản lý - thì đã cạn kiệt từ ba tháng nay."
+
+📍 30 EC - Tòa soạn báo The Times
+Tổng biên tập Henry Ellis lật tờ báo ngày hôm qua: "Phòng tranh Archibald dạo này rất nổi tiếng. Ngài Archibald vừa mua bảo hiểm cho bức 'Hoàng hôn trên sông Thames' trị giá 20,000 bảng Anh. Ngoài ra không có tin tức tội phạm nào đáng chú ý ở khu vực đó."
+
+
+4. ĐÁP ÁN & LỜI GIẢI CỦA SHERLOCK HOLMES
+--------------------------------------------------------------------------------
+1. Chủ mưu: Victor (Quản lý phòng tranh).
+2. Người vẽ tranh giả: Họa sĩ Elias (bị thuê làm theo đơn đặt hàng).
+3. Bằng chứng buộc tội Victor:
+   - Có chìa khóa phòng tranh và chó bảo vệ Brutus vẫy đuôi thân thiện (là người quen).
+   - Mặc áo măng-tô xám và hút xì gà nồng đậm (khớp với khai báo của Elias và cửa hàng họa cụ).
+   - Động cơ: Nợ sòng bạc Cáo Đỏ 5,000 Bảng Anh.
+4. Julian: Không liên quan. Có bằng chứng ngoại phạm hoàn hảo ở Paris.
+
+⚖️ Đường đi tối ưu của Sherlock Holmes: 4 bước (10EC -> 14SE -> 22SW -> 08EC).
+Quy tắc điểm: 100 điểm cho 4 bước đi ngang Holmes. Trừ 5 điểm cho mỗi bước thừa.
