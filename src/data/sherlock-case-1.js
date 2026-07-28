@@ -2,7 +2,7 @@ export const SHERLOCK_CASE_1 = {
   "case_id": "sherlock_case_1",
   "title": "Vụ án mạng tại 221B Baker Street: Cái chết của Sherlock Holmes",
   "author": "Cody Fleming",
-  "setting_date": "2 December 1893",
+  "setting_date": "Ngày 2 tháng 12 năm 1893",
   "intro": {
     "story_text": "Chúng ta chưa từng thấy Bác sĩ John Watson suy sụp như lúc này khi bước tới hiện trường vụ án. Đầu ông nghiêng sang một bên, ngồi tựa vào một chiếc thùng gỗ trên vỉa hè, gương mặt thất thần. Đống đổ nát của căn hộ 221B Baker Street vẫn còn bốc khói âm ỉ. Phía sau hàng rào cảnh sát, đám đông hiếu kỳ đang tụ tập ngày một đông. Dưới tấm vải liệm trắng gần Bác sĩ Watson là thi thể cháy xém được cho là của Sherlock Holmes. Thanh tra Lestrade thì thầm: 'Đây là hiện trường tồi tệ nhất tôi từng thấy. Holmes là bạn của tất cả chúng ta, đặc biệt là Watson. Chúng ta nợ anh ấy sự công bằng, phải tìm ra sự thật trước khi dấu vết nguội lạnh'. Watson đồng ý thực hiện cuộc khám nghiệm tử thi nhanh chóng. Trong khi đó, Wiggins tìm thấy một chiếc hộp sắt lớn được cứu ra từ phòng làm việc của Holmes. Chiếc hộp chứa một số chương trình kịch nghệ gần đây, một biên nhận xe ngựa từ hôm qua, một hộp quẹt diêm đã sử dụng một nửa và hai mảnh giấy nhắn bí ẩn. Vụ án chính thức bắt đầu!",
     "initial_clues": [
@@ -10,7 +10,7 @@ export const SHERLOCK_CASE_1 = {
       "Chiếc hộp sắt trên bàn làm việc bị méo nhẹ phần vành nắp, cho thấy nó được đóng vội vàng trong lúc đám cháy đang diễn ra.",
       "Mảnh giấy nhắn 1 trong hộp sắt: 'S, Sẽ không có hại gì xảy ra đâu, tôi hứa! - M.'",
       "Mảnh giấy nhắn 2 trong hộp sắt: '2 December 1893. Lestrade, Analysis will further aid. Best examine remaining. (Hãy phân tích để được trợ giúp thêm. Tốt nhất nên kiểm tra phần còn lại)'",
-      "Nhân chứng Olivia Robins ở 50 NW báo cáo đã nhìn thấy Sherlock gặp một người đàn ông giống Mycroft lúc 8:30 tối, và lúc 9:00 tối thấy Edward Beaupre cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà."
+      "Nhân chứng Olivia Robins ở địa điểm mã [50] báo cáo đã nhìn thấy Sherlock gặp một người đàn ông giống Mycroft lúc 8:30 tối, và lúc 9:00 tối thấy Edward Beaupre cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà."
     ],
     "unlocked_nodes": ["50NW", "8SW", "22SW"]
   },

@@ -968,25 +968,27 @@ function App() {
                     </ul>
                   </div>
 
-                  {/* ĐỊA ĐIỂM GỢI Ý MỞ KHÓA */}
+                  {/* TỌA ĐỘ MANH MỐI GỢI Ý KHỞI ĐẦU (NON-CLICKABLE STATIC SUMMARY) */}
                   <div className="sherlock-section-box">
                     <h4 className="font-extrabold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-1.5 mb-2">
-                      <Compass size={14} className="text-slate-300" /> Địa điểm gợi ý mở sẵn từ đầu:
+                      <Compass size={14} className="text-slate-300" /> Tọa độ manh mối gợi ý khởi đầu:
                     </h4>
-                    <div className="sherlock-intro-node-list">
-                      {SHERLOCK_CASE_1.intro.unlocked_nodes.map((nodeId) => (
-                        <button
-                          key={nodeId}
-                          onClick={() => {
-                            setSherlockSelectedNodeId(nodeId);
-                            handleSherlockNextPhase('SHERLOCK_PLAYING');
-                          }}
-                          className="sherlock-intro-node-btn"
-                        >
-                          <Compass size={14} className="text-slate-300" /> Ghé thăm mã [{nodeId}]
-                        </button>
-                      ))}
+                    <div className="flex flex-wrap gap-2 my-1">
+                      {SHERLOCK_CASE_1.intro.unlocked_nodes.map((nodeId) => {
+                        const bareCode = nodeId.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+                        return (
+                          <span
+                            key={nodeId}
+                            className="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-amber-500/30 text-amber-200 text-xs font-black"
+                          >
+                            📍 Mã [{bareCode}]
+                          </span>
+                        );
+                      })}
                     </div>
+                    <p className="text-[0.72rem] text-slate-400 italic mt-1 leading-relaxed">
+                      💡 Thám tử cần tự tra cứu vị trí các con số này trên Bản đồ hoặc Danh bạ London để tiến hành khám xét thủ công.
+                    </p>
                   </div>
 
                 </div>
@@ -1070,43 +1072,21 @@ function App() {
                 {sherlockActiveTab === 'casebook' && (
                   <div className="sherlock-grid-layout">
                     
-                    {/* CỘT TRÁI: KHÁM XÉT ĐỊA ĐIỂM & NHẬT KÝ HÀNH TRÌNH */}
+                    {/* CỘT TRÁI: NHẬT KÝ ĐỊA ĐIỂM ĐÃ ĐIỀU TRA & MANH MỐI KHỞI ĐẦU */}
                     <div className="space-y-4">
                       
-                      {/* Ô TRA CỨU MÃ TỌA ĐỘ TRỰC TIẾP */}
+                      {/* LỊCH SỬ CÁC ĐỊA ĐIỂM ĐÃ ĐIỀU TRA (XEM LẠI NHANH CHỈ CHO NƠI ĐÃ KHÁM XÉT) */}
                       <div className="sherlock-panel">
-                        <label className="text-xs font-extrabold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
-                          <Search size={14} /> TRA CỨU MÃ TỌA ĐỘ (VD: 50NW, 5EC...):
-                        </label>
-                        <div className="sherlock-input-group">
-                          <input 
-                            type="text" 
-                            placeholder="Nhập mã (VD: 5EC, 53NW)..."
-                            className="sherlock-search-input"
-                            value={sherlockSearchQuery}
-                            onChange={(e) => setSherlockSearchQuery(e.target.value.toUpperCase())}
-                            onKeyDown={(e) => e.key === 'Enter' && handleVisitNode(sherlockSearchQuery)}
-                          />
-                          <button 
-                            onClick={() => handleVisitNode(sherlockSearchQuery)}
-                            className="sherlock-search-btn"
-                          >
-                            ĐẾN NGAY
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* LỊCH SỬ GHÉ THÂM */}
-                      <div className="sherlock-panel">
-                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between">
-                          <span>📍 Các điểm đã điều tra ({roomState.visitedNodes?.length || 0}):</span>
+                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between border-b border-amber-500/20 pb-2 mb-2">
+                          <span>📍 Địa điểm ĐÃ ĐIỀU TRA ({roomState.visitedNodes?.length || 0}):</span>
                         </h4>
                         <div className="space-y-1.5 max-h-60 overflow-y-auto pr-1">
                           {roomState.visitedNodes?.length === 0 && (
-                            <p className="text-xs text-slate-500 italic">Chưa tới địa điểm nào. Hãy chọn từ gợi ý hoặc nhập mã.</p>
+                            <p className="text-xs text-slate-500 italic p-2">Chưa tới địa điểm nào. Hãy tra cứu con số trên Bản Đồ để tiến hành khám xét.</p>
                           )}
                           {roomState.visitedNodes?.map((nodeId) => {
                             const n = SHERLOCK_CASE_1.nodes[nodeId];
+                            const bareCode = nodeId.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
                             const isSelected = sherlockSelectedNodeId === nodeId;
                             return (
                               <div 
@@ -1115,8 +1095,8 @@ function App() {
                                 className={`sherlock-history-item ${isSelected ? 'selected' : ''}`}
                               >
                                 <div className="flex items-center gap-2 truncate">
-                                  <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem]">{nodeId}</span>
-                                  <span className="truncate">{n?.title || nodeId}</span>
+                                  <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem]">[{bareCode}]</span>
+                                  <span className="truncate">{n?.title || bareCode}</span>
                                 </div>
                                 <ArrowRight size={12} className="text-slate-500 shrink-0" />
                               </div>
@@ -1125,29 +1105,28 @@ function App() {
                         </div>
                       </div>
 
-                      {/* ĐỊA ĐIỂM GỢI Ý MỞ KHÓA */}
+                      {/* KHUNG THỐNG KÊ MANH MỐI MỞ KHÓA (KHÔNG BẤM ĐƯỢC - CHỈ THỐNG KÊ) */}
                       <div className="sherlock-panel">
-                        <h4 className="font-extrabold text-amber-400 text-xs uppercase tracking-wider">
-                          🔍 Manh mối mở khóa ({roomState.unlockedNodes?.length || 0}):
+                        <h4 className="font-extrabold text-slate-300 text-xs uppercase tracking-wider border-b border-slate-800 pb-2 mb-2">
+                          🔍 Mã manh mối đã thu thập ({roomState.unlockedNodes?.length || 0}):
                         </h4>
                         <div className="flex flex-wrap gap-1.5 pt-1">
                           {roomState.unlockedNodes?.map((nodeId) => {
-                            const n = SHERLOCK_CASE_1.nodes[nodeId];
+                            const bareCode = nodeId.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
                             const isVisited = roomState.visitedNodes?.includes(nodeId);
                             return (
-                              <button
+                              <span
                                 key={nodeId}
-                                onClick={() => {
-                                  setSherlockSelectedNodeId(nodeId);
-                                  if (!isVisited) handleVisitNode(nodeId);
-                                }}
-                                className={`sherlock-unlocked-btn ${isVisited ? 'visited' : ''}`}
+                                className={`text-[0.7rem] px-2 py-1 rounded-md font-bold border ${isVisited ? 'bg-emerald-950/60 border-emerald-500/40 text-emerald-300' : 'bg-slate-900 border-slate-700 text-amber-200'}`}
                               >
-                                <Compass size={12} /> [{nodeId}] {n?.title ? `(${n.title})` : ''}
-                              </button>
+                                [{bareCode}] {isVisited ? '✓ Đã tới' : '• Chưa tới'}
+                              </span>
                             );
                           })}
                         </div>
+                        <p className="text-[0.7rem] text-slate-400 italic mt-2">
+                          💡 Hãy tìm con số tương ứng trên Bản Đồ để tiến hành khám xét địa điểm.
+                        </p>
                       </div>
 
                     </div>
@@ -1409,12 +1388,7 @@ function App() {
                           return (
                             <div 
                               key={idx}
-                              onClick={() => {
-                                setSherlockSelectedNodeId(item.code);
-                                setSherlockActiveTab('casebook');
-                                handleVisitNode(item.code);
-                              }}
-                              className="sherlock-directory-card"
+                              className="sherlock-directory-card cursor-default"
                             >
                               <div>
                                 <div className="flex items-center justify-between mb-1.5">
@@ -1426,9 +1400,9 @@ function App() {
                                 <span className="text-[0.65rem] font-bold text-amber-400 uppercase tracking-wider">{item.category} • {item.address}</span>
                                 <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
                               </div>
-                              <button className="sherlock-search-btn w-full mt-2 text-xs flex items-center justify-center gap-1.5">
-                                🔍 TRA CỨU ĐỊA CHỈ NÀY ({bareCode}) <ArrowRight size={13} />
-                              </button>
+                              <div className="text-[0.7rem] text-amber-300/90 font-bold bg-amber-500/10 border border-amber-500/20 rounded-lg p-1.5 text-center mt-2.5">
+                                📌 Tìm con số [{bareCode}] trên Bản Đồ để khám xét
+                              </div>
                             </div>
                           );
                         })}
@@ -1448,28 +1422,26 @@ function App() {
                     </div>
 
                     <div className="sherlock-newspaper-grid">
-                      {SHERLOCK_CASE_1.newspaper?.articles?.map((art, i) => (
-                        <div 
-                          key={i}
-                          onClick={() => {
-                            if (art.related_code) {
-                              setSherlockSelectedNodeId(art.related_code);
-                              setSherlockActiveTab('casebook');
-                              handleVisitNode(art.related_code);
-                            }
-                          }}
-                          className="sherlock-newspaper-art"
-                        >
-                          <div className="border-b border-stone-300 pb-2 flex items-center justify-between">
-                            <h4 className="font-extrabold text-stone-900 text-base leading-snug">{art.title}</h4>
-                            <span className="text-[0.7rem] font-sans font-bold px-2 py-0.5 rounded bg-amber-200 text-amber-900 border border-amber-400 shrink-0">[{art.related_code}]</span>
+                      {SHERLOCK_CASE_1.newspaper?.articles?.map((art, i) => {
+                        const bareCode = art.related_code ? art.related_code.replace(/(NW|SW|EC|WC|SE|E)$/i, '') : '';
+                        return (
+                          <div 
+                            key={i}
+                            className="sherlock-newspaper-art cursor-default"
+                          >
+                            <div className="sherlock-newspaper-art-header">
+                              <span className="text-[0.65rem] font-bold text-amber-800 uppercase">{art.date}</span>
+                              {bareCode && (
+                                <span className="text-[0.65rem] font-black text-amber-900 bg-amber-200/80 px-1.5 py-0.5 rounded">
+                                  📌 Tọa độ [{bareCode}]
+                                </span>
+                              )}
+                            </div>
+                            <h3 className="sherlock-newspaper-art-title">{art.title}</h3>
+                            <p className="sherlock-newspaper-art-body">{art.summary}</p>
                           </div>
-                          <p className="text-xs text-stone-800 leading-relaxed font-serif">{art.summary}</p>
-                          <div className="text-right text-[0.75rem] font-sans text-amber-900 font-bold flex items-center justify-end gap-1 pt-2 border-t border-stone-300">
-                            🔍 Khám xét tin tức này <ArrowRight size={13} />
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
