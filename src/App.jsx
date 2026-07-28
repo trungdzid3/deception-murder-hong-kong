@@ -569,6 +569,13 @@ function App() {
   const activeSherlockCase = ALL_SHERLOCK_CASES[roomState?.selectedCaseId || 'sherlock_case_1'] || ALL_SHERLOCK_CASES.sherlock_case_1;
 
   const handleSelectSherlockCase = (caseId) => {
+    setRoomState(prev => prev ? {
+      ...prev,
+      selectedCaseId: caseId,
+      unlockedNodes: [...(ALL_SHERLOCK_CASES[caseId]?.intro?.unlocked_nodes || [])],
+      visitedNodes: []
+    } : prev);
+
     const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
     if (code) {
       socket.emit('select-sherlock-case', { roomCode: code, caseId });
@@ -777,7 +784,7 @@ function App() {
                       <h2 className="flex items-center gap-2 text-amber-300">
                         <Search size={24} className="text-amber-400" /> PHÒNG CHỜ ĐIỀU TRA: SHERLOCK HOLMES
                       </h2>
-                      <p className="text-slate-300">Hợp tác cùng đồng đội giải mã kỳ án "Cái chết của Sherlock Holmes".</p>
+                      <p className="text-slate-300">Hợp tác cùng đồng đội điều tra giải mã 3 kỳ án trinh thám Sherlock Holmes lừng danh.</p>
                     </>
                   ) : (
                     <>
@@ -819,6 +826,51 @@ function App() {
                   )}
                 </div>
               </div>
+
+              {/* BẢNG CHỌN VỤ ÁN TRONG PHÒNG CHỜ SHERLOCK */}
+              {isSherlock && (
+                <div className="game-settings-section mb-4">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
+                    <span className="text-xs font-black text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
+                      <BookOpen size={16} className="text-amber-400" /> CHỌN KỲ ÁN ĐIỀU TRA (CASE SELECTION):
+                    </span>
+                    <span className="text-xs text-amber-200 font-bold bg-amber-950/60 border border-amber-500/30 px-3 py-1 rounded-full">
+                      Vụ án đang chọn: <strong>{activeSherlockCase.title}</strong>
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+                    {SHERLOCK_CASES_LIST.map((c, index) => {
+                      const isSelected = (roomState?.selectedCaseId || 'sherlock_case_1') === c.id;
+                      return (
+                        <div
+                          key={c.id}
+                          onClick={() => handleSelectSherlockCase(c.id)}
+                          className={`p-3 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
+                            isSelected 
+                              ? 'bg-amber-950/80 border-amber-500 shadow-lg shadow-amber-500/20' 
+                              : 'bg-slate-900/60 border-slate-700/60 hover:border-amber-500/40 hover:bg-slate-800/80'
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center justify-between text-[0.68rem] font-bold mb-1">
+                              <span className="text-amber-400 uppercase">VỤ ÁN #{index + 1}</span>
+                              <span className="text-amber-200">⚡ {c.difficulty}</span>
+                            </div>
+                            <h5 className="font-extrabold text-amber-100 text-xs leading-snug">{c.title}</h5>
+                          </div>
+                          <div className="mt-2.5 pt-2 border-t border-amber-500/10 flex items-center justify-between text-[0.65rem]">
+                            <span className="text-slate-400">{c.setting_date}</span>
+                            <span className={`font-black ${isSelected ? 'text-amber-400' : 'text-slate-400'}`}>
+                              {isSelected ? '✓ Đang chọn' : 'Nhấp để chọn'}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               <div className="lobby-members-section">
                 <span className="section-label-amber">
@@ -970,7 +1022,7 @@ function App() {
                       return (
                         <div 
                           key={c.id}
-                          onClick={() => isHost && handleSelectSherlockCase(c.id)}
+                          onClick={() => handleSelectSherlockCase(c.id)}
                           className={`sherlock-case-card ${isSelected ? 'selected' : ''}`}
                         >
                           <div>
@@ -996,18 +1048,17 @@ function App() {
                           <div className="pt-2 border-t border-amber-500/10 mt-2">
                             {isSelected ? (
                               <button className="sherlock-case-action-btn active cursor-default">
-                                <CheckCircle size={16} /> {isHost ? 'VỤ ÁN ĐANG ĐƯỢC CHỌN' : 'VỤ ÁN ĐÃ CHỌN'}
+                                <CheckCircle size={16} /> VỤ ÁN ĐANG ĐƯỢC CHỌN
                               </button>
                             ) : (
                               <button 
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  if (isHost) handleSelectSherlockCase(c.id);
+                                  handleSelectSherlockCase(c.id);
                                 }}
-                                disabled={!isHost}
                                 className="sherlock-case-action-btn inactive"
                               >
-                                {isHost ? 'CHỌN VỤ ÁN NÀY' : 'XEM KỊCH BẢN'}
+                                CHỌN VỤ ÁN NÀY
                               </button>
                             )}
                           </div>
@@ -2641,7 +2692,7 @@ function App() {
                       <span className="select-game-badge sherlock-badge">Đọc kỳ án</span>
                     </div>
                     <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                      Hợp tác giải vụ án "Cái chết của Sherlock Holmes". Tra cứu bản đồ, thẩm vấn nhân chứng và giải mã kỳ án.
+                      Hợp tác giải các kỳ án trinh thám Sherlock Holmes lừng danh. Tra cứu bản đồ, thẩm vấn nhân chứng và giải mã kỳ án.
                     </p>
                   </div>
 

@@ -486,20 +486,16 @@ io.on('connection', (socket) => {
     io.to(roomCode).emit('room-updated', room);
   });
 
-  // Chọn Vụ án Sherlock Holmes (Chủ phòng)
+  // Chọn Vụ án Sherlock Holmes
   socket.on('select-sherlock-case', ({ roomCode, caseId }) => {
     const room = rooms[roomCode];
     if (!room) return;
-    const hostId = room.hostId || room.players[0]?.id;
-    if (socket.id !== hostId) {
-      socket.emit('error-msg', 'Chỉ Chủ phòng mới có quyền chọn Vụ Án!');
-      return;
-    }
     if (ALL_SHERLOCK_CASES[caseId]) {
       room.selectedCaseId = caseId;
       room.unlockedNodes = [...(ALL_SHERLOCK_CASES[caseId].intro?.unlocked_nodes || [])];
       room.visitedNodes = [];
-      room.eventLog.push(`🕵️‍♂️ Chủ phòng đã chọn Vụ Án mới: "${ALL_SHERLOCK_CASES[caseId].title}".`);
+      const playerName = room.players.find(p => p.id === socket.id)?.name || 'Thám tử';
+      room.eventLog.push(`🕵️‍♂️ ${playerName} đã chọn Vụ Án mới: "${ALL_SHERLOCK_CASES[caseId].title}".`);
       io.to(roomCode).emit('room-updated', room);
     }
   });
