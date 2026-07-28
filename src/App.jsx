@@ -1326,37 +1326,50 @@ function App() {
                         className="sherlock-map-img"
                       />
 
-                      {/* GHIM TẤT CẢ NODE TRÊN BẢN ĐỒ – Dùng % để responsive */}
-                      {Object.values(activeSherlockCase.nodes || {}).map((n) => {
-                        const isVisited = roomState.visitedNodes?.includes(n.id);
-                        const isUnlocked = roomState.unlockedNodes?.includes(n.id);
-                        const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+                      {/* GHIM TẤT CẢ ĐỊA ĐIỂM TRÊN BẢN ĐỒ LONDON (100% MASTER DIRECTORY & CASES) */}
+                      {MASTER_DIRECTORY.map((entry) => {
+                        const code = entry.code;
+                        const caseNode = activeSherlockCase?.nodes?.[code];
+                        const isVisited = roomState.visitedNodes?.includes(code);
+                        const isUnlocked = roomState.unlockedNodes?.includes(code);
+                        const bareNumber = code.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
 
-                        // Ưu tiên map_coords từ MASTER_DIRECTORY, fallback về node data
-                        const masterEntry = MASTER_DIRECTORY.find(e => e.code === n.id);
-                        const coords = masterEntry?.map_coords ?? n.map_coords;
+                        const coords = entry.map_coords || caseNode?.map_coords;
                         if (!coords) return null;
 
-                        // Chuyển pixel (860×570) sang % để responsive
+                        // Tỷ lệ % vị trí trên bản đồ 860 × 570 px
                         const leftPct = ((coords.x / 860) * 100).toFixed(2);
                         const topPct  = ((coords.y / 570) * 100).toFixed(2);
 
+                        // Trạng thái class CSS
+                        let pinStatusClass = 'general'; // địa điểm danh bạ
+                        if (caseNode) {
+                          if (isVisited) pinStatusClass = 'visited';
+                          else if (isUnlocked) pinStatusClass = 'unlocked';
+                        }
+
                         return (
                           <div
-                            key={n.id}
+                            key={code}
                             onClick={() => {
-                              handleVisitNode(n.id);
-                              setSherlockSelectedNodeId(n.id);
-                              setSherlockActiveTab('casebook');
+                              if (caseNode) {
+                                handleVisitNode(code);
+                                setSherlockSelectedNodeId(code);
+                                setSherlockActiveTab('casebook');
+                              } else {
+                                setSherlockSearchQuery(entry.name);
+                                setSherlockActiveTab('directory');
+                              }
                             }}
                             style={{ left: `${leftPct}%`, top: `${topPct}%` }}
-                            className={`sherlock-map-pin ${isVisited ? 'visited' : isUnlocked ? 'unlocked' : ''}`}
-                            title={`[${n.id}] ${n.title}`}
+                            className={`sherlock-map-pin ${pinStatusClass}`}
+                            title={`[${code}] ${entry.name} (${entry.address})`}
                           >
                             <span className="sherlock-pin-number">[{bareNumber}]</span>
                           </div>
                         );
                       })}
+
                     </div>
                   </div>
                 )}

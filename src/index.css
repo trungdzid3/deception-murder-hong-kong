@@ -3698,6 +3698,21 @@ body {
   text-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
 }
 
+/* General – Địa điểm Niên giám London */
+.sherlock-map-pin.general .sherlock-pin-number {
+  background: rgba(28, 20, 16, 0.85);
+  color: #fef3c7;
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.sherlock-map-pin.general:hover .sherlock-pin-number {
+  background: rgba(45, 30, 20, 0.95);
+  border-color: rgba(245, 158, 11, 0.75);
+  color: #fbbf24;
+}
+
+
 /* Pulse animation cho unlocked pins */
 .sherlock-map-pin.unlocked {
   animation: pinPulse 2.4s ease-in-out infinite;

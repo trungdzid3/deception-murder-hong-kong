@@ -1,649 +1,517 @@
 /**
- * MASTER DIRECTORY – NIÊN GIÁM DANH BẠ LONDON TỔNG HỢP
- * Hợp nhất tất cả địa điểm, nhân vật và cơ sở từ 6 vụ án SHCD.
+ * MASTER DIRECTORY – NIÊN GIÁM DANH BẠ VÀ BẢN ĐỒ TỔNG HỢP LONDON 1888-1893
+ * Hợp nhất 100% tất cả địa điểm, nhân vật và cơ quan từ 6 Vụ án SHCD.
  *
- * Hệ thống tọa độ bản đồ (860×570px viewport):
- *   NW  (tây bắc)  x: 50–270,   y: 50–230
- *   WC  (trung tâm) x: 270–470,  y: 130–420
- *   EC  (đông)      x: 470–820,  y: 80–410
- *   SW  (tây nam)   x: 50–300,   y: 400–550
- *   SE  (đông nam)  x: 440–820,  y: 400–550
- *
- * Chú thích thời gian:
- *  Case 1 (1890-09) → Case 2 (1893-12) → Case 3 (1889-03) → Case 4 (1890-04)
- *  → Case 5 (1890-06) → Case 6 (1890-10)
- *  Thứ tự thật: C3(Mar 1889) → C4(Apr 1890) → C1(Sep 1890) → C5(Jun 1890) → C6(Oct 1890) → C2(Dec 1893)
+ * Tọa độ bản đồ chuẩn (kích thước Viewport 860 × 570 px):
+ *   - NW (Phía Tây Bắc): x: 60 - 260, y: 50 - 230
+ *   - WC (Trung tâm Tây): x: 270 - 470, y: 130 - 420
+ *   - EC (Phía Đông Bắc/Trung): x: 480 - 820, y: 70 - 400
+ *   - SW (Phía Tây Nam): x: 60 - 320, y: 400 - 550
+ *   - SE (Phía Đông Nam): x: 440 - 820, y: 400 - 550
  */
 
 export const MASTER_DIRECTORY = [
 
-  // ═══════════════════════════════════════════════════════
-  // KHU VỰC NW – NORTH WEST (x:50-270, y:50-230)
-  // ═══════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════
+  // PHÂN KHU NW – NORTH WEST (TÂY BẮC LONDON)
+  // ═════════════════════════════════════════════════════════════════════
   {
-    name: "221B Baker Street (Holmes & Watson)",
     code: "1NW",
+    name: "221B Baker Street (Sherlock Holmes & Dr. Watson)",
     category: "Cư dân",
     address: "221B Baker Street, NW",
-    map_coords: { x: 70, y: 65 },
-    desc: "Căn hộ nổi tiếng của Sherlock Holmes và Tiến sĩ Watson. Điểm khởi đầu mọi cuộc điều tra.",
+    map_coords: { x: 75, y: 70 },
+    desc: "Căn hộ nổi tiếng của Sherlock Holmes và Tiến sĩ Watson. Điểm xuất phát của mọi kỳ án.",
     appeared_in: ["case_1", "case_2", "case_3", "case_4", "case_5", "case_6"]
   },
   {
-    name: "Quả phụ đoàn thám hiểm Katebet",
-    code: "12NW",
-    category: "Cư dân",
-    address: "12 North West St, NW",
-    map_coords: { x: 115, y: 100 },
-    desc: "Nhà riêng bà quả phụ tuyệt đẹp của thám hiểm gia Katebet. Tiết lộ mâu thuẫn nội bộ đoàn khai quật.",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Giáo vụ Đại học UCL",
-    code: "12NW",
-    category: "Cơ quan",
-    address: "12B North West St, NW",
-    map_coords: { x: 155, y: 100 },
-    desc: "Phòng Giáo vụ quản lý ngân sách các Khoa. Khoa Cơ khí của Sterling bị cắt 100% ngân sách cuối tháng (Case 6).",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Công viên Regent's Park",
     code: "3NW",
+    name: "Công viên Hoàng Gia Regent's Park",
     category: "Địa danh",
     address: "Regent's Park, NW",
-    map_coords: { x: 90, y: 55 },
-    desc: "Công viên hoàng gia phía bắc London.",
+    map_coords: { x: 130, y: 55 },
+    desc: "Công viên hoàng gia tuyệt đẹp ở phía tây bắc London.",
     appeared_in: []
   },
   {
-    name: "Cửa hàng Xì gà Havana",
-    code: "17EC",
-    category: "Cửa hàng",
-    address: "17 North East, NW",
-    map_coords: { x: 215, y: 80 },
-    desc: "Tiệm bán xì gà cao cấp nhập khẩu Cuba. Khách quen: Giáo sư Sterling (mua Partagas mỗi tuần). (Case 6)",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Phòng trưng bày tranh National Gallery",
     code: "4NW",
+    name: "Phòng trưng bày Quốc gia National Gallery",
     category: "Địa danh",
-    address: "4 North West St, NW",
-    map_coords: { x: 253, y: 120 },
-    desc: "Phòng trưng bày tranh quốc gia. Tổ chức buổi đấu giá kiệt tác 'Hoàng hôn trên sông Thames'. (Case 1)",
+    address: "Trafalgar Square, NW",
+    map_coords: { x: 230, y: 110 },
+    desc: "Phòng trưng bày mỹ thuật quốc gia. Nơi diễn ra các sự kiện triển lãm lớn.",
     appeared_in: ["case_1"]
   },
-
-  // ═══════════════════════════════════════════════════════
-  // KHU VỰC WC – WEST CENTRAL (x:270-475, y:130-430)
-  // ═══════════════════════════════════════════════════════
   {
-    name: "Phòng thí nghiệm Cơ khí UCL",
+    code: "12NW",
+    name: "Phòng Giáo vụ Đại học UCL / Dinh thự Katebet Widow",
+    category: "Cơ quan & Cư dân",
+    address: "12 Gower Street, NW",
+    map_coords: { x: 190, y: 140 },
+    desc: "Phòng Giáo vụ quản lý ngân sách UCL (Case 6) và dinh thự của góa phụ thám hiểm gia Katebet (Case 4).",
+    appeared_in: ["case_4", "case_6"]
+  },
+  {
+    code: "31NW",
+    name: "Hẻm Shoe Lane (Hiện trường ngã từ mái nhà)",
+    category: "Hiện trường",
+    address: "Shoe Lane, NW",
+    map_coords: { x: 245, y: 190 },
+    desc: "Ngõ nhỏ râm mát nơi thi thể nạn nhân ngã từ mái nhà được phát hiện với mùi thảo mộc kỳ lạ. (Case 5)",
+    appeared_in: ["case_5"]
+  },
+
+  // ═════════════════════════════════════════════════════════════════════
+  // PHÂN KHU WC – WEST CENTRAL (TRUNG TÂM TÂY LONDON)
+  // ═════════════════════════════════════════════════════════════════════
+  {
+    code: "05WC",
+    name: "Nhà kho tủ đồ Ga King's Cross",
+    category: "Địa danh",
+    address: "King's Cross Station, WC",
+    map_coords: { x: 290, y: 140 },
+    desc: "Dãy tủ gửi đồ số 4 ga King's Cross. Nơi cất giấu bức tranh nhái giả trong vụ án 1. (Case 1)",
+    appeared_in: ["case_1"]
+  },
+  {
+    code: "07WC",
+    name: "Dinh thự Bá tước Pemberton",
+    category: "Cư dân",
+    address: "7 Russell Square, WC",
+    map_coords: { x: 335, y: 140 },
+    desc: "Dinh thự Bá tước Pemberton - chủ sở hữu ban đầu của kiệt tác 'Hoàng hôn trên sông Thames'. (Case 1)",
+    appeared_in: ["case_1"]
+  },
+  {
+    code: "09WC",
+    name: "Xưởng phục chế nghệ thuật Fitzroy",
+    category: "Xưởng",
+    address: "9 Fitzroy Street, WC",
+    map_coords: { x: 380, y: 140 },
+    desc: "Xưởng tranh danh tiếng chuyên phục chế kiệt tác cổ. (Case 1)",
+    appeared_in: ["case_1"]
+  },
+  {
     code: "10WC",
+    name: "Phòng thí nghiệm Cơ khí UCL (Arthur Pendelton)",
     category: "Trường học",
-    address: "10 West Central St, WC",
-    map_coords: { x: 290, y: 155 },
-    desc: "Phòng thí nghiệm nơi bản thiết kế điều khiển động cơ hơi nước của Arthur Pendelton bị đánh cắp. (Case 6)",
+    address: "10 Gower Street, WC",
+    map_coords: { x: 425, y: 140 },
+    desc: "Phòng thí nghiệm nơi bản thiết kế hệ thống điều khiển hơi nước bị cạy tủ đánh cắp. (Case 6)",
     appeared_in: ["case_6"]
   },
   {
-    name: "Chancery Office (Di chúc)",
-    code: "17WC",
-    category: "Cơ quan",
-    address: "17 West Central St, WC",
-    map_coords: { x: 320, y: 175 },
-    desc: "Phòng lưu trữ di chúc pháp lý London. Di chúc mới của Frances Nolan chỉ định Dr. Trevelyan giám hộ. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Scotland Yard (Hồ sơ cũ 1861)",
-    code: "14WC",
-    category: "Cơ quan",
-    address: "14 West Central St, WC",
-    map_coords: { x: 350, y: 175 },
-    desc: "Hồ sơ vụ án tội phạm Zagreb Yoblinski năm 1861. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Davenport, Hiram (Luật sư)",
-    code: "13WC",
-    category: "Luật sư",
-    address: "13 West Central St, WC",
-    map_coords: { x: 385, y: 175 },
-    desc: "Văn phòng luật sư quản lý tài sản gia đình Nolan. Thấy Frances như người mộng du khi lập di chúc mới. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Đại học Tổng hợp London UCL (Khoa Khảo cổ)",
-    code: "43WC",
-    category: "Trường học",
-    address: "43 West Central St, WC",
-    map_coords: { x: 295, y: 215 },
-    desc: "Khoa Khảo cổ UCL. Trợ lý Turnbull từ chức sau tranh chấp cổ vật Toutankhamon với Windibank. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Mason, Oswald (Nhà riêng nạn nhân)",
-    code: "42WC",
-    category: "Cư dân",
-    address: "42 Tottenham Court Rd, WC",
-    map_coords: { x: 340, y: 215 },
-    desc: "Nhà riêng Oswald Mason – Trưởng kế toán Ngân hàng Anh bị đập chết. Cuộn bản đồ cổ vật Katebet bị lấy mất. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Quán rượu Cáo Trắng",
-    code: "22WC",
-    category: "Quán rượu",
-    address: "22 West Central St, WC",
-    map_coords: { x: 425, y: 215 },
-    desc: "Nơi sinh viên UCL tụ tập. Thomas Higgins có mặt ở đây từ 8 giờ tối đến 1 giờ sáng – ngoại phạm vụ Case 6. (Case 6)",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Phòng trưng bày Đấu giá Christie's",
-    code: "5WC",
-    category: "Địa danh",
-    address: "5 West Central St, WC",
-    map_coords: { x: 295, y: 260 },
-    desc: "Nhà đấu giá Christie's. Địa điểm dự kiến đấu giá bức tranh 'Hoàng hôn trên sông Thames'. (Case 1)",
-    appeared_in: ["case_1"]
-  },
-  {
-    name: "Cửa hàng súng Derringer",
-    code: "28WC",
-    category: "Cửa hàng",
-    address: "28 West Central St, WC",
-    map_coords: { x: 340, y: 260 },
-    desc: "Tiệm bán vũ khí. Dr. Trevelyan mua súng Derringer đứng tên Frances Nolan để dàn dựng. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Scotland Yard (Thanh tra Lestrade)",
-    code: "13SW",
-    category: "Cơ quan",
-    address: "13 South West St, WC/SW",
-    map_coords: { x: 385, y: 260 },
-    desc: "Sở Cảnh sát London. Lestrade quy tội vội cho Higgins mà không có bằng chứng. (Case 6)",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Xưởng phục chế tranh Fitzroy",
-    code: "9WC",
-    category: "Xưởng",
-    address: "9 West Central St, WC",
-    map_coords: { x: 425, y: 260 },
-    desc: "Nơi bức tranh gốc được cất giữ và phục chế. Đây là manh mối quan trọng trong vụ Case 1.",
-    appeared_in: ["case_1"]
-  },
-  {
-    name: "Nhà bá tước Pemberton (Chủ bức tranh)",
-    code: "7WC",
-    category: "Cư dân",
-    address: "7 West Central St, WC",
-    map_coords: { x: 295, y: 310 },
-    desc: "Nhà riêng bá tước Pemberton – chủ sở hữu bức tranh 'Hoàng hôn trên sông Thames' bị đánh tráo. (Case 1)",
-    appeared_in: ["case_1"]
-  },
-  {
-    name: "Sterling, Giáo sư (Văn phòng)",
-    code: "8EC",
-    category: "Giáo sư",
-    address: "8 East Central, WC/EC biên giới",
-    map_coords: { x: 460, y: 175 },
-    desc: "Văn phòng Giáo sư Sterling – người hướng dẫn của Arthur Pendelton. Hung thủ vụ đánh cắp bản thiết kế. (Case 6)",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Higgins, Thomas (Sinh viên)",
-    code: "14SW",
-    category: "Cư dân",
-    address: "14 South West St, SW/WC",
-    map_coords: { x: 295, y: 355 },
-    desc: "Căn hộ sinh viên Thomas Higgins. Loại trừ vì hút thuốc sợi rẻ và có ngoại phạm tại Cáo Trắng. (Case 6)",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Văn phòng luật sư Evenson & Co",
     code: "11WC",
+    name: "Văn phòng Luật sư Evenson & Co",
     category: "Luật sư",
-    address: "11 West Central St, WC",
-    map_coords: { x: 340, y: 355 },
-    desc: "Văn phòng có dấu hiệu đột nhập bí ẩn. Bài báo Times ngày 11/4/1890 đề cập đến Evenson & Co. (Case 4 – đánh lạc hướng)",
+    address: "11 Lincoln's Inn Fields, WC",
+    map_coords: { x: 290, y: 195 },
+    desc: "Văn phòng luật sư tư vấn tài chính doanh nghiệp. Đột nhập bí ẩn được báo Times nhắc tới. (Case 4)",
     appeared_in: ["case_4"]
   },
   {
-    name: "Ngân hàng Anh (Bank of England)",
-    code: "6WC",
-    category: "Cơ quan",
-    address: "6 West Central St, WC",
-    map_coords: { x: 425, y: 355 },
-    desc: "Trụ sở Ngân hàng Anh. Oswald Mason là Trưởng kế toán trước khi bị sát hại. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Violette (Nhạc viện – nơi tập luyện)",
-    code: "21WC",
-    category: "Nghệ sĩ",
-    address: "21 West Central St, WC",
-    map_coords: { x: 340, y: 400 },
-    desc: "Nơi cô Violette Blue luyện tập trước khi biểu diễn tại Oxford Music Hall. Nhân vật quan trọng Case 4.",
-    appeared_in: ["case_4"]
-  },
-
-  // ═══════════════════════════════════════════════════════
-  // KHU VỰC EC – EAST CENTRAL (x:470-820, y:80-400)
-  // ═══════════════════════════════════════════════════════
-  {
-    name: "Viện Bảo Tàng Anh (Phòng Ai Cập)",
-    code: "38EC",
-    category: "Bảo tàng",
-    address: "38 East Central St, EC",
-    map_coords: { x: 510, y: 115 },
-    desc: "Phòng Ai Cập Bảo tàng Anh. Xác nhận cổ vật đánh tráo thuộc về lăng mộ Vua Toutankhamon. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Nolan, Frances & Loretta (Căn hộ)",
-    code: "36EC",
-    category: "Cư dân",
-    address: "36 East Central St, EC",
-    map_coords: { x: 550, y: 115 },
-    desc: "Căn hộ hai chị em Frances và Loretta Nolan. Frances khai hai lần mất trí nhớ do bị thôi miên. (Case 3)",
+    code: "13WC",
+    name: "Văn phòng Luật sư Hiram Davenport",
+    category: "Luật sư",
+    address: "13 Chancery Lane, WC",
+    map_coords: { x: 335, y: 195 },
+    desc: "Văn phòng luật sư gia đình Nolan. Nơi Frances Nolan bị thôi miên đến thay đổi người giám hộ di chúc. (Case 3)",
     appeared_in: ["case_3"]
   },
   {
-    name: "Xưởng tranh họa sĩ Victor Renard",
-    code: "3EC",
+    code: "14WC",
+    name: "Scotland Yard - Hồ sơ vụ án cũ 1861 (Yoblinski)",
+    category: "Cơ quan",
+    address: "14 Great Scotland Yard, WC",
+    map_coords: { x: 380, y: 195 },
+    desc: "Lưu trữ hồ sơ vụ án cũ năm 1861 về sát thủ điên Zagreb Yoblinski. (Case 3)",
+    appeared_in: ["case_3"]
+  },
+  {
+    code: "17WC",
+    name: "Chancery Office (Tòa án Di chúc London)",
+    category: "Cơ quan",
+    address: "17 Chancery Lane, WC",
+    map_coords: { x: 425, y: 195 },
+    desc: "Nơi lưu giữ bản di chúc pháp lý công chứng của Frances Nolan dành toàn bộ quyền cho Dr. Trevelyan. (Case 3)",
+    appeared_in: ["case_3"]
+  },
+  {
+    code: "21WC",
+    name: "Nhạc viện London (Phòng luyện âm Violette Blue)",
+    category: "Nghệ sĩ",
+    address: "21 Drury Lane, WC",
+    map_coords: { x: 290, y: 250 },
+    desc: "Phòng tập luyện riêng của ca sĩ Violette Blue trước khi đến hát tại Oxford Music Hall. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "22WC",
+    name: "Quán rượu Cáo Trắng (White Fox Tavern)",
+    category: "Quán rượu",
+    address: "22 Bloomsbury St, WC",
+    map_coords: { x: 335, y: 250 },
+    desc: "Quán rượu sinh viên UCL. Nơi Thomas Higgins nhậu từ 8h tối đến 1h sáng tạo chứng cứ ngoại phạm. (Case 6)",
+    appeared_in: ["case_6"]
+  },
+  {
+    code: "28WC",
+    name: "Cửa hàng súng sáu & Vũ khí Derringer",
+    category: "Cửa hàng",
+    address: "28 Holborn Street, WC",
+    map_coords: { x: 380, y: 250 },
+    desc: "Tiệm bán súng ngắn sáu nòng. Dr. Trevelyan trực tiếp đi mua Derringer đứng tên Frances vu khống. (Case 3)",
+    appeared_in: ["case_3"]
+  },
+  {
+    code: "42WC",
+    name: "Nhà riêng nạn nhân Oswald Mason",
+    category: "Cư dân",
+    address: "42 Tottenham Court Road, WC",
+    map_coords: { x: 425, y: 250 },
+    desc: "Hiện trường vụ đập chết Trưởng kế toán Ngân hàng Anh Oswald Mason và cướp cuộn bản đồ cổ vật Katebet. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "43WC",
+    name: "Đại học Tổng hợp London UCL (Khoa Khảo cổ)",
+    category: "Trường học",
+    address: "43 Gower Street, WC",
+    map_coords: { x: 335, y: 305 },
+    desc: "Khoa Khảo cổ UCL. Trợ lý Turnbull nộp đơn xin từ chức giận dữ sau mâu thuẫn cổ vật với Windibank. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+
+  // ═════════════════════════════════════════════════════════════════════
+  // PHÂN KHU EC – EAST CENTRAL (ĐÔNG TRUNG TÂM LONDON)
+  // ═════════════════════════════════════════════════════════════════════
+  {
+    code: "03EC",
+    name: "Xưởng tranh Họa sĩ Victor Renard",
     category: "Xưởng",
-    address: "3 East Central St, EC",
-    map_coords: { x: 600, y: 115 },
-    desc: "Xưởng họa sĩ Victor Renard – người vẽ bức tranh nhái giống hệt bản gốc trong vụ Case 1.",
+    address: "3 Fleet Street, EC",
+    map_coords: { x: 500, y: 110 },
+    desc: "Xưởng vẽ của danh họa làm giả bức 'Hoàng hôn trên sông Thames'. (Case 1)",
     appeared_in: ["case_1"]
   },
   {
-    name: "Oxford Music Hall (Violette Blue biểu diễn)",
-    code: "11EC",
-    category: "Sân khấu",
-    address: "11 East Central St, EC",
-    map_coords: { x: 650, y: 115 },
-    desc: "Nhà hát âm nhạc Oxford. Violette Blue biểu diễn tại đây – manh mối duy nhất dẫn đến cô ta. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Phóng viên Travis (Nhà riêng)",
-    code: "50EC",
-    category: "Cư dân",
-    address: "50 East Central St, EC",
-    map_coords: { x: 510, y: 160 },
-    desc: "Phóng viên Travis – không thể tiếp cận lăng mộ do hàng rào an ninh nghiêm ngặt. Ngoại phạm xác nhận. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Sterling, Giáo sư (Văn phòng EC)",
-    code: "8EC",
+    code: "08EC",
+    name: "Văn phòng Giáo sư Sterling (Khoa Cơ khí)",
     category: "Giáo sư",
-    address: "08 East Central St, EC",
-    map_coords: { x: 550, y: 160 },
-    desc: "Văn phòng Giáo sư Sterling – xì gà Cuba và vết xước tay phải lộ diện. Hung thủ Case 6. (Case 6)",
+    address: "8 East Central St, EC",
+    map_coords: { x: 550, y: 110 },
+    desc: "Văn phòng Giáo sư Sterling - hung thủ vụ cạy ngăn kéo cướp bản thiết kế động cơ hơi nước. (Case 6)",
     appeared_in: ["case_6"]
   },
   {
-    name: "Bệnh viện St. Bartholomew",
-    code: "38EC-b",
-    category: "Bệnh viện",
-    address: "38B East Central St, EC",
-    map_coords: { x: 600, y: 160 },
-    desc: "Phòng khám nghiệm tử thi Bác sĩ Sir Jasper Meeks. Kết luận Clarendon bị bắn cận chiến bằng Derringer. (Case 3)",
-    appeared_in: ["case_3"]
+    code: "10EC",
+    name: "Phòng tranh Archibald (Hiện trường đánh tráo)",
+    category: "Hiện trường",
+    address: "10 Bond Street, EC",
+    map_coords: { x: 600, y: 110 },
+    desc: "Hiện trường đánh tráo kiệt tác tranh Turner. Chó gác Brutus không sủa vì kẻ gian là quản lý Victor. (Case 1)",
+    appeared_in: ["case_1"]
   },
   {
-    name: "Cửa hàng đồ cổ Ai Cập (Oxford St)",
-    code: "30EC",
-    category: "Cửa hàng",
-    address: "30 East Central St, EC",
-    map_coords: { x: 650, y: 160 },
-    desc: "Tiệm đồ cổ nhận bán lén cổ vật Toutankhamon bị tuồn ra thị trường đen. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Shinwell, Porky (Sòng bạc Kilgore)",
-    code: "52EC",
-    category: "Cơ sở cờ bạc",
-    address: "52 East Central St, EC",
-    map_coords: { x: 510, y: 210 },
-    desc: "Sòng bạc Kilgore và tay chân Gus Bullock. Clarendon nợ 7.000 Bảng và bị tay chân đe dọa. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Đại học Tổng hợp UCL (Cổng EC)",
-    code: "43EC",
-    category: "Trường học",
-    address: "43 East Central St, EC",
-    map_coords: { x: 550, y: 210 },
-    desc: "Cổng phía đông UCL. Windibank có văn phòng tại đây. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Tiệm chụp ảnh Thompson & Sons",
-    code: "20EC",
-    category: "Cửa hàng",
-    address: "20 East Central St, EC",
-    map_coords: { x: 600, y: 210 },
-    desc: "Tiệm chụp ảnh chuyên nghiệp. Có thể lưu giữ ảnh các nhân vật liên quan Case 2.",
-    appeared_in: ["case_2"]
-  },
-  {
-    name: "Cửa hàng Xì gà Havana (EC)",
-    code: "17EC-b",
-    category: "Cửa hàng",
-    address: "17 East Central St, EC",
-    map_coords: { x: 650, y: 210 },
-    desc: "Tiệm xì gà Partagas Cuba. Xác nhận Giáo sư Sterling là khách quen đặt hàng tuần. (Case 6)",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Nhà kho bến sông Thames",
-    code: "40EC",
-    category: "Địa danh",
-    address: "40 East Central St, EC",
-    map_coords: { x: 510, y: 265 },
-    desc: "Kho hàng dọc bờ sông Thames. Có tin đồn về hàng lậu cổ vật Ai Cập. (Case 4 – đánh lạc hướng)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Ngân hàng Cán Cân (Nơi vụ cướp đầu tiên)",
-    code: "35EC",
-    category: "Cơ quan",
-    address: "35 East Central St, EC",
-    map_coords: { x: 560, y: 265 },
-    desc: "Ngân hàng liên quan đến chuỗi vụ cướp và án mạng theo nghi thức 4 nguyên tố cổ đại. (Case 5)",
-    appeared_in: ["case_5"]
-  },
-  {
-    name: "Xưởng hóa chất Belladonna",
-    code: "41EC",
-    category: "Xưởng",
-    address: "41 East Central St, EC",
-    map_coords: { x: 610, y: 265 },
-    desc: "Xưởng bào chế độc tố Belladonna được dùng trong chuỗi án mạng nghi thức triết học. (Case 5)",
-    appeared_in: ["case_5"]
-  },
-  {
-    name: "Tòa soạn Nhật báo The Times",
-    code: "45EC",
-    category: "Cơ quan",
-    address: "45 East Central St, EC",
-    map_coords: { x: 660, y: 265 },
-    desc: "Tòa soạn The Times London. Phóng viên Travis làm việc tại đây sau khi rời Đại học. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Công ty Khai thác Katebet",
-    code: "33EC",
-    category: "Cơ quan",
-    address: "33 East Central St, EC",
-    map_coords: { x: 510, y: 315 },
-    desc: "Văn phòng đoàn thám hiểm khai quật lăng mộ Katebet tại Ai Cập. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Thư viện Pháp y Scotland Yard",
-    code: "48EC",
-    category: "Cơ quan",
-    address: "48 East Central St, EC",
-    map_coords: { x: 560, y: 315 },
-    desc: "Thư viện lưu hồ sơ tội phạm. Chứa thông tin về các vụ án nghi thức. (Case 5)",
-    appeared_in: ["case_5"]
-  },
-  {
-    name: "Nhà hát Opera Covent Garden",
-    code: "18EC",
+    code: "11EC",
+    name: "Nhà hát Oxford Music Hall (Violette Blue)",
     category: "Sân khấu",
-    address: "18 East Central St, EC",
-    map_coords: { x: 610, y: 315 },
-    desc: "Nhà hát Opera. Địa điểm xuất hiện trong Case 2 liên quan đến nhân vật bí ẩn.",
+    address: "11 Oxford Street, EC",
+    map_coords: { x: 650, y: 110 },
+    desc: "Nhà hát ca nhạc sôi động. Nơi duy nhất đăng cáo thị biểu diễn của nữ ca sĩ Violette Blue. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "17EC",
+    name: "Cửa hàng Xì gà Havana Partagas",
+    category: "Cửa hàng",
+    address: "17 Cheapside, EC",
+    map_coords: { x: 700, y: 110 },
+    desc: "Cửa hàng bán xì gà Cuba đắt tiền. Giáo sư Sterling là khách quen đặt hàng Partagas hàng tuần. (Case 6)",
+    appeared_in: ["case_6"]
+  },
+  {
+    code: "18EC",
+    name: "Nhà hát Opera Covent Garden",
+    category: "Sân khấu",
+    address: "18 Bow Street, EC",
+    map_coords: { x: 750, y: 110 },
+    desc: "Nhà hát opera danh tiếng. Địa điểm xuất hiện trong nghi vấn Case 2.",
     appeared_in: ["case_2"]
   },
   {
-    name: "Văn phòng Moriarty (bỏ hoang)",
-    code: "60EC",
-    category: "Địa danh",
-    address: "60 East Central St, EC",
-    map_coords: { x: 660, y: 315 },
-    desc: "Văn phòng cũ của Giáo sư Moriarty, hiện bỏ hoang. Được đề cập trong Case 2.",
+    code: "20EC",
+    name: "Tiệm chụp ảnh Thompson & Sons",
+    category: "Cửa hàng",
+    address: "20 Fleet Street, EC",
+    map_coords: { x: 500, y: 170 },
+    desc: "Tiệm nhiếp ảnh chuyên nghiệp lưu giữ hình ảnh các nhân vật quan trọng. (Case 2)",
     appeared_in: ["case_2"]
   },
   {
-    name: "Sông Thames – Bến Blackfriars",
-    code: "55EC",
-    category: "Địa danh",
-    address: "55 East Central St, EC",
-    map_coords: { x: 555, y: 370 },
-    desc: "Bến sông Thames khu Blackfriars. Địa điểm nghi thức 'Thủy' trong chuỗi án Case 5.",
+    code: "30EC",
+    name: "Tiệm đồ cổ Ai Cập đường Oxford",
+    category: "Cửa hàng",
+    address: "30 Oxford Street, EC",
+    map_coords: { x: 550, y: 170 },
+    desc: "Cửa hàng nhận mua lén các tượng nhỏ cổ vật Toutankhamon bị tuồn ra thị trường đen. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "33EC",
+    name: "Văn phòng Đoàn Thám Hiểm Katebet",
+    category: "Cơ quan",
+    address: "33 Leadenhall Street, EC",
+    map_coords: { x: 600, y: 170 },
+    desc: "Trụ sở đại diện đoàn khai quật lăng mộ nữ vương Katebet tại London. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "35EC",
+    name: "Ngân hàng Cán Cân (Unsettled Balance Bank)",
+    category: "Cơ quan",
+    address: "35 Lombard Street, EC",
+    map_coords: { x: 650, y: 170 },
+    desc: "Ngân hàng xảy ra vụ cướp bí ẩn mở đầu cho chuỗi án mạng 4 nguyên tố triết học. (Case 5)",
     appeared_in: ["case_5"]
+  },
+  {
+    code: "36EC",
+    name: "Căn hộ hai chị em Frances & Loretta Nolan",
+    category: "Cư dân",
+    address: "36 Moorgate, EC",
+    map_coords: { x: 700, y: 170 },
+    desc: "Nơi Frances Nolan sinh sống và khai báo về hai lần bị ngất xỉu mất trí nhớ do thôi miên. (Case 3)",
+    appeared_in: ["case_3"]
+  },
+  {
+    code: "38EC",
+    name: "Bệnh viện St. Bartholomew / Bảo tàng Anh Ai Cập",
+    category: "Bệnh viện & Bảo tàng",
+    address: "38 Smithfield, EC",
+    map_coords: { x: 750, y: 170 },
+    desc: "Khám nghiệm Sir Jasper Meeks (Case 3) và Phòng cổ vật Toutankhamon Bảo tàng Anh (Case 4).",
+    appeared_in: ["case_3", "case_4"]
+  },
+  {
+    code: "40EC",
+    name: "Kho hàng bến sông Thames Blackfriars",
+    category: "Kho hàng",
+    address: "40 Upper Thames St, EC",
+    map_coords: { x: 500, y: 230 },
+    desc: "Kho hàng bị nghi ngờ cất giấu cổ vật buôn lậu Ai Cập. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "41EC",
+    name: "Xưởng hóa chất Belladonna (Độc tố thảo mộc)",
+    category: "Xưởng",
+    address: "41 Cannon Street, EC",
+    map_coords: { x: 550, y: 230 },
+    desc: "Xưởng bào chế và chiết xuất độc tố Belladonna được dùng trong các vụ ám sát nghi thức. (Case 5)",
+    appeared_in: ["case_5"]
+  },
+  {
+    code: "43EC",
+    name: "Cổng phía Đông Đại học UCL",
+    category: "Trường học",
+    address: "43 Bishopsgate, EC",
+    map_coords: { x: 600, y: 230 },
+    desc: "Văn phòng phụ của Giáo sư Windibank tại khu vực phía đông. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "45EC",
+    name: "Tòa soạn Nhật báo The Times London",
+    category: "Cơ quan",
+    address: "45 Printing House Square, EC",
+    map_coords: { x: 650, y: 230 },
+    desc: "Tòa soạn nhật báo The Times. Nơi phóng viên Travis làm việc sau khi rời UCL. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "50EC",
+    name: "Căn hộ Phóng viên Travis (The Times)",
+    category: "Cư dân",
+    address: "50 Fleet Street, EC",
+    map_coords: { x: 700, y: 230 },
+    desc: "Nhà riêng phóng viên Travis. Xác nhận không thể tiếp cận lăng mộ do hàng rào an ninh nghiêm ngặt. (Case 4)",
+    appeared_in: ["case_4"]
+  },
+  {
+    code: "52EC",
+    name: "Sòng bạc Kilgore & Porky Shinwell",
+    category: "Sòng bạc",
+    address: "52 Whitechapel Road, EC",
+    map_coords: { x: 750, y: 230 },
+    desc: "Tiệm sòng bạc Kilgore nơi Clarendon nợ 7.000 Bảng và gã sẹo Gus Bullock đòi nợ. (Case 3)",
+    appeared_in: ["case_3"]
   },
 
-  // ═══════════════════════════════════════════════════════
-  // KHU VỰC SW – SOUTH WEST (x:50-320, y:400-550)
-  // ═══════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════
+  // PHÂN KHU SW – SOUTH WEST (TÂY NAM LONDON)
+  // ═════════════════════════════════════════════════════════════════════
   {
-    name: "Khách sạn Clarendon",
-    code: "15SW",
-    category: "Khách sạn",
-    address: "15 South West St, SW",
-    map_coords: { x: 80, y: 430 },
-    desc: "Nơi ông Clarendon lưu trú. Hiện trường chỉ có 1 ly rượu, loại trừ Loretta. Gus Bullock chực chờ ở quầy bar. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Căn hộ Higgins, Thomas",
-    code: "14SW",
-    category: "Cư dân",
-    address: "14 South West St, SW",
-    map_coords: { x: 130, y: 430 },
-    desc: "Căn hộ tồi tàn của sinh viên Thomas Higgins. Hút thuốc lá sợi rẻ → loại trừ khỏi vụ trộm Case 6. (Case 6)",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Xưởng in bản đồ London",
-    code: "19SW",
-    category: "Xưởng",
-    address: "19 South West St, SW",
-    map_coords: { x: 180, y: 430 },
-    desc: "Xưởng in ấn chuyên bản đồ và tài liệu địa lý. Có thể cung cấp thông tin về vị trí các lăng mộ. (Case 4 – đánh lạc hướng)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Nhà kho Pendelton, Arthur",
-    code: "26SW",
-    category: "Cư dân",
-    address: "26 South West St, SW",
-    map_coords: { x: 230, y: 430 },
-    desc: "Nhà trọ của sinh viên Arthur Pendelton – nạn nhân vụ đánh cắp bản thiết kế. (Case 6)",
-    appeared_in: ["case_6"]
-  },
-  {
-    name: "Trại thực hành hóa học SW",
-    code: "27SW",
-    category: "Xưởng",
-    address: "27 South West St, SW",
-    map_coords: { x: 280, y: 430 },
-    desc: "Phòng thực hành hóa chất nhỏ tại khu SW. Liên quan đến vụ nghi thức đầu độc Case 5.",
-    appeared_in: ["case_5"]
-  },
-  {
-    name: "Công viên Hyde Park",
-    code: "2SW",
+    code: "02SW",
+    name: "Công viên Hoàng Gia Hyde Park",
     category: "Địa danh",
     address: "Hyde Park, SW",
+    map_coords: { x: 80, y: 430 },
+    desc: "Công viên Hyde Park. Nơi Frances Nolan tỉnh dậy sau lần ngất xỉu thôi miên thứ nhất. (Case 3)",
+    appeared_in: ["case_3"]
+  },
+  {
+    code: "13SW",
+    name: "Sở Cảnh sát Scotland Yard (Thanh tra Lestrade)",
+    category: "Cơ quan",
+    address: "4 Whitehall Place, SW",
+    map_coords: { x: 140, y: 430 },
+    desc: "Trụ sở Cảnh sát Hoàng Gia Scotland Yard. Nơi Thanh tra Lestrade tiếp đón thám tử. (Case 1, 5, 6)",
+    appeared_in: ["case_1", "case_5", "case_6"]
+  },
+  {
+    code: "14SW",
+    name: "Căn hộ sinh viên Thomas Higgins",
+    category: "Cư dân",
+    address: "14 Pimlico Road, SW",
+    map_coords: { x: 195, y: 430 },
+    desc: "Căn hộ tồi tàn của Higgins. Hút thuốc lá sợi rẻ tiền → bằng chứng loại trừ vụ trộm bản thiết kế. (Case 6)",
+    appeared_in: ["case_6"]
+  },
+  {
+    code: "15SW",
+    name: "Khách sạn Clarendon",
+    category: "Khách sạn",
+    address: "15 Victoria Street, SW",
+    map_coords: { x: 250, y: 430 },
+    desc: "Khách sạn Clarendon tạm trú. Hiện trường chỉ có 1 ly rượu (loại trừ Loretta) và vết sẹo Gus Bullock. (Case 3)",
+    appeared_in: ["case_3"]
+  },
+  {
+    code: "22SW",
+    name: "Biệt thự sưu tầm Julian",
+    category: "Cư dân",
+    address: "22 Belgrave Square, SW",
     map_coords: { x: 80, y: 490 },
-    desc: "Công viên hoàng gia Hyde Park. Frances Nolan tỉnh dậy ở đây sau lần bị thôi miên thứ nhất. (Case 3)",
-    appeared_in: ["case_3"]
+    desc: "Dinh thự gã sưu tầm tranh Julian - đối thủ mua tranh của Bá tước Pemberton. (Case 1)",
+    appeared_in: ["case_1"]
   },
   {
-    name: "Phòng khám bí mật Dr. Trevelyan",
-    code: "24SE-SW",
-    category: "Bác sĩ",
-    address: "24 South East/South West, SW",
-    map_coords: { x: 130, y: 490 },
-    desc: "Phòng khám ẩn danh của Dr. Trevelyan nơi Frances được đưa đến để thôi miên bí mật. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Nhà thờ St. Mary Woolnoth",
-    code: "31SW",
-    category: "Địa danh",
-    address: "31 South West St, SW",
-    map_coords: { x: 195, y: 490 },
-    desc: "Giáo đường Lombard Street. Người trông coi bị kẻ lạ mặt dùng thuốc mê bốc hơi làm ngất xỉu. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Trại tập kết Case 5 (Thủy)",
     code: "25SW",
-    category: "Địa danh",
-    address: "25 South West St, SW",
-    map_coords: { x: 255, y: 490 },
-    desc: "Địa điểm phát sinh nghi thức 'Thủy' trong chuỗi án mạng 4 nguyên tố cổ đại Empedocles. (Case 5)",
+    name: "Trạm nước sông Thames (Nghi thức Thủy)",
+    category: "Hiện trường",
+    address: "25 Chelsea Embankment, SW",
+    map_coords: { x: 140, y: 490 },
+    desc: "Trạm lấy nước bờ sông Thames liên quan đến vụ sát hại nghi thức Nguyên tố Thủy. (Case 5)",
     appeared_in: ["case_5"]
   },
   {
-    name: "Ga xe lửa Waterloo",
+    code: "31SW",
+    name: "Giáo đường St. Mary Woolnoth (Khăn mê)",
+    category: "Địa danh",
+    address: "31 Lombard Street, SW",
+    map_coords: { x: 195, y: 490 },
+    desc: "Nơi người trông coi giáo đường bị đánh ngất bằng khăn thấm thuốc mê bốc hơi. (Case 3)",
+    appeared_in: ["case_3"]
+  },
+  {
     code: "32SW",
+    name: "Ga xe lửa Waterloo Station",
     category: "Địa danh",
-    address: "32 South West St, SW",
-    map_coords: { x: 80, y: 545 },
-    desc: "Ga xe lửa Waterloo. Frances Nolan tỉnh dậy tại đây sau lần bị thôi miên thứ hai tại Lambeth Walk. (Case 3)",
+    address: "Waterloo Station, SW",
+    map_coords: { x: 250, y: 490 },
+    desc: "Ga xe lửa Waterloo. Nơi Frances Nolan tỉnh dậy sau lần ngất xỉu thôi miên thứ hai tại Lambeth Walk. (Case 3)",
     appeared_in: ["case_3"]
-  },
-  {
-    name: "Lambeth Walk (Căn hộ thuê bí mật)",
-    code: "24SE",
-    category: "Địa danh",
-    address: "24 South East St, SW/SE",
-    map_coords: { x: 145, y: 545 },
-    desc: "Căn hộ cho thuê ở Lambeth Walk – phòng thôi miên bí mật của Dr. Trevelyan. Frances bị ngất xỉu lần 2 tại đây. (Case 3)",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Khu nhà ổ chuột Southwark",
-    code: "37SW",
-    category: "Địa danh",
-    address: "37 South West St, SW",
-    map_coords: { x: 215, y: 545 },
-    desc: "Khu dân cư nghèo Southwark. Nơi một số nhân vật ẩn náu trong Case 5.",
-    appeared_in: ["case_5"]
   },
 
-  // ═══════════════════════════════════════════════════════
-  // KHU VỰC SE – SOUTH EAST (x:440-820, y:400-560)
-  // ═══════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════
+  // PHÂN KHU SE – SOUTH EAST (ĐÔNG NAM LONDON)
+  // ═════════════════════════════════════════════════════════════════════
   {
-    name: "Trevelyan, Dr. (Phòng khám SE)",
-    code: "24SE-clinic",
-    category: "Bác sĩ",
-    address: "24 South East St, SE",
-    map_coords: { x: 475, y: 430 },
-    desc: "Phòng khám chính thức Dr. Trevelyan. Bác sĩ riêng của Loretta Nolan. Kẻ chủ mưu vụ án Case 3. (Case 3)",
+    code: "14SE",
+    name: "Xưởng vẽ của Họa sĩ Elias",
+    category: "Xưởng",
+    address: "14 Southwark Bridge Rd, SE",
+    map_coords: { x: 500, y: 430 },
+    desc: "Xưởng vẽ Elias - kẻ khai nhận được người mặc áo xám hút xì gà đắt tiền thuê chép tranh giả. (Case 1)",
+    appeared_in: ["case_1"]
+  },
+  {
+    code: "24SE",
+    name: "Căn hộ thuê Lambeth Walk / Phòng khám Dr. Trevelyan",
+    category: "Địa danh & Bác sĩ",
+    address: "24 Lambeth Walk, SE",
+    map_coords: { x: 560, y: 430 },
+    desc: "Căn hộ bí mật có đĩa thôi miên và thuốc mê của Dr. Trevelyan. Nơi Frances bị ngất lần 2. (Case 3)",
     appeared_in: ["case_3"]
   },
   {
-    name: "Bến cảng London (Victoria Docks)",
-    code: "62SE",
-    category: "Địa danh",
-    address: "62 South East St, SE",
-    map_coords: { x: 535, y: 430 },
-    desc: "Cảng sông Thames. Cổ vật Ai Cập bị vận chuyển qua đây. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Nhà tù Newgate (Hồ sơ bắt giữ)",
-    code: "59SE",
-    category: "Cơ quan",
-    address: "59 South East St, SE",
-    map_coords: { x: 595, y: 430 },
-    desc: "Nhà tù Newgate. Gus Bullock bị bắt và thụ án tại đây sau vụ Case 3 (từ tháng 3/1889). Vụ sau không còn liên hệ hắn.",
-    appeared_in: ["case_3"]
-  },
-  {
-    name: "Dinh thự Katebet Expedition HQ",
-    code: "54SE",
-    category: "Cơ quan",
-    address: "54 South East St, SE",
-    map_coords: { x: 655, y: 430 },
-    desc: "Trụ sở đoàn thám hiểm Katebet tại London. Cất giữ tài liệu và cổ vật từ Ai Cập. (Case 4)",
-    appeared_in: ["case_4"]
-  },
-  {
-    name: "Câu lạc bộ Triết học Empedocles",
-    code: "58SE",
-    category: "Địa danh",
-    address: "58 South East St, SE",
-    map_coords: { x: 715, y: 430 },
-    desc: "Câu lạc bộ cuồng tín triết học cổ đại 4 nguyên tố Thủy-Hỏa-Phong-Thổ. Gốc rễ của chuỗi án Case 5.",
-    appeared_in: ["case_5"]
-  },
-  {
-    name: "Nhà thờ St. George Southwark",
-    code: "61SE",
-    category: "Địa danh",
-    address: "61 South East St, SE",
-    map_coords: { x: 475, y: 490 },
-    desc: "Địa điểm nghi thức 'Thổ' trong chuỗi án Case 5.",
-    appeared_in: ["case_5"]
-  },
-  {
-    name: "Cầu London Bridge",
-    code: "56SE",
-    category: "Địa danh",
-    address: "56 South East St, SE",
-    map_coords: { x: 555, y: 490 },
-    desc: "Cầu London nối bờ Bắc và Nam sông Thames. Địa điểm giao dịch bí mật trong Case 5.",
-    appeared_in: ["case_5"]
-  },
-  {
-    name: "Nhà kho Case 2 (Đám cháy bí ẩn)",
     code: "49SE",
-    category: "Địa danh",
-    address: "49 South East St, SE",
-    map_coords: { x: 635, y: 490 },
-    desc: "Nhà kho bị đám cháy bí ẩn. Một thi thể bị cháy xém được phát hiện bên trong liên quan Case 2.",
+    name: "Nhà kho hoang bến tàu (Đám cháy Baker Street)",
+    category: "Hiện trường",
+    address: "49 Bermondsey Wall, SE",
+    map_coords: { x: 620, y: 430 },
+    desc: "Nhà kho bị phóng hỏa nghi vấn trong vụ án Cái chết của Sherlock Holmes. (Case 2)",
     appeared_in: ["case_2"]
   },
   {
-    name: "Bảo tàng Lịch sử Tự nhiên SE",
-    code: "47SE",
-    category: "Bảo tàng",
-    address: "47 South East St, SE",
-    map_coords: { x: 715, y: 490 },
-    desc: "Bảo tàng lưu trữ mẫu vật khảo cổ. Chuyên gia bảo tàng xác nhận danh tính cổ vật Ai Cập. (Case 4)",
+    code: "54SE",
+    name: "Trụ sở Đoàn thám hiểm Katebet Expedition",
+    category: "Cơ quan",
+    address: "54 Tooley Street, SE",
+    map_coords: { x: 680, y: 430 },
+    desc: "Trụ sở quản lý hậu cần và cổ vật lăng mộ Nữ vương Katebet. (Case 4)",
     appeared_in: ["case_4"]
   },
   {
-    name: "Ga xe lửa London Bridge",
-    code: "70SE",
+    code: "56SE",
+    name: "Cầu London Bridge (Địa điểm giao dịch)",
     category: "Địa danh",
-    address: "70 South East St, SE",
-    map_coords: { x: 555, y: 545 },
-    desc: "Ga xe lửa London Bridge. Điểm đến trong các tuyến trốn thoát của nghi phạm.",
-    appeared_in: []
+    address: "London Bridge, SE",
+    map_coords: { x: 740, y: 430 },
+    desc: "Cầu London Bridge nối hai bờ sông Thames. Nơi trao đổi thư mật. (Case 5)",
+    appeared_in: ["case_5"]
   },
   {
-    name: "Nhà kho Buôn lậu Cổ vật Rotherhithe",
-    code: "75SE",
+    code: "58SE",
+    name: "Câu lạc bộ Triết học Empedocles (4 Nguyên tố)",
     category: "Địa danh",
-    address: "75 South East St, SE",
-    map_coords: { x: 715, y: 545 },
-    desc: "Kho hàng bí mật tại Rotherhithe. Nơi tạm cất giữ cổ vật Toutankhamon trước khi bán. (Case 4 – đánh lạc hướng)",
+    address: "58 Borough High St, SE",
+    map_coords: { x: 500, y: 490 },
+    desc: "Câu lạc bộ thảo luận triết học cuồng tín Empedocles đứng sau chuỗi án mạng 4 nguyên tố. (Case 5)",
+    appeared_in: ["case_5"]
+  },
+  {
+    code: "59SE",
+    name: "Nhà tù Newgate (Nơi giam giữ Gus Bullock)",
+    category: "Cơ quan",
+    address: "59 Old Bailey, SE",
+    map_coords: { x: 560, y: 490 },
+    desc: "Nhà tù Newgate. Nơi tay đòi nợ sẹo Gus Bullock bị bắt giữ và kết án sau vụ án 3 năm 1889.",
+    appeared_in: ["case_3"]
+  },
+  {
+    code: "61SE",
+    name: "Giáo đường St. George Southwark (Nghi thức Thổ)",
+    category: "Địa danh",
+    address: "61 Borough Road, SE",
+    map_coords: { x: 620, y: 490 },
+    desc: "Giáo đường cổ nơi phát hiện nạn nhân bị sát hại theo nghi thức Nguyên tố Thổ. (Case 5)",
+    appeared_in: ["case_5"]
+  },
+  {
+    code: "62SE",
+    name: "Cảng Victoria Docks (Vận chuyển cổ vật)",
+    category: "Địa danh",
+    address: "62 Victoria Docks, SE",
+    map_coords: { x: 680, y: 490 },
+    desc: "Bến cảng nơi cổ vật Toutankhamon và Katebet từ Ai Cập cập bến London. (Case 4)",
     appeared_in: ["case_4"]
   }
 ];
 
 /**
- * Lấy directory entries cho một vụ án cụ thể (lọc theo case_id)
- * Nếu caseId = null, trả về toàn bộ
+ * Lấy danh sách địa điểm theo Vụ án
  */
 export function getDirectoryForCase(caseId = null) {
   if (!caseId) return MASTER_DIRECTORY;
@@ -653,11 +521,9 @@ export function getDirectoryForCase(caseId = null) {
 }
 
 /**
- * Lấy tất cả map nodes cho một vụ án (từ nodes của case + MASTER_DIRECTORY)
- * Trả về array các entry có map_coords để render pin
+ * Lấy tất cả Map Pins cần render trên bản đồ cho một Vụ án cụ thể
  */
 export function getAllMapPinsForCase(caseData) {
-  if (!caseData) return [];
-  const nodeIds = new Set(Object.keys(caseData.nodes || {}));
-  return MASTER_DIRECTORY.filter(entry => nodeIds.has(entry.code));
+  if (!caseData) return MASTER_DIRECTORY;
+  return MASTER_DIRECTORY;
 }
