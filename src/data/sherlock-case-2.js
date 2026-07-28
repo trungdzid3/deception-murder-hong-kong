@@ -7,12 +7,12 @@ export const SHERLOCK_CASE_2 = {
     "story_text": "Sáng sớm ngày 5 tháng 3 năm 1889, Thanh tra Lestrade vội vã tìm đến 221B Baker Street với khuôn mặt biến sắc. Ông Clarendon - một quý tộc giàu có tại khu Bloomsbury - được phát hiện bị bắn chết ngay tại bàn làm việc trong phòng riêng. Cảnh sát tìm thấy Frances Nolan, người phụ nữ trẻ quen biết nạn nhân, đang trong trạng thái bần thần hoang tưởng gần hiện trường với vết máu trên tay và không thể nhớ bất kỳ điều gì đã xảy ra trong vài giờ qua. Mọi bằng chứng tại chỗ dường như quy kết Frances là kẻ sát nhân cuồng sát. Tuy nhiên, Holmes nghi ngờ cô gái trẻ đã bị thao túng tâm lý bằng kỹ thuật thôi miên cao tay để làm kẻ thế mạng cho một âm mưu chiếm đoạt gia tài tàn bạo!",
     "initial_clues": [
       "Nạn nhân Clarendon bị bắn chết bằng một viên đạn duy nhất từ súng ngắn Derringer tại bàn làm việc.",
-      "Hiện trường vụ án CHỈ CÓ DUY NHẤT 1 LY RƯỢU VANG (Errata đặc biệt: Loại trừ sự xuất hiện của cô em gái Loretta tại hiện trường).",
+      "Hiện trường CHỈ CÓ DUY NHẤT 1 LY RƯỢU VANG (Errata PDF 36EC: Loại trừ sự xuất hiện của cô em gái Loretta tại hiện trường).",
       "Frances Nolan bị cảnh sát tạm giữ trong trạng thái hoang tưởng, ngơ ngác và liên tục bị mất trí nhớ tạm thời (blackout).",
       "Sổ tay ghi chép của nạn nhân đề cập đến cuộc gặp với luật sư Hiram Davenport và Bác sĩ Trevelyan.",
       "Nhật báo The Times đăng tin về các vụ tấn công bằng khăn thấm thuốc mê bốc hơi (Stupefying liquid) tại khu vực Lombard Street."
     ],
-    "unlocked_nodes": ["36EC", "13WC", "15SW"]
+    "unlocked_nodes": ["36EC", "13WC", "15SW", "38EC"]
   },
   "nodes": {
     "36EC": {
@@ -21,18 +21,44 @@ export const SHERLOCK_CASE_2 = {
       "area": "EC",
       "type": "suspect_interview",
       "map_coords": { "x": 580, "y": 280 },
-      "content": "Frances Nolan ngơ ngác chia sẻ: 'Trong 2 tuần qua, tôi liên tục bị ngất xỉu và mất trí nhớ 2 lần mà không rõ lý do. Lần đầu tiên tôi tỉnh dậy thấy mình đang ngồi trên ghế công viên Hyde Park. Lần thứ hai vài ngày sau, khi tôi đến Lambeth Walk (24SE) để hỏi thuê một ngôi nhà nghỉ dưỡng xa thành phố cho hai chị em, tôi lại bị ngất và sau đó tỉnh dậy tại Ga xe lửa Waterloo (Waterloo Station). Tôi đã hỏi ý kiến Bác sĩ Trevelyan và ông ấy bảo tôi chỉ bị kiệt sức. Nếu tôi có bất trắc gì xảy ra, luật sư Hiram Davenport của gia đình vẫn là người quản lý tài sản theo đúng ý nguyện cha mẹ'. Lời khai chứng minh Frances HOÀN TOÀN KHÔNG BIẾT việc di chúc của cô đã bị sửa đổi nhượng quyền cho Dr. Trevelyan!",
+      "content": "Frances Nolan ngơ ngác chia sẻ: 'Trong 2 tuần qua, tôi liên tục bị ngất xỉu và mất trí nhớ 2 lần mà không rõ lý do. Lần đầu tiên tôi tỉnh dậy thấy mình đang ngồi trên ghế công viên Hyde Park. Lần thứ hai vài ngày sau, khi tôi đến Lambeth Walk (24SE) để hỏi thuê một ngôi nhà nghỉ dưỡng xa thành phố cho hai chị em, tôi lại bị ngất và sau đó tỉnh dậy tại Ga xe lửa Waterloo (Waterloo Station). Tôi đã hỏi ý kiến Bác sĩ Trevelyan và ông ấy bảo tôi chỉ bị kiệt sức. Nếu tôi có bất trắc gì xảy ra (incapacitation), luật sư Hiram Davenport của gia đình vẫn là người quản lý tài sản theo đúng ý nguyện cha mẹ'. Lời khai chứng minh Frances HOÀN TOÀN KHÔNG BIẾT việc di chúc của cô đã bị sửa đổi nhượng quyền cho Dr. Trevelyan!",
       "unlocks": {
-        "nodes": ["24SE", "17WC", "28WC"],
+        "nodes": ["24SE", "17WC", "28WC", "52EC"],
         "evidence_items": [
           "Frances bị ngất xỉu 2 lần (Hyde Park và Lambeth Walk 24SE -> tỉnh ở Ga Waterloo).",
-          "Frances tin rằng Luật sư Davenport vẫn quản lý tài sản, không hề biết di chúc đã bị sửa sang tên Dr. Trevelyan."
+          "Frances tin rằng Luật sư Davenport vẫn quản lý tài sản, không hề biết di chúc đã bị đổi tên người thừa kế sang Dr. Trevelyan."
         ]
       },
       "key_hints": [
         "Frances bị thôi miên mất trí nhớ tại Lambeth Walk (24SE).",
         "Frances không biết di chúc đã bị đổi tên người thừa kế, chứng tỏ cô bị thôi miên khi ký di chúc."
       ]
+    },
+    "38EC": {
+      "id": "38EC",
+      "title": "Bệnh viện St. Bartholomew (Bác sĩ pháp y Sir Jasper Meeks)",
+      "area": "EC",
+      "type": "clue_inspection",
+      "map_coords": { "x": 550, "y": 320 },
+      "content": "Bác sĩ khám nghiệm tử thi Sir Jasper Meeks kết luận: Nạn nhân Clarendon bị bắn ở cự cự kề cận (very close range) bằng một khẩu súng sáu cỡ nhỏ. Tử vong khoảng từ 4 đến 10 tiếng trước 1 giờ chiều.",
+      "unlocks": {
+        "nodes": ["28WC"],
+        "evidence_items": ["Clarendon bị bắn cận chiến bằng súng sáu nhỏ Derringer."]
+      },
+      "key_hints": ["Vết bắn cự cự kề cận trùng khớp với khẩu súng Derringer."]
+    },
+    "52EC": {
+      "id": "52EC",
+      "title": "Porky Shinwell & Tiệm sòng bạc Kilgore",
+      "area": "EC",
+      "type": "suspect_interview",
+      "map_coords": { "x": 600, "y": 350 },
+      "content": "Porky Shinwell tiết lộ: Clarendon nợ Claude Kilgore khoản tiền nợ cờ bạc khổng lồ 7.000 Bảng Anh và bị gã tay chân Gus Bullock (kẻ có vết sẹo dài trên mặt) đe dọa. Về sau Clarendon bất ngờ trả hết nợ và liên tục gặp gỡ bí mật với Calvin Leach (kẻ chuyên tiêu thụ đồ trộm cắp) vào đêm trước khi bị sát hại.",
+      "unlocks": {
+        "nodes": ["15SW"],
+        "evidence_items": ["Clarendon gặp gỡ buôn bán đồ trộm cắp với Calvin Leach trước đêm bị sát hại."]
+      },
+      "key_hints": ["Mối quan hệ mờ ám giữa Clarendon và kẻ tiêu thụ đồ trộm cắp Calvin Leach."]
     },
     "13WC": {
       "id": "13WC",
@@ -125,6 +151,8 @@ export const SHERLOCK_CASE_2 = {
     { "name": "Trevelyan, Dr. (Bác sĩ)", "code": "24SE", "category": "Bác sĩ", "address": "24 South East St", "desc": "Bác sĩ riêng của gia đình Nolan và phòng khám thôi miên bí mật." },
     { "name": "Chancery Office (Di chúc)", "code": "17WC", "category": "Cơ quan", "address": "17 West Central St", "desc": "Nơi lưu trữ di chúc pháp lý London." },
     { "name": "Khách sạn Clarendon", "code": "15SW", "category": "Khách sạn", "address": "15 South West St", "desc": "Nơi ông Clarendon lưu trú và xảy ra mâu thuẫn." },
+    { "name": "Bệnh viện St. Bartholomew", "code": "38EC", "category": "Bệnh viện", "address": "38 East Central St", "desc": "Phòng khám nghiệm tử thi Bác sĩ Sir Jasper Meeks." },
+    { "name": "Shinwell, Porky (Tiệm Kilgore)", "code": "52EC", "category": "Cơ sở cờ bạc", "address": "52 East Central St", "desc": "Sòng bạc Kilgore và tay chân Gus Bullock." },
     { "name": "Cửa hàng súng Derringer", "code": "28WC", "category": "Cửa hàng", "address": "28 West Central St", "desc": "Tiệm bán vũ khí và súng sáu nhỏ." },
     { "name": "Scotland Yard (Hồ sơ cũ)", "code": "14WC", "category": "Cơ quan", "address": "14 West Central St", "desc": "Hồ sơ vụ án tội phạm quá khứ năm 1861." }
   ],
