@@ -1498,17 +1498,7 @@ function App() {
                           return (
                             <div 
                               key={idx}
-                              onClick={() => {
-                                if (activeSherlockCase?.nodes?.[item.code]) {
-                                  setSherlockSelectedNodeId(item.code);
-                                  setSherlockActiveTab('casebook');
-                                  if (roomState?.code) {
-                                    socket.emit('sherlock-visit-node', { roomCode: roomState.code, nodeId: item.code });
-                                  }
-                                }
-                              }}
-                              className={`sherlock-directory-card cursor-pointer hover:border-amber-400 transition-all ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/30' : ''}`}
-                              title={`Nhấp để khám xét địa điểm [${item.code}]`}
+                              className={`sherlock-directory-card cursor-default ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/30' : ''}`}
                             >
                               <div>
                                 <div className="flex items-center justify-between mb-1.5 gap-2">
