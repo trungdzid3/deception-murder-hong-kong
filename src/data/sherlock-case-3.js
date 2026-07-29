@@ -1,6 +1,6 @@
 export const SHERLOCK_CASE_3 = {
   "case_id": "sherlock_case_3",
-  "title": "Vụ Án 4: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
+  "title": "Vụ Án 3: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
   "author": "Ystari & Raymond Edwards",
   "setting_date": "Ngày 5 tháng 3 năm 1889",
   "intro": {

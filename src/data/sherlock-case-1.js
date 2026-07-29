@@ -1,6 +1,6 @@
 export const SHERLOCK_CASE_1 = {
   "case_id": "sherlock_case_1",
-  "title": "Vụ Án 2: Bức Tranh Bị Đánh Tráo (The Swapped Canvas)",
+  "title": "Vụ Án 1: Bức Tranh Bị Đánh Tráo (The Swapped Canvas)",
   "author": "Sherlock Holmes Fan Case (Tân thủ)",
   "setting_date": "Ngày 10 tháng 9 năm 1890",
   "intro": {

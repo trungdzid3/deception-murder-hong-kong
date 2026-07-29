@@ -8,43 +8,23 @@ import { SHERLOCK_CASE_6 } from './sherlock-case-6';
 export { SHERLOCK_CASE_1, SHERLOCK_CASE_2, SHERLOCK_CASE_3, SHERLOCK_CASE_4, SHERLOCK_CASE_5, SHERLOCK_CASE_6 };
 
 export const ALL_SHERLOCK_CASES = {
-  sherlock_case_6: SHERLOCK_CASE_6,
   sherlock_case_1: SHERLOCK_CASE_1,
   sherlock_case_2: SHERLOCK_CASE_2,
   sherlock_case_3: SHERLOCK_CASE_3,
   sherlock_case_4: SHERLOCK_CASE_4,
-  sherlock_case_5: SHERLOCK_CASE_5
+  sherlock_case_5: SHERLOCK_CASE_5,
+  sherlock_case_6: SHERLOCK_CASE_6
 };
 
 /**
- * DANH SÁCH VỤ ÁN – SẮP XẾP CHUẨN THEO THỨ TỰ ĐỘ KHÓ TĂNG DẦN
- *
- * HỆ THỐNG TÍNH ĐIỂM CHUẨN SHCD:
- * - Holmes điểm cơ sở luôn là 100 điểm (dùng số bước tối ưu của Holmes).
- * - Điểm tối đa người chơi = Phần 1 (100đ) + Phần 2 câu hỏi phụ (30đ).
- * - Phạt: Trừ 5 điểm cho mỗi địa điểm thừa so với Holmes.
+ * DANH SÁCH VỤ ÁN – KHỚP 100% VỚI HỒ SƠ PDF TRONG DOCS/CASES (TỪ VỤ 1 TỚI VỤ 6)
  */
 export const SHERLOCK_CASES_LIST = [
   {
-    id: "sherlock_case_6",
-    title: "Vụ Án 1: Bản Thiết Kế Bị Đánh Cắp (The Stolen Blueprint)",
-    setting_date: "Ngày 14 tháng 10 năm 1890",
-    difficulty: "Tân thủ (Dễ nhất)",
-    diffLevel: "beginner",
-    holmes_clues: 3,
-    scoring: {
-      part1_max: 100,
-      part2_max: 30,
-      total_max: 130,
-      penalty_per_extra_clue: 5
-    },
-    desc: "Bản thiết kế hệ thống điều khiển động cơ hơi nước bị đánh cắp ngay trước kỳ thi tốt nghiệp. Cửa sổ vỡ nhưng kính lại rơi ra ngoài… Holmes phá án chỉ cần đúng 3 bước đi!"
-  },
-  {
     id: "sherlock_case_1",
-    title: "Vụ Án 2: Bức Tranh Bị Đánh Tráo (The Swapped Canvas)",
+    title: "Vụ Án 1: Bức Tranh Bị Đánh Tráo (The Swapped Canvas)",
     setting_date: "Ngày 10 tháng 9 năm 1890",
-    difficulty: "Nhập môn",
+    difficulty: "Tân thủ",
     diffLevel: "easy",
     holmes_clues: 4,
     scoring: {
@@ -57,7 +37,7 @@ export const SHERLOCK_CASES_LIST = [
   },
   {
     id: "sherlock_case_2",
-    title: "Vụ Án 3: Cái Chết Của Sherlock Holmes (Baker Street)",
+    title: "Vụ Án 2: Cái Chết Của Sherlock Holmes (The Death of Sherlock Holmes)",
     setting_date: "Ngày 2 tháng 12 năm 1893",
     difficulty: "Nhập môn nâng cao",
     diffLevel: "easy",
@@ -72,7 +52,7 @@ export const SHERLOCK_CASES_LIST = [
   },
   {
     id: "sherlock_case_3",
-    title: "Vụ Án 4: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
+    title: "Vụ Án 3: Người Phụ Nữ Hoang Tưởng (The Mystified Murderess)",
     setting_date: "Ngày 5 tháng 3 năm 1889",
     difficulty: "Trung bình",
     diffLevel: "medium",
@@ -87,7 +67,7 @@ export const SHERLOCK_CASES_LIST = [
   },
   {
     id: "sherlock_case_4",
-    title: "Vụ Án 5: Lời Nguyền Của Xác Ướp (The Mummy's Curse)",
+    title: "Vụ Án 4: Lời Nguyền Của Xác Ướp (The Mummy's Curse)",
     setting_date: "Ngày 11 tháng 4 năm 1890",
     difficulty: "Khó",
     diffLevel: "hard",
@@ -102,8 +82,8 @@ export const SHERLOCK_CASES_LIST = [
   },
   {
     id: "sherlock_case_5",
-    title: "Vụ Án 6: Cán Cân Công Lý Bất Ổn (The Case of the Unsettled Balance)",
-    setting_date: "Ngày 4 tháng 6 năm 1890",
+    title: "Vụ Án 5: Cán Cân Chao Đảo (The Case of the Unsettled Balance)",
+    setting_date: "Ngày 11 tháng 6 năm 1888",
     difficulty: "Chuyên gia (Rất khó)",
     diffLevel: "expert",
     holmes_clues: 6,
@@ -114,5 +94,20 @@ export const SHERLOCK_CASES_LIST = [
       penalty_per_extra_clue: 5
     },
     desc: "Chuỗi án mạng theo nghi thức 4 nguyên tố cổ đại Thủy, Hỏa, Phong, Thổ giội xuống London. Cuồng tín triết học Empedocles và độc tố Belladonna – vụ án khó nhất!"
+  },
+  {
+    id: "sherlock_case_6",
+    title: "Vụ Án 6: Bản Thiết Kế Bị Đánh Cắp (The Stolen Blueprint)",
+    setting_date: "Ngày 14 tháng 10 năm 1890",
+    difficulty: "Thách thức mở rộng",
+    diffLevel: "beginner",
+    holmes_clues: 3,
+    scoring: {
+      part1_max: 100,
+      part2_max: 30,
+      total_max: 130,
+      penalty_per_extra_clue: 5
+    },
+    desc: "Bản thiết kế hệ thống điều khiển động cơ hơi nước bị đánh cắp ngay trước kỳ thi tốt nghiệp. Cửa sổ vỡ nhưng kính lại rơi ra ngoài… Holmes phá án chỉ cần đúng 3 bước đi!"
   }
 ];

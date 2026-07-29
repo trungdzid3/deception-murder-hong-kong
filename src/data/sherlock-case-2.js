@@ -1,6 +1,6 @@
 export const SHERLOCK_CASE_2 = {
   "case_id": "sherlock_case_2",
-  "title": "Vụ Án 3: Cái Chết Của Sherlock Holmes (The Death of Sherlock Holmes)",
+  "title": "Vụ Án 2: Cái Chết Của Sherlock Holmes (The Death of Sherlock Holmes)",
   "author": "Cody Fleming",
   "setting_date": "Ngày 2 tháng 12 năm 1893",
   "intro": {
