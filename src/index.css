@@ -3140,10 +3140,19 @@ body {
   border-color: #ffffff !important;
 }
 
-.sherlock-map-pin.visited .sherlock-map-pin-badge {
+.sherlock-map-pin.visited-valuable .sherlock-map-pin-badge {
   border-color: #10b981 !important;
   background: rgba(6, 40, 24, 0.95) !important;
   color: #6ee7b7 !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4) !important;
+}
+
+.sherlock-map-pin.visited-decoy .sherlock-map-pin-badge {
+  border-color: rgba(148, 163, 184, 0.3) !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  color: #64748b !important;
+  opacity: 0.55 !important;
+  box-shadow: none !important;
 }
 
 /* =========================================================

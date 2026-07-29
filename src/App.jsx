@@ -1418,6 +1418,9 @@ function App() {
 
                         const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
 
+                        const isDecoy = n.type === 'decoy';
+                        const pinStatusClass = isVisited ? (isDecoy ? 'visited-decoy' : 'visited-valuable') : '';
+
                         return (
                           <div
                             key={n.id}
@@ -1425,7 +1428,7 @@ function App() {
                               left: pos.left, 
                               top: pos.top
                             }}
-                            className={`sherlock-map-pin ${isVisited ? 'visited' : ''}`}
+                            className={`sherlock-map-pin ${pinStatusClass}`}
                             onClick={() => {
                               setSherlockSelectedNodeId(n.id);
                               setSherlockActiveTab('casebook');
