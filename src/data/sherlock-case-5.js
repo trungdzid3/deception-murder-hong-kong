@@ -11,7 +11,7 @@ export const SHERLOCK_CASE_5 = {
       "Nhân chứng cụ bà tại 34EC đối diện Shoe Lane nghe tiếng ngã sầm và thấy một bóng người vội vã trong sương mù.",
       "Lời nhắn bí ẩn tại nhà Pearl Jones (78WC): \"Fire consumes, water preserves, air carries, and earth receives. All things return to their proper state.\" ký tên Empedocles."
     ],
-    "unlocked_nodes": ["63EC", "34EC"]
+    "unlocked_nodes": ["63EC"]
   },
   "nodes": {
     "63EC": {

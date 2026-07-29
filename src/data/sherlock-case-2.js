@@ -13,7 +13,7 @@ export const SHERLOCK_CASE_2 = {
       "Đống mảnh kính vỡ trên vỉa hè đối diện 221B và tiếng phụ nữ thét lên lúc vụ cháy bắt đầu.",
       "Nhân chứng Olivia Robins sống tại 50 NW báo cáo đã thấy Sherlock gặp một người đàn ông nghi là anh trai ông ấy lúc 8:30 tối."
     ],
-    "unlocked_nodes": ["50NW", "8SW", "22SW"]
+    "unlocked_nodes": ["50NW"]
   },
   "nodes": {
     "50NW": {
