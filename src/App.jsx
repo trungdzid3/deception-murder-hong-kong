@@ -80,6 +80,7 @@ function App() {
   const [selectedGameForModal, setSelectedGameForModal] = useState(null); // 'deception' | 'sherlock' | null
   const [sherlockSearchQuery, setSherlockSearchQuery] = useState('');
   const [sherlockSelectedNodeId, setSherlockSelectedNodeId] = useState(null);
+  const [localVisitedNodes, setLocalVisitedNodes] = useState([]);
   const [sherlockAnswers, setSherlockAnswers] = useState({});
   const [sherlockActiveTab, setSherlockActiveTab] = useState('casebook'); // 'casebook' | 'map' | 'directory' | 'newspaper' | 'quiz'
   const [sherlockSelectedAreaFilter, setSherlockSelectedAreaFilter] = useState('ALL'); // 'ALL' | 'NW' | 'WC' | 'EC' | 'SW' | 'SE'
@@ -1171,7 +1172,8 @@ function App() {
                           {(() => {
                             const visitedList = Array.from(new Set([
                               ...(activeSherlockCase?.intro?.unlocked_nodes || []),
-                              ...(roomState?.visitedNodes || [])
+                              ...(roomState?.visitedNodes || []),
+                              ...localVisitedNodes
                             ]));
 
                             const valuableNodes = visitedList
@@ -1427,6 +1429,7 @@ function App() {
                             onClick={() => {
                               setSherlockSelectedNodeId(n.id);
                               setSherlockActiveTab('casebook');
+                              setLocalVisitedNodes(prev => prev.includes(n.id) ? prev : [...prev, n.id]);
                               if (roomState?.code) {
                                 socket.emit('sherlock-visit-node', { roomCode: roomState.code, nodeId: n.id });
                               }
