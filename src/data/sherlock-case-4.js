@@ -19,7 +19,9 @@ export const SHERLOCK_CASE_4 = {
         "detail": "Bài báo điều tra:\nPhóng viên Travis đưa tin nhiều thành viên đoàn thám hiểm lăng mộ Katebet bị đe dọa. Khu khai quật Ai Cập được canh gác nghiêm ngặt."
       }
     ],
-    "unlocked_nodes": ["42WC"]
+    "unlocked_nodes": [
+      "42WC"
+    ]
   },
   "nodes": {
     "42WC": {
@@ -27,36 +29,62 @@ export const SHERLOCK_CASE_4 = {
       "title": "Nhà riêng nạn nhân Oswald Mason",
       "area": "WC",
       "type": "crime_scene",
-      "map_coords": {"left":"45.3%","top":"50.9%"},
+      "map_coords": {
+        "left": "45.3%",
+        "top": "50.9%"
+      },
       "content": "Bà Rose Mason (vợ nạn nhân) nức nở kể lại: 'Chồng tôi trở về nhà lúc 9:30 tối và vào phòng làm việc. Lúc 10:00 tối khi tôi vào phòng thì bàng hoàng thấy ông ấy nằm gục trên bàn làm việc, đầu bị thương nặng. Chiếc két sắt trong phòng có dấu vết bị cạy nhưng không mất tiền mặt, chỉ mất đi cuộn bản đồ định vị cổ vật lăng mộ Katebet mà ông ấy vừa nhận từ Ai Cập'.",
       "unlocks": {
-        "nodes": ["12NW", "50EC", "43WC"],
-        "evidence_items": ["Oswald Mason bị đập chết, cuộn bản đồ định vị cổ vật Katebet bị lấy mất."]
+        "nodes": [
+          "12NW",
+          "50EC",
+          "43WC"
+        ],
+        "evidence_items": [
+          "Oswald Mason bị đập chết, cuộn bản đồ định vị cổ vật Katebet bị lấy mất."
+        ]
       },
-      "key_hints": ["Mục tiêu của kẻ sát nhân là cuộn bản đồ vị trí lăng mộ Katebet chứ không phải tiền bạc."]
+      "key_hints": [
+        "Mục tiêu của kẻ sát nhân là cuộn bản đồ vị trí lăng mộ Katebet chứ không phải tiền bạc."
+      ]
     },
     "12NW": {
       "id": "12NW",
       "title": "Nhà riêng Bà quả phụ Thám hiểm gia Katebet",
       "area": "NW",
       "type": "suspect_interview",
-      "map_coords": {"left":"32%","top":"16%"},
+      "map_coords": {
+        "left": "32%",
+        "top": "16%"
+      },
       "content": "Bà quả phụ tuyệt đẹp và quyến rũ tiếp đón thám tử trong phòng khách tràn ngập cổ vật Ai Cập. Cô tiết lộ mâu thuẫn nảy lửa trong nội bộ đoàn khai quật: 'Chồng tôi và Giáo sư Windibank tranh cãi nảy lửa về quyền sở hữu các cổ vật của Vua Toutankhamon. Windibank đặc biệt lo lắng và muốn bán lén cổ vật ra thị trường đen cho các nhà sưu tập tư nhân ở London'.",
       "unlocks": {
-        "nodes": ["38EC", "30EC"],
-        "evidence_items": ["Mâu thuẫn nảy lửa về cổ vật Toutankhamon giữa đoàn thám hiểm và Giáo sư Windibank."]
+        "nodes": [
+          "38EC",
+          "30EC"
+        ],
+        "evidence_items": [
+          "Mâu thuẫn nảy lửa về cổ vật Toutankhamon giữa đoàn thám hiểm và Giáo sư Windibank."
+        ]
       },
-      "key_hints": ["Giáo sư Windibank âm mưu tuồn cổ vật Toutankhamon ra thị trường đen."]
+      "key_hints": [
+        "Giáo sư Windibank âm mưu tuồn cổ vật Toutankhamon ra thị trường đen."
+      ]
     },
     "50EC": {
       "id": "50EC",
       "title": "Phóng viên báo The Times (Travis)",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": {"left":"70.9%","top":"54.4%"},
+      "map_coords": {
+        "left": "70.9%",
+        "top": "54.4%"
+      },
       "content": "Phóng viên Travis trình bày chi tiết: 'Mọi người nghi ngờ tôi là hung thủ vì tôi liên tục đưa tin về đoàn thám hiểm. Nhưng sự thật là hàng rào an ninh quanh khu vực cắm trại khai quật vô cùng nghiêm ngặt. Dù tôi đã nhiều lần đệ đơn xin phép nhưng họ tuyệt đối không cho tôi bước chân vào lăng mộ. Tôi hoàn toàn không thể nào tiếp cận lăng mộ hay nạn nhân để gây ra vụ sát hại đầu tiên được!'. Chi tiết an ninh nghiêm ngặt tạo chứng cứ ngoại phạm sắt đá loại trừ Travis!",
       "unlocks": {
-        "nodes": ["43WC"],
+        "nodes": [
+          "43WC"
+        ],
         "evidence_items": [
           "Trại khai quật canh gác cực kỳ nghiêm ngặt.",
           "Phóng viên Travis không thể tiếp cận khu vực lăng mộ do an ninh chốt chặn."
@@ -71,48 +99,393 @@ export const SHERLOCK_CASE_4 = {
       "title": "Viện Bảo Tàng Anh (Phòng Ai Cập)",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": {"left":"64.0%","top":"59.6%"},
+      "map_coords": {
+        "left": "64.0%",
+        "top": "59.6%"
+      },
       "content": "Chuyên gia bảo tàng đính chính thông tin: 'Chiếc bùa hộ mệnh thu được tại hiện trường không phải của Nữ vương Katebet mà thuộc về lăng mộ Vua Toutankhamon. Nó đã được đánh tráo tinh vi nhằm dựng lên vụ án Lời nguyền siêu nhiên hù dọa dư luận'. Chỉ duy nhất Đại học London là nhà tài trợ chính thức.",
       "unlocks": {
-        "nodes": ["30EC"],
-        "evidence_items": ["Cổ vật bị đánh tráo thuộc về lăng mộ Vua Toutankhamon chứ không phải Ramses II hay Katebet."]
+        "nodes": [
+          "30EC"
+        ],
+        "evidence_items": [
+          "Cổ vật bị đánh tráo thuộc về lăng mộ Vua Toutankhamon chứ không phải Ramses II hay Katebet."
+        ]
       },
-      "key_hints": ["Vụ án là màn kịch đánh tráo cổ vật Toutankhamon thành Lời Nguyền Xác Ướp."]
+      "key_hints": [
+        "Vụ án là màn kịch đánh tráo cổ vật Toutankhamon thành Lời Nguyền Xác Ướp."
+      ]
     },
     "43WC": {
       "id": "43WC",
       "title": "Đại học tổng hợp London (Khoa Khảo cổ)",
       "area": "WC",
       "type": "suspect_interview",
-      "map_coords": {"left":"42.5%","top":"23%"},
+      "map_coords": {
+        "left": "42.5%",
+        "top": "23%"
+      },
       "content": "Đại diện khoa khảo cổ xác nhận: Trợ lý Turnbull rất khao khát tham gia đoàn thám hiểm Katebet. Sau khi bị từ chối và xảy ra mâu thuẫn lợi nhuận mua bán cổ vật với Giáo sư Windibank, Turnbull đã giận dữ nộp đơn xin từ chức khỏi Đại học và chuyển sang làm phóng viên tự do.",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Trợ lý Turnbull giận dữ từ chức khỏi Đại học sau tranh chấp với Windibank."]
+        "evidence_items": [
+          "Trợ lý Turnbull giận dữ từ chức khỏi Đại học sau tranh chấp với Windibank."
+        ]
       },
-      "key_hints": ["Turnbull từ chức vì mâu thuẫn học thuật và lợi nhuận bán cổ vật."]
+      "key_hints": [
+        "Turnbull từ chức vì mâu thuẫn học thuật và lợi nhuận bán cổ vật."
+      ]
     },
     "30EC": {
       "id": "30EC",
       "title": "Cửa hàng đồ cổ Ai Cập đường Oxford",
       "area": "EC",
       "type": "location_search",
-      "map_coords": {"left":"72%","top":"32%"},
+      "map_coords": {
+        "left": "72%",
+        "top": "32%"
+      },
       "content": "Chủ tiệm đồ cổ khai báo: 'Một người đàn ông năng nổ kỳ quặc đại diện đoàn thám hiểm đã bán lén cho tôi các bức tượng nhỏ Ai Cập với giá rất cao. Kẻ này hiểu biết rất sâu về cổ vật Toutankhamon'.",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Cổ vật Toutankhamon bị tuồn bán lén tại tiệm đồ cổ đường Oxford."]
+        "evidence_items": [
+          "Cổ vật Toutankhamon bị tuồn bán lén tại tiệm đồ cổ đường Oxford."
+        ]
       },
-      "key_hints": ["Giáo sư Windibank âm mưu bán lén cổ vật Toutankhamon."]
+      "key_hints": [
+        "Giáo sư Windibank âm mưu bán lén cổ vật Toutankhamon."
+      ]
+    },
+    "96NW": {
+      "id": "96NW",
+      "title": "Tiệm thuộc da Henderson",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": {
+        "left": "18%",
+        "top": "46%"
+      },
+      "content": "Xưởng chế tác da thuộc hoạt động bình thường, không có dấu vết khả nghi.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "98SW": {
+      "id": "98SW",
+      "title": "Khách sạn Victoria Club",
+      "area": "SW",
+      "type": "decoy",
+      "map_coords": {
+        "left": "30%",
+        "top": "88%"
+      },
+      "content": "Khách sạn dành cho khách du lịch. Không phát hiện dấu vết hay đối tượng nghi vấn.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "11EC": {
+      "id": "11EC",
+      "title": "Chủ xưởng đóng tàu Albert Jenkins",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": {
+        "left": "74%",
+        "top": "16%"
+      },
+      "content": "Xưởng đóng tàu Albert Jenkins làm việc bận rộn. Không có thông tin liên quan.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "14SW": {
+      "id": "14SW",
+      "title": "Kensington Tea Rooms",
+      "area": "SW",
+      "type": "decoy",
+      "map_coords": {
+        "left": "20%",
+        "top": "66%"
+      },
+      "content": "Quán trà quý tộc Kensington hoạt động bình thường, không có dấu vết khả nghi.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "21EC": {
+      "id": "21EC",
+      "title": "Văn phòng quản ngục Newgate",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": {
+        "left": "86%",
+        "top": "24%"
+      },
+      "content": "Hồ sơ phạm nhân Newgate được lưu trữ cẩn thận. Không có manh mối nào liên quan.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "24WC": {
+      "id": "24WC",
+      "title": "Tiệm đồng hồ Alfred Higgins",
+      "area": "WC",
+      "type": "decoy",
+      "map_coords": {
+        "left": "48%",
+        "top": "22%"
+      },
+      "content": "Tiệm sửa đồng hồ cổ Alfred Higgins buôn bán bình thường, không liên quan vụ án.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "31WC": {
+      "id": "31WC",
+      "title": "Phòng tranh William Blake",
+      "area": "WC",
+      "type": "decoy",
+      "map_coords": {
+        "left": "54%",
+        "top": "34%"
+      },
+      "content": "Phòng triển lãm tranh nghệ thuật yên tĩnh, không có manh mối nào.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "45NW": {
+      "id": "45NW",
+      "title": "Tiệm đồng hồ Oxford Street",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": {
+        "left": "20%",
+        "top": "30%"
+      },
+      "content": "Cửa hàng bán đồng hồ quả lắc bình thường, không có manh mối khả nghi.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "55SW": {
+      "id": "55SW",
+      "title": "Hội trường Victoria Memorial",
+      "area": "SW",
+      "type": "decoy",
+      "map_coords": {
+        "left": "28%",
+        "top": "82%"
+      },
+      "content": "Hội trường sinh hoạt cộng đồng yên tĩnh, không phát hiện sự cố.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "66EC": {
+      "id": "66EC",
+      "title": "Union Bank of London",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": {
+        "left": "92%",
+        "top": "18%"
+      },
+      "content": "Chi nhánh ngân hàng Union Bank hoạt động bình thường, không có liên hệ vụ án.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "78NW": {
+      "id": "78NW",
+      "title": "Bệnh viện đại học University College",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": {
+        "left": "34%",
+        "top": "42%"
+      },
+      "content": "Bệnh viện tiếp nhận bệnh nhân thông thường, không có báo cáo nghi vấn.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "82EC": {
+      "id": "82EC",
+      "title": "Đại lý vận tải biển Xavier",
+      "area": "EC",
+      "type": "decoy",
+      "map_coords": {
+        "left": "86%",
+        "top": "44%"
+      },
+      "content": "Đại lý tàu biển Xavier làm việc bình thường, không có lịch trình khả nghi.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
+    },
+    "99NW": {
+      "id": "99NW",
+      "title": "Hội động vật học Zoological Society",
+      "area": "NW",
+      "type": "decoy",
+      "map_coords": {
+        "left": "16%",
+        "top": "48%"
+      },
+      "content": "Trụ sở hội nghiên cứu động vật yên tĩnh, không có dấu vết nào.",
+      "unlocks": {
+        "nodes": [],
+        "evidence_items": []
+      }
     }
   },
   "directory": [
-    { "name": "Mason, Oswald (Kế toán trưởng)", "code": "42WC", "category": "Nạn nhân", "address": "42 Tottenham Court Rd", "desc": "Nhà riêng nạn nhân Oswald Mason - Trưởng kế toán Ngân hàng Anh." },
-    { "name": "Quả phụ Katebet (Bảo tàng tư nhân)", "code": "12NW", "category": "Nhân chứng", "address": "12 North West St", "desc": "Nhà riêng góa phụ thám hiểm gia Katebet." },
-    { "name": "Travis (Phóng viên báo The Times)", "code": "50EC", "category": "Báo chí", "address": "50 East Central St", "desc": "Phóng viên điều tra mảng tin tức khảo cổ." },
-    { "name": "Bảo tàng Anh (Khoa Ai Cập)", "code": "38EC", "category": "Bảo tàng", "address": "38 East Central St", "desc": "Viện bảo tàng lưu trữ và giám định cổ vật Ai Cập." },
-    { "name": "Đại học Khảo cổ London", "code": "43WC", "category": "Trường học", "address": "43 West Central St", "desc": "Khoa nghiên cứu khảo cổ học thuộc Đại học London." },
-    { "name": "Tiệm đồ cổ Ai Cập Oxford", "code": "30EC", "category": "Cửa hàng", "address": "30 East Central St", "desc": "Tiệm mua bán cổ vật Ai Cập tư nhân." }
+    {
+      "name": "Oswald Mason",
+      "category": "Nạn nhân",
+      "address": "42 WC Tottenham",
+      "code": "42WC",
+      "desc": "Trưởng kế toán Ngân hàng Anh bị giết tại phòng riêng."
+    },
+    {
+      "name": "Rose Mason",
+      "category": "Nhân chứng",
+      "address": "42 WC Tottenham",
+      "code": "42WC",
+      "desc": "Vợ nạn nhân Oswald Mason."
+    },
+    {
+      "name": "Giáo sư Windibank",
+      "category": "Giáo sư khảo cổ",
+      "address": "12 NW Gower St",
+      "code": "12NW",
+      "desc": "Trưởng đoàn thám hiểm lăng mộ Katebet."
+    },
+    {
+      "name": "Phóng viên Travis",
+      "category": "Nhà báo",
+      "address": "38 EC Fleet St",
+      "code": "38EC",
+      "desc": "Phóng viên tờ The Times theo dõi lời nguyền Ai Cập."
+    },
+    {
+      "name": "Violette Blue",
+      "category": "Ca sĩ",
+      "address": "15 WC Oxford",
+      "code": "15WC",
+      "desc": "Nữ ca sĩ biểu diễn tại Oxford Music Hall."
+    },
+    {
+      "name": "Cửa hàng đồ cổ Evenson & Co",
+      "category": "Cửa hàng đồ cổ",
+      "address": "29 WC Strand",
+      "code": "29WC",
+      "desc": "Nơi xảy ra vụ đột nhập cửa sau cạy khóa."
+    },
+    {
+      "name": "Henderson Leather",
+      "code": "96NW",
+      "category": "Chế tác da",
+      "address": "96 North West St",
+      "desc": "Xưởng sản xuất đồ da thuộc."
+    },
+    {
+      "name": "Khách sạn Victoria Club",
+      "code": "98SW",
+      "category": "Khách sạn",
+      "address": "98 South West St",
+      "desc": "Khách sạn sang trọng khu Victoria."
+    },
+    {
+      "name": "Albert Jenkins Shipyard",
+      "code": "11EC",
+      "category": "Xưởng tàu",
+      "address": "11 East Central St",
+      "desc": "Xưởng đóng tàu sông Thames."
+    },
+    {
+      "name": "Kensington Tea Rooms",
+      "code": "14SW",
+      "category": "Quán trà",
+      "address": "14 South West St",
+      "desc": "Quán trà cao cấp."
+    },
+    {
+      "name": "Newgate Prison Office",
+      "code": "21EC",
+      "category": "Quản ngục",
+      "address": "21 East Central St",
+      "desc": "Văn phòng nhà tù Newgate."
+    },
+    {
+      "name": "Alfred Higgins Watchmaker",
+      "code": "24WC",
+      "category": "Đồng hồ",
+      "address": "24 West Central St",
+      "desc": "Tiệm đồng hồ cổ."
+    },
+    {
+      "name": "William Blake Gallery",
+      "code": "31WC",
+      "category": "Phòng tranh",
+      "address": "31 West Central St",
+      "desc": "Phòng trưng bày nghệ thuật."
+    },
+    {
+      "name": "Oxford Street Watchmaker",
+      "code": "45NW",
+      "category": "Đồng hồ",
+      "address": "45 North West St",
+      "desc": "Tiệm đồng hồ Oxford."
+    },
+    {
+      "name": "Victoria Memorial Hall",
+      "code": "55SW",
+      "category": "Hội trường",
+      "address": "55 South West St",
+      "desc": "Hội trường sinh hoạt."
+    },
+    {
+      "name": "Union Bank of London",
+      "code": "66EC",
+      "category": "Ngân hàng",
+      "address": "66 East Central St",
+      "desc": "Chi nhánh ngân hàng thương mại."
+    },
+    {
+      "name": "University College Hospital",
+      "code": "78NW",
+      "category": "Bệnh viện",
+      "address": "78 North West St",
+      "desc": "Bệnh viện đại học."
+    },
+    {
+      "name": "Xavier Shipping Agency",
+      "code": "82EC",
+      "category": "Vận tải",
+      "address": "82 East Central St",
+      "desc": "Đại lý vé tàu biển."
+    },
+    {
+      "name": "Zoological Society",
+      "code": "99NW",
+      "category": "Hội nghiên cứu",
+      "address": "99 North West St",
+      "desc": "Hội động vật học London."
+    }
   ],
   "newspaper": {
     "paper_name": "THE TIMES LONDON",
@@ -274,13 +647,5 @@ export const SHERLOCK_CASE_4 = {
     "mastermind": "Giáo sư Windibank",
     "motive": "Sát hại Oswald Mason để cướp bản đồ lăng mộ và dựng lên kịch bản Lời Nguyền Xác Ướp che giấu việc buôn lén cổ vật Toutankhamon.",
     "full_truth": "Giáo sư Windibank là kẻ chủ mưu lợi dụng tin đồn mị dân về 'Lời nguyền của Xác ướp Katebet' để thực hiện tội ác. Nhận thấy Oswald Mason sở hữu bản đồ định vị vị trí các lăng mộ cổ vật vô giá, Windibank đã đột nhập phòng làm việc sát hại Mason và lấy đi bản đồ. Hắn đánh tráo các báu vật của Vua Toutankhamon thành cổ vật Katebet rồi đem tuồn bán lén cho các nhà sưu tập tư nhân trên đường Oxford. Nhờ các mẩu tin đính chính trên báo The Times (ngoại phạm của Travis nhờ khu vực trại được canh gác nghiêm ngặt), Sherlock Holmes đã bóc gỡ màn kịch mượn danh tâm linh để vạch trần kẻ sát nhân cướp cổ vật!"
-  },
-  "directory": [
-    { "name": "Oswald Mason", "category": "Nạn nhân", "address": "42 WC Tottenham", "code": "42WC", "desc": "Trưởng kế toán Ngân hàng Anh bị giết tại phòng riêng." },
-    { "name": "Rose Mason", "category": "Nhân chứng", "address": "42 WC Tottenham", "code": "42WC", "desc": "Vợ nạn nhân Oswald Mason." },
-    { "name": "Giáo sư Windibank", "category": "Giáo sư khảo cổ", "address": "12 NW Gower St", "code": "12NW", "desc": "Trưởng đoàn thám hiểm lăng mộ Katebet." },
-    { "name": "Phóng viên Travis", "category": "Nhà báo", "address": "38 EC Fleet St", "code": "38EC", "desc": "Phóng viên tờ The Times theo dõi lời nguyền Ai Cập." },
-    { "name": "Violette Blue", "category": "Ca sĩ", "address": "15 WC Oxford", "code": "15WC", "desc": "Nữ ca sĩ biểu diễn tại Oxford Music Hall." },
-    { "name": "Cửa hàng đồ cổ Evenson & Co", "category": "Cửa hàng đồ cổ", "address": "29 WC Strand", "code": "29WC", "desc": "Nơi xảy ra vụ đột nhập cửa sau cạy khóa." }
-  ]
+  }
 };
