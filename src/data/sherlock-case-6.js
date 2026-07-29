@@ -15,16 +15,22 @@ export const SHERLOCK_CASE_6 = {
     "story_text": "Sáng thứ Ba, ngày 14 tháng 10 năm 1890, Arthur Pendelton - một sinh viên cơ khí xuất sắc - hốt hoảng lao vào căn hộ 221B Baker Street.\n\n\"Anh Holmes, bản thiết kế tâm huyết của tôi đã bị đánh cắp đêm qua khỏi phòng thí nghiệm! Đó là sơ đồ của một hệ thống điều khiển vòng kín dùng cho động cơ hơi nước. Nếu không có nó để nộp cho hội đồng vào chiều nay, tôi sẽ trượt tốt nghiệp!\"\n\n\"Cậu rời phòng lúc nào? Có ai khả nghi không?\" Holmes điềm tĩnh hỏi.\n\n\"Tôi rời đi lúc 9 giờ tối qua. Sáng nay đến, cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, ngăn kéo bàn bị cạy tung. Chỉ có hai người biết chi tiết về dự án này: Thomas Higgins – gã sinh viên cùng khóa luôn ganh tị; và Giáo sư Sterling – người hướng dẫn của tôi. Tuần trước, Giáo sư đòi đứng tên đồng tác giả nhưng tôi từ chối vì toàn bộ thuật toán phản hồi đều do tôi tự tính toán.\"\n\nHolmes quay sang bạn: \"Một bài toán logic thú vị đây. Chúng ta bắt đầu từ đâu nào?\"",
     "initial_clues": [
       {
-        "title": "📐 Đồ án thiết kế động cơ hơi nước bị cạy tủ đánh tráo",
-        "detail": "Ghi nhận hiện trường 10WC:\nNgăn kéo bàn học bị cạy tung bằng vật cứng. Sơ đồ thuật toán ma trận điều khiển vòng kín cho động cơ hơi nước của Arthur Pendelton đã biến mất."
+        "title": "Báo cáo nghiệm thu hiện trường phòng thí nghiệm",
+        "type": "report",
+        "issuer": "SCOTLAND YARD - GIÁM ĐỊNH HIỆN TRƯỜNG (10 WC)",
+        "detail": "BIÊN BẢN KHÁM NGHIỆM PHÒNG THÍ NGHIỆM CƠ KHÍ\n----------------------------------------\n- Nạn nhân mất tài sản: Sinh viên Arthur Pendelton.\n- Hiện trường: Tủ đồ án bàn học bị cạy phá chốt cơ học.\n- Tài sản bị cắp: Sơ đồ thuật toán ma trận điều khiển vòng kín cho động cơ hơi nước."
       },
       {
-        "title": "🪟 Khám xét cửa sổ đập vỡ nhìn ra sân cỏ",
-        "detail": "Dấu vết cửa sổ 10WC:\nCửa sổ kính bị đập vỡ tạo hổng chốt. Toàn bộ mảnh kính vỡ rơi lả tả ra bãi cỏ bên ngoài, sàn phòng bên trong hoàn toàn sạch sẽ."
+        "title": "Báo cáo dấu vết cửa sổ kính đập vỡ",
+        "type": "evidence",
+        "issuer": "SCOTLAND YARD - KHÁM NGHIỆM VẬT CHỨNG (10 WC)",
+        "detail": "GHI NHẬN DẤU VẾT CỬA SỔ PHÒNG THÍ NGHIỆM\n----------------------------------------\n- Điểm đột nhập: Cửa sổ kính nhìn ra phía bãi cỏ bên ngoài bị đập vỡ.\n- Đặc điểm mảnh vỡ: Toàn bộ mảnh kính rơi vãi lả tả ra bãi cỏ bên ngoài, sàn phòng bên trong hoàn toàn sạch sẽ."
       },
       {
-        "title": "🍂 Vệt tro xì gà Partagas thượng hạng rụng cạnh ngăn kéo",
-        "detail": "Vật chứng hiện trường:\nCạnh rãnh trượt ngăn kéo có vệt tro xì gà mịn màu xám trắng tỏa mùi ngầy ngậy – loại xì gà Cuba Partagas thượng hạng rụng chưa quá 12 tiếng."
+        "title": "Biên bản vật chứng vệt tro xì gà thượng hạng",
+        "type": "evidence",
+        "issuer": "BẮT ĐƯỢC TẠI HIỆN TRƯỜNG PHÒNG THÍ NGHIỆM",
+        "detail": "GIÁM ĐỊNH VẬT CHỨNG CỰC KỲ QUAN TRỌNG\n----------------------------------------\n- Vật chứng: Vệt tro xì gà mịn màu xám trắng tỏa mùi thơm đặc trưng.\n- Chủng loại xì gà: Xì gà Cuba Partagas thượng hạng đắt tiền.\n- Thời gian để lại: Rụng tại rãnh ngăn kéo chưa quá 12 tiếng."
       }
     ],
     "unlocked_nodes": ["10WC"]
