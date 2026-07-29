@@ -3538,6 +3538,12 @@ body {
   letter-spacing: 0.04em;
 }
 
+.sherlock-difficulty-badge.beginner {
+  background: rgba(34, 211, 238, 0.15);
+  color: #67e8f9;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
 .sherlock-difficulty-badge.easy {
   background: rgba(16, 185, 129, 0.15);
   color: #34d399;
@@ -3554,6 +3560,12 @@ body {
   background: rgba(239, 68, 68, 0.15);
   color: #f87171;
   border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.sherlock-difficulty-badge.expert {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
 .sherlock-case-title {
