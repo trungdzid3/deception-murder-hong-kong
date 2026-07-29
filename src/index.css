@@ -3507,13 +3507,13 @@ body {
 }
 
 .sherlock-case-card.selected {
-  border: 2px solid #f59e0b !important;
-  background: linear-gradient(145deg, rgba(45, 26, 12, 0.9) 0%, rgba(20, 12, 6, 0.95) 100%) !important;
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.3) !important;
+  border: 2px solid var(--crimson-primary, #d00018) !important;
+  background: linear-gradient(145deg, rgba(50, 6, 12, 0.95) 0%, rgba(25, 3, 6, 0.98) 100%) !important;
+  box-shadow: 0 0 20px rgba(208, 0, 24, 0.35) !important;
 }
 
 .sherlock-case-card.selected::before {
-  background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+  background: linear-gradient(90deg, #ff1a47, #d00018, #ff1a47);
 }
 
 .sherlock-case-header {
@@ -3528,16 +3528,16 @@ body {
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.15);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #ff3b5c;
+  background: rgba(208, 0, 24, 0.18);
+  border: 1px solid rgba(208, 0, 24, 0.4);
   padding: 3px 10px;
   border-radius: 20px;
 }
 
 .sherlock-case-card.selected .sherlock-case-number-tag {
-  background: #f59e0b;
-  color: #0f172a;
+  background: var(--crimson-primary, #d00018);
+  color: #ffffff;
 }
 
 .sherlock-difficulty-badge {
@@ -3622,21 +3622,21 @@ body {
 }
 
 .sherlock-case-action-btn.active {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: #0f172a;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  background: linear-gradient(135deg, #d00018 0%, #b60015 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(208, 0, 24, 0.4);
 }
 
 .sherlock-case-action-btn.inactive {
   background: rgba(255, 255, 255, 0.05);
   color: #f1f5f9;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(208, 0, 24, 0.35);
 }
 
 .sherlock-case-action-btn.inactive:hover {
-  background: rgba(245, 158, 11, 0.2);
-  border-color: #f59e0b;
-  color: #fef3c7;
+  background: rgba(208, 0, 24, 0.2);
+  border-color: #ff1a47;
+  color: #ffffff;
 }
 
 
