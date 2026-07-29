@@ -79,6 +79,7 @@ function App() {
   const [showGameSelectModal, setShowGameSelectModal] = useState(false);
   const [selectedGameForModal, setSelectedGameForModal] = useState(null); // 'deception' | 'sherlock' | null
   const [sherlockSearchQuery, setSherlockSearchQuery] = useState('');
+  const [locationInputQuery, setLocationInputQuery] = useState('');
   const [sherlockSelectedNodeId, setSherlockSelectedNodeId] = useState(null);
   const [sherlockAnswers, setSherlockAnswers] = useState({});
   const [sherlockActiveTab, setSherlockActiveTab] = useState('casebook'); // 'casebook' | 'map' | 'directory' | 'newspaper' | 'quiz'
@@ -346,6 +347,41 @@ function App() {
       socket.emit('visit-node', { roomCode: code, nodeId });
       setSherlockSearchQuery('');
     }
+  };
+
+  const handleSearchAndVisitNodeExplicit = (codeStr) => {
+    if (!codeStr) return;
+    const cleanedCode = codeStr.toUpperCase().replace(/\s+/g, '');
+    const nodes = activeSherlockCase?.nodes || {};
+    let targetNodeId = null;
+
+    if (nodes[cleanedCode]) {
+      targetNodeId = cleanedCode;
+    } else {
+      const matchedKey = Object.keys(nodes).find(k => {
+        const bare = k.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
+        return k.toUpperCase() === cleanedCode || bare === cleanedCode;
+      });
+      if (matchedKey) targetNodeId = matchedKey;
+    }
+
+    if (targetNodeId) {
+      handleVisitNode(targetNodeId);
+      setSherlockSelectedNodeId(targetNodeId);
+      setSherlockActiveTab('casebook');
+      setErrorMsg('');
+    } else {
+      setErrorMsg(`Mã địa điểm [${codeStr}] không có thông tin khám xét trong vụ án hiện tại!`);
+    }
+  };
+
+  const handleSearchAndVisitNode = (e) => {
+    if (e) e.preventDefault();
+    const query = locationInputQuery.trim();
+    if (!query) return;
+
+    handleSearchAndVisitNodeExplicit(query);
+    setLocationInputQuery('');
   };
 
   const handleSherlockNextPhase = (phase) => {
@@ -1138,7 +1174,26 @@ function App() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <form onSubmit={handleSearchAndVisitNode} className="flex items-center gap-1.5">
+                        <div className="relative w-48 sm:w-60">
+                          <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-amber-400/70" />
+                          <input
+                            type="text"
+                            placeholder="Nhập mã (VD: 14SW, 10WC)..."
+                            value={locationInputQuery}
+                            onChange={(e) => setLocationInputQuery(e.target.value)}
+                            className="sherlock-search-input pl-8 text-xs py-1.5 font-bold uppercase tracking-wider text-amber-200 placeholder-slate-500"
+                          />
+                        </div>
+                        <button 
+                          type="submit" 
+                          className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs shrink-0 flex items-center gap-1 transition-colors"
+                        >
+                          <Compass size={13} /> KHÁM XÉT
+                        </button>
+                      </form>
+
                       <span className="text-xs px-3 py-1.5 rounded-lg bg-amber-950/80 border border-amber-500/40 text-amber-300 font-extrabold flex items-center gap-1.5">
                         <Compass size={14} className="text-amber-400" /> Đã khám xét: <strong>{roomState.visitedNodes?.length || 0} địa điểm</strong>
                       </span>
@@ -1484,7 +1539,9 @@ function App() {
                           return (
                             <div 
                               key={idx}
-                              className={`sherlock-directory-card cursor-default ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/30' : ''}`}
+                              onClick={() => handleSearchAndVisitNodeExplicit(item.code)}
+                              className={`sherlock-directory-card cursor-pointer hover:border-amber-400 hover:bg-amber-900/40 transition-all ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/30' : ''}`}
+                              title={`Nhấp để tới khám xét địa điểm [${item.code}]`}
                             >
                               <div>
                                 <div className="flex items-center justify-between mb-1.5 gap-2">
