@@ -13,19 +13,32 @@ export const SHERLOCK_CASE_2 = {
       "Đống mảnh kính vỡ trên vỉa hè đối diện 221B và tiếng phụ nữ thét lên lúc vụ cháy bắt đầu.",
       "Nhân chứng Olivia Robins sống tại 50 NW báo cáo đã thấy Sherlock gặp một người đàn ông nghi là anh trai ông ấy lúc 8:30 tối."
     ],
-    "unlocked_nodes": ["50NW"]
+    "unlocked_nodes": ["1NW"]
   },
   "nodes": {
-    "50NW": {
-      "id": "50NW",
+    "1NW": {
+      "id": "1NW",
       "title": "221B Baker Street - Căn hộ của Sherlock Holmes (Hiện trường vụ án)",
       "area": "NW",
       "type": "crime_scene",
-      "map_coords": {"left":"22%","top":"16%"},
-      "content": "Đống đổ nát của căn hộ 221B Baker Street vẫn còn bốc khói âm ỉ. Phía sau hàng rào cảnh sát, đám đông hiếu kỳ đang tụ tập ngày một đông. Dưới tấm vải liệm trắng gần Bác sĩ Watson là thi thể cháy xém được cho là của Sherlock Holmes.\n\nThanh tra Lestrade thì thầm: 'Đây là hiện trường tồi tệ nhất tôi từng thấy. Holmes là bạn của tất cả chúng ta, đặc biệt là Watson. Chúng ta nợ anh ấy sự công bằng, phải tìm ra sự thật trước khi dấu vết nguội lạnh'.\n\nBà Olivia Robins (nhân chứng sống đối diện đường 221B) cho biết: 'Tôi thấy mọi chuyện từ cửa sổ! Sherlock đứng ngoài nhà lúc 8:30 khi anh trai ông ấy đến. Sau đó muộn hơn lúc 9:00 tối, tôi thấy Edward Beaupre đi cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà!'.",
+      "map_coords": {"left":"18%","top":"22%"},
+      "content": "Đống đổ nát của căn hộ 221B Baker Street vẫn còn bốc khói âm ỉ. Phía sau hàng rào cảnh sát, đám đông hiếu kỳ đang tụ tập ngày một đông. Dưới tấm vải liệm trắng gần Bác sĩ Watson là thi thể cháy xém được cho là của Sherlock Holmes.\n\nThanh tra Lestrade thì thầm: 'Đây là hiện trường tồi tệ nhất tôi từng thấy. Holmes là bạn của tất cả chúng ta, đặc biệt là Watson. Chúng ta nợ anh ấy sự công bằng, phải tìm ra sự thật trước khi dấu vết nguội lạnh'. Bác sĩ Watson đồng ý đưa thi thể về phòng thí nghiệm của Murray (22SW) để làm sinh thiết nhanh.\n\nTrong khi đó, Wiggins tìm thấy một chiếc hộp sắt lớn được cứu ra từ phòng làm việc của Holmes. Chiếc hộp chứa một số chương trình kịch nghệ gần đây, một biên nhận xe ngựa, một hộp quẹt diêm đã sử dụng một nửa và hai mảnh giấy nhắn bí ẩn.\n\nWiggins báo cáo thêm: 'Chúng tôi nhặt được đống mảnh kính vỡ trên vỉa hè phía sau đối diện 221B Baker St. Đặc biệt, có một nhân chứng sống tại căn hộ đối diện đường là bà Olivia Robins (Tra cứu trong Danh bạ London tại 50NW). Cô ấy báo rằng đã thấy Sherlock gặp một người đàn ông nghi là anh trai Mycroft (8SW) lúc 8:30 tối, trước khi vụ cháy bùng phát lúc 9:00 tối'.",
       "unlocks": {
-        "nodes": ["8SW", "22SW", "52SW", "85WC"],
-        "evidence_items": ["Hiện trường 221B Baker Street bị thiêu rụi, phát hiện thi thể cháy xém.", "Nhân chứng Olivia Robins đối diện 221B thấy Edward Beaupre và một phụ nữ đeo mặt nạ đốt nhà lúc 9:00 tối."]
+        "nodes": ["50NW", "8SW", "22SW"],
+        "evidence_items": ["Hiện trường 221B Baker Street bị thiêu rụi, phát hiện thi thể cháy xém có vết đạn xuyên tim.", "Hộp sắt tại 221B chứa chương trình kịch nghệ, biên nhận xe ngựa và giấy nhắn bí ẩn.", "Bà Olivia Robins ở căn hộ đối diện đường (50NW) chứng kiến toàn bộ diễn biến trước khi xảy ra vụ cháy."]
+      },
+      "key_hints": ["Đến nhà bà Olivia Robins ở căn hộ đối diện (50NW) để lấy lời khai trực tiếp.", "Gặp Mycroft Holmes tại 8SW.", "Gặp Dr. Murray tại phòng thí nghiệm 22SW."]
+    },
+    "50NW": {
+      "id": "50NW",
+      "title": "Nhà bà Olivia Robins (Nhân chứng sống đối diện 221B Baker St)",
+      "area": "NW",
+      "type": "suspect_interview",
+      "map_coords": {"left":"22%","top":"16%"},
+      "content": "Bà Olivia Robins, một phụ nữ cao tuổi lưng hơi còng sống đối diện căn hộ 221B Baker St, ra mở cửa và gắt lên: 'Mấy người mất nhiều thời gian quá đấy mới chịu đến gặp tôi! Tôi sống một mình, sở thích của tôi là quan sát qua cửa sổ suốt ngày'.\n\n'Sherlock đứng ngoài nhà ông ấy lúc 8:30 khi anh trai ông ấy đến, và họ nói chuyện khoảng một phút. Anh trai ông ấy rời đi, còn tôi quay vào xem ấm trà. Khi tôi nhìn lại thì Sherlock đã vào trong nhà'.\n\n'Sau đó muộn hơn lúc 9:00 tối, tôi thấy một gã trông rất giống Edward Beaupre đứng ngoài nhà Sherlock Holmes. Beaupre đi cùng một phụ nữ mặc chiếc váy màu đỏ rực rỡ và đeo mặt nạ kịch nghệ hình mặt cười. Tôi thấy Beaupre tưới dầu hỏa xung quanh các bức tường nhà Sherlock, rồi người phụ nữ châm một que diêm ném vào ngôi nhà. Họ bỏ đi ngay khi ngọn lửa bùng lên!'.",
+      "unlocks": {
+        "nodes": ["8SW", "52SW", "85WC"],
+        "evidence_items": ["Nhân chứng Olivia Robins tại 50NW xác nhận Edward Beaupre và phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt 221B lúc 9:00 tối."]
       },
       "key_hints": ["Edward Beaupre và phụ nữ đeo mặt nạ kịch châm lửa đốt 221B Baker St.", "Sherlock gặp anh trai lúc 8:30 tối."]
     },
