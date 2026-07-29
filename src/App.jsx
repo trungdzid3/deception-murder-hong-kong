@@ -1090,20 +1090,9 @@ function App() {
                         const isObj = typeof clue === 'object' && clue !== null;
                         const title = isObj ? clue.title : clue;
                         return (
-                          <li 
-                            key={i} 
-                            onClick={() => isObj && setSherlockSelectedClueModal(clue)}
-                            className={`sherlock-clue-item p-2 rounded-lg border border-amber-500/20 bg-amber-950/20 hover:bg-amber-500/20 hover:border-amber-500/50 cursor-pointer transition-all flex items-center justify-between gap-2`}
-                          >
-                            <div className="flex items-center gap-2">
-                              <span className="sherlock-clue-bullet text-amber-400 font-bold">•</span>
-                              <span className="font-bold text-amber-100 text-xs">{title}</span>
-                            </div>
-                            {isObj && (
-                              <span className="text-[0.68rem] text-amber-400 font-bold bg-amber-500/20 px-2 py-0.5 rounded shrink-0 flex items-center gap-1 border border-amber-500/30">
-                                🔍 Soi tài liệu
-                              </span>
-                            )}
+                          <li key={i} className="sherlock-clue-item">
+                            <span className="sherlock-clue-bullet">•</span>
+                            <span>{title}</span>
                           </li>
                         );
                       })}
@@ -2881,32 +2870,30 @@ function App() {
       {sherlockSelectedClueModal && (
         <div className="modal-overlay z-[1200]" onClick={() => setSherlockSelectedClueModal(null)}>
           <div 
-            className="relative max-w-xl w-full p-2" 
+            className="sherlock-newspaper-modal-card relative max-w-xl w-full p-6 md:p-8" 
             onClick={(e) => e.stopPropagation()}
           >
+            {/* NÚT ĐÓNG DUY NHẤT */}
+            <button 
+              onClick={() => setSherlockSelectedClueModal(null)}
+              className="sherlock-newspaper-close-icon absolute top-4 right-4 z-10"
+              title="Đóng văn bản"
+            >
+              <X size={18} />
+            </button>
+
             {/* 1. ĐỊNH DẠNG CUỐNG VÉ THẬT (TICKET) */}
             {sherlockSelectedClueModal.type === 'ticket' && (
-              <div className="bg-[#faebd7] border-4 border-dashed border-[#78350f] rounded-xl p-6 md:p-8 text-[#3b1a07] font-mono shadow-2xl relative overflow-hidden">
-                {/* NÚT ĐÓNG */}
-                <button 
-                  onClick={() => setSherlockSelectedClueModal(null)}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#78350f]/10 text-[#78350f] hover:bg-[#78350f] hover:text-white transition-colors flex items-center justify-center border border-[#78350f]/30"
-                >
-                  <X size={18} />
-                </button>
-                {/* VẾT XÉ VÉ VINTAGE GIẢ LẬP */}
-                <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950 border-r-2 border-[#78350f]"></div>
-                <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950 border-l-2 border-[#78350f]"></div>
-                
-                <div className="text-center border-b-2 border-dashed border-[#78350f]/40 pb-4 mb-4">
+              <div className="bg-[#faebd7] border-4 border-dashed border-[#78350f] rounded-xl p-5 text-[#3b1a07] font-mono shadow-md relative overflow-hidden my-2">
+                <div className="text-center border-b-2 border-dashed border-[#78350f]/40 pb-3 mb-3">
                   <div className="text-[0.65rem] font-black tracking-[0.25em] text-[#78350f] uppercase">
                     ★ {sherlockSelectedClueModal.issuer || "PASSENGER & ADMISSION TICKET"} ★
                   </div>
-                  <h2 className="text-xl font-black text-[#451a03] font-serif uppercase tracking-wider mt-1">
+                  <h2 className="text-lg md:text-xl font-black text-[#451a03] font-serif uppercase tracking-wider mt-1">
                     {sherlockSelectedClueModal.title}
                   </h2>
                   {sherlockSelectedClueModal.cert_no && (
-                    <div className="inline-block border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-0.5 rounded text-[0.7rem] font-black mt-2 text-[#78350f]">
+                    <div className="inline-block border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-0.5 rounded text-[0.7rem] font-black mt-1.5 text-[#78350f]">
                       NO. {sherlockSelectedClueModal.cert_no}
                     </div>
                   )}
@@ -2919,19 +2906,13 @@ function App() {
 
             {/* 2. ĐỊNH DẠNG CHỨNG THƯ / BẰNG CẤP / BẢO HIỂM THẬT (CERTIFICATE) */}
             {sherlockSelectedClueModal.type === 'certificate' && (
-              <div className="bg-[#fefcf3] border-[6px] border-double border-[#854d0e] rounded-lg p-6 md:p-8 text-[#292524] font-serif shadow-2xl relative">
-                <button 
-                  onClick={() => setSherlockSelectedClueModal(null)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#854d0e]/10 text-[#854d0e] hover:bg-[#854d0e] hover:text-white transition-colors flex items-center justify-center border border-[#854d0e]/30"
-                >
-                  <X size={18} />
-                </button>
-                <div className="border-2 border-[#a16207]/30 p-4 rounded">
-                  <div className="text-center border-b-2 border-[#a16207]/40 pb-3 mb-4">
+              <div className="bg-[#fefcf3] border-[4px] border-double border-[#854d0e] rounded-lg p-5 text-[#292524] font-serif shadow-md relative my-2">
+                <div className="border border-[#a16207]/30 p-3 rounded">
+                  <div className="text-center border-b-2 border-[#a16207]/40 pb-3 mb-3">
                     <span className="text-[0.6rem] font-black tracking-[0.3em] text-[#854d0e] uppercase block">
                       OFFICIAL CERTIFICATE & BOND
                     </span>
-                    <h2 className="text-lg md:text-xl font-black text-[#451a03] mt-1 uppercase">
+                    <h2 className="text-lg md:text-xl font-black text-[#451a03] mt-0.5 uppercase">
                       {sherlockSelectedClueModal.title}
                     </h2>
                     <span className="text-[0.68rem] text-[#854d0e] font-mono font-bold block mt-1">
@@ -2947,14 +2928,8 @@ function App() {
 
             {/* 3. ĐỊNH DẠNG THƯ TAY VINTAGE THẬT (LETTER) */}
             {sherlockSelectedClueModal.type === 'letter' && (
-              <div className="bg-[#fcf8ed] border border-[#a16207]/40 rounded-md p-6 md:p-8 text-[#1c1917] font-serif shadow-2xl relative italic rotate-[-0.5deg]">
-                <button 
-                  onClick={() => setSherlockSelectedClueModal(null)}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#a16207]/10 text-[#a16207] hover:bg-[#a16207] hover:text-white transition-colors flex items-center justify-center border border-[#a16207]/30 not-italic"
-                >
-                  <X size={18} />
-                </button>
-                <div className="not-italic text-center border-b border-[#a16207]/30 pb-2 mb-4">
+              <div className="bg-[#fcf8ed] border border-[#a16207]/40 rounded-md p-5 text-[#1c1917] font-serif shadow-md relative italic my-2">
+                <div className="not-italic text-center border-b border-[#a16207]/30 pb-2 mb-3">
                   <span className="text-[0.62rem] font-bold tracking-widest text-[#854d0e] uppercase block">
                     ✉ {sherlockSelectedClueModal.issuer || "PERSONAL CORRESPONDENCE"}
                   </span>
@@ -2962,7 +2937,7 @@ function App() {
                     {sherlockSelectedClueModal.title}
                   </h3>
                 </div>
-                <div className="text-xs md:text-sm leading-loose whitespace-pre-wrap italic text-[#292524]">
+                <div className="text-xs md:text-sm leading-relaxed whitespace-pre-wrap italic text-[#292524]">
                   {sherlockSelectedClueModal.detail}
                 </div>
               </div>
@@ -2970,14 +2945,8 @@ function App() {
 
             {/* 4. ĐỊNH DẠNG BIÊN BẢN HỒ SƠ CẢNH SÁT SCOTLAND YARD (REPORT / EVIDENCE / DOSSIER) */}
             {(sherlockSelectedClueModal.type === 'report' || sherlockSelectedClueModal.type === 'evidence' || sherlockSelectedClueModal.type === 'dossier' || !sherlockSelectedClueModal.type) && (
-              <div className="bg-[#f4ecd8] border-4 border-double border-[#582f0e] rounded-xl p-6 md:p-8 text-[#1a0f07] font-serif shadow-2xl relative">
-                <button 
-                  onClick={() => setSherlockSelectedClueModal(null)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#582f0e]/12 text-[#582f0e] hover:bg-[#582f0e] hover:text-white transition-colors flex items-center justify-center border border-[#582f0e]/30"
-                >
-                  <X size={18} />
-                </button>
-                <div className="border-b-2 border-[#582f0e]/40 pb-3 mb-4">
+              <div className="bg-[#f4ecd8] border-2 border-[#582f0e]/30 rounded-lg p-5 text-[#1a0f07] font-serif shadow-sm relative my-2">
+                <div className="border-b-2 border-[#582f0e]/40 pb-3 mb-3">
                   <div className="text-[0.62rem] font-black tracking-widest text-[#78350f] uppercase">
                     POLICE INVESTIGATION ARCHIVE • SCOTLAND YARD
                   </div>
