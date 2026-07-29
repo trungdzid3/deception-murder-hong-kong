@@ -1086,12 +1086,16 @@ function App() {
                       <Skull size={14} className="text-slate-300" /> Manh mối ban đầu thu thập được tại hiện trường:
                     </h4>
                     <ul className="sherlock-clue-list">
-                      {activeSherlockCase.intro?.initial_clues?.map((clue, i) => (
-                        <li key={i} className="sherlock-clue-item">
-                          <span className="sherlock-clue-bullet">•</span>
-                          <span>{clue}</span>
-                        </li>
-                      ))}
+                      {activeSherlockCase.intro?.initial_clues?.map((clue, i) => {
+                        const isObj = typeof clue === 'object' && clue !== null;
+                        const title = isObj ? clue.title : clue;
+                        return (
+                          <li key={i} className="sherlock-clue-item">
+                            <span className="sherlock-clue-bullet">•</span>
+                            <span>{title}</span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
 
