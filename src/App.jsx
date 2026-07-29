@@ -2907,10 +2907,15 @@ function App() {
                 )}
               </div>
 
-              {/* CHÍNH VĂN NỘI DUNG VĂN BẢN NGUYÊN VĂN */}
+              {/* CHÍNH VĂN NỘI DUNG VĂN BẢN NGUYÊN VĂN VỚI FONT TIẾNG VIỆT CHUẨN */}
               <div 
-                className="text-xs md:text-sm text-amber-950 font-mono"
-                style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: '1.8' }}
+                className="text-xs md:text-sm text-amber-950"
+                style={{ 
+                  fontFamily: "'Courier Prime', 'Be Vietnam Pro', monospace",
+                  whiteSpace: 'pre-wrap', 
+                  wordBreak: 'break-word', 
+                  lineHeight: '1.85' 
+                }}
               >
                 {sherlockSelectedClueModal.detail}
               </div>
