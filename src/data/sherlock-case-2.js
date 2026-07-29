@@ -7,36 +7,36 @@ export const SHERLOCK_CASE_2 = {
     "story_text": "Chúng ta chưa từng thấy Bác sĩ John Watson suy sụp như lúc này khi bước tới hiện trường vụ án. Đầu ông nghiêng sang một bên, ngồi tựa vào một chiếc thùng gỗ trên vỉa hè, gương mặt thất thần. Đống đổ nát của căn hộ 221B Baker Street vẫn còn bốc khói âm ỉ. Phía sau hàng rào cảnh sát, đám đông hiếu kỳ đang tụ tập ngày một đông. Dưới tấm vải liệm trắng gần Bác sĩ Watson là thi thể cháy xém được cho là của Sherlock Holmes.\n\nThanh tra Lestrade thì thầm: 'Đây là hiện trường tồi tệ nhất tôi từng thấy. Holmes là bạn của tất cả chúng ta, đặc biệt là Watson. Chúng ta nợ anh ấy sự công bằng, phải tìm ra sự thật trước khi dấu vết nguội lạnh'. Watson đồng ý thực hiện cuộc khám nghiệm tử thi nhanh chóng tại phòng thí nghiệm của Bác sĩ Murray.\n\nTrong khi đó, Wiggins tìm thấy một chiếc hộp sắt lớn được cứu ra từ phòng làm việc của Holmes. Chiếc hộp chứa một số chương trình kịch nghệ gần đây, một biên nhận xe ngựa từ hôm qua, một hộp quẹt diêm đã sử dụng một nửa và hai mảnh giấy nhắn bí ẩn.\n\nWiggins báo cáo thêm: 'Chúng tôi nhặt được một đống mảnh kính vỡ lả tả rơi từ cửa sổ tầng trên của Nhà nghỉ Camden House ở phía đối diện đường 221B Baker St. Ngoài ra có báo cáo về tiếng phụ nữ thét lên cùng thời điểm vụ cháy bắt đầu. Đặc biệt, chúng tôi có một nhân chứng sống tại căn hộ đối diện là bà Olivia Robins báo rằng đã thấy Sherlock gặp một người đàn ông nghi là anh trai Mycroft Holmes lúc 8:30 tối, trước khi vụ cháy bùng phát khoảng 9:00 tối'.",
     "initial_clues": [
       {
-        "title": "✉️ Thư tay bí mật 1 (Thu thập trong hộp sắt)",
+        "title": "Thư tay bí mật thu thập trong hộp sắt (#1)",
         "type": "letter",
-        "issuer": "THƯ TAY NẶC DANH - M.H.",
-        "detail": "BỨC THƯ TAY VIẾT VỘI THU TRONG HỘP SẮT (221B BAKER ST):\n\n\"S,\nNo harm will come of it, I promise!\n- M.\"\n\n----------------------------------------\n[BẢN DỊCH TỪ BÁC SĨ WATSON]:\n\"S,\nSẽ không có hại gì xảy ra đâu, tôi hứa!\n- M.\""
+        "issuer": "BẮT ĐƯỢC TRONG HỘP SẮT - 221B BAKER ST",
+        "detail": "NỘI DUNG THƯ TAY NGUYÊN BẢN:\n\n\"S,\nNo harm will come of it, I promise!\n- M.\"\n\n----------------------------------------\nBẢN DỊCH (BÁC SĨ WATSON):\n\"S,\nSẽ không có hại gì xảy ra đâu, tôi hứa!\n- M.\""
       },
       {
-        "title": "✉️ Thư tay gửi Lestrade (Thu thập trong hộp sắt)",
+        "title": "Mảnh thư tay nhắn gửi Thanh tra Lestrade (#2)",
         "type": "letter",
-        "issuer": "MẢNH GIẤY NHẮN GỬI THANH TRA LESTRADE",
-        "detail": "MẢNH GIẤY CỨU ĐƯỢC TỪ CĂN HỘ (221B BAKER ST):\n\n\"Lestrade,\nAnalysis will further aid.\nBest examine remaining...\"\n\n----------------------------------------\n[BẢN DỊCH TỪ BÁC SĨ WATSON]:\n\"Lestrade,\nViệc phân tích sẽ giúp ích thêm.\nTốt nhất nên kiểm tra phần còn lại...\""
+        "issuer": "MẢNH GIẤY CỨU ĐƯỢC TỪ CĂN HỘ 221B",
+        "detail": "NỘI DUNG THƯ TAY NGUYÊN BẢN:\n\n\"Lestrade,\nAnalysis will further aid.\nBest examine remaining...\"\n\n----------------------------------------\nBẢN DỊCH (BÁC SĨ WATSON):\n\"Lestrade,\nViệc phân tích sẽ giúp ích thêm.\nTốt nhất nên kiểm tra phần còn lại...\""
       },
       {
-        "title": "🎟️ Cuống vé xe ngựa (Central Carriage Stables)",
+        "title": "Cuống vé xe ngựa (Central Carriage Stables)",
         "type": "ticket",
-        "issuer": "TRẠM XE NGỰA TRUNG TÂM LONDON",
-        "cert_no": "TICKET-1893-1201-CAB",
-        "detail": "CUỐNG VÉ CHUYẾN XE NGỰA ĐÊM HÔM QUA\n\n- Đơn vị vận hành: Central Carriage Stables (Trạm xe ngựa Trung tâm).\n- Lịch trình: Khởi hành lúc 8:15 PM (20:15) từ Baker Street đi Regent's Park.\n- Trạng thái: Đã thanh toán tiền mặt."
+        "issuer": "CENTRAL CARRIAGE STABLES - LONDON",
+        "cert_no": "TICKET #1893-1201",
+        "detail": "CUỐNG VÉ CHUYẾN XE NGỰA ĐÊM HÔM QUA\n----------------------------------------\n- Xuất phát: Baker Street (221B).\n- Điểm đến: Regent's Park.\n- Thời gian khởi hành: 8:15 PM (20:15) ngày 01/12/1893.\n- Tình trạng: Đã thanh toán cước phí."
       },
       {
-        "title": "🎭 Cuống vé xem kịch Nhà hát Lyceum",
+        "title": "Cuống vé chương trình kịch tại Nhà hát Lyceum",
         "type": "ticket",
-        "issuer": "LYCEUM THEATRE LONDON",
-        "cert_no": "SEAT-VIP-A12",
-        "detail": "VÉ VÀO CỔNG ĐÊM DIỄN NGHỆ THUẬT\n\n- Địa điểm: Nhà hát Lyceum Theatre.\n- Vở kịch: 'The Initiative of Dharma'.\n- Vị trí: Hàng ghế A (Khu VIP đặc biệt).\n- Ghi chú: Vé kẹp trong chương trình kịch kẹp ở hộp sắt."
+        "issuer": "LYCEUM THEATRE - LONDON",
+        "cert_no": "VIP SEAT A-12",
+        "detail": "VÉ VÀO CỔNG ĐÊM DIỄN NGHỆ THUẬT\n----------------------------------------\n- Vở kịch: 'The Initiative of Dharma'.\n- Vị trí ghế ngồi: Hàng A (Khu vực VIP).\n- Tình trạng: Vé thu thập bên trong chương trình kịch kẹp ở hộp sắt."
       },
       {
-        "title": "📦 Chiếc hộp sắt bảo mật của Sherlock Holmes",
+        "title": "Báo cáo giám định Chiếc hộp sắt bảo mật",
         "type": "evidence",
-        "issuer": "VẬT CHỨNG NGUYÊN BẢN CỨU ĐƯỢC TỪ HỎA HOẠN",
-        "detail": "BIÊN BẢN GIÁM ĐỊNH CHIẾC HỘP SẮT (221B BAKER ST)\n\n- Tình trạng: Chiếc hộp sắt lớn được cứu ra từ phòng làm việc của Holmes.\n- Dấu vết vật lý: Vành nắp hộp bị biến dạng nhẹ do nhiệt độ cao, cho thấy ai đó đã nỗ lực đóng vội nắp hộp ngay khi ngọn lửa bùng phát.\n- Bên trong chứa: Các cuống vé, diêm dùng dở và 2 mảnh thư tay."
+        "issuer": "SCOTLAND YARD - KHÁM NGHIỆM VẬT CHỨNG",
+        "detail": "BIÊN BẢN GIÁM ĐỊNH CHIẾC HỘP SẮT (221B BAKER ST)\n----------------------------------------\n- Tình trạng vật lý: Chiếc hộp sắt lớn được cứu ra từ phòng làm việc của Holmes.\n- Dấu vết biến dạng: Vành nắp hộp bị móp nhẹ do nhiệt độ cao, cho thấy có lực ép đóng vội nắp hộp khi ngọn lửa bùng phát.\n- Vật phẩm bên trong: 2 mảnh thư tay, cuống vé xe ngựa, chương trình kịch Lyceum và hộp diêm dùng dở."
       }
     ],
     "unlocked_nodes": ["1NW"]
