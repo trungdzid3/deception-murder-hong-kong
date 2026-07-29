@@ -1067,67 +1067,14 @@ function App() {
                     </div>
                   </div>
 
-                {/* BỐI CẢNH BAN ĐẦU (INTRO STORY) */}
+                {/* TÓM TẮT BỐI CẢNH BAN ĐẦU */}
                 <div className="sherlock-section-box">
-                  <h3 className="font-extrabold text-slate-200 text-sm flex items-center gap-2">
-                    <BookOpen size={16} className="text-slate-300" /> BỐI CẢNH BAN ĐẦU (INTRO STORY):
+                  <h3 className="font-extrabold text-slate-200 text-sm flex items-center gap-2 mb-2">
+                    <BookOpen size={16} className="text-amber-400" /> TÓM TẮT BỐI CẢNH BAN ĐẦU:
                   </h3>
-                  <div className="sherlock-story-text">
+                  <div className="sherlock-story-text leading-relaxed text-xs md:text-sm text-slate-200">
                     {activeSherlockCase.intro?.story_text}
                   </div>
-                </div>
-
-                {/* MANH MỐI TÌM THẤY & ĐỊA ĐIỂM MỞ SẴN */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  
-                  {/* MANH MỐI KHỞI ĐẦU */}
-                  <div className="sherlock-section-box clues-box">
-                    <h4 className="font-extrabold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-1.5">
-                      <Skull size={14} className="text-slate-300" /> Manh mối ban đầu thu thập được tại hiện trường:
-                    </h4>
-                    <ul className="sherlock-clue-list">
-                      {activeSherlockCase.intro?.initial_clues?.map((clue, i) => {
-                        const isObj = typeof clue === 'object' && clue !== null;
-                        const title = isObj ? clue.title : clue;
-                        return (
-                          <li 
-                            key={i} 
-                            onClick={() => isObj && setSherlockSelectedClueModal(clue)}
-                            className="sherlock-clue-item group cursor-pointer hover:text-amber-300 transition-colors py-0.5 flex items-center gap-2"
-                            title="Bấm vào dòng này để mở xem tài liệu"
-                          >
-                            <Search size={14} className="text-amber-400 shrink-0 group-hover:scale-110 transition-transform" />
-                            <span className="text-slate-200 group-hover:text-amber-200 group-hover:underline text-xs md:text-sm font-semibold">{title}</span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-
-                  {/* TỌA ĐỘ MANH MỐI GỢI Ý KHỞI ĐẦU (NON-CLICKABLE STATIC SUMMARY) */}
-                  <div className="sherlock-section-box">
-                    <h4 className="font-extrabold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-1.5 mb-2">
-                      <Compass size={14} className="text-slate-300" /> Tọa độ manh mối gợi ý khởi đầu:
-                    </h4>
-                    <div className="flex flex-wrap gap-2 my-1">
-                      {activeSherlockCase.intro?.unlocked_nodes?.map((nodeId) => {
-                        const node = activeSherlockCase.nodes?.[nodeId];
-                        const name = node?.title || nodeId;
-                        return (
-                          <span
-                            key={nodeId}
-                            className="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-amber-500/30 text-amber-200 text-xs font-black flex items-center gap-1.5"
-                          >
-                            <Compass size={13} className="text-amber-400" /> {name}
-                          </span>
-                        );
-                      })}
-                    </div>
-                    <p className="text-[0.72rem] text-slate-400 italic mt-1 leading-relaxed">
-                      Lưu ý: Thám tử cần tự tra cứu vị trí các con số này trên Bản đồ hoặc Danh bạ London để tiến hành khám xét thủ công.
-                    </p>
-                  </div>
-
                 </div>
               </div>
 
