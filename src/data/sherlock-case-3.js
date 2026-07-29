@@ -7,20 +7,28 @@ export const SHERLOCK_CASE_3 = {
     "story_text": "Sáng sớm ngày 5 tháng 3 năm 1889, Thanh tra Lestrade vội vã tìm đến 221B Baker Street với khuôn mặt biến sắc. Ông Clarendon - một quý tộc giàu có tại khu Bloomsbury - được phát hiện bị bắn chết ngay tại bàn làm việc trong phòng riêng. Cảnh sát tìm thấy Frances Nolan, người phụ nữ trẻ quen biết nạn nhân, đang trong trạng thái bần thần hoang tưởng gần hiện trường với vết máu trên tay và không thể nhớ bất kỳ điều gì đã xảy ra trong vài giờ qua. Mọi bằng chứng tại chỗ dường như quy kết Frances là kẻ sát nhân cuồng sát. Tuy nhiên, Holmes nghi ngờ cô gái trẻ đã bị thao túng tâm lý bằng kỹ thuật thôi miên cao tay để làm kẻ thế mạng cho một âm mưu chiếm đoạt gia tài tàn bạo!",
     "initial_clues": [
       {
-        "title": "📜 Biên bản giám định vết đạn tử thi",
-        "detail": "Biên bản giám định tử thi:\n'Nạn nhân Clarendon bị bắn chết bằng một phát đạn duy nhất từ súng ngắn Derringer tại bàn làm việc. Vết đạn bắn ở cự ly gần.'"
+        "title": "Biên bản khám nghiệm tử thi nạn nhân Clarendon",
+        "type": "report",
+        "issuer": "SCOTLAND YARD - KHÁM NGHIỆM TỬ THI",
+        "detail": "BIÊN BẢN GIÁM ĐỊNH PHÁP Y (36 EC)\n----------------------------------------\n- Nạn nhân: Ông Clarendon.\n- Vết thương: Bị bắn tử vong bởi 1 phát đạn duy nhất cự ly kề cận.\n- Khẩu súng gây án: Súng ngắn Derringer.\n- Thời điểm tử vong: Khoảng từ 4:00 AM đến 9:00 AM sáng nay."
       },
       {
-        "title": "🍷 Ly rượu vang đơn duy nhất tại hiện trường",
-        "detail": "Ghi nhận hiện trường:\nTrên bàn làm việc 36EC chỉ có duy nhất 1 ly rượu vang đã dùng dở, loại trừ sự xuất hiện của cô em gái Loretta Nolan."
+        "title": "Báo cáo khám nghiệm hiện trường bàn làm việc",
+        "type": "evidence",
+        "issuer": "SCOTLAND YARD - ĐỘI ĐIỀU TRA HIỆN TRƯỜNG",
+        "detail": "GHI NHẬN AN NINH & VẬT CHỨNG (36 EC)\n----------------------------------------\n- Hiện trường: Phòng làm việc của nạn nhân Clarendon.\n- Vật chứng trên bàn: Chỉ có duy nhất 1 ly rượu vang đã dùng dở.\n- Ghi chú hiện trường: Không có ly rượu thứ hai hay dấu hiệu ngồi tiếp khách đông người."
       },
       {
-        "title": "🧠 Hồ sơ tâm thần & Trạng thái hoang tưởng của Frances",
-        "detail": "Báo cáo y tế:\nFrances Nolan bị cảnh sát tạm giữ trong trạng thái ngơ ngác, hoang tưởng và liên tục bị mất trí nhớ ngắn hạn không rõ nguyên do."
+        "title": "Báo cáo y tế & Trạng thái tâm thần của Frances Nolan",
+        "type": "report",
+        "issuer": "BỆNH VIỆN BẢO AN - BÁO CÁO GIÁM ĐỊNH Y TẾ",
+        "detail": "BÁO CÁO TÌNH TRẠNG SỨC KHỎE ĐỐI TƯỢNG\n----------------------------------------\n- Đối tượng: Frances Nolan (Bị tạm giữ gần hiện trường).\n- Biểu hiện lâm sàng: Trạng thái ngơ ngác, hoang tưởng cực độ.\n- Triệu chứng đặc biệt: Mất trí nhớ ngắn hạn liên tục trong vài giờ qua, không thể nhớ hay giải thích về vết máu dính trên tay."
       },
       {
-        "title": "📓 Sổ tay làm việc cá nhân của nạn nhân Clarendon",
-        "detail": "Trích sổ tay nạn nhân:\n'Gặp luật sư Hiram Davenport thảo luận về di chúc. Hỏi ý kiến Bác sĩ Trevelyan về triệu chứng ngất xỉu kỳ lạ của Frances.'"
+        "title": "Sổ nhật ký công việc cá nhân của Clarendon",
+        "type": "dossier",
+        "issuer": "TRÍCH SỔ TAY CÁ NHÂN NẠN NHÂN",
+        "detail": "TRÍCH ĐOẠN SỔ TAY CÔNG VIỆC CỦA CLARENDON:\n----------------------------------------\n- Ngày 20/02: Gặp Luật sư Hiram Davenport để xem xét thủ tục di chúc gia đình.\n- Ngày 28/02: Tham khảo ý kiến Bác sĩ Trevelyan về các cơn ngất xỉu và mất trí nhớ kỳ lạ của Frances Nolan."
       }
     ],
     "unlocked_nodes": [
