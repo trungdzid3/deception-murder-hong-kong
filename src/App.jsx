@@ -2892,14 +2892,22 @@ function App() {
               </h2>
             </div>
 
-            {/* GIAO DIỆN GIẤY CHỨNG NHẬN / VĂN BẢN / VÉ VÀO / BẢO HIỂM */}
-            <div className="bg-[#f5ebd7] border-2 border-amber-900/40 rounded-lg p-5 shadow-inner my-2">
+            {/* GIAO DIỆN GIẤY CHỨNG NHẬN / VĂN BẢN / VÉ VÀO / BẢO HIỂM / THƯ TAY */}
+            <div className={`rounded-lg p-5 shadow-inner my-2 border-2 ${
+              sherlockSelectedClueModal.type === 'certificate' 
+                ? 'bg-[#fcf8ee] border-amber-800/60 font-serif' 
+                : sherlockSelectedClueModal.type === 'ticket' 
+                ? 'bg-[#faebd7] border-amber-900/50 border-dashed font-mono' 
+                : sherlockSelectedClueModal.type === 'letter' 
+                ? 'bg-[#fdfaf3] border-amber-900/30 font-serif italic' 
+                : 'bg-[#f5ebd7] border-amber-900/40 font-mono'
+            }`}>
               {sherlockSelectedClueModal.cert_no && (
-                <div className="text-[0.65rem] font-mono font-bold text-amber-900 text-right uppercase tracking-wider mb-2">
-                  MÃ CHỨNG THƯ: {sherlockSelectedClueModal.cert_no}
+                <div className="text-[0.7rem] font-mono font-black text-amber-900 text-right uppercase tracking-widest border-b border-amber-900/20 pb-2 mb-3">
+                  MÃ ĐỊNH DANH / SỐ CHỨNG THƯ: {sherlockSelectedClueModal.cert_no}
                 </div>
               )}
-              <div className="font-mono text-xs md:text-sm text-amber-950 leading-relaxed whitespace-pre-line">
+              <div className="text-xs md:text-sm text-amber-950 leading-relaxed whitespace-pre-wrap font-medium">
                 {sherlockSelectedClueModal.detail}
               </div>
             </div>
