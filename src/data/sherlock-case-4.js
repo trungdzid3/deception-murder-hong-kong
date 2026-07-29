@@ -59,12 +59,11 @@ export const SHERLOCK_CASE_4 = {
         "nodes": ["43WC"],
         "evidence_items": [
           "Trại khai quật canh gác cực kỳ nghiêm ngặt.",
-          "Phóng viên Travis có chứng cứ ngoại phạm chắc chắn, loại trừ khả năng là hung thủ."
+          "Phóng viên Travis không thể tiếp cận khu vực lăng mộ do an ninh chốt chặn."
         ]
       },
       "key_hints": [
-        "Trại khai quật được bảo vệ cẩn mật khiến Travis không thể tiếp cận lăng mộ.",
-        "Loại trừ Travis khỏi danh sách nghi phạm."
+        "Trại khai quật được bảo vệ cẩn mật khiến Travis không thể tiếp cận lăng mộ."
       ]
     },
     "38EC": {

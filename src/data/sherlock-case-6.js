@@ -36,17 +36,17 @@ export const SHERLOCK_CASE_6 = {
       "area": "WC",
       "type": "crime_scene",
       "map_coords": { "left": "44%", "top": "28%" },
-      "content": "Ngăn kéo bàn của Arthur bị cạy tung bằng vật cứng. Cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, tạo ra một lỗ hổng vừa đủ để thò tay vào mở chốt. Tuy nhiên, nhìn kỹ rìa bệ cửa sổ, toàn bộ những mảnh kính vỡ vụn đều rơi lả tả trên bãi cỏ bên ngoài – sàn nhà bên trong lại hoàn toàn sạch sẽ. Điều này chứng minh cửa sổ bị đập từ BÊN TRONG ra ngoài!\n\nNgay cạnh rãnh trượt của ngăn kéo, có một vệt tro màu xám trắng rất mịn, tỏa ra mùi thơm ngầy ngậy đặc trưng của một điếu xì gà đắt tiền rụng xuống chưa quá 12 tiếng.",
+      "content": "Ngăn kéo bàn của Arthur bị cạy tung bằng vật cứng. Cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, tạo ra một lỗ hổng vừa đủ để thò tay vào mở chốt. Nhìn kỹ rìa bệ cửa sổ, toàn bộ những mảnh kính vỡ vụn đều rơi lả tả trên bãi cỏ bên ngoài – sàn nhà bên trong lại hoàn toàn sạch sẽ.\n\nNgay cạnh rãnh trượt của ngăn kéo, có một vệt tro màu xám trắng rất mịn, tỏa ra mùi thơm ngầy ngậy đặc trưng của một điếu xì gà đắt tiền rụng xuống chưa quá 12 tiếng.",
       "unlocks": {
         "nodes": ["08EC", "12NW", "17EC"],
         "evidence_items": [
-          "Cửa sổ bị đập vỡ từ bên trong (mảnh kính rơi ra bãi cỏ ngoài, sàn trong sạch sẽ) – hung thủ có chìa khóa.",
-          "Vệt tàn xì gà đắt tiền mùi thơm ngầy ngậy cạnh ngăn kéo bị cạy."
+          "Toàn bộ mảnh kính vỡ vụn rơi trên bãi cỏ bên ngoài, sàn bên trong hoàn toàn sạch sẽ.",
+          "Vệt tro xì gà đắt tiền mùi ngầy ngậy cạnh ngăn kéo bị cạy."
         ]
       },
       "key_hints": [
-        "Kính vỡ từ bên trong loại trừ hoàn toàn đột nhập từ bên ngoài.",
-        "Tàn xì gà đắt tiền chỉ thẳng đến người dùng xì gà cao cấp."
+        "Quan sát phía nào có mảnh kính vỡ, phía nào sạch.",
+        "Ai là người hút xì gà đắt tiền trong số những người liên quan?"
       ]
     },
     "14SW": {
@@ -59,11 +59,11 @@ export const SHERLOCK_CASE_6 = {
       "unlocks": {
         "nodes": ["22WC"],
         "evidence_items": [
-          "Higgins hút thuốc lá sợi rẻ tiền – loại trừ hắn khỏi chủ nhân tàn xì gà tại hiện trường.",
-          "Higgins khai đang ở Quán Cáo Trắng tối qua, và gợi ý điều tra Giáo sư Sterling."
+          "Higgins hút thuốc lá sợi cuộn rẻ tiền bằng tẩu gỗ.",
+          "Higgins khai tối qua ở Quán Cáo Trắng, gợi ý điều tra Giáo sư Sterling."
         ]
       },
-      "key_hints": ["Thuốc lá sợi rẻ tiền loại trừ Higgins. Hắn không phải hung thủ."]
+      "key_hints": ["Lưu ý loại thuốc lá Higgins đang dùng so với vật chứng tại hiện trường."]
     },
     "08EC": {
       "id": "08EC",
@@ -71,16 +71,16 @@ export const SHERLOCK_CASE_6 = {
       "area": "EC",
       "type": "suspect_interview",
       "map_coords": { "left": "68%", "top": "24%" },
-      "content": "Giáo sư Sterling bệ vệ ngồi sau bàn làm việc bằng gỗ sồi, tay kẹp một điếu xì gà Cuba tỏa khói nghi ngút. \"Thật đáng tiếc cho Arthur. Nếu cậu ta chịu hợp tác với tôi, hệ thống đó đã có thể cứu vãn nhiều thứ.\"\n\nQuan sát kỹ, trên mu bàn tay phải của Giáo sư có một vết xước rướm máu tươi còn mới. Ông ta vội giấu tay xuống gầm bàn: \"Tối qua tôi làm việc ở đây đến khuya. Thật xui xẻo cho cậu sinh viên kia.\" Vết xước khớp hoàn toàn với vết thương do mảnh kính cứa khi đập cửa sổ từ bên trong phòng thí nghiệm.",
+      "content": "Giáo sư Sterling bệ vệ ngồi sau bàn làm việc bằng gỗ sồi, tay kẹp một điếu xì gà Cuba tỏa khói nghi ngút. \"Thật đáng tiếc cho Arthur. Nếu cậu ta chịu hợp tác với tôi, hệ thống đó đã có thể cứu vãn nhiều thứ.\"\n\nQuan sát kỹ, trên mu bàn tay phải của Giáo sư có một vết xước rướm máu tươi còn mới. Ông ta vội giấu tay xuống gầm bàn: \"Tối qua tôi làm việc ở đây đến khuya. Thật xui xẻo cho cậu sinh viên kia.\"",
       "unlocks": {
         "nodes": ["12NW", "17EC"],
         "evidence_items": [
-          "Giáo sư Sterling hút xì gà Cuba đắt tiền – trùng khớp với tàn xì gà tại hiện trường.",
-          "Vết xước mới trên mu bàn tay phải khớp với thương tích do mảnh kính gây ra khi đập cửa sổ."
+          "Giáo sư Sterling đang hút xì gà Cuba đắt tiền.",
+          "Vết xước mới rướm máu trên mu bàn tay phải của Giáo sư Sterling."
         ]
       },
       "key_hints": [
-        "Xì gà Cuba + vết xước mới = bằng chứng trực tiếp Giáo sư Sterling là hung thủ.",
+        "Đối chiếu loại xì gà Sterling đang hút với vệt tro tìm thấy tại hiện trường.",
         "Không có ai xác nhận lời khai tối qua của Sterling."
       ]
     },
@@ -90,12 +90,12 @@ export const SHERLOCK_CASE_6 = {
       "area": "WC",
       "type": "suspect_interview",
       "map_coords": { "left": "48%", "top": "34%" },
-      "content": "Ông chủ quán lau ly, gật gù: \"Thomas Higgins hả? Tối qua nó ngồi ở góc kia uống rượu từ 8 giờ tối đến gần 1 giờ sáng mới lảo đảo đi về. Nó cứ lải nhải phàn nàn về mấy phương trình tự động hóa của thằng nhóc Arthur.\" Lời khai xác nhận chứng cứ ngoại phạm hoàn hảo cho Thomas Higgins.",
+      "content": "Ông chủ quán lau ly, gật gù: \"Thomas Higgins hả? Tối qua nó ngồi ở góc kia uống rượu từ 8 giờ tối đến gần 1 giờ sáng mới lảo đảo đi về. Nó cứ lải nhải phàn nàn về mấy phương trình tự động hóa của thằng nhóc Arthur.\"",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Thomas Higgins có ngoại phạm chắc chắn: uống rượu tại Cáo Trắng từ 8 giờ tối đến 1 giờ sáng."]
+        "evidence_items": ["Thomas Higgins có mặt tại Quán Cáo Trắng liên tục từ 8 giờ tối đến gần 1 giờ sáng."]
       },
-      "key_hints": ["Higgins được loại trừ hoàn toàn. Sterling là nghi phạm duy nhất còn lại."]
+      "key_hints": ["Đối chiếu khung giờ Higgins ở đây với thời điểm xảy ra vụ đột nhập."]
     },
     "12NW": {
       "id": "12NW",
@@ -108,7 +108,7 @@ export const SHERLOCK_CASE_6 = {
         "nodes": [],
         "evidence_items": ["Giáo sư Sterling sẽ bị cắt 100% ngân sách và đóng cửa phòng thí nghiệm nếu không có phát minh mới cuối tháng này."]
       },
-      "key_hints": ["Động cơ bức thiết của Sterling: chiếm đoạt phát minh để cứu phòng thí nghiệm."]
+      "key_hints": ["Liên hệ tình huống khủng hoảng ngân sách này với động cơ có thể có của các người liên quan."]
     },
     "17EC": {
       "id": "17EC",
@@ -116,12 +116,12 @@ export const SHERLOCK_CASE_6 = {
       "area": "EC",
       "type": "clue_inspection",
       "map_coords": { "left": "74%", "top": "26%" },
-      "content": "Người bán hàng kiểm tra lọ tro mà Holmes mang tới: \"Mùi hương và chất tro này? Đây là loại xì gà Partagas thượng hạng nhập từ Cuba. Khách quen mua loại này của tôi không nhiều, Giáo sư Sterling là một trong số những người luôn đặt hàng đều đặn mỗi tuần.\" Xác nhận thêm bằng chứng liên kết trực tiếp tàn xì gà tại hiện trường với Giáo sư Sterling.",
+      "content": "Người bán hàng kiểm tra lọ tro mà Holmes mang tới: \"Mùi hương và chất tro này? Đây là loại xì gà Partagas thượng hạng nhập từ Cuba. Khách quen mua loại này của tôi không nhiều, Giáo sư Sterling là một trong số những người luôn đặt hàng đều đặn mỗi tuần.\"",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Tàn xì gà Partagas tại hiện trường được xác nhận thuộc về Giáo sư Sterling – khách quen duy nhất mua hàng tuần."]
+        "evidence_items": ["Xì gà Partagas Cuba: Giáo sư Sterling là khách quen đặt hàng đều đặn mỗi tuần tại tiệm Havana."]
       },
-      "key_hints": ["Bằng chứng xì gà hoàn toàn xác nhận Sterling có mặt tại hiện trường."]
+      "key_hints": ["So sánh loại xì gà Sterling hay mua với vệt tro tìm thấy tại hiện trường."]
     },
     "13SW": {
       "id": "13SW",
@@ -129,10 +129,10 @@ export const SHERLOCK_CASE_6 = {
       "area": "SW",
       "type": "suspect_interview",
       "map_coords": { "left": "38.5%", "top": "68%" },
-      "content": "Thanh tra Lestrade ngáp dài: \"Vụ vỡ cửa kính ở trường đại học à? Chắc chắn là do bọn trộm vặt quanh phố nhòm ngó đồ đồng nát thôi. Hoặc là cậu sinh viên Higgins kia ghen tị nên đập phá. Tôi sẽ phái người đi bắt Higgins dọa cho một trận là nó khai ngay!\" Lestrade vội vã quy kết cho Higgins mà không có bằng chứng.",
+      "content": "Thanh tra Lestrade ngáp dài: \"Vụ vỡ cửa kính ở trường đại học à? Chắc chắn là do bọn trộm vặt quanh phố nhòm ngó đồ đồng nát thôi. Hoặc là cậu sinh viên Higgins kia ghen tị nên đập phá. Tôi sẽ phái người đi bắt Higgins dọa cho một trận là nó khai ngay!\"",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Lestrade kết luận vội vàng quy tội cho Higgins mà không có bằng chứng."]
+        "evidence_items": ["Lestrade quy kết Higgins là hung thủ mà không nêu bằng chứng cụ thể."]
       },
       "key_hints": ["Lời kết luận vội của Lestrade chỉ là đánh lạc hướng điều tra."]
     },

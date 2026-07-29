@@ -161,9 +161,9 @@ export const SHERLOCK_CASE_5 = {
       "content": "Dirk Stephen xin việc tại đồn khám nghiệm của Sir Jasper Meeks kể lại: \"Tôi nghe thấy tiếng động kỳ lạ và tiếng thở dốc hốt hoảng từ phòng riêng của Meeks. Meeks gạt đi bảo là tiếng chó của ông ấy. Nhưng tôi ghét chó nên bỏ đi luôn. Meeks làm gì có nuôi con chó nào!\".",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Meeks giấu nạn nhân Pelletier trong phòng kín hút oxy trước khi cho vào hòm."]
+        "evidence_items": ["Lớp trưởng Dirk Stephen nghe thấy tiếng thở dốc hốt hoảng trong phòng riêng Meeks."]
       },
-      "key_hints": ["Chứng minh Meeks không nuôi chó, tiếng động trong phòng là nạn nhân bị nhốt ngạt khí."]
+      "key_hints": ["Meeks không nuôi chó. Tiếng thở dốc kỳ lạ phát ra từ phòng riêng của Meeks."]
     },
     "43WC": {
       "id": "43WC",
@@ -176,7 +176,7 @@ export const SHERLOCK_CASE_5 = {
         "nodes": ["43SW"],
         "evidence_items": ["Bức ảnh dự án Empedocles 1867 kết nối cả 6 nhân vật liên quan."]
       },
-      "key_hints": ["Dự án Empedocles 1867 giải mã toàn bộ mối quan hệ giữa các nạn nhân và hung thủ Meeks."]
+      "key_hints": ["Bức ảnh dự án Empedocles 1867 làm rõ danh tính và nhóm bạn 6 người thời sinh viên."]
     },
     "43SW": {
       "id": "43SW",
@@ -189,7 +189,7 @@ export const SHERLOCK_CASE_5 = {
         "nodes": [],
         "evidence_items": ["Agnes Monroe là người yêu cũ của Jasper Meeks bị nhóm bạn hãm hại năm 1867."]
       },
-      "key_hints": ["Meeks lên kế hoạch đảo ngược 4 nguyên tố để trừng phạt từng kẻ liên quan đến cái chết của Agnes."]
+      "key_hints": ["Ghi chép trong nhật ký Agnes tiết lộ sự kiện chấn thương tâm lý năm 1867."]
     },
     "54SW": {
       "id": "54SW",
@@ -200,9 +200,9 @@ export const SHERLOCK_CASE_5 = {
       "content": "Quan chức đại sứ quán xác nhận: Gã nam giới có vết sẹo dài trên mặt nói tiếng Nga là Ivan Moroz - một tên tay sai đâm thuê chém thuê khét tiếng đi cùng Sergei Sokolov. Chúng được ai đó tại London thuê để di chuyển thi thể và phóng hỏa dàn cảnh.",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Tên sát thủ đánh thuê Ivan Moroz và Sergei Sokolov được Meeks thuê hỗ trợ dàn cảnh."]
+        "evidence_items": ["Gã tay sai có sẹo mặt là Ivan Moroz - được thuê bởi ai đó ở London để di chuyển thi thể và ngụy tạo hiện trường."]
       },
-      "key_hints": ["Gã có sẹo mặt trong báo Police Gazette là Ivan Moroz."]
+      "key_hints": ["Đối chiếu nhận dạng Ivan Moroz với các báo cáo hiện trường trước đó."]
     },
     "96NW": {
       "id": "96NW",

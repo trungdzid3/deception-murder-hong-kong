@@ -119,7 +119,7 @@ export const SHERLOCK_CASE_3 = {
       "area": "SW",
       "type": "suspect_interview",
       "map_coords": {"left":"22.1%","top":"101.8%"},
-      "content": "Quản lý khách sạn nhớ lại chi tiết: 'Trong thời gian lưu trú, ông Clarendon có một phụ nữ ăn mặc rất nổi bật đến thăm. Sau đó xuất hiện người thứ hai: một gã đàn ông lực lưỡng hung tợn, có ria mép dày và vết sẹo dài trên má đến đe dọa đòi gặp Clarendon. Khi biết Clarendon không có ở đó, gã tức giận ngồi chực chờ ở quầy bar đến tận chạng vạng tối'. Hiện trường vụ án chỉ có 1 ly rượu, chứng minh gã người lạ và cô em gái Loretta không có mặt trong phòng lúc nổ súng.",
+      "content": "Quản lý khách sạn nhớ lại chi tiết: 'Trong thời gian lưu trú, ông Clarendon có một phụ nữ ăn mặc rất nổi bật đến thăm. Sau đó xuất hiện người thứ hai: một gã đàn ông lực lưỡng hung tợn, có ria mép dày và vết sẹo dài trên má đến đe dọa đòi gặp Clarendon. Khi biết Clarendon không có ở đó, gã tức giận ngồi chực chờ ở quầy bar đến tận chạng vạng tối'. Hiện trường vụ án chỉ có 1 ly rượu duy nhất trên bàn.",
       "unlocks": {
         "nodes": [],
         "evidence_items": [
@@ -135,7 +135,7 @@ export const SHERLOCK_CASE_3 = {
       "area": "WC",
       "type": "location_search",
       "map_coords": {"left":"42%","top":"42%"},
-      "content": "Chủ cửa hàng súng xác nhận khẩu súng Derringer gây án được mua bởi một người đàn ông đeo kính có ngoại hình giống Bác sĩ Trevelyan, nhưng biên nhận cố tình ghi tên Frances Nolan để vu khống cô.",
+      "content": "Chủ cửa hàng súng lật sổ ghi chép: 'Khẩu súng Derringer này được mua tuần trước bởi một gã đàn ông đeo kính, nhưng trên biên nhận gã lại yêu cầu ghi tên người mua là Frances Nolan'.",
       "unlocks": {
         "nodes": [],
         "evidence_items": ["Khẩu súng gây án do Dr. Trevelyan trực tiếp đi mua."]

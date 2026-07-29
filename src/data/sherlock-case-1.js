@@ -36,14 +36,14 @@ export const SHERLOCK_CASE_1 = {
       "unlocks": {
         "nodes": ["14SE", "22SW", "05WC"],
         "evidence_items": [
-          "Chó Brutus thân thiện chứng tỏ thủ phạm là người quen có chìa khóa.",
+          "Con chó ngáo Brutus vẫy đuôi thân thiện khi có người vào.",
           "Bức tranh giả mới vẽ chưa tới 1 tuần.",
-          "Quản lý Victor mặc áo măng-tô xám và nghiện hút xì gà nồng đậm."
+          "Quản lý Victor mặc áo măng-tô màu xám, mùi xì gà nồng đậm, ngón tay ám vàng."
         ]
       },
       "key_hints": [
-        "Thủ phạm là người quen có chìa khóa khiến chó không sủa.",
-        "Dấu hiệu áo măng-tô xám và mùi xì gà của Victor."
+        "Lưu ý phản ứng của Brutus khi có người vào so với mô tả ban đầu của chủ nhân.",
+        "Vật chứng: áo măng-tô xám và mùi xì gà của người đang có mặt."
       ]
     },
     "13SW": {
@@ -55,9 +55,9 @@ export const SHERLOCK_CASE_1 = {
       "content": "Thanh tra Lestrade gãi đầu gãi tai: \"Vụ đánh tráo à? Chắc chắn là do gã họa sĩ Elias làm. Hắn vừa ra tù tháng trước. Các anh không cần điều tra đâu, chiều nay tôi sẽ cho người đến tóm cổ hắn là xong chuyện!\"",
       "unlocks": {
         "nodes": ["14SE"],
-        "evidence_items": ["Lestrade vội vã quy kết cho họa sĩ Elias mà không có bằng chứng."]
-      },
-      "key_hints": ["Lời kết luận vội vã của Lestrade mang tính chất đánh lạc hướng."]
+        "evidence_items": ["Lestrade vội vã quy kết cho họa sĩ Elias mà không có bằng chứng."],
+        "key_hints": ["Lời kết luận vội vã của Lestrade mang tính chất đánh lạc hướng."]
+      }
     },
     "14SE": {
       "id": "14SE",
@@ -69,12 +69,12 @@ export const SHERLOCK_CASE_1 = {
       "unlocks": {
         "nodes": ["05WC", "22SW"],
         "evidence_items": [
-          "Elias bị kẻ lạ mặt mặc áo măng-tô xám, hút xì gà đắt tiền thuê chép tranh giả.",
+          "Một khách hàng lạ mặt (áo măng-tô xám, mùi xì gà) thuê Elias chép tranh.",
           "Tranh giả được giao tại tủ đồ số 4 ga King's Cross."
         ]
       },
       "key_hints": [
-        "Đặc điểm áo măng-tô xám và mùi xì gà trùng khớp với quản lý Victor."
+        "Đối chiếu mô tả người thuê Elias (áo măng-tô xám, mùi xì gà) với những người bạn đã gặp."
       ]
     },
     "08EC": {
@@ -86,9 +86,9 @@ export const SHERLOCK_CASE_1 = {
       "content": "Người quản gia ra mở cửa và cau mày: \"Ngài Julian không có nhà. Ngài ấy đã đi nghỉ dưỡng ở Paris từ hai tuần trước và phải đến cuối tháng này mới trở về. Ngài ấy không liên lạc hay gửi thư từ gì về London cả.\"",
       "unlocks": {
         "nodes": [],
-        "evidence_items": ["Julian có bằng chứng ngoại phạm hoàn hảo tại Paris từ 2 tuần trước."]
+        "evidence_items": ["Julian đi nghỉ dưỡng ở Paris từ 2 tuần trước, không có mặt ở London."]
       },
-      "key_hints": ["Loại trừ Julian hoàn toàn khỏi danh sách nghi phạm."]
+      "key_hints": ["Thời gian biểu của Julian chứng minh anh ta không liên quan đến vụ việc."]
     },
     "05WC": {
       "id": "05WC",
@@ -99,9 +99,9 @@ export const SHERLOCK_CASE_1 = {
       "content": "Ông chủ cửa hàng lật cuốn sổ tay: \"Khoảng một tuần trước, Elias có đến mua toan vẽ và một lượng lớn sơn dầu. Đi cùng anh ta là một gã mặc áo măng-tô xám đứng chờ ngoài cửa. Gã đó là người trả tiền. Tôi không thấy mặt hắn, nhưng lúc hắn đứng đó, khói xì gà bay mù mịt cả góc phố.\"",
       "unlocks": {
         "nodes": ["22SW"],
-        "evidence_items": ["Gã mặc áo măng-tô xám trả tiền nguyên liệu cho Elias vẽ tranh giả."]
+        "evidence_items": ["Một gã mặc áo măng-tô xám, mùi xì gà nồng nặc là người trả tiền mua họa cụ cho Elias."]
       },
-      "key_hints": ["Củng cố chứng cứ kẻ mặc áo măng-tô xám chính là kẻ đứng sau."]
+      "key_hints": ["Mô tả người trả tiền cho Elias khớp với kẻ thuê anh ta và người tại hiện trường."]
     },
     "22SW": {
       "id": "22SW",
@@ -114,7 +114,7 @@ export const SHERLOCK_CASE_1 = {
         "nodes": ["17WC"],
         "evidence_items": ["Victor nợ sòng bạc 5,000 Bảng Anh và hứa thế chấp món hàng lớn trừ nợ."]
       },
-      "key_hints": ["Động cơ tài chính trực tiếp buộc tội Victor."]
+      "key_hints": ["Liên hệ động cơ tài chính này với những người liên quan."]
     },
     "17WC": {
       "id": "17WC",
@@ -127,7 +127,7 @@ export const SHERLOCK_CASE_1 = {
         "nodes": [],
         "evidence_items": ["Tài khoản cá nhân của Victor cạn kiệt hoàn toàn."]
       },
-      "key_hints": ["Khẳng định khó khăn tài chính của Victor."]
+      "key_hints": ["Ai trong số những người liên quan có khó khăn tài chính?"]
     },
     "30EC": {
       "id": "30EC",
