@@ -1090,9 +1090,14 @@ function App() {
                         const isObj = typeof clue === 'object' && clue !== null;
                         const title = isObj ? clue.title : clue;
                         return (
-                          <li key={i} className="sherlock-clue-item">
-                            <span className="sherlock-clue-bullet">•</span>
-                            <span>{title}</span>
+                          <li 
+                            key={i} 
+                            onClick={() => isObj && setSherlockSelectedClueModal(clue)}
+                            className="sherlock-clue-item group cursor-pointer hover:text-amber-300 transition-colors py-0.5 flex items-center gap-2"
+                            title="Bấm vào dòng này để mở xem tài liệu"
+                          >
+                            <Search size={14} className="text-amber-400 shrink-0 group-hover:scale-110 transition-transform" />
+                            <span className="text-slate-200 group-hover:text-amber-200 group-hover:underline text-xs md:text-sm font-semibold">{title}</span>
                           </li>
                         );
                       })}
