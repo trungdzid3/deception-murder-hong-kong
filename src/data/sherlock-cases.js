@@ -1,9 +1,9 @@
-import { SHERLOCK_CASE_1 } from './sherlock-case-1';
-import { SHERLOCK_CASE_2 } from './sherlock-case-2';
-import { SHERLOCK_CASE_3 } from './sherlock-case-3';
-import { SHERLOCK_CASE_4 } from './sherlock-case-4';
-import { SHERLOCK_CASE_5 } from './sherlock-case-5';
-import { SHERLOCK_CASE_6 } from './sherlock-case-6';
+import { SHERLOCK_CASE_1 } from './sherlock-case-1.js';
+import { SHERLOCK_CASE_2 } from './sherlock-case-2.js';
+import { SHERLOCK_CASE_3 } from './sherlock-case-3.js';
+import { SHERLOCK_CASE_4 } from './sherlock-case-4.js';
+import { SHERLOCK_CASE_5 } from './sherlock-case-5.js';
+import { SHERLOCK_CASE_6 } from './sherlock-case-6.js';
 
 export { SHERLOCK_CASE_1, SHERLOCK_CASE_2, SHERLOCK_CASE_3, SHERLOCK_CASE_4, SHERLOCK_CASE_5, SHERLOCK_CASE_6 };
 
