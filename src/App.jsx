@@ -2814,67 +2814,53 @@ function App() {
         </div>
       )}
 
-      {/* MODAL ĐỌC BÀI BÁO CHI TIẾT NGUYÊN VĂN (VINTAGE NEWSPAPER CLIPPING) */}
+      {/* MODAL XEM CHI TIẾT BÀI BÁO (NEWSPAPER ARTICLE MODAL) */}
       {sherlockSelectedArticle && (
         <div className="modal-overlay z-[1200]" onClick={() => setSherlockSelectedArticle(null)}>
           <div 
-            className="sherlock-newspaper-modal-card" 
+            className="sherlock-newspaper-modal-card relative max-w-2xl w-full p-6 md:p-8" 
             onClick={(e) => e.stopPropagation()}
           >
-            {/* HEADER TỜ BÁO VINTAGE */}
-            <div className="sherlock-newspaper-modal-header">
-              <div className="flex items-center justify-between border-b-2 border-amber-900/60 pb-2 mb-3">
-                <span className="text-[0.68rem] font-black uppercase tracking-widest text-amber-900 font-sans">
-                  {activeSherlockCase?.newspaper?.paper_name || 'THE TIMES LONDON'} • ARCHIVE CLIPPING
-                </span>
-                <button 
-                  onClick={() => setSherlockSelectedArticle(null)}
-                  className="sherlock-newspaper-close-icon"
-                  title="Đóng bài báo"
-                >
-                  <X size={16} />
-                </button>
-              </div>
+            {/* NÚT ĐÓNG DUY NHẤT Ở GÓC TRÊN KHÔNG BỊ LẶP LẠI */}
+            <button 
+              onClick={() => setSherlockSelectedArticle(null)}
+              className="sherlock-newspaper-close-icon absolute top-4 right-4"
+              title="Đóng bài báo"
+            >
+              <X size={18} />
+            </button>
 
-              <span className="text-[0.68rem] font-bold text-amber-800 uppercase tracking-widest block mb-1">
-                {sherlockSelectedArticle.date}
+            {/* HEADER TỜ BÁO CHUẨN ĐỊNH DẠNG VINTAGE */}
+            <div className="border-b-2 border-amber-900/60 pb-3 mb-4 text-center">
+              <span className="text-[0.65rem] font-black text-amber-900 tracking-[0.25em] uppercase block">
+                THE TIMES LONDON • ARCHIVE CLIPPING ({sherlockSelectedArticle.date})
               </span>
-              <h2 className="text-xl md:text-2xl font-black text-amber-950 font-serif leading-tight">
+              <h2 className="text-xl md:text-2xl font-black text-amber-950 font-serif mt-1 leading-snug">
                 {sherlockSelectedArticle.title}
               </h2>
             </div>
 
-            {/* BODY NỘI DUNG NGUYÊN VĂN TỜ BÁO */}
-            <div className="sherlock-newspaper-modal-body space-y-4 max-h-[60vh] overflow-y-auto my-4 pr-2">
-              <div className="sherlock-newspaper-summary-box">
-                <span className="font-extrabold text-amber-900 uppercase text-[0.7rem] tracking-wider flex items-center gap-1.5 mb-1">
-                  <FileText size={13} /> Tóm tắt nội dung chính:
+            {/* BODY TRÌNH BÀY BÀI BÁO */}
+            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
+              <div className="bg-amber-100/70 border border-amber-800/30 rounded-lg p-3 text-amber-950">
+                <span className="font-extrabold text-[0.7rem] uppercase tracking-wider block text-amber-900 mb-1">
+                  📌 Tóm tắt tin tức:
                 </span>
-                <p className="text-xs text-amber-950 font-serif leading-relaxed italic">
+                <p className="text-xs font-serif italic leading-relaxed">
                   "{sherlockSelectedArticle.summary}"
                 </p>
               </div>
 
               {sherlockSelectedArticle.full_text && (
-                <div className="sherlock-newspaper-fulltext-box">
-                  <div className="text-[0.68rem] font-black text-amber-900 uppercase tracking-widest border-b border-amber-900/30 pb-1.5 mb-3 flex items-center gap-1.5">
-                    <span>📰 BẢN NGUYÊN VĂN BÀI BÁO TIẾNG ANH (ORIGINAL PDF CLIPPING):</span>
+                <div className="bg-[#eae0c8] border border-amber-900/40 rounded-lg p-4 font-mono text-xs text-amber-950 leading-relaxed space-y-2">
+                  <div className="font-extrabold text-[0.7rem] text-amber-900 border-b border-amber-900/20 pb-1 uppercase tracking-wider">
+                    📰 NGUYÊN VĂN BÀI BÁO (THE TIMES ARCHIVE):
                   </div>
-                  <div className="sherlock-newspaper-clipping-text">
+                  <div className="whitespace-pre-line leading-loose text-[0.82rem]">
                     {sherlockSelectedArticle.full_text}
                   </div>
                 </div>
               )}
-            </div>
-
-            {/* FOOTER NÚT ĐÓNG VINTAGE */}
-            <div className="sherlock-newspaper-modal-footer">
-              <button 
-                onClick={() => setSherlockSelectedArticle(null)}
-                className="sherlock-newspaper-close-btn"
-              >
-                <X size={14} /> ĐÓNG BÀI BÁO
-              </button>
             </div>
           </div>
         </div>
@@ -2884,40 +2870,38 @@ function App() {
       {sherlockSelectedClueModal && (
         <div className="modal-overlay z-[1200]" onClick={() => setSherlockSelectedClueModal(null)}>
           <div 
-            className="sherlock-newspaper-modal-card" 
+            className="sherlock-newspaper-modal-card relative max-w-xl w-full p-6 md:p-8" 
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sherlock-newspaper-modal-header">
-              <div className="flex items-center justify-between border-b-2 border-amber-900/40 pb-2 mb-2">
-                <span className="sherlock-newspaper-paper-tag">
-                  🔍 CHI TIẾT MANH MỐI / BẰNG CHỨNG THỰC TẾ
-                </span>
-                <button 
-                  onClick={() => setSherlockSelectedClueModal(null)}
-                  className="sherlock-newspaper-close-icon"
-                  title="Đóng"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-              <h2 className="sherlock-newspaper-modal-title">
+            {/* NÚT ĐÓNG DUY NHẤT Ở GÓC TRÊN */}
+            <button 
+              onClick={() => setSherlockSelectedClueModal(null)}
+              className="sherlock-newspaper-close-icon absolute top-4 right-4"
+              title="Đóng văn bản"
+            >
+              <X size={18} />
+            </button>
+
+            {/* TRÌNH BÀY GIỐNG VĂN BẢN/GIẤY CHỨNG NHẬN THẬT */}
+            <div className="border-b border-amber-900/40 pb-3 mb-4">
+              <span className="text-[0.65rem] font-black text-amber-800 tracking-widest uppercase block">
+                {sherlockSelectedClueModal.issuer || "SCOTLAND YARD • EVIDENCE CLIPPING"}
+              </span>
+              <h2 className="text-lg md:text-xl font-black text-amber-950 font-serif mt-1">
                 {sherlockSelectedClueModal.title}
               </h2>
             </div>
 
-            <div className="sherlock-newspaper-fulltext-box my-4">
-              <div className="sherlock-newspaper-clipping-text text-sm">
+            {/* GIAO DIỆN GIẤY CHỨNG NHẬN / VĂN BẢN / VÉ VÀO / BẢO HIỂM */}
+            <div className="bg-[#f5ebd7] border-2 border-amber-900/40 rounded-lg p-5 shadow-inner my-2">
+              {sherlockSelectedClueModal.cert_no && (
+                <div className="text-[0.65rem] font-mono font-bold text-amber-900 text-right uppercase tracking-wider mb-2">
+                  MÃ CHỨNG THƯ: {sherlockSelectedClueModal.cert_no}
+                </div>
+              )}
+              <div className="font-mono text-xs md:text-sm text-amber-950 leading-relaxed whitespace-pre-line">
                 {sherlockSelectedClueModal.detail}
               </div>
-            </div>
-
-            <div className="sherlock-newspaper-modal-footer">
-              <button 
-                onClick={() => setSherlockSelectedClueModal(null)}
-                className="sherlock-newspaper-close-btn"
-              >
-                <X size={14} /> ĐÓNG VĂN BẢN
-              </button>
             </div>
           </div>
         </div>

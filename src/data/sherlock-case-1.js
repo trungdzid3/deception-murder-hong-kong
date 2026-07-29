@@ -8,19 +8,28 @@ export const SHERLOCK_CASE_1 = {
     "initial_clues": [
       {
         "title": "📜 Giấy chứng nhận bảo hiểm kiệt tác Turner",
-        "detail": "Giấy chứng nhận bảo hiểm:\n'Phòng tranh Archibald - Bảo hiểm bức kiệt tác Hoàng hôn trên sông Thames của danh họa Turner trị giá 20,000 Bảng Anh tại Ngân hàng Trung tâm.'"
+        "type": "certificate",
+        "issuer": "NGÂN HÀNG TRUNG TÂM LONDON (CENTRAL BANK OF LONDON)",
+        "cert_no": "CERT-1890-0910-ART",
+        "detail": "CHỨNG THƯ BẢO HIỂM NGHỆ THUẬT QUỐC TẾ\n\nXác nhận Bảo hiểm Tài sản số 884-B:\nPhòng tranh Archibald (10 EC) bảo hiểm chính thức cho bức kiệt tác 'Hoàng hôn trên sông Thames' (Sunset on the Thames) của danh họa J.M.W. Turner.\n\n- Định giá bảo hiểm: 20,000 Bảng Anh (£20,000).\n- Đơn vị thẩm định & lưu kho bảo chứng: Ngân hàng Trung tâm London.\n- Ngày hiệu lực: 10/09/1890."
       },
       {
-        "title": "🖼️ Bức tranh nhái 'Hoàng hôn trên sông Thames'",
-        "detail": "Ghi nhận giám định:\nBức tranh giả nằm trong khung. Mùi sơn dầu và dầu lanh còn rất mới, chứng tỏ bức tranh nhái này mới được vẽ chưa tới 1 tuần."
+        "title": "🖼️ Biên bản giám định bức tranh nhái",
+        "type": "report",
+        "issuer": "SCOTLAND YARD - PHÒNG GIÁM ĐỊNH TỘI PHẠM",
+        "detail": "BIÊN BẢN KHÁM NGHIỆM VẬT CHỨNG (10 EC)\n\nBức tranh giả nằm trong khung gỗ mạ vàng nguyên bản của danh họa Turner.\n\n- Tình trạng vật lý: Mùi dầu lanh và sơn dầu còn chưa khô hoàn toàn, bốc mùi sực nức.\n- Kết luận sơ bộ: Bức tranh nhái này mới được chế tác hoàn thiện cách đây chưa tới 1 tuần."
       },
       {
-        "title": "🗝️ Chìa khóa phòng tranh & Chó ngao Brutus",
-        "detail": "Ghi nhận hiện trường:\nCửa phòng tranh khóa cẩn thận từ bên trong. Chỉ có Ngài Archibald và Quản lý Victor có chìa khóa. Con chó ngao Brutus canh gác rất dữ tợn nhưng nằm ngủ ngoan ngoãn khi phát hiện hiện trường."
+        "title": "🗝️ Báo cáo vật chứng chìa khóa & Chó gác Brutus",
+        "type": "evidence",
+        "issuer": "BÁO CÁO HIỆN TRƯỜNG BẢO VỆ",
+        "detail": "BÁO CÁO KHÁM NGHIỆM Ổ KHÓA & AN NINH (10 EC)\n\n- Cửa chính phòng tranh khóa cẩn thận từ bên trong, không có vết cạy chốt.\n- Danh sách chìa khóa: Chỉ duy nhất Chủ phòng tranh Archibald và Quản lý Victor sở hữu chìa khóa.\n- Con chó ngao Brutus canh gác rất dữ tợn với người lạ, nhưng đêm qua nằm ngủ ngoan ngoãn, khi người mở cửa bước vào còn vẫy đuôi thân thiện."
       },
       {
-        "title": "💼 Danh sách nghi phạm khả nghi ban đầu",
-        "detail": "Ghi nhận thông tin:\n- Julian: Đối thủ sưu tầm nghệ thuật cạnh tranh.\n- Họa sĩ Elias: Họa sĩ từng ngồi tù vì tội chép tranh giả vừa ra tù."
+        "title": "💼 Hồ sơ theo dõi các đối tượng nghi vấn",
+        "type": "dossier",
+        "issuer": "SỔ TAY ĐIỀU TRA BAN ĐẦU",
+        "detail": "DANH SÁCH CÁC NGHI PHẠM BAN ĐẦU:\n\n1. Julian (Dinh thự 08 EC): Nhà sưu tầm nghệ thuật đối thủ, từng thề phá hoại buổi đấu giá.\n2. Elias (Xưởng vẽ 14 SE): Họa sĩ chép tranh giả từng có tiền án đi tù, mới mãn hạn tháng trước."
       }
     ],
     "unlocked_nodes": ["10EC"]
