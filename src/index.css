@@ -3834,3 +3834,24 @@ body {
   margin-top: 1px;
 }
 
+/* SHERLOCK NEWSPAPER READ MORE LINK */
+.sherlock-newspaper-read-link {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #78350f;
+  border-bottom: 1px dashed #b45309;
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.sherlock-newspaper-art:hover .sherlock-newspaper-read-link {
+  color: #92400e;
+  border-bottom-color: #92400e;
+  letter-spacing: 0.02em;
+}
+
