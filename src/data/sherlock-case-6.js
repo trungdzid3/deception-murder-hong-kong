@@ -27,7 +27,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Phòng thí nghiệm Cơ khí (Hiện trường vụ án)",
       "area": "WC",
       "type": "crime_scene",
-      "map_coords": { "x": 390, "y": 190 },
+      "map_coords": { "left": "44%", "top": "28%" },
       "content": "Ngăn kéo bàn của Arthur bị cạy tung bằng vật cứng. Cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, tạo ra một lỗ hổng vừa đủ để thò tay vào mở chốt. Tuy nhiên, nhìn kỹ rìa bệ cửa sổ, toàn bộ những mảnh kính vỡ vụn đều rơi lả tả trên bãi cỏ bên ngoài – sàn nhà bên trong lại hoàn toàn sạch sẽ. Điều này chứng minh cửa sổ bị đập từ BÊN TRONG ra ngoài!\n\nNgay cạnh rãnh trượt của ngăn kéo, có một vệt tro màu xám trắng rất mịn, tỏa ra mùi thơm ngầy ngậy đặc trưng của một điếu xì gà đắt tiền rụng xuống chưa quá 12 tiếng.",
       "unlocks": {
         "nodes": ["08EC", "12NW", "17EC"],
@@ -46,7 +46,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Căn hộ của sinh viên Thomas Higgins",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 220, "y": 380 },
+      "map_coords": { "left": "22%", "top": "66%" },
       "content": "Căn hộ tồi tàn và bừa bộn. Higgins nhồi những nhúm thuốc lá sợi rẻ tiền vào một chiếc tẩu gỗ cộc kệch, gắt gỏng: \"Tôi ăn cắp bản thiết kế đó làm gì? Các ma trận điều khiển của nó tôi còn chẳng hiểu! Tối qua tôi ở quán rượu Cáo Trắng đến tận nửa đêm. Các anh đi mà hỏi Giáo sư Sterling ấy, viện trợ nghiên cứu của ông ta sắp bị cắt sạch rồi!\"\n\nThuốc lá sợi rẻ tiền loại trừ hoàn toàn Higgins là chủ nhân của tàn xì gà đắt tiền tại hiện trường.",
       "unlocks": {
         "nodes": ["22WC"],
@@ -62,7 +62,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Văn phòng Giáo sư Sterling",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 580, "y": 150 },
+      "map_coords": { "left": "68%", "top": "24%" },
       "content": "Giáo sư Sterling bệ vệ ngồi sau bàn làm việc bằng gỗ sồi, tay kẹp một điếu xì gà Cuba tỏa khói nghi ngút. \"Thật đáng tiếc cho Arthur. Nếu cậu ta chịu hợp tác với tôi, hệ thống đó đã có thể cứu vãn nhiều thứ.\"\n\nQuan sát kỹ, trên mu bàn tay phải của Giáo sư có một vết xước rướm máu tươi còn mới. Ông ta vội giấu tay xuống gầm bàn: \"Tối qua tôi làm việc ở đây đến khuya. Thật xui xẻo cho cậu sinh viên kia.\" Vết xước khớp hoàn toàn với vết thương do mảnh kính cứa khi đập cửa sổ từ bên trong phòng thí nghiệm.",
       "unlocks": {
         "nodes": ["12NW", "17EC"],
@@ -81,7 +81,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Quán rượu Cáo Trắng",
       "area": "WC",
       "type": "suspect_interview",
-      "map_coords": { "x": 420, "y": 220 },
+      "map_coords": { "left": "48%", "top": "34%" },
       "content": "Ông chủ quán lau ly, gật gù: \"Thomas Higgins hả? Tối qua nó ngồi ở góc kia uống rượu từ 8 giờ tối đến gần 1 giờ sáng mới lảo đảo đi về. Nó cứ lải nhải phàn nàn về mấy phương trình tự động hóa của thằng nhóc Arthur.\" Lời khai xác nhận chứng cứ ngoại phạm hoàn hảo cho Thomas Higgins.",
       "unlocks": {
         "nodes": [],
@@ -94,7 +94,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Phòng Giáo vụ Đại học UCL",
       "area": "NW",
       "type": "clue_inspection",
-      "map_coords": { "x": 260, "y": 120 },
+      "map_coords": { "left": "32%", "top": "16%" },
       "content": "Trưởng phòng Giáo vụ mở sổ cái tài chính: \"Khoa Cơ khí của Giáo sư Sterling đang gặp khủng hoảng nghiêm trọng. Nếu cuối tháng này ông ấy không trình làng được một phát minh hoặc bằng sáng chế mới nào có tính ứng dụng cao, hội đồng quản trị sẽ cắt 100% ngân sách và đóng cửa phòng thí nghiệm của ông ấy.\"",
       "unlocks": {
         "nodes": [],
@@ -107,7 +107,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Cửa hàng Xì gà Havana",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": { "x": 640, "y": 170 },
+      "map_coords": { "left": "74%", "top": "26%" },
       "content": "Người bán hàng kiểm tra lọ tro mà Holmes mang tới: \"Mùi hương và chất tro này? Đây là loại xì gà Partagas thượng hạng nhập từ Cuba. Khách quen mua loại này của tôi không nhiều, Giáo sư Sterling là một trong số những người luôn đặt hàng đều đặn mỗi tuần.\" Xác nhận thêm bằng chứng liên kết trực tiếp tàn xì gà tại hiện trường với Giáo sư Sterling.",
       "unlocks": {
         "nodes": [],
@@ -120,7 +120,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Sở Cảnh sát Scotland Yard (Thanh tra Lestrade)",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 280, "y": 440 },
+      "map_coords": { "left": "38%", "top": "68%" },
       "content": "Thanh tra Lestrade ngáp dài: \"Vụ vỡ cửa kính ở trường đại học à? Chắc chắn là do bọn trộm vặt quanh phố nhòm ngó đồ đồng nát thôi. Hoặc là cậu sinh viên Higgins kia ghen tị nên đập phá. Tôi sẽ phái người đi bắt Higgins dọa cho một trận là nó khai ngay!\" Lestrade vội vã quy kết cho Higgins mà không có bằng chứng.",
       "unlocks": {
         "nodes": [],
@@ -133,7 +133,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Tiệm thuộc da Henderson",
       "area": "NW",
       "type": "decoy",
-      "map_coords": { "x": 150, "y": 260 },
+      "map_coords": { "left": "18%", "top": "46%" },
       "content": "Xưởng chế tác da thuộc hoạt động bình thường, không có manh mối liên quan vụ án.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -142,7 +142,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Khách sạn Victoria Club",
       "area": "SW",
       "type": "decoy",
-      "map_coords": { "x": 200, "y": 480 },
+      "map_coords": { "left": "30%", "top": "88%" },
       "content": "Khách sạn dành cho khách du lịch. Không phát hiện dấu vết hay đối tượng nghi vấn.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -151,7 +151,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Chủ xưởng đóng tàu Albert Jenkins",
       "area": "EC",
       "type": "decoy",
-      "map_coords": { "x": 700, "y": 100 },
+      "map_coords": { "left": "74%", "top": "16%" },
       "content": "Xưởng đóng tàu Albert Jenkins làm việc bận rộn. Không có thông tin gì về vụ án.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -160,7 +160,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Văn phòng quản ngục Newgate",
       "area": "EC",
       "type": "decoy",
-      "map_coords": { "x": 640, "y": 140 },
+      "map_coords": { "left": "86%", "top": "24%" },
       "content": "Hồ sơ phạm nhân Newgate được lưu trữ cẩn thận. Không có manh mối nào liên quan.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -169,7 +169,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Tiệm đồng hồ Alfred Higgins",
       "area": "WC",
       "type": "decoy",
-      "map_coords": { "x": 440, "y": 190 },
+      "map_coords": { "left": "48%", "top": "22%" },
       "content": "Tiệm sửa đồng hồ cổ Alfred Higgins buôn bán bình thường, không liên quan vụ án.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -178,7 +178,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Phòng tranh William Blake",
       "area": "WC",
       "type": "decoy",
-      "map_coords": { "x": 470, "y": 200 },
+      "map_coords": { "left": "54%", "top": "34%" },
       "content": "Phòng triển lãm tranh nghệ thuật yên tĩnh, không có manh mối nào.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -187,7 +187,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Tiệm đồng hồ Oxford Street",
       "area": "NW",
       "type": "decoy",
-      "map_coords": { "x": 170, "y": 170 },
+      "map_coords": { "left": "20%", "top": "30%" },
       "content": "Cửa hàng bán đồng hồ quả lắc bình thường, không có manh mối khả nghi.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -196,7 +196,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Hội trường Victoria Memorial",
       "area": "SW",
       "type": "decoy",
-      "map_coords": { "x": 260, "y": 460 },
+      "map_coords": { "left": "28%", "top": "82%" },
       "content": "Hội trường sinh hoạt cộng đồng yên tĩnh, không phát hiện sự cố.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -205,7 +205,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Union Bank of London",
       "area": "EC",
       "type": "decoy",
-      "map_coords": { "x": 740, "y": 160 },
+      "map_coords": { "left": "92%", "top": "18%" },
       "content": "Chi nhánh ngân hàng Union Bank hoạt động bình thường, không có liên hệ vụ án.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -214,7 +214,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Bệnh viện đại học University College",
       "area": "NW",
       "type": "decoy",
-      "map_coords": { "x": 250, "y": 100 },
+      "map_coords": { "left": "34%", "top": "42%" },
       "content": "Bệnh viện tiếp nhận bệnh nhân thông thường, không có báo cáo nghi vấn.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -223,7 +223,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Đại lý vận tải biển Xavier",
       "area": "EC",
       "type": "decoy",
-      "map_coords": { "x": 720, "y": 240 },
+      "map_coords": { "left": "86%", "top": "44%" },
       "content": "Đại lý tàu biển Xavier làm việc bình thường, không có lịch trình khả nghi.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -232,7 +232,7 @@ export const SHERLOCK_CASE_6 = {
       "title": "Hội động vật học Zoological Society",
       "area": "NW",
       "type": "decoy",
-      "map_coords": { "x": 130, "y": 80 },
+      "map_coords": { "left": "16%", "top": "48%" },
       "content": "Trụ sở hội nghiên cứu động vật yên tĩnh, không có dấu vết nào.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     }

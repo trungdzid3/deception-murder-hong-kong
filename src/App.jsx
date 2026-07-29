@@ -1358,14 +1358,20 @@ function App() {
                           '88SE': { left: '80%', top: '76%' }
                         };
 
-                        let pos = { left: '50%', top: '50%' };
-                        if (n.map_coords) {
+                        let pos = null;
+                        if (n.map_coords?.left && n.map_coords?.top) {
+                          pos = { left: n.map_coords.left, top: n.map_coords.top };
+                        } else if (n.map_coords?.x !== undefined && n.map_coords?.y !== undefined) {
                           pos = {
                             left: `${((n.map_coords.x / 860) * 100).toFixed(2)}%`,
                             top: `${((n.map_coords.y / 570) * 100).toFixed(2)}%`
                           };
                         } else if (coordsMapFallback[n.id]) {
                           pos = coordsMapFallback[n.id];
+                        } else {
+                          let hash = 0;
+                          for (let i = 0; i < n.id.length; i++) hash = n.id.charCodeAt(i) + ((hash << 5) - hash);
+                          pos = { left: `${15 + Math.abs(hash % 70)}%`, top: `${15 + Math.abs((hash >> 3) % 70)}%` };
                         }
                         const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
 
