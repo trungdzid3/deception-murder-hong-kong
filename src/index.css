@@ -2645,16 +2645,15 @@ body {
   padding: 16px !important;
 }
 
-/* GAME SELECTION MODAL STYLES */
+/* GAME SELECTION MODAL STYLES (CLEAN & FLAT FOR MAX PERFORMANCE) */
 .select-game-modal-card {
   width: 720px !important;
   max-width: calc(100vw - 32px) !important;
-  background: rgba(12, 9, 22, 0.98) !important;
-  backdrop-filter: blur(25px) !important;
-  border: 1.5px solid rgba(245, 158, 11, 0.4) !important;
-  border-radius: 28px !important;
-  box-shadow: 0 0 70px rgba(0, 0, 0, 0.95), 0 0 45px rgba(245, 158, 11, 0.2) !important;
-  padding: 28px !important;
+  background: #0f0a14 !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9) !important;
+  padding: 24px !important;
   text-align: left !important;
   position: relative !important;
   z-index: 999999 !important;
@@ -2663,7 +2662,7 @@ body {
 .select-game-grid {
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
-  gap: 20px !important;
+  gap: 16px !important;
   width: 100% !important;
 }
 
@@ -2674,37 +2673,37 @@ body {
 }
 
 .select-game-option-card {
-  background: rgba(18, 14, 28, 0.92) !important;
-  border-radius: 20px !important;
-  padding: 24px !important;
+  background: #150f1d !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  min-height: 340px !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  min-height: 320px !important;
+  transition: border-color 0.15s ease !important;
   cursor: pointer !important;
   text-align: left !important;
   box-sizing: border-box !important;
 }
 
 .select-game-option-card.deception-option {
-  border: 1.5px solid rgba(244, 63, 94, 0.4) !important;
+  border: 1px solid rgba(244, 63, 94, 0.3) !important;
 }
 .select-game-option-card.deception-option:hover {
-  border-color: rgba(244, 63, 94, 0.9) !important;
-  background: rgba(38, 14, 26, 0.96) !important;
-  box-shadow: 0 12px 30px rgba(244, 63, 94, 0.35) !important;
-  transform: translateY(-4px) !important;
+  border-color: rgba(244, 63, 94, 0.8) !important;
+  background: #1c1122 !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 .select-game-option-card.sherlock-option {
-  border: 1.5px solid rgba(245, 158, 11, 0.4) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
 }
 .select-game-option-card.sherlock-option:hover {
-  border-color: rgba(245, 158, 11, 0.9) !important;
-  background: rgba(38, 24, 14, 0.96) !important;
-  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35) !important;
-  transform: translateY(-4px) !important;
+  border-color: rgba(245, 158, 11, 0.8) !important;
+  background: #1c1622 !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 .select-game-badge {
@@ -2718,25 +2717,25 @@ body {
 }
 
 .select-game-badge.deception-badge {
-  background: rgba(244, 63, 94, 0.2) !important;
+  background: rgba(244, 63, 94, 0.15) !important;
   color: #fda4af !important;
-  border: 1px solid rgba(244, 63, 94, 0.4) !important;
+  border: 1px solid rgba(244, 63, 94, 0.3) !important;
 }
 
 .select-game-badge.sherlock-badge {
-  background: rgba(245, 158, 11, 0.2) !important;
+  background: rgba(245, 158, 11, 0.15) !important;
   color: #fde68a !important;
-  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
 }
 
 .select-game-meta-row {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  background: rgba(8, 5, 14, 0.6) !important;
+  background: #0b0712 !important;
   padding: 10px 14px !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
   font-size: 0.78rem !important;
   font-weight: 800 !important;
   color: #94a3b8 !important;
@@ -2749,14 +2748,16 @@ body {
   justify-content: center !important;
   gap: 8px !important;
   width: 100% !important;
-  height: 48px !important;
-  border-radius: 14px !important;
+  height: 44px !important;
+  border-radius: 10px !important;
   font-size: 0.88rem !important;
   font-weight: 900 !important;
   letter-spacing: 0.5px !important;
   cursor: pointer !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: background-color 0.15s ease !important;
   box-sizing: border-box !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 
 .select-game-btn.deception-btn {
