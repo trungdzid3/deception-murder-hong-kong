@@ -545,29 +545,27 @@ io.on('connection', (socket) => {
     if (!room) return;
 
     const activeCase = getActiveSherlockCase(room);
-    const formattedNodeId = nodeId.toUpperCase().replace(/\s+/g, '');
-    const node = activeCase.nodes[formattedNodeId];
+    const formattedNodeId = (nodeId || '').toUpperCase().replace(/\s+/g, '');
+    if (!formattedNodeId) return;
 
-    if (!node) {
-      socket.emit('error-msg', `Mã địa điểm [${nodeId}] không tồn tại trên bản đồ hoặc danh bạ!`);
-      return;
-    }
-
+    if (!room.visitedNodes) room.visitedNodes = [];
     if (!room.visitedNodes.includes(formattedNodeId)) {
       room.visitedNodes.push(formattedNodeId);
-      
-      // Mở khóa các node mới được đề cập
-      if (node.unlocks && node.unlocks.nodes) {
-        node.unlocks.nodes.forEach(un => {
-          if (!room.unlockedNodes.includes(un)) {
-            room.unlockedNodes.push(un);
-          }
-        });
-      }
-
-      const playerName = room.players.find(p => p.id === socket.id)?.name || 'Thám tử';
-      room.eventLog.push(`🕵️‍♂️ ${playerName} đã ghé thăm Địa điểm [${node.id}]: ${node.title}.`);
     }
+
+    const node = activeCase?.nodes?.[formattedNodeId];
+    if (node?.unlocks?.nodes) {
+      if (!room.unlockedNodes) room.unlockedNodes = [];
+      node.unlocks.nodes.forEach(un => {
+        if (!room.unlockedNodes.includes(un)) {
+          room.unlockedNodes.push(un);
+        }
+      });
+    }
+
+    const playerName = room.players?.find(p => p.id === socket.id)?.name || 'Thám tử';
+    const title = node?.title || formattedNodeId;
+    room.eventLog.push(`🕵️‍♂️ ${playerName} đã ghé thăm Địa điểm [${formattedNodeId}]: ${title}.`);
 
     io.to(roomCode).emit('room-updated', room);
   });

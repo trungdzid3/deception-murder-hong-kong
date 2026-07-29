@@ -1194,19 +1194,67 @@ function App() {
                 {sherlockActiveTab === 'casebook' && (
                   <div className="sherlock-grid-layout">
                     
-                    {/* CỘT TRÁI: NHẬT KÝ ĐỊA ĐIỂM ĐÃ ĐIỀU TRA & MANH MỐI KHỞI ĐẦU */}
+                    {/* CỘT TRÁI: MANH MỐI GIÁ TRỊ THU THẬP & LỊCH SỬ KHÁM XÉT */}
                     <div className="space-y-4">
                       
-                      {/* LỊCH SỬ CÁC ĐỊA ĐIỂM ĐÃ ĐIỀU TRA */}
+                      {/* BẢNG 1: MANH MỐI GIÁ TRỊ ĐÃ THU THẬP (CÁC ĐỊA ĐIỂM CÓ MANH MỐI) */}
                       <div className="sherlock-panel">
                         <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between border-b border-amber-500/20 pb-2 mb-2">
-                          <span className="flex items-center gap-1.5"><Compass size={14} /> ĐỊA ĐIỂM ĐÃ ĐIỀU TRA ({roomState.visitedNodes?.length || 0}):</span>
+                          <span className="flex items-center gap-1.5"><Skull size={14} className="text-amber-400" /> MANH MỐI GIÁ TRỊ THU THẬP:</span>
                         </h4>
-                        <div className="space-y-1.5 max-h-60 overflow-y-auto pr-1">
-                          {roomState.visitedNodes?.length === 0 && (
+                        <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+                          {(() => {
+                            const valuableNodes = (roomState?.visitedNodes || [])
+                              .map(id => activeSherlockCase.nodes?.[id])
+                              .filter(n => n && n.type !== 'decoy' && ((n.evidence_items && n.evidence_items.length > 0) || (n.key_hints && n.key_hints.length > 0)));
+
+                            if (valuableNodes.length === 0) {
+                              return (
+                                <p className="text-xs text-slate-500 italic p-2">
+                                  Chưa có manh mối giá trị. Hãy khám xét các địa điểm trên Bản đồ.
+                                </p>
+                              );
+                            }
+
+                            return valuableNodes.map((n) => {
+                              const isSelected = sherlockSelectedNodeId === n.id;
+                              return (
+                                <div 
+                                  key={n.id}
+                                  onClick={() => setSherlockSelectedNodeId(n.id)}
+                                  className={`sherlock-valuable-clue-card ${isSelected ? 'selected' : ''}`}
+                                >
+                                  <div className="flex items-center justify-between gap-1 mb-1">
+                                    <span className="font-black text-[0.7rem] text-amber-300">
+                                      [{n.id}] {n.title}
+                                    </span>
+                                    <ArrowRight size={12} className="text-amber-400 shrink-0" />
+                                  </div>
+                                  <ul className="space-y-1 pl-1">
+                                    {n.evidence_items?.map((item, idx) => (
+                                      <li key={idx} className="text-[0.68rem] text-slate-300 leading-snug flex items-start gap-1">
+                                        <span className="text-amber-400 font-bold">•</span>
+                                        <span>{item}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              );
+                            });
+                          })()}
+                        </div>
+                      </div>
+
+                      {/* BẢNG 2: TẤT CẢ ĐỊA ĐIỂM ĐÃ KHÁM XÉT */}
+                      <div className="sherlock-panel">
+                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between border-b border-amber-500/20 pb-2 mb-2">
+                          <span className="flex items-center gap-1.5"><Compass size={14} /> TẤT CẢ ĐỊA ĐIỂM ĐÃ KHÁM XÉT ({roomState?.visitedNodes?.length || 0}):</span>
+                        </h4>
+                        <div className="space-y-1.5 max-h-44 overflow-y-auto pr-1">
+                          {(!roomState?.visitedNodes || roomState.visitedNodes.length === 0) && (
                             <p className="text-xs text-slate-500 italic p-2">Chưa tới địa điểm nào. Hãy tra cứu con số trên Bản Đồ để tiến hành khám xét.</p>
                           )}
-                          {roomState.visitedNodes?.map((nodeId) => {
+                          {roomState?.visitedNodes?.map((nodeId) => {
                             const n = activeSherlockCase.nodes?.[nodeId];
                             const isSelected = sherlockSelectedNodeId === nodeId;
                             return (
@@ -1225,6 +1273,7 @@ function App() {
                           })}
                         </div>
                       </div>
+
                     </div>
 
                     {/* CỘT PHẢI: HIỂN THỊ NỘI DUNG SÁCH VỤ ÁN */}
@@ -2778,37 +2827,66 @@ function App() {
         </div>
       )}
 
-      {/* MODAL ĐỌC BÀI BÁO CHI TIẾT NGUYÊN VĂN */}
+      {/* MODAL ĐỌC BÀI BÁO CHI TIẾT NGUYÊN VĂN (VINTAGE NEWSPAPER CLIPPING) */}
       {sherlockSelectedArticle && (
-        <div className="modal-overlay" onClick={() => setSherlockSelectedArticle(null)}>
-          <div className="modal-card max-w-2xl bg-amber-50 border border-amber-800/40 text-amber-950 p-6 shadow-2xl rounded-xl" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between border-b border-amber-900/30 pb-3 mb-4">
-              <div>
-                <span className="text-[0.65rem] font-bold text-amber-800 uppercase tracking-widest block">{sherlockSelectedArticle.date}</span>
-                <h3 className="text-lg font-black text-amber-950">{sherlockSelectedArticle.title}</h3>
+        <div className="modal-overlay z-[1200]" onClick={() => setSherlockSelectedArticle(null)}>
+          <div 
+            className="sherlock-newspaper-modal-card" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* HEADER TỜ BÁO VINTAGE */}
+            <div className="sherlock-newspaper-modal-header">
+              <div className="flex items-center justify-between border-b-2 border-amber-900/60 pb-2 mb-3">
+                <span className="text-[0.68rem] font-black uppercase tracking-widest text-amber-900 font-sans">
+                  {activeSherlockCase?.newspaper?.paper_name || 'THE TIMES LONDON'} • ARCHIVE CLIPPING
+                </span>
+                <button 
+                  onClick={() => setSherlockSelectedArticle(null)}
+                  className="sherlock-newspaper-close-icon"
+                  title="Đóng bài báo"
+                >
+                  <X size={16} />
+                </button>
               </div>
-              <button onClick={() => setSherlockSelectedArticle(null)} className="text-amber-800 hover:text-amber-950 p-1 rounded hover:bg-amber-200/50"><X size={20} /></button>
+
+              <span className="text-[0.68rem] font-bold text-amber-800 uppercase tracking-widest block mb-1">
+                {sherlockSelectedArticle.date}
+              </span>
+              <h2 className="text-xl md:text-2xl font-black text-amber-950 font-serif leading-tight">
+                {sherlockSelectedArticle.title}
+              </h2>
             </div>
-            
-            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
-              <div className="p-3 bg-amber-100/60 rounded border border-amber-800/20 text-xs leading-relaxed font-serif">
-                <span className="font-bold text-amber-900 block mb-1">📌 Tóm tắt nội dung:</span>
-                {sherlockSelectedArticle.summary}
+
+            {/* BODY NỘI DUNG NGUYÊN VĂN TỜ BÁO */}
+            <div className="sherlock-newspaper-modal-body space-y-4 max-h-[60vh] overflow-y-auto my-4 pr-2">
+              <div className="sherlock-newspaper-summary-box">
+                <span className="font-extrabold text-amber-900 uppercase text-[0.7rem] tracking-wider flex items-center gap-1.5 mb-1">
+                  <FileText size={13} /> Tóm tắt nội dung chính:
+                </span>
+                <p className="text-xs text-amber-950 font-serif leading-relaxed italic">
+                  "{sherlockSelectedArticle.summary}"
+                </p>
               </div>
 
               {sherlockSelectedArticle.full_text && (
-                <div className="p-4 bg-amber-100/90 border border-amber-800/30 rounded text-xs font-mono whitespace-pre-line leading-relaxed shadow-inner">
-                  <span className="block text-[0.7rem] font-black text-amber-900 uppercase tracking-widest mb-2 pb-1 border-b border-amber-900/20 flex items-center gap-1.5">
-                    📰 BẢN NGUYÊN VĂN BÀI BÁO NGUỒN (ORIGINAL CLIPPING FROM PDF)
-                  </span>
-                  {sherlockSelectedArticle.full_text}
+                <div className="sherlock-newspaper-fulltext-box">
+                  <div className="text-[0.68rem] font-black text-amber-900 uppercase tracking-widest border-b border-amber-900/30 pb-1.5 mb-3 flex items-center gap-1.5">
+                    <span>📰 BẢN NGUYÊN VĂN BÀI BÁO TIẾNG ANH (ORIGINAL PDF CLIPPING):</span>
+                  </div>
+                  <div className="sherlock-newspaper-clipping-text">
+                    {sherlockSelectedArticle.full_text}
+                  </div>
                 </div>
               )}
             </div>
 
-            <div className="mt-5 pt-3 border-t border-amber-900/20 flex justify-end">
-              <button onClick={() => setSherlockSelectedArticle(null)} className="px-4 py-2 bg-amber-900 text-amber-100 font-bold rounded hover:bg-amber-950 text-xs">
-                ĐÓNG BÀI BÁO
+            {/* FOOTER NÚT ĐÓNG VINTAGE */}
+            <div className="sherlock-newspaper-modal-footer">
+              <button 
+                onClick={() => setSherlockSelectedArticle(null)}
+                className="sherlock-newspaper-close-btn"
+              >
+                <X size={14} /> ĐÓNG BÀI BÁO
               </button>
             </div>
           </div>
