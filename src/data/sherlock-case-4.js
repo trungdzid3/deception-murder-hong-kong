@@ -125,11 +125,11 @@ export const SHERLOCK_CASE_4 = {
         "left": "42.5%",
         "top": "23%"
       },
-      "content": "Đại diện khoa khảo cổ xác nhận: Trợ lý Turnbull rất khao khát tham gia đoàn thám hiểm Katebet. Sau khi bị từ chối và xảy ra mâu thuẫn lợi nhuận mua bán cổ vật với Giáo sư Windibank, Turnbull đã giận dữ nộp đơn xin từ chức khỏi Đại học và chuyển sang làm phóng viên tự do.",
+      "content": "Đại diện khoa khảo cổ xác nhận: Trợ lý Turnbull rất khao khát tham gia đoàn thám hiểm lăng mộ Katebet và gặp mặt trực tiếp Turnbull. Sau khi xảy ra mâu thuẫn gay gắt về phân chia quyền lợi mua bán cổ vật với Giáo sư Windibank, Turnbull giận dữ nộp đơn xin từ chức khỏi Đại học và tìm được công việc phóng viên tự do tại tòa soạn báo The Times.",
       "unlocks": {
         "nodes": [],
         "evidence_items": [
-          "Trợ lý Turnbull giận dữ từ chức khỏi Đại học sau tranh chấp với Windibank."
+          "Trợ lý Turnbull giận dữ từ chức khỏi Đại học sau tranh chấp với Windibank và chuyển sang làm báo."
         ]
       },
       "key_hints": [
@@ -145,11 +145,11 @@ export const SHERLOCK_CASE_4 = {
         "left": "72%",
         "top": "32%"
       },
-      "content": "Chủ tiệm đồ cổ khai báo: 'Một người đàn ông năng nổ kỳ quặc đại diện đoàn thám hiểm đã bán lén cho tôi các bức tượng nhỏ Ai Cập với giá rất cao. Kẻ này hiểu biết rất sâu về cổ vật Toutankhamon'.",
+      "content": "Chủ tiệm đồ cổ khai báo: 'Một người đàn ông năng nổ kỳ quặc đại diện đoàn thám hiểm đã bán lén cho tôi các bức tượng nhỏ Ai Cập với giá rất cao. Kẻ này có ngoại hình hơi lập dị nhưng rất thạo việc và có năng lực chuyên môn cao'.",
       "unlocks": {
         "nodes": [],
         "evidence_items": [
-          "Cổ vật Toutankhamon bị tuồn bán lén tại tiệm đồ cổ đường Oxford."
+          "Cổ vật Toutankhamon bị tuồn bán lén tại tiệm đồ cổ đường Oxford bởi kẻ đại diện đoàn thám hiểm."
         ]
       },
       "key_hints": [
