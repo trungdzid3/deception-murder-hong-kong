@@ -369,19 +369,6 @@ function App() {
     }
   };
 
-  const handleSherlockNextPhase = (phase) => {
-    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
-    if (code) {
-      socket.emit('sherlock-next-phase', { roomCode: code, phase });
-    }
-  };
-
-  const handleSubmitSherlockSolution = () => {
-    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
-    if (code) {
-      socket.emit('submit-sherlock-solution', { roomCode: code, answers: sherlockAnswers });
-    }
-  };
 
   const handleJoinRoom = () => {
     if (!socket || !socket.connected) {
@@ -577,6 +564,63 @@ function App() {
       setAccuseClue(card);
     }
     setShowAccuseModal(true);
+  };
+
+  const handleSherlockNextPhase = (phase) => {
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('sherlock-next-phase', { roomCode: code, phase });
+    }
+    setRoomState(prev => prev ? { ...prev, phase } : { phase });
+  };
+
+  const handleSubmitSherlockSolution = () => {
+    let correctCount = 0;
+    activeSherlockCase.questions?.part_1_main_case?.forEach(q => {
+      const userAns = sherlockAnswers[`q_${q.id}`];
+      const correctIdx = q.correct_option_index !== undefined ? q.correct_option_index : q.correct_option;
+      if (userAns === correctIdx) correctCount++;
+    });
+    activeSherlockCase.questions?.part_2_side_mysteries?.forEach(q => {
+      const userAns = sherlockAnswers[`q_${q.id}`];
+      const correctIdx = q.correct_option_index !== undefined ? q.correct_option_index : q.correct_option;
+      if (userAns === correctIdx) correctCount++;
+    });
+
+    const totalQuestions = (activeSherlockCase.questions?.part_1_main_case?.length || 0) + (activeSherlockCase.questions?.part_2_side_mysteries?.length || 0);
+    const rawScore = Math.round((correctCount / (totalQuestions || 10)) * 100);
+
+    const visitedList = Array.from(new Set([
+      ...(activeSherlockCase?.intro?.unlocked_nodes || []),
+      ...(roomState?.visitedNodes || []),
+      ...localVisitedNodes
+    ]));
+
+    const playerLeads = visitedList.length;
+    const holmesLeads = activeSherlockCase.holmes_leads_count || 6;
+    const leadDiff = playerLeads - holmesLeads;
+    const leadPenalty = leadDiff * 5;
+    const finalScore = rawScore - leadPenalty;
+
+    setRoomState(prev => prev ? {
+      ...prev,
+      phase: 'SHERLOCK_GAME_OVER',
+      sherlockScore: finalScore,
+      sherlockRawScore: rawScore,
+      sherlockLeadPenalty: leadPenalty,
+      submittedAnswers: sherlockAnswers
+    } : {
+      phase: 'SHERLOCK_GAME_OVER',
+      sherlockScore: finalScore,
+      sherlockRawScore: rawScore,
+      sherlockLeadPenalty: leadPenalty,
+      submittedAnswers: sherlockAnswers
+    });
+
+    const code = (roomStateRef.current?.code || roomState?.code || '').toUpperCase();
+    if (code) {
+      socket.emit('submit-sherlock-quiz', { roomCode: code, answers: sherlockAnswers });
+    }
   };
 
   const handleLeaveRoom = () => {
@@ -1755,13 +1799,17 @@ function App() {
                 {/* SCORE BANNER */}
                 <div className="text-center bg-gradient-to-b from-amber-950/60 to-slate-950 border border-amber-500/40 rounded-2xl p-6 space-y-2">
                   <span className="text-xs font-bold text-amber-400 tracking-widest uppercase">KẾT QUẢ ĐIỀU TRA TỔNG KẾT</span>
-                  <h2 className="text-5xl font-black text-amber-300">{(roomState?.sherlockScore ?? 0)} / 100 ĐIỂM</h2>
+                  <h2 className="text-5xl font-black text-amber-300">{(roomState?.sherlockScore ?? 0)} ĐIỂM</h2>
                   <p className="text-sm font-bold text-amber-100">
                     {(roomState?.sherlockScore ?? 0) >= 100 ? '🏆 Tuyệt vời! Bạn đã vượt qua cả Sherlock Holmes!' : (roomState?.sherlockScore ?? 0) >= 70 ? '🥇 Thám tử lừng danh phố Baker!' : (roomState?.sherlockScore ?? 0) >= 35 ? '🥈 Phá án thành công!' : '🥉 Cần rèn luyện thêm kỹ năng suy luận!'}
                   </p>
-                  <p className="text-xs text-slate-400">
-                    Nhóm đã đi <strong>{roomState.visitedNodes?.length || 0} địa điểm</strong> (Sherlock Holmes đi 6 địa điểm).
-                  </p>
+                  <div className="flex items-center justify-center gap-4 text-xs text-amber-200/80 pt-1">
+                    <span>Điểm câu hỏi: <strong>{roomState?.sherlockRawScore ?? 0}/100</strong></span>
+                    <span>•</span>
+                    <span>Địa điểm: <strong>{roomState?.visitedNodes?.length || localVisitedNodes.length || 0}</strong> vs Holmes ({activeSherlockCase.holmes_leads_count || 6})</span>
+                    <span>•</span>
+                    <span>Điểm phạt bước đi: <strong className={(roomState?.sherlockLeadPenalty ?? 0) > 0 ? 'text-rose-400' : 'text-emerald-400'}>{(roomState?.sherlockLeadPenalty ?? 0) > 0 ? `-${roomState.sherlockLeadPenalty}` : `+${Math.abs(roomState?.sherlockLeadPenalty ?? 0)}`}</strong></span>
+                  </div>
                   <div className="flex flex-wrap justify-center gap-3 pt-4 border-t border-amber-500/20">
                     <button 
                       onClick={handleLeaveRoom}
@@ -1793,7 +1841,7 @@ function App() {
                       <strong>Kẻ đứng sau (Mastermind):</strong> {activeSherlockCase.solution_summary?.mastermind}
                     </div>
                     <div className="p-3 rounded-lg bg-amber-950/30 border border-amber-500/30 text-amber-300">
-                      <strong>Động cơ (Motive):</strong> {SHERLOCK_CASE_1.solution_summary.motive}
+                      <strong>Động cơ (Motive):</strong> {activeSherlockCase.solution_summary?.motive}
                     </div>
                   </div>
                 </div>

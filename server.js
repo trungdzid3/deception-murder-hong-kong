@@ -917,6 +917,54 @@ io.on('connection', (socket) => {
     }
   });
 
+  // 15c. Nộp bài đáp án Sherlock Holmes (Tính điểm chuẩn theo Luật PDF)
+  socket.on('submit-sherlock-quiz', ({ roomCode, answers }) => {
+    const code = (roomCode || '').trim().toUpperCase();
+    const room = rooms[code];
+    if (!room) return;
+
+    const activeCase = getActiveSherlockCase(room);
+    let correctCount = 0;
+
+    // Chấm điểm Phần 1 (Main Case)
+    activeCase.questions?.part_1_main_case?.forEach(q => {
+      const userAns = answers[`q_${q.id}`];
+      const correctIdx = q.correct_option_index !== undefined ? q.correct_option_index : q.correct_option;
+      if (userAns === correctIdx) {
+        correctCount++;
+      }
+    });
+
+    // Chấm điểm Phần 2 (Sub Clues / Side Mysteries)
+    activeCase.questions?.part_2_side_mysteries?.forEach(q => {
+      const userAns = answers[`q_${q.id}`];
+      const correctIdx = q.correct_option_index !== undefined ? q.correct_option_index : q.correct_option;
+      if (userAns === correctIdx) {
+        correctCount++;
+      }
+    });
+
+    const totalQuestions = (activeCase.questions?.part_1_main_case?.length || 0) + (activeCase.questions?.part_2_side_mysteries?.length || 0);
+    const rawScore = Math.round((correctCount / (totalQuestions || 10)) * 100);
+
+    // Tính điểm thưởng / phạt bước đi theo luật PDF (Mỗi địa điểm đi thừa trừ 5 điểm, ít hơn cộng 5 điểm)
+    const playerLeads = room.visitedNodes?.length || 0;
+    const holmesLeads = activeCase.holmes_leads_count || 6;
+    const leadDiff = playerLeads - holmesLeads;
+    const leadPenalty = leadDiff * 5;
+    const finalScore = rawScore - leadPenalty;
+
+    room.phase = 'SHERLOCK_GAME_OVER';
+    room.sherlockScore = finalScore;
+    room.sherlockRawScore = rawScore;
+    room.sherlockLeadPenalty = leadPenalty;
+    room.submittedAnswers = answers;
+    const player = room.players.find(p => p.id === socket.id);
+    room.eventLog.push(`🏆 ${player?.name || 'Thám tử'} đã hoàn thành vụ án! Điểm câu hỏi: ${rawScore}, Phạt địa điểm: ${leadPenalty > 0 ? '-' : '+'}${Math.abs(leadPenalty)} điểm => Điểm chung cuộc: ${finalScore} điểm!`);
+
+    io.to(code).emit('room-updated', room);
+  });
+
   // 16. Người chơi chủ động Rời phòng về Sảnh chính / Landing Page
   socket.on('leave-room', ({ roomCode }) => {
     const code = (roomCode || '').trim().toUpperCase();
