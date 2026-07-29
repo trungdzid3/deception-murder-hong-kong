@@ -7,16 +7,22 @@ export const SHERLOCK_CASE_5 = {
     "story_text": "Sáng sớm thứ Hai ngày 11 tháng 6 năm 1888, trong căn phòng khách ấm áp tại 221B Baker Street, Sherlock Holmes nằm dài trên ghế sô-fa trong bộ áo khoác mộng mị, ánh mắt nhìn xa xăm sau một đêm làm việc miệt mài với các ống nghiệm. Thanh tra Lestrade tìm đến báo tin về một vụ ngã tử vong từ tầng cao tại địa chỉ 63 phố Fleet Street, góc ngõ Shoe Lane. Lestrade cho rằng đây là một vụ tự tử thông thường của một gã lang thang. Holmes không thể rời phòng, nên Bác sĩ Watson cùng đội thám tử nhí Wiggins lập tức lên đường điều tra. Nhưng họ không ngờ rằng, vụ tai nạn này mở đầu cho một chuỗi án mạng tàn bạo liên quan đến thuyết 4 nguyên tố cổ đại (Hỏa, Thủy, Phong, Thổ) nhân danh cuộc trả thù bi kịch từ năm 1867!",
     "initial_clues": [
       {
-        "title": "📜 Báo cáo khám nghiệm tử thi 63 Fleet Street",
-        "detail": "Báo cáo khám nghiệm Bác sĩ Sir Jasper Meeks:\n'Nạn nhân nam vỡ hộp sọ và gãy nhiều xương do ngã từ tầng cao. Khuôn mặt bị biến dạng nặng. Quần áo có bám mùi khói nhẹ kỳ lạ.'"
+        "title": "Biên bản khám nghiệm hiện trường & tử thi 63 Fleet Street",
+        "type": "report",
+        "issuer": "BÁO CÁO PHÁP Y - DR. SIR JASPER MEEKS",
+        "detail": "BIÊN BẢN GIÁM ĐỊNH TỬ THI (63 EC)\n----------------------------------------\n- Nạn nhân: Nam giới, không mang theo ví tiền hay giấy tờ tùy thân.\n- Thương tích: Vỡ hộp sọ và gãy nhiều xương do va chạm từ trên cao.\n- Tình trạng: Khuôn mặt biến dạng nặng không thể nhận diện trực quan.\n- Đặc điểm bất thường: Quần áo nạn nhân bám mùi khói nhẹ bộc phát kỳ lạ."
       },
       {
-        "title": "👵 Lời khai nhân chứng cụ bà sống đối diện Shoe Lane",
-        "detail": "Ghi nhận nhân chứng:\nCụ bà nghe tiếng động mạnh như bao than ngã sầm rạng sáng. Nhìn qua sương mờ thấy bóng một người đàn ông vội vã tháo chạy."
+        "title": "Báo cáo ghi nhận nhân chứng ngõ Shoe Lane",
+        "type": "evidence",
+        "issuer": "SCOTLAND YARD - ĐỘI ĐIỀU TRA HIỆN TRƯỜNG",
+        "detail": "GHI NHẬN NHÂN CHỨNG (34 EC)\n----------------------------------------\n- Nhân chứng: Cụ bà sống tại căn hộ đối diện ngõ Shoe Lane.\n- Ghi nhận: Rạng sáng nghe thấy tiếng động va chạm rất mạnh như bao than ngã sầm.\n- Quan sát: Trong màn sương mờ rạng sáng, phát hiện một bóng nam giới di chuyển vội vã tháo chạy khỏi ngõ."
       },
       {
-        "title": "📜 Thư đe dọa ký tên Empedocles (Triết lý 4 Nguyên tố)",
-        "detail": "Nội dung bức thư nhắn bí ẩn:\n\"Fire consumes, water preserves, air carries, and earth receives. All things return to their proper state.\n- Empedocles\"\n\n(Dịch: \"Lửa thiêu rụi, nước bảo tồn, không khí chuyên chở, và đất mẹ tiếp nhận. Mọi thứ sẽ trở về đúng trạng thái nguyên bản. - Empedocles\")"
+        "title": "Bức thư đe dọa nặc danh (Ký tên Empedocles)",
+        "type": "letter",
+        "issuer": "THƯ NẶC DANH THU THẬP TỪ HIỆN TRƯỜNG",
+        "detail": "NỘI DUNG THƯ NẶC DANH EMPEDOCLES:\n\n\"Fire consumes, water preserves, air carries, and earth receives. All things return to their proper state.\n- Empedocles\"\n\n----------------------------------------\nBẢN DỊCH VĂN BẢN:\n\"Lửa thiêu rụi, nước bảo tồn, không khí chuyên chở, và đất mẹ tiếp nhận. Mọi thứ sẽ trở về đúng trạng thái nguyên bản.\n- Empedocles\""
       }
     ],
     "unlocked_nodes": ["63EC"]
