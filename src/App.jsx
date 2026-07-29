@@ -590,6 +590,10 @@ function App() {
   const activeSherlockCase = ALL_SHERLOCK_CASES[currentCaseId] || ALL_SHERLOCK_CASES.sherlock_case_1;
 
   const handleSelectSherlockCase = (caseId) => {
+    if (!isHost) {
+      setErrorMsg('Chỉ Chủ phòng mới có quyền chọn Vụ án!');
+      return;
+    }
     setSelectedCaseId(caseId);
     const initialUnlocked = ALL_SHERLOCK_CASES[caseId]?.intro?.unlocked_nodes || [];
     setRoomState(prev => prev ? {
@@ -1033,7 +1037,7 @@ function App() {
                               <button className="sherlock-case-action-btn active cursor-default">
                                 <CheckCircle size={16} /> VỤ ÁN ĐANG ĐƯỢC CHỌN
                               </button>
-                            ) : (
+                            ) : isHost ? (
                               <button 
                                 onClick={(e) => {
                                   e.stopPropagation();
@@ -1042,6 +1046,10 @@ function App() {
                                 className="sherlock-case-action-btn inactive"
                               >
                                 CHỌN VỤ ÁN NÀY
+                              </button>
+                            ) : (
+                              <button className="sherlock-case-action-btn inactive opacity-40 cursor-not-allowed">
+                                🔒 CHỈ CHỦ PHÒNG CHỌN
                               </button>
                             )}
                           </div>

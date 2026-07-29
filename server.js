@@ -409,6 +409,26 @@ io.on('connection', (socket) => {
     io.to(roomCode).emit('room-updated', room);
   });
 
+  // 5b. Chọn vụ án Sherlock Holmes (CHỈ CHỦ PHÒNG)
+  socket.on('select-sherlock-case', ({ roomCode, caseId }) => {
+    const code = (roomCode || '').trim().toUpperCase();
+    const room = rooms[code];
+    if (!room) return;
+
+    const hostId = room.hostId || room.players[0]?.id;
+    if (socket.id !== hostId) {
+      socket.emit('error-msg', 'Chỉ Chủ phòng mới có quyền chọn Vụ án!');
+      return;
+    }
+
+    room.selectedCaseId = caseId;
+    const activeCase = getActiveSherlockCase(room);
+    room.unlockedNodes = [...(activeCase.intro?.unlocked_nodes || [])];
+    room.visitedNodes = [];
+    room.eventLog.push(`🔍 Chủ phòng đã chọn Vụ án: "${activeCase.title}".`);
+    io.to(code).emit('room-updated', room);
+  });
+
   // 6. Bắt đầu game (CHỈ CHỦ PHÒNG)
   socket.on('start-game', ({ roomCode, enabledOptionalRoles, ROLES_DATA, CLUES_DATA, MEANS_DATA, CAUSE_DATA, LOCATIONS_DATA, SCENES_DATA }) => {
     const room = rooms[roomCode];
@@ -417,6 +437,13 @@ io.on('connection', (socket) => {
     const hostId = room.hostId || room.players[0]?.id;
     if (socket.id !== hostId) {
       socket.emit('error-msg', 'Chỉ Chủ phòng mới có quyền bắt đầu ván chơi!');
+      return;
+    }
+
+    // KIỂM TRA TẤT CẢ NGƯỜI CHƠI (TRỪ HOST VÀ BOT) ĐÃ SẴN SÀNG CHƯA
+    const unreadyPlayer = room.players.find(p => p.id !== hostId && !p.isBot && !p.isReady);
+    if (unreadyPlayer) {
+      socket.emit('error-msg', `Không thể bắt đầu! Người chơi "${unreadyPlayer.name}" chưa Sẵn sàng.`);
       return;
     }
 
