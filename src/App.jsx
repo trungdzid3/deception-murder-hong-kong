@@ -1194,19 +1194,20 @@ function App() {
                 {sherlockActiveTab === 'casebook' && (
                   <div className="sherlock-grid-layout">
                     
-                    {/* CỘT TRÁI: MANH MỐI GIÁ TRỊ THU THẬP & LỊCH SỬ KHÁM XÉT */}
-                    <div className="space-y-4">
+                    {/* CỘT TRÁI: MANH MỐI GIÁ TRỊ THU THẬP & NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN */}
+                    <div className="space-y-3">
                       
-                      {/* BẢNG 1: MANH MỐI GIÁ TRỊ ĐÃ THU THẬP (CÁC ĐỊA ĐIỂM CÓ MANH MỐI) */}
+                      {/* BẢNG MANH MỐI GIÁ TRỊ ĐÃ THU THẬP (LƯU TẤT CẢ CÁC ĐỊA ĐIỂM CÓ TRONG KỊCH BẢN VỤ ÁN) */}
                       <div className="sherlock-panel">
                         <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between border-b border-amber-500/20 pb-2 mb-2">
                           <span className="flex items-center gap-1.5"><Skull size={14} className="text-amber-400" /> MANH MỐI GIÁ TRỊ THU THẬP:</span>
                         </h4>
-                        <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+                        <div className="space-y-2 max-h-[62vh] overflow-y-auto pr-1">
                           {(() => {
-                            const valuableNodes = (roomState?.visitedNodes || [])
+                            const visitedList = roomState?.visitedNodes || [];
+                            const valuableNodes = visitedList
                               .map(id => activeSherlockCase.nodes?.[id])
-                              .filter(n => n && n.type !== 'decoy' && ((n.evidence_items && n.evidence_items.length > 0) || (n.key_hints && n.key_hints.length > 0)));
+                              .filter(n => n && n.type !== 'decoy' && n.content && !n.content.includes('không có thông tin'));
 
                             if (valuableNodes.length === 0) {
                               return (
@@ -1218,6 +1219,7 @@ function App() {
 
                             return valuableNodes.map((n) => {
                               const isSelected = sherlockSelectedNodeId === n.id;
+                              const evidenceItems = n.evidence_items || n.unlocks?.evidence_items || n.key_hints || [];
                               return (
                                 <div 
                                   key={n.id}
@@ -1231,12 +1233,18 @@ function App() {
                                     <ArrowRight size={12} className="text-amber-400 shrink-0" />
                                   </div>
                                   <ul className="space-y-1 pl-1">
-                                    {n.evidence_items?.map((item, idx) => (
-                                      <li key={idx} className="text-[0.68rem] text-slate-300 leading-snug flex items-start gap-1">
-                                        <span className="text-amber-400 font-bold">•</span>
-                                        <span>{item}</span>
+                                    {evidenceItems.length > 0 ? (
+                                      evidenceItems.map((item, idx) => (
+                                        <li key={idx} className="text-[0.68rem] text-slate-300 leading-snug flex items-start gap-1">
+                                          <span className="text-amber-400 font-bold">•</span>
+                                          <span>{item}</span>
+                                        </li>
+                                      ))
+                                    ) : (
+                                      <li className="text-[0.68rem] text-slate-400 italic leading-snug">
+                                        {n.content?.slice(0, 90)}...
                                       </li>
-                                    ))}
+                                    )}
                                   </ul>
                                 </div>
                               );
@@ -1245,34 +1253,13 @@ function App() {
                         </div>
                       </div>
 
-                      {/* BẢNG 2: TẤT CẢ ĐỊA ĐIỂM ĐÃ KHÁM XÉT */}
-                      <div className="sherlock-panel">
-                        <h4 className="font-extrabold text-amber-300 text-xs uppercase tracking-wider flex items-center justify-between border-b border-amber-500/20 pb-2 mb-2">
-                          <span className="flex items-center gap-1.5"><Compass size={14} /> TẤT CẢ ĐỊA ĐIỂM ĐÃ KHÁM XÉT ({roomState?.visitedNodes?.length || 0}):</span>
-                        </h4>
-                        <div className="space-y-1.5 max-h-44 overflow-y-auto pr-1">
-                          {(!roomState?.visitedNodes || roomState.visitedNodes.length === 0) && (
-                            <p className="text-xs text-slate-500 italic p-2">Chưa tới địa điểm nào. Hãy tra cứu con số trên Bản Đồ để tiến hành khám xét.</p>
-                          )}
-                          {roomState?.visitedNodes?.map((nodeId) => {
-                            const n = activeSherlockCase.nodes?.[nodeId];
-                            const isSelected = sherlockSelectedNodeId === nodeId;
-                            return (
-                              <div 
-                                key={nodeId}
-                                onClick={() => setSherlockSelectedNodeId(nodeId)}
-                                className={`sherlock-history-item ${isSelected ? 'selected' : ''}`}
-                              >
-                                <div className="flex items-center gap-2 truncate">
-                                  <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem]">[{nodeId}]</span>
-                                  <span className="truncate">{n?.title || nodeId}</span>
-                                </div>
-                                <ArrowRight size={12} className="text-slate-500 shrink-0" />
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
+                      {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT NGAY DƯỚI BẢNG MANH MỐI GIÁ TRỊ */}
+                      <button 
+                        onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
+                        className="btn btn-gold-draw w-full font-black tracking-wider shadow-lg flex items-center justify-center gap-2 py-3 text-sm rounded-xl"
+                      >
+                        <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
+                      </button>
 
                     </div>
 
@@ -1614,16 +1601,6 @@ function App() {
                     </div>
                   </div>
                 )}
-
-                {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT Ở GÓC PHẢI BÊN DƯỚI RÕ RÀNG */}
-                <div className="flex justify-end pt-4 border-t border-amber-500/20 mt-4">
-                  <button 
-                    onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
-                    className="btn btn-md btn-gold-draw font-black tracking-wider shadow-lg flex items-center gap-2 px-6 py-2.5"
-                  >
-                    <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
-                  </button>
-                </div>
 
               </div>
             )}
