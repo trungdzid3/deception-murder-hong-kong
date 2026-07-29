@@ -18,16 +18,16 @@ export const SHERLOCK_CASE_2 = {
   "nodes": {
     "50NW": {
       "id": "50NW",
-      "title": "Nhà bà Olivia Robins (Nhân chứng)",
+      "title": "221B Baker Street - Căn hộ của Sherlock Holmes (Hiện trường vụ án)",
       "area": "NW",
-      "type": "suspect_interview",
+      "type": "crime_scene",
       "map_coords": {"left":"22%","top":"16%"},
-      "content": "Bà Olivia Robins, một phụ nữ cao tuổi lưng hơi còng, ra mở cửa và gắt lên: \"Mấy người mất nhiều thời gian quá đấy mới chịu đến gặp tôi! Tôi đã nói với mấy ông cảnh sát ngoài kia vụ cháy là tôi có thông tin, tôi thấy mọi chuyện, mà họ cứ gạt tôi đi. Thế mấy người đến đây để lắng nghe chưa? Có muốn tìm câu trả lời ai đã giết Sherlock Holmes không?\"\n\nThanh tra Lestrade ngượng ngùng khi bà tiếp tục: \"Tôi sống một mình. Sở thích của tôi là quan sát. Tôi nhìn qua cửa sổ suốt ngày. Tôi nắm rõ mọi tin tức và báo chí. Tôi là một công dân London có hiểu biết, thưa các ông.\"\n\n\"Như tôi đang nói dở trước khi bị ngắt lời, Sherlock đứng ngoài nhà ông ấy lúc 8:30 khi anh trai ông ấy đến, và họ nói chuyện khoảng một phút. Anh trai ông ấy rời đi, còn tôi quay vào xem ấm trà. Khi tôi nhìn lại thì Sherlock đã vào trong nhà.\"\n\n\"Sau đó muộn hơn, tôi nhìn qua cửa sổ và thấy một gã trông rất giống Edward Beaupre đứng ngoài nhà Sherlock Holmes lúc 9 giờ tối. Gã không đi một mình. Beaupre đi cùng một phụ nữ mặc chiếc váy màu đỏ rực rỡ. Và cô ta đeo một thứ như mặt nạ kịch nghệ - hình mặt cười vui vẻ.\"\n\n\"Đây là phần lắp vào các mảnh ghép còn thiếu: Tôi thấy Beaupre tưới dầu hỏa xung quanh các bức tường nhà Sherlock, rồi người phụ nữ châm một que diêm, giơ lên trời và ném vào ngôi nhà. Họ bỏ đi ngay khi những người đầu tiên chạy tới hiện trường. Lúc đó tôi bắt đầu chạy ra ngoài hét lên cầu cứu.\"",
+      "content": "Đống đổ nát của căn hộ 221B Baker Street vẫn còn bốc khói âm ỉ. Phía sau hàng rào cảnh sát, đám đông hiếu kỳ đang tụ tập ngày một đông. Dưới tấm vải liệm trắng gần Bác sĩ Watson là thi thể cháy xém được cho là của Sherlock Holmes.\n\nThanh tra Lestrade thì thầm: 'Đây là hiện trường tồi tệ nhất tôi từng thấy. Holmes là bạn của tất cả chúng ta, đặc biệt là Watson. Chúng ta nợ anh ấy sự công bằng, phải tìm ra sự thật trước khi dấu vết nguội lạnh'.\n\nBà Olivia Robins (nhân chứng sống đối diện đường 221B) cho biết: 'Tôi thấy mọi chuyện từ cửa sổ! Sherlock đứng ngoài nhà lúc 8:30 khi anh trai ông ấy đến. Sau đó muộn hơn lúc 9:00 tối, tôi thấy Edward Beaupre đi cùng một phụ nữ mặc váy đỏ đeo mặt nạ kịch tưới dầu hỏa đốt nhà!'.",
       "unlocks": {
-        "nodes": ["8SW", "52SW", "85WC"],
-        "evidence_items": ["Nhân chứng xác nhận Edward Beaupre và một phụ nữ đeo mặt nạ đốt nhà lúc 9:00 tối."]
+        "nodes": ["8SW", "22SW", "52SW", "85WC"],
+        "evidence_items": ["Hiện trường 221B Baker Street bị thiêu rụi, phát hiện thi thể cháy xém.", "Nhân chứng Olivia Robins đối diện 221B thấy Edward Beaupre và một phụ nữ đeo mặt nạ đốt nhà lúc 9:00 tối."]
       },
-      "key_hints": ["Edward Beaupre và một phụ nữ mặc váy đỏ, đeo mặt nạ kịch đã châm lửa đốt nhà.", "Sherlock gặp em/anh trai lúc 8:30 tối.", "Người phụ nữ đốt nhà bị bỏng ở cánh tay."]
+      "key_hints": ["Edward Beaupre và phụ nữ đeo mặt nạ kịch châm lửa đốt 221B Baker St.", "Sherlock gặp anh trai lúc 8:30 tối."]
     },
     "8SW": {
       "id": "8SW",
@@ -653,25 +653,29 @@ export const SHERLOCK_CASE_2 = {
         "title": "HỎA HOẠN KINH HOÀNG TẠI 221B BAKER STREET: NGHI VẤN VỤ MẠNG",
         "date": "2 Dec 1893",
         "summary": "Đêm qua lúc 9:00 tối, ngọn lửa đã thiêu rụi căn hộ của vị thám tử nổi tiếng Sherlock Holmes. Thi thể cháy xém được tìm thấy tại hiện trường với vết đạn xuyên tim. Cảnh sát Scotland Yard đang phong tỏa khu vực.",
-        "related_code": "50NW"
+        "related_code": "50NW",
+        "full_text": "HORRIFIC FIRE AT 221B BAKER STREET (2 Dec 1893)\nLate last night at approximately 9:00 PM, a devastating fire erupted at the famous residence of consulting detective Mr. Sherlock Holmes at 221B Baker Street. Fire brigades rushed to the scene but the blaze quickly consumed the upper chambers. After the inferno was brought under control, investigators made a tragic discovery inside the charred ruins: a body was found bearing a gunshot wound through the chest. Scotland Yard officers under Inspector Lestrade have cordoned off the entire street while a formal investigation is underway."
       },
       {
         "title": "TRUY NÃ TÊN TỘI PHẠM NGUY HIỂM EDWARD BEAUPRE VƯỢT NGỤC",
         "date": "1 Dec 1893",
         "summary": "Bộ Nội An phát lệnh truy nã Edward Beaupre - gã trùm buôn lậu bị bắt 2 năm trước tại cảng Outer Docks. Y được nhìn thấy lảng vảng gần khu vực Regent's Park và Marylebone.",
-        "related_code": "98E"
+        "related_code": "98E",
+        "full_text": "MANHUNT FOR DANGEROUS ESCAPED CONVICT EDWARD BEAUPRE (1 Dec 1893)\nThe Home Office has issued an urgent public alert following the escape of Edward Beaupre, a notorious smuggling kingpin sentenced two years ago. Beaupre escaped custody during a transport transfer yesterday evening. Authorities report sightings of a suspicious male matching his description around Regent's Park and Marylebone. Citizens are warned that the suspect is considered armed and extremely dangerous."
       },
       {
         "title": "VỞ KỊCH MỚI 'THE INITIATIVE OF DHARMA' TẠI NHÀ HÁT LYCEUM",
         "date": "29 Nov 1893",
         "summary": "Đạo diễn Wayne Nelson ra mắt vở kịch đầy kịch tính với sự tham gia của nữ minh tinh Gertrude Helwig trong trang phục dạ hội màu đỏ nổi bật.",
-        "related_code": "18WC"
+        "related_code": "18WC",
+        "full_text": "NEW THEATRICAL PRODUCTION 'THE INITIATIVE OF DHARMA' AT LYCEUM THEATRE (29 Nov 1893)\nRenowned director Wayne Nelson presents his captivating new stage thriller at the Lyceum Theatre this weekend. The production features star actress Gertrude Helwig, whose dramatic performance in a striking crimson gown has drawn praise from opening night critics. Tickets are available at the Lyceum box office for all upcoming evening performances."
       },
       {
         "title": "CẢNH BÁO MẤT TRỘM HÓA CHẤT ĐỘC TẠI MARYLEBONE",
         "date": "30 Nov 1893",
         "summary": "Cửa hàng hóa chất John Taylor báo cáo bán lượng lớn chất xyanua cho khách hàng mua rửa ảnh. Cảnh sát khuyến cáo công chúng cẩn trọng.",
-        "related_code": "72NW"
+        "related_code": "72NW",
+        "full_text": "CHEMICAL THEFT WARNING IN MARYLEBONE (30 Nov 1893)\nJohn Taylor Chemist in Marylebone reported to local police that a large quantity of toxic cyanide compound was purchased under false pretenses yesterday afternoon. Police officers are urging chemical vendors across London to verify customer credentials and report suspicious purchases immediately."
       },
       {
         "title": "BẮT GIỮ BĂNG NHÓM BUÔN LẬU TẠI CẢNG OUTER DOCKS (SMUGGLING RING APPREHENDED AT OUTER DOCKS)",

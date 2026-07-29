@@ -3872,3 +3872,91 @@ body {
   box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
 }
 
+/* SHERLOCK VINTAGE NEWSPAPER MODAL STYLES (HIGH PRIORITY) */
+.sherlock-newspaper-modal-card {
+  width: 700px !important;
+  max-width: calc(100vw - 32px) !important;
+  background: #f4ecd8 !important; /* Authentic vintage paper color */
+  border: 4px double #582f0e !important;
+  border-radius: 12px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(120, 53, 15, 0.4) !important;
+  padding: 24px 28px !important;
+  color: #1a0f07 !important;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  animation: modalScaleUp 0.25s ease-out !important;
+}
+
+.sherlock-newspaper-close-icon {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: rgba(120, 53, 15, 0.12) !important;
+  color: #582f0e !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid rgba(120, 53, 15, 0.3) !important;
+  cursor: pointer !important;
+}
+.sherlock-newspaper-close-icon:hover {
+  background: #582f0e !important;
+  color: #f4ecd8 !important;
+}
+
+.sherlock-newspaper-summary-box {
+  background: rgba(230, 213, 184, 0.85) !important;
+  border: 1px dashed #a16207 !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  color: #291205 !important;
+}
+
+.sherlock-newspaper-fulltext-box {
+  background: #eae0c8 !important;
+  border: 1px solid #b45309 !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+}
+
+.sherlock-newspaper-clipping-text {
+  font-family: 'Courier New', Courier, monospace !important;
+  font-size: 0.85rem !important;
+  line-height: 1.75 !important;
+  color: #1a0802 !important;
+  white-space: pre-line !important;
+}
+
+.sherlock-newspaper-modal-footer {
+  display: flex !important;
+  justify-content: flex-end !important;
+  border-top: 1px solid rgba(120, 53, 15, 0.3) !important;
+  padding-top: 14px !important;
+  margin-top: 14px !important;
+}
+
+.sherlock-newspaper-close-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 10px 22px !important;
+  border-radius: 8px !important;
+  background: #78350f !important;
+  color: #fef3c7 !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.05em !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid #451a03 !important;
+  box-shadow: 0 4px 12px rgba(120, 53, 15, 0.4) !important;
+  cursor: pointer !important;
+}
+.sherlock-newspaper-close-btn:hover {
+  background: #451a03 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(120, 53, 15, 0.6) !important;
+}
+
