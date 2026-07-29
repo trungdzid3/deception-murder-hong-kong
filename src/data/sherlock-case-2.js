@@ -22,12 +22,20 @@ export const SHERLOCK_CASE_2 = {
       "area": "NW",
       "type": "crime_scene",
       "map_coords": {"left":"18%","top":"22%"},
-      "content": "Đống đổ nát của căn hộ 221B Baker Street vẫn còn bốc khói âm ỉ. Phía sau hàng rào cảnh sát, đám đông hiếu kỳ đang tụ tập ngày một đông. Dưới tấm vải liệm trắng gần Bác sĩ Watson là thi thể cháy xém được cho là của Sherlock Holmes.\n\nThanh tra Lestrade thì thầm: 'Đây là hiện trường tồi tệ nhất tôi từng thấy. Holmes là bạn của tất cả chúng ta, đặc biệt là Watson. Chúng ta nợ anh ấy sự công bằng, phải tìm ra sự thật trước khi dấu vết nguội lạnh'. Bác sĩ Watson đồng ý đưa thi thể về phòng thí nghiệm của Murray (22SW) để làm sinh thiết nhanh.\n\nTrong khi đó, Wiggins tìm thấy một chiếc hộp sắt lớn được cứu ra từ phòng làm việc của Holmes. Chiếc hộp chứa một số chương trình kịch nghệ gần đây, một biên nhận xe ngựa, một hộp quẹt diêm đã sử dụng một nửa và hai mảnh giấy nhắn bí ẩn.\n\nWiggins báo cáo thêm: 'Chúng tôi nhặt được đống mảnh kính vỡ trên vỉa hè phía sau đối diện 221B Baker St. Đặc biệt, có một nhân chứng sống tại căn hộ đối diện đường là bà Olivia Robins (Tra cứu trong Danh bạ London tại 50NW). Cô ấy báo rằng đã thấy Sherlock gặp một người đàn ông nghi là anh trai Mycroft (8SW) lúc 8:30 tối, trước khi vụ cháy bùng phát lúc 9:00 tối'.",
+      "content": "Đống đổ nát của căn hộ 221B Baker Street vẫn còn bốc khói âm ỉ. Phía sau hàng rào cảnh sát, đám đông hiếu kỳ đang tụ tập ngày một đông. Dưới tấm vải liệm trắng gần Bác sĩ Watson là thi thể cháy xém được cho là của Sherlock Holmes.\n\nBác sĩ Watson kiểm tra nhanh tử thi: 'Nạn nhân bị thiêu rụi nhưng trên thi thể có hai vết thương của một phát đạn súng ngắm xuyên từ lưng ra bụng, nghi là cỡ đạn .44 Webley'. Bác sĩ Watson đồng ý đưa thi thể về phòng thí nghiệm của Murray (22SW) để giám định thêm.\n\nWiggins chạy tới báo cáo khẩn cấp: 'Thanh tra! Chúng tôi nhặt được một đống mảnh kính vỡ lả tả rơi từ cửa sổ tầng 2 của tòa nhà đối diện 221B Baker St – chính là Nhà nghỉ Camden House (Tra cứu trong Danh bạ London tại 53NW)! Có vẻ như đã có kẻ nấp ở căn phòng tầng 2 đó để bắn tỉa sang 221B. Ngoài ra, tại căn hộ đối diện đường còn có nhân chứng là bà Olivia Robins (50NW) báo rằng đã thấy Sherlock gặp một người đàn ông nghi là anh trai Mycroft (8SW) lúc 8:30 tối'.",
       "unlocks": {
-        "nodes": ["50NW", "8SW", "22SW"],
-        "evidence_items": ["Hiện trường 221B Baker Street bị thiêu rụi, phát hiện thi thể cháy xém có vết đạn xuyên tim.", "Hộp sắt tại 221B chứa chương trình kịch nghệ, biên nhận xe ngựa và giấy nhắn bí ẩn.", "Bà Olivia Robins ở căn hộ đối diện đường (50NW) chứng kiến toàn bộ diễn biến trước khi xảy ra vụ cháy."]
+        "nodes": ["50NW", "53NW", "8SW", "22SW"],
+        "evidence_items": [
+          "Hiện trường 221B Baker Street bị thiêu rụi, phát hiện thi thể có vết đạn súng ngắm .44 Webley xuyên tim.",
+          "Mảnh kính vỡ rơi trên vỉa hè đối diện 221B chỉ ra vị trí bắn tỉa xuất phát từ cửa sổ tầng 2 Nhà nghỉ Camden House (53NW).",
+          "Nhân chứng bà Olivia Robins ở căn hộ đối diện (50NW) quan sát toàn bộ diễn biến trước khi xảy ra vụ cháy."
+        ]
       },
-      "key_hints": ["Đến nhà bà Olivia Robins ở căn hộ đối diện (50NW) để lấy lời khai trực tiếp.", "Gặp Mycroft Holmes tại 8SW.", "Gặp Dr. Murray tại phòng thí nghiệm 22SW."]
+      "key_hints": [
+        "Đến khám xét Nhà nghỉ Camden House (53NW) đối diện 221B để tìm vị trí bắn tỉa và vỏ đạn súng ngắm.",
+        "Đến nhà bà Olivia Robins ở căn hộ đối diện (50NW) để lấy lời khai nhân chứng.",
+        "Gặp Mycroft Holmes tại 8SW và Bác sĩ Murray tại 22SW."
+      ]
     },
     "50NW": {
       "id": "50NW",
