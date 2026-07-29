@@ -1198,15 +1198,13 @@ function App() {
                         </div>
                       </div>
 
-                      {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT CÁCH KHUNG MANH MỐI GIÁ TRỊ MỘT KHOẢNG RÕ RÀNG */}
-                      <div className="pt-4 mt-2">
-                        <button 
-                          onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
-                          className="btn btn-gold-draw w-full font-black tracking-wider shadow-lg flex items-center justify-center gap-2 py-3 text-sm rounded-xl"
-                        >
-                          <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
-                        </button>
-                      </div>
+                      {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT NẰM NGOÀI KHUNG MANH MỐI CÁCH BIỆT RÕ RÀNG */}
+                      <button 
+                        onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
+                        className="btn btn-gold-draw w-full font-black tracking-wider shadow-none flex items-center justify-center gap-2 py-3 text-sm rounded-xl mt-5"
+                      >
+                        <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
+                      </button>
 
                     </div>
 
@@ -1421,7 +1419,9 @@ function App() {
                             onClick={() => {
                               setSherlockSelectedNodeId(n.id);
                               setSherlockActiveTab('casebook');
-                              if (!isVisited) handleVisitNode(n.id);
+                              if (roomState?.code) {
+                                socket.emit('sherlock-visit-node', { roomCode: roomState.code, nodeId: n.id });
+                              }
                             }}
                             title={`Địa điểm [${bareNumber}] - ${n.title}`}
                           >

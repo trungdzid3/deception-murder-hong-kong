@@ -874,6 +874,21 @@ io.on('connection', (socket) => {
     io.to(roomCode).emit('game-reset');
   });
 
+  // 15b. Đồng bộ mở khóa địa điểm Sherlock Holmes
+  socket.on('sherlock-visit-node', ({ roomCode, nodeId }) => {
+    const code = (roomCode || '').trim().toUpperCase();
+    const room = rooms[code];
+    if (room && nodeId) {
+      if (!room.visitedNodes) room.visitedNodes = [];
+      if (!room.visitedNodes.includes(nodeId)) {
+        room.visitedNodes.push(nodeId);
+        const player = room.players.find(p => p.id === socket.id);
+        room.eventLog.push(`📍 ${player?.name || 'Thám tử'} đã khám xét tọa độ [${nodeId}]`);
+        io.to(code).emit('room-updated', room);
+      }
+    }
+  });
+
   // 16. Người chơi chủ động Rời phòng về Sảnh chính / Landing Page
   socket.on('leave-room', ({ roomCode }) => {
     const code = (roomCode || '').trim().toUpperCase();
