@@ -85,6 +85,7 @@ function App() {
   const [sherlockSelectedAreaFilter, setSherlockSelectedAreaFilter] = useState('ALL'); // 'ALL' | 'NW' | 'WC' | 'EC' | 'SW' | 'SE'
   const [sherlockDirLetterFilter, setSherlockDirLetterFilter] = useState('ALL'); // 'ALL' | 'A' .. 'Z'
   const [sherlockSelectedArticle, setSherlockSelectedArticle] = useState(null); // Full text article modal state
+  const [sherlockSelectedClueModal, setSherlockSelectedClueModal] = useState(null); // Physical evidence artifact modal state
 
   // Bốc Thẻ Bối Cảnh Mới Modal (Pháp Y Vòng 2 & 3)
   const [showDrawTileModal, setShowDrawTileModal] = useState(false);
@@ -1291,13 +1292,30 @@ function App() {
                               <h4 className="font-extrabold text-amber-300 text-xs uppercase flex items-center gap-1.5">
                                 <Skull size={14} /> Manh mối đầu tiên phát hiện tại hiện trường:
                               </h4>
-                              <ul className="sherlock-clue-list">
-                                {activeSherlockCase.intro.initial_clues.map((clue, i) => (
-                                  <li key={i} className="sherlock-clue-item">
-                                    <span className="sherlock-clue-bullet">•</span>
-                                    <span>{clue.replace(/^[\s•\-]+/, '')}</span>
-                                  </li>
-                                ))}
+                              <ul className="sherlock-clue-list space-y-2">
+                                {activeSherlockCase.intro.initial_clues.map((clue, i) => {
+                                  const isObj = typeof clue === 'object' && clue !== null;
+                                  const title = isObj ? clue.title : clue;
+                                  const detail = isObj ? clue.detail : null;
+                                  return (
+                                    <li 
+                                      key={i} 
+                                      onClick={() => { if (detail) setSherlockSelectedClueModal(clue); }}
+                                      className={`sherlock-clue-item p-2 rounded-lg transition-all ${detail ? 'cursor-pointer hover:bg-amber-500/15 border border-amber-500/20 bg-amber-950/30' : ''}`}
+                                    >
+                                      <span className="sherlock-clue-bullet">•</span>
+                                      <div className="flex-1 flex items-center justify-between gap-2">
+                                        <span className="font-bold text-xs text-amber-200">{title}</span>
+                                        {detail && (
+                                          <span className="text-[0.65rem] font-extrabold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/40 shrink-0 flex items-center gap-1">
+                                            <span>Xem văn bản</span>
+                                            <ArrowRight size={10} />
+                                          </span>
+                                        )}
+                                      </div>
+                                    </li>
+                                  );
+                                })}
                               </ul>
                             </div>
                           </div>
@@ -2852,6 +2870,49 @@ function App() {
                 className="sherlock-newspaper-close-btn"
               >
                 <X size={14} /> ĐÓNG BÀI BÁO
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL SOI MANH MỐI BẰNG CHỨNG THỰC TẾ (PHYSICAL EVIDENCE CLUE MODAL) */}
+      {sherlockSelectedClueModal && (
+        <div className="modal-overlay z-[1200]" onClick={() => setSherlockSelectedClueModal(null)}>
+          <div 
+            className="sherlock-newspaper-modal-card" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sherlock-newspaper-modal-header">
+              <div className="flex items-center justify-between border-b-2 border-amber-900/40 pb-2 mb-2">
+                <span className="sherlock-newspaper-paper-tag">
+                  🔍 CHI TIẾT MANH MỐI / BẰNG CHỨNG THỰC TẾ
+                </span>
+                <button 
+                  onClick={() => setSherlockSelectedClueModal(null)}
+                  className="sherlock-newspaper-close-icon"
+                  title="Đóng"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              <h2 className="sherlock-newspaper-modal-title">
+                {sherlockSelectedClueModal.title}
+              </h2>
+            </div>
+
+            <div className="sherlock-newspaper-fulltext-box my-4">
+              <div className="sherlock-newspaper-clipping-text text-sm">
+                {sherlockSelectedClueModal.detail}
+              </div>
+            </div>
+
+            <div className="sherlock-newspaper-modal-footer">
+              <button 
+                onClick={() => setSherlockSelectedClueModal(null)}
+                className="sherlock-newspaper-close-btn"
+              >
+                <X size={14} /> ĐÓNG VĂN BẢN
               </button>
             </div>
           </div>

@@ -6,12 +6,26 @@ export const SHERLOCK_CASE_2 = {
   "intro": {
     "story_text": "Chúng ta chưa từng thấy Bác sĩ John Watson suy sụp như lúc này khi bước tới hiện trường vụ án. Đầu ông nghiêng sang một bên, ngồi tựa vào một chiếc thùng gỗ trên vỉa hè, gương mặt thất thần. Đống đổ nát của căn hộ 221B Baker Street vẫn còn bốc khói âm ỉ. Phía sau hàng rào cảnh sát, đám đông hiếu kỳ đang tụ tập ngày một đông. Dưới tấm vải liệm trắng gần Bác sĩ Watson là thi thể cháy xém được cho là của Sherlock Holmes.\n\nThanh tra Lestrade thì thầm: 'Đây là hiện trường tồi tệ nhất tôi từng thấy. Holmes là bạn của tất cả chúng ta, đặc biệt là Watson. Chúng ta nợ anh ấy sự công bằng, phải tìm ra sự thật trước khi dấu vết nguội lạnh'. Watson đồng ý thực hiện cuộc khám nghiệm tử thi nhanh chóng tại phòng thí nghiệm của Murray (22SW).\n\nTrong khi đó, Wiggins tìm thấy một chiếc hộp sắt lớn được cứu ra từ phòng làm việc của Holmes. Chiếc hộp chứa một số chương trình kịch nghệ gần đây, một biên nhận xe ngựa từ hôm qua, một hộp quẹt diêm đã sử dụng một nửa và hai mảnh giấy nhắn bí ẩn.\n\nWiggins báo cáo thêm: 'Chúng tôi cũng nhặt được một đống mảnh kính vỡ trên vỉa hè phía sau đối diện 221B Baker St. Ngoài ra có báo cáo về tiếng phụ nữ thét lên cùng thời điểm vụ cháy bắt đầu. Đặc biệt, chúng tôi có một nhân chứng chính là cô Olivia Robins ở địa chỉ 50 NW. Cô ấy sống đối diện đường và báo rằng đã thấy Sherlock gặp một người đàn ông nghi là anh trai ông ấy lúc 8:30 tối, trước khi vụ cháy bùng phát khoảng 9:00 tối'.",
     "initial_clues": [
-      "Thi thể cháy xém có vết đạn bắn xuyên từ lưng ra bụng của một khẩu .44 Webley.",
-      "Chiếc hộp sắt trên bàn làm việc bị méo nhẹ phần vành nắp, cho thấy nó được đóng vội vàng trong lúc đám cháy đang diễn ra.",
-      "Mảnh giấy nhắn 1 trong hộp sắt: \"S, No harm will come of it, I promise! - M.\" (S, Sẽ không có hại gì xảy ra đâu, tôi hứa! - M.)",
-      "Mảnh giấy nhắn 2 trong hộp sắt: \"Lestrade, Analysis will further aid. Best examine remaining\" (Lestrade, Việc phân tích sẽ giúp ích thêm. Tốt nhất nên kiểm tra phần còn lại)",
-      "Đống mảnh kính vỡ trên vỉa hè đối diện 221B và tiếng phụ nữ thét lên lúc vụ cháy bắt đầu.",
-      "Nhân chứng Olivia Robins sống tại 50 NW báo cáo đã thấy Sherlock gặp một người đàn ông nghi là anh trai ông ấy lúc 8:30 tối."
+      {
+        "title": "📜 Mảnh giấy nhắn 1 thu thập trong hộp sắt",
+        "detail": "Nội dung bức thư nhắn 1 trong hộp sắt:\n\n\"S,\nNo harm will come of it, I promise!\n- M.\"\n\n(Dịch nghĩa: \"S, Sẽ không có hại gì xảy ra đâu, tôi hứa! - M.\")"
+      },
+      {
+        "title": "📜 Mảnh giấy nhắn 2 thu thập trong hộp sắt",
+        "detail": "Nội dung bức thư nhắn 2 trong hộp sắt:\n\n\"Lestrade,\nAnalysis will further aid.\nBest examine remaining\"\n\n(Dịch nghĩa: \"Lestrade, Việc phân tích sẽ giúp ích thêm. Tốt nhất nên kiểm tra phần còn lại\")"
+      },
+      {
+        "title": "🎟️ Biên nhận xe ngựa chuyến tối hôm qua (Central Carriage Stables)",
+        "detail": "Biên nhận xe ngựa:\n\"Trạm xe ngựa Trung tâm - Central Carriage Stables\nChuyến xe khởi hành lúc 8:15 PM tối hôm qua đi Regent's Park.\""
+      },
+      {
+        "title": "🎭 Chương trình vé kịch tại Nhà hát Lyceum",
+        "detail": "Vé xem kịch kẹp trong hộp sắt:\n\"Nhà hát Lyceum Theatre - Vở kịch 'The Initiative of Dharma'\nHàng ghế A, Vé dành cho khách VIP thưởng thức đêm diễn nghệ thuật.\""
+      },
+      {
+        "title": "🔍 Chiếc hộp sắt lưu trữ bảo vệ đồ đạc",
+        "detail": "Chiếc hộp sắt được kéo ra từ phòng làm việc 221B. Vành nắp hộp bị biến dạng nhẹ do nhiệt độ cao, cho thấy ai đó đã nỗ lực đóng vội nắp hộp ngay khi ngọn lửa bùng phát."
+      }
     ],
     "unlocked_nodes": ["1NW"]
   },
