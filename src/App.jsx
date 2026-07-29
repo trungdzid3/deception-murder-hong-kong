@@ -1174,21 +1174,20 @@ function App() {
                               ...(roomState?.visitedNodes || [])
                             ]));
 
-                            const visitedNodesList = visitedList
+                            const valuableNodes = visitedList
                               .map(id => activeSherlockCase.nodes?.[id])
-                              .filter(Boolean);
+                              .filter(n => n && n.type !== 'decoy');
 
-                            if (visitedNodesList.length === 0) {
+                            if (valuableNodes.length === 0) {
                               return (
                                 <p className="text-xs text-slate-500 italic p-2">
-                                  Chưa có địa điểm khám xét. Hãy kiểm tra các địa điểm trên Bản đồ hoặc Danh bạ.
+                                  Chưa có manh mối giá trị. Hãy khám xét các địa điểm trên Bản đồ hoặc Danh bạ.
                                 </p>
                               );
                             }
 
-                            return visitedNodesList.map((n) => {
+                            return valuableNodes.map((n) => {
                               const isSelected = sherlockSelectedNodeId === n.id;
-                              const isDecoy = n.type === 'decoy' || n.content?.includes('không có thông tin');
                               return (
                                 <div 
                                   key={n.id}
@@ -1196,8 +1195,8 @@ function App() {
                                   className={`sherlock-history-item ${isSelected ? 'selected' : ''}`}
                                 >
                                   <div className="flex items-center gap-2 truncate">
-                                    <span className={`px-1.5 py-0.5 rounded font-black text-[0.65rem] ${isDecoy ? 'bg-slate-800 text-slate-400 border border-slate-700' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'}`}>[{n.id}]</span>
-                                    <span className={`truncate text-xs font-bold ${isDecoy ? 'text-slate-400 line-through opacity-70' : 'text-amber-100'}`}>{n.title}</span>
+                                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem] border border-amber-500/30">[{n.id}]</span>
+                                    <span className="truncate text-xs font-bold text-amber-100">{n.title}</span>
                                   </div>
                                   <ArrowRight size={12} className="text-amber-400 shrink-0" />
                                 </div>
