@@ -242,6 +242,9 @@ function App() {
         const gameType = updated?.gameType || prev?.gameType || createdGameTypeRef.current || 'deception';
         return { ...updated, gameType };
       });
+      if (updated?.visitedNodes && Array.isArray(updated.visitedNodes)) {
+        setLocalVisitedNodes(prev => Array.from(new Set([...prev, ...updated.visitedNodes])));
+      }
     });
 
     socket.on('game-started', (updated) => {
@@ -249,6 +252,9 @@ function App() {
         const gameType = updated?.gameType || prev?.gameType || createdGameTypeRef.current || 'deception';
         return { ...updated, gameType };
       });
+      if (updated?.visitedNodes && Array.isArray(updated.visitedNodes)) {
+        setLocalVisitedNodes(prev => Array.from(new Set([...prev, ...updated.visitedNodes])));
+      }
       setSelectedMeans(null);
       setSelectedClue(null);
       setForensicBullets({});
@@ -411,6 +417,13 @@ function App() {
   };
 
   const handleStartGame = () => {
+    // KIỂM TRA TẤT CẢ THÀNH VIÊN (TRỪ BOT VÀ HOST) ĐÃ SẴN SÀNG CHƯA
+    const hostId = roomState?.hostId || roomState?.players?.[0]?.id;
+    const unreadyPlayer = roomState?.players?.find(p => p.id !== hostId && !p.isBot && !p.isReady);
+    if (unreadyPlayer) {
+      return setErrorMsg(`Không thể bắt đầu! Người chơi "${unreadyPlayer.name}" chưa bấm Sẵn sàng.`);
+    }
+
     if (roomState?.gameType === 'sherlock') {
       socket.emit('start-game', { roomCode: roomState.code });
       return;
@@ -1208,13 +1221,15 @@ function App() {
                         </div>
                       </div>
 
-                      {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT NẰM NGOÀI KHUNG MANH MỐI CÁCH BIỆT RÕ RÀNG */}
-                      <button 
-                        onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
-                        className="btn btn-gold-draw w-full font-black tracking-wider shadow-none flex items-center justify-center gap-2 py-3 text-sm rounded-xl mt-5"
-                      >
-                        <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
-                      </button>
+                      {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - TÁCH HOÀN TOÀN KHỎI KHUNG MANH MỐI */}
+                      <div className="mt-8 pt-4 border-t border-amber-500/20">
+                        <button 
+                          onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
+                          className="btn btn-gold-draw w-full font-black tracking-wider shadow-none flex items-center justify-center gap-2 py-3.5 text-sm rounded-xl"
+                        >
+                          <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
+                        </button>
+                      </div>
 
                     </div>
 
