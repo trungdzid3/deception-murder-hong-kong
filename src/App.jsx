@@ -1153,7 +1153,7 @@ function App() {
 
                     <div className="flex items-center gap-2">
                       <span className="text-xs px-3 py-1.5 rounded-lg bg-amber-950/80 border border-amber-500/40 text-amber-300 font-extrabold flex items-center gap-1.5">
-                        <Compass size={14} className="text-amber-400" /> Đã khám xét: <strong>{roomState?.visitedNodes?.length || 0} địa điểm</strong>
+                        <Compass size={14} className="text-amber-400" /> Đã khám xét: <strong>{Array.from(new Set([...(activeSherlockCase?.intro?.unlocked_nodes || []), ...(roomState?.visitedNodes || [])])).length} địa điểm</strong>
                       </span>
                     </div>
                   </div>
@@ -1204,7 +1204,11 @@ function App() {
                         </h4>
                         <div className="space-y-2 max-h-[62vh] overflow-y-auto pr-1">
                           {(() => {
-                            const visitedList = roomState?.visitedNodes || [];
+                            const visitedList = Array.from(new Set([
+                              ...(activeSherlockCase?.intro?.unlocked_nodes || []),
+                              ...(roomState?.visitedNodes || [])
+                            ]));
+
                             const valuableNodes = visitedList
                               .map(id => activeSherlockCase.nodes?.[id])
                               .filter(n => n && n.type !== 'decoy' && n.content && !n.content.includes('không có thông tin'));
@@ -1227,22 +1231,23 @@ function App() {
                                   className={`sherlock-valuable-clue-card ${isSelected ? 'selected' : ''}`}
                                 >
                                   <div className="flex items-center justify-between gap-1 mb-1">
-                                    <span className="font-black text-[0.7rem] text-amber-300">
+                                    <span className="font-black text-[0.72rem] text-amber-300">
                                       [{n.id}] {n.title}
                                     </span>
                                     <ArrowRight size={12} className="text-amber-400 shrink-0" />
                                   </div>
-                                  <ul className="space-y-1 pl-1">
+                                  <ul className="space-y-1 pl-1 mt-1 border-t border-amber-500/10 pt-1">
                                     {evidenceItems.length > 0 ? (
                                       evidenceItems.map((item, idx) => (
                                         <li key={idx} className="text-[0.68rem] text-slate-300 leading-snug flex items-start gap-1">
-                                          <span className="text-amber-400 font-bold">•</span>
-                                          <span>{item}</span>
+                                          <span className="text-amber-400 font-bold shrink-0">•</span>
+                                          <span>{item.replace(/^[\s•\-]+/, '')}</span>
                                         </li>
                                       ))
                                     ) : (
-                                      <li className="text-[0.68rem] text-slate-400 italic leading-snug">
-                                        {n.content?.slice(0, 90)}...
+                                      <li className="text-[0.68rem] text-slate-400 italic leading-snug flex items-start gap-1">
+                                        <span className="text-amber-400 font-bold shrink-0">•</span>
+                                        <span>Đã khám xét địa điểm này.</span>
                                       </li>
                                     )}
                                   </ul>
