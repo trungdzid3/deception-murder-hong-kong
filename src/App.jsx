@@ -2877,60 +2877,123 @@ function App() {
         </div>
       )}
 
-      {/* MODAL SOI MANH MỐI BẰNG CHỨNG THỰC TẾ (PHYSICAL EVIDENCE CLUE MODAL) */}
+      {/* MODAL SOI MANH MỐI BẰNG CHỨNG THỰC TẾ (REAL PHYSICAL EVIDENCE MODAL) */}
       {sherlockSelectedClueModal && (
         <div className="modal-overlay z-[1200]" onClick={() => setSherlockSelectedClueModal(null)}>
           <div 
-            className="sherlock-newspaper-modal-card relative max-w-xl w-full p-6 md:p-8" 
+            className="relative max-w-xl w-full p-2" 
             onClick={(e) => e.stopPropagation()}
           >
-            {/* NÚT ĐÓNG DUY NHẤT Ở GÓC TRÊN */}
-            <button 
-              onClick={() => setSherlockSelectedClueModal(null)}
-              className="sherlock-newspaper-close-icon absolute top-4 right-4"
-              title="Đóng văn bản"
-            >
-              <X size={18} />
-            </button>
+            {/* 1. ĐỊNH DẠNG CUỐNG VÉ THẬT (TICKET) */}
+            {sherlockSelectedClueModal.type === 'ticket' && (
+              <div className="bg-[#faebd7] border-4 border-dashed border-[#78350f] rounded-xl p-6 md:p-8 text-[#3b1a07] font-mono shadow-2xl relative overflow-hidden">
+                {/* NÚT ĐÓNG */}
+                <button 
+                  onClick={() => setSherlockSelectedClueModal(null)}
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#78350f]/10 text-[#78350f] hover:bg-[#78350f] hover:text-white transition-colors flex items-center justify-center border border-[#78350f]/30"
+                >
+                  <X size={18} />
+                </button>
+                {/* VẾT XÉ VÉ VINTAGE GIẢ LẬP */}
+                <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950 border-r-2 border-[#78350f]"></div>
+                <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950 border-l-2 border-[#78350f]"></div>
+                
+                <div className="text-center border-b-2 border-dashed border-[#78350f]/40 pb-4 mb-4">
+                  <div className="text-[0.65rem] font-black tracking-[0.25em] text-[#78350f] uppercase">
+                    ★ {sherlockSelectedClueModal.issuer || "PASSENGER & ADMISSION TICKET"} ★
+                  </div>
+                  <h2 className="text-xl font-black text-[#451a03] font-serif uppercase tracking-wider mt-1">
+                    {sherlockSelectedClueModal.title}
+                  </h2>
+                  {sherlockSelectedClueModal.cert_no && (
+                    <div className="inline-block border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-0.5 rounded text-[0.7rem] font-black mt-2 text-[#78350f]">
+                      NO. {sherlockSelectedClueModal.cert_no}
+                    </div>
+                  )}
+                </div>
+                <div className="text-xs md:text-sm leading-relaxed whitespace-pre-wrap font-mono text-[#291205]">
+                  {sherlockSelectedClueModal.detail}
+                </div>
+              </div>
+            )}
 
-            {/* TRÌNH BÀY PHONG CÁCH VĂN BẢN THỰC TẾ (REAL PHYSICAL DOCUMENT) */}
-            <div className={`rounded-xl p-6 shadow-inner my-1 border-2 relative ${
-              sherlockSelectedClueModal.type === 'certificate' 
-                ? 'bg-[#fdfaf3] border-amber-900/60 font-serif' 
-                : sherlockSelectedClueModal.type === 'ticket' 
-                ? 'bg-[#faebd7] border-amber-900/50 border-dashed font-mono' 
-                : sherlockSelectedClueModal.type === 'letter' 
-                ? 'bg-[#fcf8ee] border-amber-900/40 font-serif' 
-                : 'bg-[#f5ebd7] border-amber-900/50 font-mono'
-            }`}>
-              {/* HEADER TÀI LIỆU TRONG NỀN VĂN BẢN */}
-              <div className="border-b-2 border-amber-900/30 pb-3 mb-4 text-center">
-                <span className="text-[0.65rem] font-black text-amber-900 tracking-[0.2em] uppercase block">
-                  {sherlockSelectedClueModal.issuer || "SCOTLAND YARD • OFFICIAL ARCHIVE EVIDENCE"}
-                </span>
-                <h3 className="text-lg md:text-xl font-black text-amber-950 font-serif mt-1">
-                  {sherlockSelectedClueModal.title}
-                </h3>
-                {sherlockSelectedClueModal.cert_no && (
-                  <span className="inline-block text-[0.65rem] font-mono font-black text-amber-900 bg-amber-900/10 px-2 py-0.5 rounded mt-1.5 uppercase tracking-wider">
-                    {sherlockSelectedClueModal.cert_no}
+            {/* 2. ĐỊNH DẠNG CHỨNG THƯ / BẰNG CẤP / BẢO HIỂM THẬT (CERTIFICATE) */}
+            {sherlockSelectedClueModal.type === 'certificate' && (
+              <div className="bg-[#fefcf3] border-[6px] border-double border-[#854d0e] rounded-lg p-6 md:p-8 text-[#292524] font-serif shadow-2xl relative">
+                <button 
+                  onClick={() => setSherlockSelectedClueModal(null)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#854d0e]/10 text-[#854d0e] hover:bg-[#854d0e] hover:text-white transition-colors flex items-center justify-center border border-[#854d0e]/30"
+                >
+                  <X size={18} />
+                </button>
+                <div className="border-2 border-[#a16207]/30 p-4 rounded">
+                  <div className="text-center border-b-2 border-[#a16207]/40 pb-3 mb-4">
+                    <span className="text-[0.6rem] font-black tracking-[0.3em] text-[#854d0e] uppercase block">
+                      OFFICIAL CERTIFICATE & BOND
+                    </span>
+                    <h2 className="text-lg md:text-xl font-black text-[#451a03] mt-1 uppercase">
+                      {sherlockSelectedClueModal.title}
+                    </h2>
+                    <span className="text-[0.68rem] text-[#854d0e] font-mono font-bold block mt-1">
+                      {sherlockSelectedClueModal.issuer}
+                    </span>
+                  </div>
+                  <div className="text-xs md:text-sm leading-relaxed whitespace-pre-wrap font-serif text-[#1c1917]">
+                    {sherlockSelectedClueModal.detail}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* 3. ĐỊNH DẠNG THƯ TAY VINTAGE THẬT (LETTER) */}
+            {sherlockSelectedClueModal.type === 'letter' && (
+              <div className="bg-[#fcf8ed] border border-[#a16207]/40 rounded-md p-6 md:p-8 text-[#1c1917] font-serif shadow-2xl relative italic rotate-[-0.5deg]">
+                <button 
+                  onClick={() => setSherlockSelectedClueModal(null)}
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#a16207]/10 text-[#a16207] hover:bg-[#a16207] hover:text-white transition-colors flex items-center justify-center border border-[#a16207]/30 not-italic"
+                >
+                  <X size={18} />
+                </button>
+                <div className="not-italic text-center border-b border-[#a16207]/30 pb-2 mb-4">
+                  <span className="text-[0.62rem] font-bold tracking-widest text-[#854d0e] uppercase block">
+                    ✉ {sherlockSelectedClueModal.issuer || "PERSONAL CORRESPONDENCE"}
                   </span>
-                )}
+                  <h3 className="text-base font-black text-[#451a03] mt-0.5">
+                    {sherlockSelectedClueModal.title}
+                  </h3>
+                </div>
+                <div className="text-xs md:text-sm leading-loose whitespace-pre-wrap italic text-[#292524]">
+                  {sherlockSelectedClueModal.detail}
+                </div>
               </div>
+            )}
 
-              {/* CHÍNH VĂN NỘI DUNG VĂN BẢN NGUYÊN VĂN VỚI FONT TIẾNG VIỆT CHUẨN */}
-              <div 
-                className="text-xs md:text-sm text-amber-950"
-                style={{ 
-                  fontFamily: "'Courier Prime', 'Be Vietnam Pro', monospace",
-                  whiteSpace: 'pre-wrap', 
-                  wordBreak: 'break-word', 
-                  lineHeight: '1.85' 
-                }}
-              >
-                {sherlockSelectedClueModal.detail}
+            {/* 4. ĐỊNH DẠNG BIÊN BẢN HỒ SƠ CẢNH SÁT SCOTLAND YARD (REPORT / EVIDENCE / DOSSIER) */}
+            {(sherlockSelectedClueModal.type === 'report' || sherlockSelectedClueModal.type === 'evidence' || sherlockSelectedClueModal.type === 'dossier' || !sherlockSelectedClueModal.type) && (
+              <div className="bg-[#f4ecd8] border-4 border-double border-[#582f0e] rounded-xl p-6 md:p-8 text-[#1a0f07] font-serif shadow-2xl relative">
+                <button 
+                  onClick={() => setSherlockSelectedClueModal(null)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#582f0e]/12 text-[#582f0e] hover:bg-[#582f0e] hover:text-white transition-colors flex items-center justify-center border border-[#582f0e]/30"
+                >
+                  <X size={18} />
+                </button>
+                <div className="border-b-2 border-[#582f0e]/40 pb-3 mb-4">
+                  <div className="text-[0.62rem] font-black tracking-widest text-[#78350f] uppercase">
+                    POLICE INVESTIGATION ARCHIVE • SCOTLAND YARD
+                  </div>
+                  <h2 className="text-lg md:text-xl font-black text-[#451a03] font-serif mt-1">
+                    {sherlockSelectedClueModal.title}
+                  </h2>
+                  <span className="text-[0.68rem] text-[#78350f] font-bold block mt-1">
+                    {sherlockSelectedClueModal.issuer}
+                  </span>
+                </div>
+                <div className="text-xs md:text-sm leading-relaxed whitespace-pre-wrap font-serif text-[#1a0f07]">
+                  {sherlockSelectedClueModal.detail}
+                </div>
               </div>
-            </div>
+            )}
+
           </div>
         </div>
       )}
