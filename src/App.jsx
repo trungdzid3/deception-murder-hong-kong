@@ -1174,20 +1174,21 @@ function App() {
                               ...(roomState?.visitedNodes || [])
                             ]));
 
-                            const valuableNodes = visitedList
+                            const visitedNodesList = visitedList
                               .map(id => activeSherlockCase.nodes?.[id])
-                              .filter(n => n && n.type !== 'decoy' && n.content && !n.content.includes('không có thông tin'));
+                              .filter(Boolean);
 
-                            if (valuableNodes.length === 0) {
+                            if (visitedNodesList.length === 0) {
                               return (
                                 <p className="text-xs text-slate-500 italic p-2">
-                                  Chưa có manh mối giá trị. Hãy khám xét các địa điểm trên Bản đồ.
+                                  Chưa có địa điểm khám xét. Hãy kiểm tra các địa điểm trên Bản đồ hoặc Danh bạ.
                                 </p>
                               );
                             }
 
-                            return valuableNodes.map((n) => {
+                            return visitedNodesList.map((n) => {
                               const isSelected = sherlockSelectedNodeId === n.id;
+                              const isDecoy = n.type === 'decoy' || n.content?.includes('không có thông tin');
                               return (
                                 <div 
                                   key={n.id}
@@ -1195,8 +1196,8 @@ function App() {
                                   className={`sherlock-history-item ${isSelected ? 'selected' : ''}`}
                                 >
                                   <div className="flex items-center gap-2 truncate">
-                                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem]">[{n.id}]</span>
-                                    <span className="truncate text-xs font-bold text-slate-200">{n.title}</span>
+                                    <span className={`px-1.5 py-0.5 rounded font-black text-[0.65rem] ${isDecoy ? 'bg-slate-800 text-slate-400 border border-slate-700' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'}`}>[{n.id}]</span>
+                                    <span className={`truncate text-xs font-bold ${isDecoy ? 'text-slate-400 line-through opacity-70' : 'text-amber-100'}`}>{n.title}</span>
                                   </div>
                                   <ArrowRight size={12} className="text-amber-400 shrink-0" />
                                 </div>
@@ -1498,7 +1499,17 @@ function App() {
                           return (
                             <div 
                               key={idx}
-                              className={`sherlock-directory-card cursor-default ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/30' : ''}`}
+                              onClick={() => {
+                                if (activeSherlockCase?.nodes?.[item.code]) {
+                                  setSherlockSelectedNodeId(item.code);
+                                  setSherlockActiveTab('casebook');
+                                  if (roomState?.code) {
+                                    socket.emit('sherlock-visit-node', { roomCode: roomState.code, nodeId: item.code });
+                                  }
+                                }
+                              }}
+                              className={`sherlock-directory-card cursor-pointer hover:border-amber-400 transition-all ${isCurrentCaseLoc ? 'border-amber-500/50 bg-amber-950/30' : ''}`}
+                              title={`Nhấp để khám xét địa điểm [${item.code}]`}
                             >
                               <div>
                                 <div className="flex items-center justify-between mb-1.5 gap-2">
