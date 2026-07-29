@@ -6,11 +6,22 @@ export const SHERLOCK_CASE_3 = {
   "intro": {
     "story_text": "Sáng sớm ngày 5 tháng 3 năm 1889, Thanh tra Lestrade vội vã tìm đến 221B Baker Street với khuôn mặt biến sắc. Ông Clarendon - một quý tộc giàu có tại khu Bloomsbury - được phát hiện bị bắn chết ngay tại bàn làm việc trong phòng riêng. Cảnh sát tìm thấy Frances Nolan, người phụ nữ trẻ quen biết nạn nhân, đang trong trạng thái bần thần hoang tưởng gần hiện trường với vết máu trên tay và không thể nhớ bất kỳ điều gì đã xảy ra trong vài giờ qua. Mọi bằng chứng tại chỗ dường như quy kết Frances là kẻ sát nhân cuồng sát. Tuy nhiên, Holmes nghi ngờ cô gái trẻ đã bị thao túng tâm lý bằng kỹ thuật thôi miên cao tay để làm kẻ thế mạng cho một âm mưu chiếm đoạt gia tài tàn bạo!",
     "initial_clues": [
-      "Nạn nhân Clarendon bị bắn chết bằng một viên đạn duy nhất từ súng ngắn Derringer tại bàn làm việc.",
-      "Hiện trường chỉ có duy nhất 1 ly rượu vang, loại trừ sự xuất hiện của cô em gái Loretta tại hiện trường.",
-      "Frances Nolan bị cảnh sát tạm giữ trong trạng thái hoang tưởng, ngơ ngác và liên tục bị mất trí nhớ tạm thời.",
-      "Sổ tay ghi chép của nạn nhân đề cập đến cuộc gặp với luật sư Hiram Davenport và Bác sĩ Trevelyan.",
-      "Nhật báo The Times đăng tin về các vụ tấn công bằng khăn thấm thuốc mê bốc hơi tại khu vực Lombard Street."
+      {
+        "title": "📜 Biên bản giám định vết đạn tử thi",
+        "detail": "Biên bản giám định tử thi:\n'Nạn nhân Clarendon bị bắn chết bằng một phát đạn duy nhất từ súng ngắn Derringer tại bàn làm việc. Vết đạn bắn ở cự ly gần.'"
+      },
+      {
+        "title": "🍷 Ly rượu vang đơn duy nhất tại hiện trường",
+        "detail": "Ghi nhận hiện trường:\nTrên bàn làm việc 36EC chỉ có duy nhất 1 ly rượu vang đã dùng dở, loại trừ sự xuất hiện của cô em gái Loretta Nolan."
+      },
+      {
+        "title": "🧠 Hồ sơ tâm thần & Trạng thái hoang tưởng của Frances",
+        "detail": "Báo cáo y tế:\nFrances Nolan bị cảnh sát tạm giữ trong trạng thái ngơ ngác, hoang tưởng và liên tục bị mất trí nhớ ngắn hạn không rõ nguyên do."
+      },
+      {
+        "title": "📓 Sổ tay làm việc cá nhân của nạn nhân Clarendon",
+        "detail": "Trích sổ tay nạn nhân:\n'Gặp luật sư Hiram Davenport thảo luận về di chúc. Hỏi ý kiến Bác sĩ Trevelyan về triệu chứng ngất xỉu kỳ lạ của Frances.'"
+      }
     ],
     "unlocked_nodes": ["36EC"]
   },

@@ -6,10 +6,18 @@ export const SHERLOCK_CASE_5 = {
   "intro": {
     "story_text": "Sáng sớm thứ Hai ngày 11 tháng 6 năm 1888, trong căn phòng khách ấm áp tại 221B Baker Street, Sherlock Holmes nằm dài trên ghế sô-fa trong bộ áo khoác mộng mị, ánh mắt nhìn xa xăm sau một đêm làm việc miệt mài với các ống nghiệm. Thanh tra Lestrade tìm đến báo tin về một vụ ngã tử vong từ tầng cao tại địa chỉ 63 phố Fleet Street, góc ngõ Shoe Lane. Lestrade cho rằng đây là một vụ tự tử thông thường của một gã lang thang. Holmes không thể rời phòng, nên Bác sĩ Watson cùng đội thám tử nhí Wiggins lập tức lên đường điều tra. Nhưng họ không ngờ rằng, vụ tai nạn này mở đầu cho một chuỗi án mạng tàn bạo liên quan đến thuyết 4 nguyên tố cổ đại (Hỏa, Thủy, Phong, Thổ) nhân danh cuộc trả thù bi kịch từ năm 1867!",
     "initial_clues": [
-      "Thi thể người đàn ông tử vong tại hiện trường 63 Fleet Street (63EC) bị ngã từ tầng cao.",
-      "Sir Jasper Meeks ghi nhận thi thể 63EC bị dập nát nhiều xương và có mùi khói nhẹ bám trên trang phục.",
-      "Nhân chứng cụ bà tại 34EC đối diện Shoe Lane nghe tiếng ngã sầm và thấy một bóng người vội vã trong sương mù.",
-      "Lời nhắn bí ẩn tại nhà Pearl Jones (78WC): \"Fire consumes, water preserves, air carries, and earth receives. All things return to their proper state.\" ký tên Empedocles."
+      {
+        "title": "📜 Báo cáo khám nghiệm tử thi 63 Fleet Street",
+        "detail": "Báo cáo khám nghiệm Bác sĩ Sir Jasper Meeks:\n'Nạn nhân nam vỡ hộp sọ và gãy nhiều xương do ngã từ tầng cao. Khuôn mặt bị biến dạng nặng. Quần áo có bám mùi khói nhẹ kỳ lạ.'"
+      },
+      {
+        "title": "👵 Lời khai nhân chứng cụ bà sống đối diện Shoe Lane",
+        "detail": "Ghi nhận nhân chứng:\nCụ bà nghe tiếng động mạnh như bao than ngã sầm rạng sáng. Nhìn qua sương mờ thấy bóng một người đàn ông vội vã tháo chạy."
+      },
+      {
+        "title": "📜 Thư đe dọa ký tên Empedocles (Triết lý 4 Nguyên tố)",
+        "detail": "Nội dung bức thư nhắn bí ẩn:\n\"Fire consumes, water preserves, air carries, and earth receives. All things return to their proper state.\n- Empedocles\"\n\n(Dịch: \"Lửa thiêu rụi, nước bảo tồn, không khí chuyên chở, và đất mẹ tiếp nhận. Mọi thứ sẽ trở về đúng trạng thái nguyên bản. - Empedocles\")"
+      }
     ],
     "unlocked_nodes": ["63EC"]
   },

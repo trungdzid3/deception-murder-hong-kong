@@ -14,10 +14,18 @@ export const SHERLOCK_CASE_6 = {
   "intro": {
     "story_text": "Sáng thứ Ba, ngày 14 tháng 10 năm 1890, Arthur Pendelton - một sinh viên cơ khí xuất sắc - hốt hoảng lao vào căn hộ 221B Baker Street.\n\n\"Anh Holmes, bản thiết kế tâm huyết của tôi đã bị đánh cắp đêm qua khỏi phòng thí nghiệm! Đó là sơ đồ của một hệ thống điều khiển vòng kín dùng cho động cơ hơi nước. Nếu không có nó để nộp cho hội đồng vào chiều nay, tôi sẽ trượt tốt nghiệp!\"\n\n\"Cậu rời phòng lúc nào? Có ai khả nghi không?\" Holmes điềm tĩnh hỏi.\n\n\"Tôi rời đi lúc 9 giờ tối qua. Sáng nay đến, cửa sổ kính nhìn ra sân cỏ phía sau bị đập vỡ, ngăn kéo bàn bị cạy tung. Chỉ có hai người biết chi tiết về dự án này: Thomas Higgins – gã sinh viên cùng khóa luôn ganh tị; và Giáo sư Sterling – người hướng dẫn của tôi. Tuần trước, Giáo sư đòi đứng tên đồng tác giả nhưng tôi từ chối vì toàn bộ thuật toán phản hồi đều do tôi tự tính toán.\"\n\nHolmes quay sang bạn: \"Một bài toán logic thú vị đây. Chúng ta bắt đầu từ đâu nào?\"",
     "initial_clues": [
-      "Cửa sổ phòng thí nghiệm 10WC bị đập vỡ và ngăn kéo bàn của Arthur bị cạy tung trong đêm qua.",
-      "Bản thiết kế hệ thống điều khiển vòng kín dùng cho động cơ hơi nước biến mất.",
-      "Thomas Higgins và Giáo sư Sterling là 2 người duy nhất biết chi tiết dự án.",
-      "Giáo sư Sterling vừa bị Arthur từ chối đứng tên đồng tác giả tuần trước."
+      {
+        "title": "📐 Đồ án thiết kế động cơ hơi nước bị cạy tủ đánh tráo",
+        "detail": "Ghi nhận hiện trường 10WC:\nNgăn kéo bàn học bị cạy tung bằng vật cứng. Sơ đồ thuật toán ma trận điều khiển vòng kín cho động cơ hơi nước của Arthur Pendelton đã biến mất."
+      },
+      {
+        "title": "🪟 Khám xét cửa sổ đập vỡ nhìn ra sân cỏ",
+        "detail": "Dấu vết cửa sổ 10WC:\nCửa sổ kính bị đập vỡ tạo hổng chốt. Toàn bộ mảnh kính vỡ rơi lả tả ra bãi cỏ bên ngoài, sàn phòng bên trong hoàn toàn sạch sẽ."
+      },
+      {
+        "title": "🍂 Vệt tro xì gà Partagas thượng hạng rụng cạnh ngăn kéo",
+        "detail": "Vật chứng hiện trường:\nCạnh rãnh trượt ngăn kéo có vệt tro xì gà mịn màu xám trắng tỏa mùi ngầy ngậy – loại xì gà Cuba Partagas thượng hạng rụng chưa quá 12 tiếng."
+      }
     ],
     "unlocked_nodes": ["10WC"]
   },

@@ -6,11 +6,18 @@ export const SHERLOCK_CASE_4 = {
   "intro": {
     "story_text": "Ngày 11 tháng 4 năm 1890, giới thượng lưu và giới khảo cổ học London xôn xao trước chuỗi cái chết kỳ quặc giội xuống các thành viên đoàn thám hiểm khai quật lăng mộ nữ vương Ai Cập Katebet. Báo chí giật tít về 'Lời nguyền của Xác ướp' khi ông Oswald Mason - Trưởng kế toán Ngân hàng Anh và là nhà tài trợ đoàn thám hiểm - được phát hiện bị đập chết thảm khốc tại phòng làm việc 42 Tottenham Court Road. Trong khi dư luận hoảng loạn tin vào sức mạnh siêu nhiên của lời nguyền Ai Cập cổ đại, Sherlock Holmes khẳng định đây chỉ là màn kịch tàn nhẫn được che đậy khéo léo để che giấu các vụ giết người cướp cổ vật và thủ tiêu mâu thuẫn học thuật!",
     "initial_clues": [
-      "Nạn nhân Oswald Mason bị đập chết bằng vật nặng vào đầu lúc 10:00 tối tại phòng làm việc 42 Tottenham Court Road.",
-      "Kẻ đột nhập vào nhà bằng cửa sổ tầng trên, phòng làm việc có dấu vết xáo trộn mạnh cho thấy đã xảy ra xô xát.",
-      "Hiện trường thu được thông tin nhà phóng viên báo The Times (Travis) liên tục bị ngăn cản tiếp cận lăng mộ Katebet.",
-      "Nhật báo The Times đăng tin khu cắm trại khai quật Ai Cập được canh gác nghiêm ngặt để tránh trộm cướp.",
-      "Quảng cáo trên báo tin tức nhắc tới điểm biểu diễn ca nhạc Oxford Music Hall của cô Violette Blue."
+      {
+        "title": "📜 Biên bản khám nghiệm tử thi Oswald Mason",
+        "detail": "Biên bản khám nghiệm tử thi:\n'Nạn nhân Oswald Mason (Trưởng kế toán Ngân hàng Anh) tử vong do chấn thương sọ nội thương rất nặng bởi vật cứng ngạc nhiên lúc 10:00 tối tại phòng làm việc 42 Tottenham Court Road.'"
+      },
+      {
+        "title": "🗺️ Cuộn bản đồ vị trí lăng mộ Ai Cập cổ đại bị lấy mất",
+        "detail": "Ghi nhận hiện trường:\nKét sắt phòng làm việc bị cạy chốt. Tiền mặt nguyên vẹn nhưng cuộn bản đồ định vị cổ vật lăng mộ Katebet mang từ Ai Cập đã biến mất."
+      },
+      {
+        "title": "📰 Thẻ ép báo phóng viên Travis (Tòa soạn The Times)",
+        "detail": "Bài báo điều tra:\nPhóng viên Travis đưa tin nhiều thành viên đoàn thám hiểm lăng mộ Katebet bị đe dọa. Khu khai quật Ai Cập được canh gác nghiêm ngặt."
+      }
     ],
     "unlocked_nodes": ["42WC"]
   },

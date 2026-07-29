@@ -6,10 +6,22 @@ export const SHERLOCK_CASE_1 = {
   "intro": {
     "story_text": "Sáng thứ Tư, ngày 10 tháng 9 năm 1890, Ngài Archibald - chủ sở hữu Phòng tranh Archibald danh giá bậc nhất London - hớt hải tìm đến 221B Baker Street. Kiệt tác duy nhất 'Hoàng hôn trên sông Thames' của danh họa Turner đã bị đánh tráo thành hàng giả ngay trước buổi đấu giá quốc tế lớn nhất thập kỷ!\n\n\"Anh Holmes, tôi tiêu đời rồi! Bức tranh kiệt tác duy nhất của Turner đã bị tráo thành hàng giả! Sáng nay lúc 8 giờ mở cửa phòng tranh, bức tranh vẫn nằm trong khung nhưng màu sắc dại hơn. Đêm qua phòng tranh khóa cẩn thận từ bên trong, con chó ngao canh gác Brutus dữ tợn nhưng sáng ra vẫn nằm ngủ ngon lành.\"\n\nHolmes điềm tĩnh hỏi: \"Ngài nghi ngờ ai không?\"\n\n\"Có chứ! Julian - gã sưu tầm đối thủ thề làm mọi cách để bôi nhọ buổi đấu giá này. Ngoài ra còn có Elias, gã họa sĩ từng đi tù vì chép tranh giả.\" Holmes mỉm cười: \"Thú vị đây, Watson. Chúng ta bắt đầu dạo chơi quanh London thôi!\"",
     "initial_clues": [
-      "Bức tranh 'Hoàng hôn trên sông Thames' trị giá lớn bị đánh tráo thành hàng giả ngay tại phòng tranh.",
-      "Phòng tranh 10EC được khóa kỹ từ bên trong, con chó ngao canh gác Brutus không hề sủa hay phản ứng.",
-      "Bức tranh giả có mùi sơn dầu và dầu lanh vẫn còn rất mới, mới được vẽ chưa quá một tuần.",
-      "Người quản lý Victor bồn chồn, mặc áo măng-tô màu xám và ngón tay ám vàng do thói quen hút xì gà nồng đậm."
+      {
+        "title": "📜 Giấy chứng nhận bảo hiểm kiệt tác Turner",
+        "detail": "Giấy chứng nhận bảo hiểm:\n'Phòng tranh Archibald - Bảo hiểm bức kiệt tác Hoàng hôn trên sông Thames của danh họa Turner trị giá 20,000 Bảng Anh tại Ngân hàng Trung tâm.'"
+      },
+      {
+        "title": "🖼️ Bức tranh nhái 'Hoàng hôn trên sông Thames'",
+        "detail": "Ghi nhận giám định:\nBức tranh giả nằm trong khung. Mùi sơn dầu và dầu lanh còn rất mới, chứng tỏ bức tranh nhái này mới được vẽ chưa tới 1 tuần."
+      },
+      {
+        "title": "🗝️ Chìa khóa phòng tranh & Chó ngao Brutus",
+        "detail": "Ghi nhận hiện trường:\nCửa phòng tranh khóa cẩn thận từ bên trong. Chỉ có Ngài Archibald và Quản lý Victor có chìa khóa. Con chó ngao Brutus canh gác rất dữ tợn nhưng nằm ngủ ngoan ngoãn khi phát hiện hiện trường."
+      },
+      {
+        "title": "💼 Danh sách nghi phạm khả nghi ban đầu",
+        "detail": "Ghi nhận thông tin:\n- Julian: Đối thủ sưu tầm nghệ thuật cạnh tranh.\n- Họa sĩ Elias: Họa sĩ từng ngồi tù vì tội chép tranh giả vừa ra tù."
+      }
     ],
     "unlocked_nodes": ["10EC"]
   },
