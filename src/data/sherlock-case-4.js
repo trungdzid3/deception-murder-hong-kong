@@ -7,16 +7,22 @@ export const SHERLOCK_CASE_4 = {
     "story_text": "Ngày 11 tháng 4 năm 1890, giới thượng lưu và giới khảo cổ học London xôn xao trước chuỗi cái chết kỳ quặc giội xuống các thành viên đoàn thám hiểm khai quật lăng mộ nữ vương Ai Cập Katebet. Báo chí giật tít về 'Lời nguyền của Xác ướp' khi ông Oswald Mason - Trưởng kế toán Ngân hàng Anh và là nhà tài trợ đoàn thám hiểm - được phát hiện bị đập chết thảm khốc tại phòng làm việc 42 Tottenham Court Road. Trong khi dư luận hoảng loạn tin vào sức mạnh siêu nhiên của lời nguyền Ai Cập cổ đại, Sherlock Holmes khẳng định đây chỉ là màn kịch tàn nhẫn được che đậy khéo léo để che giấu các vụ giết người cướp cổ vật và thủ tiêu mâu thuẫn học thuật!",
     "initial_clues": [
       {
-        "title": "📜 Biên bản khám nghiệm tử thi Oswald Mason",
-        "detail": "Biên bản khám nghiệm tử thi:\n'Nạn nhân Oswald Mason (Trưởng kế toán Ngân hàng Anh) tử vong do chấn thương sọ nội thương rất nặng bởi vật cứng ngạc nhiên lúc 10:00 tối tại phòng làm việc 42 Tottenham Court Road.'"
+        "title": "Biên bản khám nghiệm tử thi Oswald Mason",
+        "type": "report",
+        "issuer": "SCOTLAND YARD - ĐỘI PHÁP Y TƯ PHÁP",
+        "detail": "BIÊN BẢN GIÁM ĐỊNH PHÁP Y (42 WC)\n----------------------------------------\n- Nạn nhân: Oswald Mason (Trưởng kế toán Ngân hàng Anh).\n- Nguyên nhân tử vong: Chấn thương sọ não nội thương cực nặng do vật cứng đập trực diện.\n- Thời điểm tử vong: Khoảng 10:00 PM tối qua.\n- Địa điểm hiện trường: Phòng làm việc riêng tại 42 Tottenham Court Road."
       },
       {
-        "title": "🗺️ Cuộn bản đồ vị trí lăng mộ Ai Cập cổ đại bị lấy mất",
-        "detail": "Ghi nhận hiện trường:\nKét sắt phòng làm việc bị cạy chốt. Tiền mặt nguyên vẹn nhưng cuộn bản đồ định vị cổ vật lăng mộ Katebet mang từ Ai Cập đã biến mất."
+        "title": "Báo cáo khám nghiệm két sắt & Bản đồ cổ vật",
+        "type": "evidence",
+        "issuer": "SCOTLAND YARD - KHÁM NGHIỆM VẬT CHỨNG HIỆN TRƯỜNG",
+        "detail": "GHI NHẬN VẬT CHỨNG KÉT SẮT (42 WC)\n----------------------------------------\n- Két sắt phòng làm việc có dấu vết bị cạy phá chốt cơ học.\n- Tài sản còn lại: Toàn bộ tiền mặt và giấy tờ ngân hàng vẫn giữ nguyên vẹn.\n- Tài sản biến mất: Cuộn bản đồ định vị cổ vật lăng mộ Katebet mới mang về từ Ai Cập."
       },
       {
-        "title": "📰 Thẻ ép báo phóng viên Travis (Tòa soạn The Times)",
-        "detail": "Bài báo điều tra:\nPhóng viên Travis đưa tin nhiều thành viên đoàn thám hiểm lăng mộ Katebet bị đe dọa. Khu khai quật Ai Cập được canh gác nghiêm ngặt."
+        "title": "Báo cáo điều tra & Canh gác an ninh phóng viên Travis",
+        "type": "dossier",
+        "issuer": "TÒA SOẠN BÁO THE TIMES - HỒ SƠ ĐIỀU TRA BÁO CHÍ",
+        "detail": "TRÍCH BÁO CÁO PHÓNG VIÊN TRAVIS (50 EC)\n----------------------------------------\n- Báo cáo an ninh: Vùng cắm trại khai quật lăng mộ Ai Cập được bảo vệ cẩn mật với vòng ngoài nghiêm ngặt.\n- Ghi chú: Phóng viên Travis đã nhiều lần đệ đơn xin tiếp cận lăng mộ nhưng đều bị từ chối, không thể vượt qua chốt canh gác."
       }
     ],
     "unlocked_nodes": [
