@@ -39,7 +39,7 @@ export const SHERLOCK_CASES_LIST = [
     id: "sherlock_case_2",
     title: "Vụ Án 2: Cái Chết Của Sherlock Holmes (The Death of Sherlock Holmes)",
     setting_date: "Ngày 2 tháng 12 năm 1893",
-    difficulty: "Nhập môn nâng cao",
+    difficulty: "Nhập môn",
     diffLevel: "easy",
     holmes_clues: 4,
     scoring: {
@@ -99,7 +99,7 @@ export const SHERLOCK_CASES_LIST = [
     id: "sherlock_case_6",
     title: "Vụ Án 6: Bản Thiết Kế Bị Đánh Cắp (The Stolen Blueprint)",
     setting_date: "Ngày 14 tháng 10 năm 1890",
-    difficulty: "Tân thủ (Dễ nhất - 3 bước)",
+    difficulty: "Mở đầu (Dễ nhất - 3 bước)",
     diffLevel: "beginner",
     holmes_clues: 3,
     scoring: {
