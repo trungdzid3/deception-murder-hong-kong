@@ -1090,9 +1090,20 @@ function App() {
                         const isObj = typeof clue === 'object' && clue !== null;
                         const title = isObj ? clue.title : clue;
                         return (
-                          <li key={i} className="sherlock-clue-item">
-                            <span className="sherlock-clue-bullet">•</span>
-                            <span>{title}</span>
+                          <li 
+                            key={i} 
+                            onClick={() => isObj && setSherlockSelectedClueModal(clue)}
+                            className={`sherlock-clue-item p-2 rounded-lg border border-amber-500/20 bg-amber-950/20 hover:bg-amber-500/20 hover:border-amber-500/50 cursor-pointer transition-all flex items-center justify-between gap-2`}
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="sherlock-clue-bullet text-amber-400 font-bold">•</span>
+                              <span className="font-bold text-amber-100 text-xs">{title}</span>
+                            </div>
+                            {isObj && (
+                              <span className="text-[0.68rem] text-amber-400 font-bold bg-amber-500/20 px-2 py-0.5 rounded shrink-0 flex items-center gap-1 border border-amber-500/30">
+                                🔍 Soi tài liệu
+                              </span>
+                            )}
                           </li>
                         );
                       })}
