@@ -7,29 +7,29 @@ export const SHERLOCK_CASE_1 = {
     "story_text": "Sáng thứ Tư, ngày 10 tháng 9 năm 1890, Ngài Archibald - chủ sở hữu Phòng tranh Archibald danh giá bậc nhất London - hớt hải tìm đến 221B Baker Street. Kiệt tác duy nhất 'Hoàng hôn trên sông Thames' của danh họa Turner đã bị đánh tráo thành hàng giả ngay trước buổi đấu giá quốc tế lớn nhất thập kỷ!\n\n\"Anh Holmes, tôi tiêu đời rồi! Bức tranh kiệt tác duy nhất của Turner đã bị tráo thành hàng giả! Sáng nay lúc 8 giờ mở cửa phòng tranh, bức tranh vẫn nằm trong khung nhưng màu sắc dại hơn. Đêm qua phòng tranh khóa cẩn thận từ bên trong, con chó ngao canh gác Brutus dữ tợn nhưng sáng ra vẫn nằm ngủ ngon lành.\"\n\nHolmes điềm tĩnh hỏi: \"Ngài nghi ngờ ai không?\"\n\n\"Có chứ! Julian - gã sưu tầm đối thủ thề làm mọi cách để bôi nhọ buổi đấu giá này. Ngoài ra còn có Elias, gã họa sĩ từng đi tù vì chép tranh giả.\" Holmes mỉm cười: \"Thú vị đây, Watson. Chúng ta bắt đầu dạo chơi quanh London thôi!\"",
     "initial_clues": [
       {
-        "title": "📜 Giấy chứng nhận bảo hiểm kiệt tác Turner",
+        "title": "📜 Hợp đồng bảo hiểm Bức tranh 'Hoàng hôn trên sông Thames'",
         "type": "certificate",
-        "issuer": "NGÂN HÀNG TRUNG TÂM LONDON (CENTRAL BANK OF LONDON)",
-        "cert_no": "CERT-1890-0910-ART",
-        "detail": "CHỨNG THƯ BẢO HIỂM NGHỆ THUẬT QUỐC TẾ\n\nXác nhận Bảo hiểm Tài sản số 884-B:\nPhòng tranh Archibald (10 EC) bảo hiểm chính thức cho bức kiệt tác 'Hoàng hôn trên sông Thames' (Sunset on the Thames) của danh họa J.M.W. Turner.\n\n- Định giá bảo hiểm: 20,000 Bảng Anh (£20,000).\n- Đơn vị thẩm định & lưu kho bảo chứng: Ngân hàng Trung tâm London.\n- Ngày hiệu lực: 10/09/1890."
+        "issuer": "TẬP ĐOÀN BẢO HIỂM HOÀNG GIA LONDON",
+        "cert_no": "POLICY #2009-1890",
+        "detail": "CHỨNG THƯ BẢO HIỂM NGHỆ THUẬT QUỐC TẾ\n----------------------------------------\nBên được bảo hiểm: Ngài Archibald - Phòng tranh Archibald (10 EC).\nTài sản: Bức tranh kiệt tác 'Hoàng hôn trên sông Thames' (J.M.W. Turner).\n\n- Giá trị bảo hiểm: 20,000 Bảng Anh (£20,000).\n- Ngân hàng bảo chứng tài chính: Ngân hàng Trung tâm London (17 WC).\n- Ngày lập hợp đồng: Ngày 09 tháng 9 năm 1890."
       },
       {
-        "title": "🖼️ Biên bản giám định bức tranh nhái",
+        "title": "🖼️ Biên bản kiểm tra bức tranh nhái tại hiện trường",
         "type": "report",
-        "issuer": "SCOTLAND YARD - PHÒNG GIÁM ĐỊNH TỘI PHẠM",
-        "detail": "BIÊN BẢN KHÁM NGHIỆM VẬT CHỨNG (10 EC)\n\nBức tranh giả nằm trong khung gỗ mạ vàng nguyên bản của danh họa Turner.\n\n- Tình trạng vật lý: Mùi dầu lanh và sơn dầu còn chưa khô hoàn toàn, bốc mùi sực nức.\n- Kết luận sơ bộ: Bức tranh nhái này mới được chế tác hoàn thiện cách đây chưa tới 1 tuần."
+        "issuer": "HIỆN TRƯỜNG PHÒNG TRANH ARCHIBALD (10 EC)",
+        "detail": "BIÊN BẢN KHÁM NGHIỆM BAN ĐẦU\n----------------------------------------\n- Bức tranh giả được đặt trong khung gỗ mạ vàng nguyên bản.\n- Bề mặt: Mùi sơn dầu lanh và bột màu tươi bốc lên sực nức.\n- Đánh giá chuyên môn: Bức tranh nhái được vẽ chép lại cực kỳ tỉ mỉ và mới hoàn thiện chưa tới 1 tuần."
       },
       {
-        "title": "🗝️ Báo cáo vật chứng chìa khóa & Chó gác Brutus",
+        "title": "🗝️ Báo cáo an ninh cửa & Con chó ngao Brutus",
         "type": "evidence",
-        "issuer": "BÁO CÁO HIỆN TRƯỜNG BẢO VỆ",
-        "detail": "BÁO CÁO KHÁM NGHIỆM Ổ KHÓA & AN NINH (10 EC)\n\n- Cửa chính phòng tranh khóa cẩn thận từ bên trong, không có vết cạy chốt.\n- Danh sách chìa khóa: Chỉ duy nhất Chủ phòng tranh Archibald và Quản lý Victor sở hữu chìa khóa.\n- Con chó ngao Brutus canh gác rất dữ tợn với người lạ, nhưng đêm qua nằm ngủ ngoan ngoãn, khi người mở cửa bước vào còn vẫy đuôi thân thiện."
+        "issuer": "GHI NHẬN AN NINH BAN ĐÊM",
+        "detail": "BÁO CÁO HIỆN TRƯỜNG 10 EC\n----------------------------------------\n- Cửa chính & cửa sổ: Khóa kín từ bên trong, không có bất kỳ dấu hiệu cạy phá hay đột nhập từ bên ngoài.\n- Danh sách chìa khóa: Chỉ có Ngài Archibald và Quản lý Victor sở hữu chìa khóa.\n- Chó gác đêm Brutus: Giống chó ngao cực kỳ dữ tợn với người lạ. Đêm qua Brutus vẫn nằm ngủ bình yên, không sủa một tiếng nào."
       },
       {
-        "title": "💼 Hồ sơ theo dõi các đối tượng nghi vấn",
+        "title": "💼 Hồ sơ nghi phạm ban đầu (Julian & Elias)",
         "type": "dossier",
-        "issuer": "SỔ TAY ĐIỀU TRA BAN ĐẦU",
-        "detail": "DANH SÁCH CÁC NGHI PHẠM BAN ĐẦU:\n\n1. Julian (Dinh thự 08 EC): Nhà sưu tầm nghệ thuật đối thủ, từng thề phá hoại buổi đấu giá.\n2. Elias (Xưởng vẽ 14 SE): Họa sĩ chép tranh giả từng có tiền án đi tù, mới mãn hạn tháng trước."
+        "issuer": "SỔ TAY GHI CHÉP NGHI PHẠM BAN ĐẦU",
+        "detail": "DANH SÁCH NGHI PHẠM KHẢ NGHI:\n----------------------------------------\n1. Julian (Dinh thự 08 EC): Nhà sưu tầm nghệ thuật đối thủ không đội trời chung, từng thề phá hoại buổi đấu giá.\n2. Elias (Xưởng vẽ 14 SE): Họa sĩ chép tranh từng ngồi tù vì tội chép tranh giả, mới mãn hạn gần đây."
       }
     ],
     "unlocked_nodes": ["10EC"]

@@ -2882,31 +2882,32 @@ function App() {
               <X size={18} />
             </button>
 
-            {/* TRÌNH BÀY GIỐNG VĂN BẢN/GIẤY CHỨNG NHẬN THẬT */}
-            <div className="border-b border-amber-900/40 pb-3 mb-4">
-              <span className="text-[0.65rem] font-black text-amber-800 tracking-widest uppercase block">
-                {sherlockSelectedClueModal.issuer || "SCOTLAND YARD • EVIDENCE CLIPPING"}
-              </span>
-              <h2 className="text-lg md:text-xl font-black text-amber-950 font-serif mt-1">
-                {sherlockSelectedClueModal.title}
-              </h2>
-            </div>
-
-            {/* GIAO DIỆN GIẤY CHỨNG NHẬN / VĂN BẢN / VÉ VÀO / BẢO HIỂM / THƯ TAY */}
-            <div className={`rounded-lg p-5 shadow-inner my-2 border-2 ${
+            {/* TRÌNH BÀY PHONG CÁCH VĂN BẢN THỰC TẾ (REAL PHYSICAL DOCUMENT) */}
+            <div className={`rounded-xl p-6 shadow-inner my-1 border-2 relative ${
               sherlockSelectedClueModal.type === 'certificate' 
-                ? 'bg-[#fcf8ee] border-amber-800/60 font-serif' 
+                ? 'bg-[#fdfaf3] border-amber-900/60 font-serif' 
                 : sherlockSelectedClueModal.type === 'ticket' 
                 ? 'bg-[#faebd7] border-amber-900/50 border-dashed font-mono' 
                 : sherlockSelectedClueModal.type === 'letter' 
-                ? 'bg-[#fdfaf3] border-amber-900/30 font-serif italic' 
-                : 'bg-[#f5ebd7] border-amber-900/40 font-mono'
+                ? 'bg-[#fcf8ee] border-amber-900/40 font-serif' 
+                : 'bg-[#f5ebd7] border-amber-900/50 font-mono'
             }`}>
-              {sherlockSelectedClueModal.cert_no && (
-                <div className="text-[0.7rem] font-mono font-black text-amber-900 text-right uppercase tracking-widest border-b border-amber-900/20 pb-2 mb-3">
-                  MÃ ĐỊNH DANH / SỐ CHỨNG THƯ: {sherlockSelectedClueModal.cert_no}
-                </div>
-              )}
+              {/* HEADER TÀI LIỆU TRONG NỀN VĂN BẢN */}
+              <div className="border-b-2 border-amber-900/30 pb-3 mb-4 text-center">
+                <span className="text-[0.65rem] font-black text-amber-900 tracking-[0.2em] uppercase block">
+                  {sherlockSelectedClueModal.issuer || "SCOTLAND YARD • OFFICIAL ARCHIVE EVIDENCE"}
+                </span>
+                <h3 className="text-lg md:text-xl font-black text-amber-950 font-serif mt-1">
+                  {sherlockSelectedClueModal.title}
+                </h3>
+                {sherlockSelectedClueModal.cert_no && (
+                  <span className="inline-block text-[0.65rem] font-mono font-black text-amber-900 bg-amber-900/10 px-2 py-0.5 rounded mt-1.5 uppercase tracking-wider">
+                    {sherlockSelectedClueModal.cert_no}
+                  </span>
+                )}
+              </div>
+
+              {/* CHÍNH VĂN NỘI DUNG VĂN BẢN NGUYÊN VĂN */}
               <div className="text-xs md:text-sm text-amber-950 leading-relaxed whitespace-pre-wrap font-medium">
                 {sherlockSelectedClueModal.detail}
               </div>
