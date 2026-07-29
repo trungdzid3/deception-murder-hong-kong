@@ -134,7 +134,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Tòa soạn báo The Times",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": {"left":"72%","top":"32%"},
+      "map_coords": {"left":"76%","top":"34%"},
       "content": "Tổng biên tập Henry Ellis lật tờ báo ngày hôm qua: \"Phòng tranh Archibald dạo này rất nổi tiếng. Ngài Archibald vừa mua bảo hiểm cho bức 'Hoàng hôn trên sông Thames' trị giá 20,000 bảng Anh. Ngoài ra không có tin tức tội phạm nào đáng chú ý ở khu vực đó.\"",
       "unlocks": {
         "nodes": [],

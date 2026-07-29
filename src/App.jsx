@@ -1361,7 +1361,7 @@ function App() {
                       />
 
                       {/* GHIM CÁC CON SỐ NGUYÊN BẢN TRÊN BẢN ĐỒ CHUẨN ĐỊA LÝ HOÀN TOÀN GIỐNG BẢN BACKUP */}
-                      {Object.values(activeSherlockCase?.nodes || {}).filter(n => n.type !== 'decoy').map((n) => {
+                      {Object.values(activeSherlockCase?.nodes || {}).map((n) => {
                         const isVisited = roomState.visitedNodes?.includes(n.id);
                         
                         // Tọa độ % phân vùng địa lý chuẩn 100% trên bản đồ Holmes London
@@ -1409,7 +1409,7 @@ function App() {
 
                           // EC (East Central - Top Right)
                           '5EC': { left: '78%', top: '18%' },
-                          '30EC': { left: '72%', top: '32%' },
+                          '30EC': { left: '76%', top: '34%' },
                           '35EC': { left: '76%', top: '26%' },
                           '42EC': { left: '84%', top: '30%' },
                           '53EC': { left: '80%', top: '36%' },
