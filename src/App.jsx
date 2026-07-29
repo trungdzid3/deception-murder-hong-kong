@@ -1223,34 +1223,17 @@ function App() {
 
                             return valuableNodes.map((n) => {
                               const isSelected = sherlockSelectedNodeId === n.id;
-                              const evidenceItems = n.evidence_items || n.unlocks?.evidence_items || n.key_hints || [];
                               return (
                                 <div 
                                   key={n.id}
                                   onClick={() => setSherlockSelectedNodeId(n.id)}
-                                  className={`sherlock-valuable-clue-card ${isSelected ? 'selected' : ''}`}
+                                  className={`sherlock-history-item ${isSelected ? 'selected' : ''}`}
                                 >
-                                  <div className="flex items-center justify-between gap-1 mb-1">
-                                    <span className="font-black text-[0.72rem] text-amber-300">
-                                      [{n.id}] {n.title}
-                                    </span>
-                                    <ArrowRight size={12} className="text-amber-400 shrink-0" />
+                                  <div className="flex items-center gap-2 truncate">
+                                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-[0.65rem]">[{n.id}]</span>
+                                    <span className="truncate text-xs font-bold text-slate-200">{n.title}</span>
                                   </div>
-                                  <ul className="space-y-1 pl-1 mt-1 border-t border-amber-500/10 pt-1">
-                                    {evidenceItems.length > 0 ? (
-                                      evidenceItems.map((item, idx) => (
-                                        <li key={idx} className="text-[0.68rem] text-slate-300 leading-snug flex items-start gap-1">
-                                          <span className="text-amber-400 font-bold shrink-0">•</span>
-                                          <span>{item.replace(/^[\s•\-]+/, '')}</span>
-                                        </li>
-                                      ))
-                                    ) : (
-                                      <li className="text-[0.68rem] text-slate-400 italic leading-snug flex items-start gap-1">
-                                        <span className="text-amber-400 font-bold shrink-0">•</span>
-                                        <span>Đã khám xét địa điểm này.</span>
-                                      </li>
-                                    )}
-                                  </ul>
+                                  <ArrowRight size={12} className="text-amber-400 shrink-0" />
                                 </div>
                               );
                             });
