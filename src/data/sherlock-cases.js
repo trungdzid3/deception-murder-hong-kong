@@ -25,7 +25,7 @@ export const SHERLOCK_CASES_LIST = [
     title: "Vụ Án 1: Bức Tranh Bị Đánh Tráo (The Swapped Canvas)",
     setting_date: "Ngày 10 tháng 9 năm 1890",
     difficulty: "Tân thủ",
-    diffLevel: "easy",
+    diffLevel: "beginner",
     holmes_clues: 4,
     scoring: {
       part1_max: 100,
@@ -84,7 +84,7 @@ export const SHERLOCK_CASES_LIST = [
     id: "sherlock_case_5",
     title: "Vụ Án 5: Cán Cân Chao Đảo (The Case of the Unsettled Balance)",
     setting_date: "Ngày 11 tháng 6 năm 1888",
-    difficulty: "Chuyên gia (Rất khó)",
+    difficulty: "Chuyên gia",
     diffLevel: "expert",
     holmes_clues: 6,
     scoring: {
