@@ -2898,7 +2898,10 @@ function App() {
                     </div>
                   )}
                 </div>
-                <div className="text-xs md:text-sm leading-relaxed whitespace-pre-wrap font-mono text-[#291205]">
+                <div 
+                  className="text-xs md:text-sm text-[#291205]"
+                  style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: '1.8', fontFamily: "'Be Vietnam Pro', monospace" }}
+                >
                   {sherlockSelectedClueModal.detail}
                 </div>
               </div>
@@ -2919,7 +2922,10 @@ function App() {
                       {sherlockSelectedClueModal.issuer}
                     </span>
                   </div>
-                  <div className="text-xs md:text-sm leading-relaxed whitespace-pre-wrap font-serif text-[#1c1917]">
+                  <div 
+                    className="text-xs md:text-sm text-[#1c1917]"
+                    style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: '1.8', fontFamily: "'Be Vietnam Pro', serif" }}
+                  >
                     {sherlockSelectedClueModal.detail}
                   </div>
                 </div>
@@ -2937,7 +2943,10 @@ function App() {
                     {sherlockSelectedClueModal.title}
                   </h3>
                 </div>
-                <div className="text-xs md:text-sm leading-relaxed whitespace-pre-wrap italic text-[#292524]">
+                <div 
+                  className="text-xs md:text-sm italic text-[#292524]"
+                  style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: '1.85', fontFamily: "'Be Vietnam Pro', serif" }}
+                >
                   {sherlockSelectedClueModal.detail}
                 </div>
               </div>
@@ -2957,7 +2966,10 @@ function App() {
                     {sherlockSelectedClueModal.issuer}
                   </span>
                 </div>
-                <div className="text-xs md:text-sm leading-relaxed whitespace-pre-wrap font-serif text-[#1a0f07]">
+                <div 
+                  className="text-xs md:text-sm text-[#1a0f07]"
+                  style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: '1.8', fontFamily: "'Be Vietnam Pro', serif" }}
+                >
                   {sherlockSelectedClueModal.detail}
                 </div>
               </div>
