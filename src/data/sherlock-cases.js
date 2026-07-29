@@ -99,7 +99,7 @@ export const SHERLOCK_CASES_LIST = [
     id: "sherlock_case_6",
     title: "Vụ Án 6: Bản Thiết Kế Bị Đánh Cắp (The Stolen Blueprint)",
     setting_date: "Ngày 14 tháng 10 năm 1890",
-    difficulty: "Thách thức mở rộng",
+    difficulty: "Tân thủ (Dễ nhất - 3 bước)",
     diffLevel: "beginner",
     holmes_clues: 3,
     scoring: {
