@@ -28,7 +28,7 @@ export const SHERLOCK_CASE_5 = {
       "area": "EC",
       "type": "crime_scene",
       "map_coords": {"left":"58.5%","top":"36.5%"},
-      "content": "Căn nhà hoang số 63 Fleet Street xơ xác, các cửa sổ bị đóng ván gỗ. Thanh tra Lestrade dẫn chúng ta ra sân sau nơi thi thể nạn nhân nằm trên nền đá lạnh: \"Không có dấu hiệu ẩu đả, không có ví tiền hay giấy tờ. Nhiều khả năng chỉ là một gã lang thang tự tử ngã từ mái nhà\". Bác sĩ Sir Jasper Meeks tháo găng tay kiểm tra: \"Nạn nhân bị vỡ hộp sọ và gãy nhiều xương, tử vong tức thì do ngã từ trên cao. Mặt nạn nhân bị biến dạng nặng không thể nhận diện. Tuy nhiên, quần áo có mùi khói nhẹ bộc phát rất kỳ lạ\".",
+      "content": "Căn nhà hoang số 63 Fleet Street xơ xác, các cửa sổ bị đóng ván gỗ. Thanh tra Lestrade dẫn chúng ta ra sân sau nơi thi thể nạn nhân nằm trên nền đá lạnh: \"Không có dấu hiệu ẩu đả, không có ví tiền hay giấy tờ. Nhiều khả năng chỉ là một gã lang thang tự tử ngã từ mái nhà. Tuy nhiên, cụ bà sống tại căn nhà đối diện ngõ Shoe Lane (34EC) có báo tin nghe thấy tiếng động sầm rạng sáng\". Bác sĩ Sir Jasper Meeks tháo găng tay kiểm tra: \"Nạn nhân bị vỡ hộp sọ và gãy nhiều xương, tử vong tức thì do ngã từ trên cao. Mặt nạn nhân bị biến dạng nặng không thể nhận diện. Tuy nhiên, quần áo có mùi khói nhẹ bộc phát rất kỳ lạ\".",
       "unlocks": {
         "nodes": ["34EC", "22SW", "13SW"],
         "evidence_items": ["Nạn nhân 63EC bị ngã từ trên cao, mặt biến dạng, quần áo có mùi khói nhẹ."]
