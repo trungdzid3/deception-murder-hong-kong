@@ -19,7 +19,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Phòng tranh Archibald (Hiện trường vụ án)",
       "area": "EC",
       "type": "crime_scene",
-      "map_coords": { "left": "72%", "top": "32%" },
+      "map_coords": {"left":"72%","top":"32%"},
       "content": "Hiện trường không có dấu hiệu bị đột nhập. Kính và ổ khóa nguyên vẹn. Con chó ngao Brutus vẫy đuôi thân thiện khi chúng tôi bước vào. Tiến gần bức tranh giả, Holmes đưa mũi ngửi: \"Mùi dầu lanh và sơn dầu vẫn còn rất mới, bức tranh này mới được vẽ chưa quá một tuần.\" Quản lý Victor đang đứng ghi chép sổ sách gần đó. Anh ta mặc chiếc áo măng-tô màu xám, trông khá bồn chồn và nhợt nhạt. Căn phòng thoang thoảng mùi khói xì gà nồng đậm. Holmes liếc nhìn ngón tay trỏ và ngón giữa của Victor, chúng bị ám vàng vì hút thuốc lá nhiều.",
       "unlocks": {
         "nodes": ["14SE", "22SW", "05WC"],
@@ -39,7 +39,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Sở cảnh sát Scotland Yard (Thanh tra Lestrade)",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "left": "38%", "top": "68%" },
+      "map_coords": {"left":"38.5%","top":"68%"},
       "content": "Thanh tra Lestrade gãi đầu gãi tai: \"Vụ đánh tráo à? Chắc chắn là do gã họa sĩ Elias làm. Hắn vừa ra tù tháng trước. Các anh không cần điều tra đâu, chiều nay tôi sẽ cho người đến tóm cổ hắn là xong chuyện!\"",
       "unlocks": {
         "nodes": ["14SE"],
@@ -52,7 +52,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Xưởng vẽ của họa sĩ Elias",
       "area": "SE",
       "type": "suspect_interview",
-      "map_coords": { "left": "65%", "top": "78%" },
+      "map_coords": {"left":"65%","top":"78%"},
       "content": "Elias đang sống trong một căn gác xép tồi tàn. Anh ta hoảng hốt khi thấy chúng tôi: \"Tôi thề tôi không biết gì về vụ trộm! Tuần trước, một gã mặc áo măng-tô xám, đội mũ sụp mặt đã đến thuê tôi vẽ chép lại bức 'Hoàng hôn trên sông Thames' qua một tấm ảnh chụp. Hắn trả bằng tiền mặt, giấu mặt rất kỹ, nhưng tôi nhớ rõ hắn sực nức mùi xì gà đắt tiền. Hắn yêu cầu tôi bỏ bức tranh giả vào tủ đồ số 4 ở ga King's Cross cách đây 2 ngày.\"",
       "unlocks": {
         "nodes": ["05WC", "22SW"],
@@ -70,7 +70,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Dinh thự của Julian",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "left": "68%", "top": "24%" },
+      "map_coords": {"left":"68%","top":"24%"},
       "content": "Người quản gia ra mở cửa và cau mày: \"Ngài Julian không có nhà. Ngài ấy đã đi nghỉ dưỡng ở Paris từ hai tuần trước và phải đến cuối tháng này mới trở về. Ngài ấy không liên lạc hay gửi thư từ gì về London cả.\"",
       "unlocks": {
         "nodes": [],
@@ -96,7 +96,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Quán rượu & Sòng bạc Cáo Đỏ (Porky)",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "left": "34%", "top": "84%" },
+      "map_coords": {"left":"34%","top":"84%"},
       "content": "Ông trùm Porky nhếch mép khi nghe hỏi thăm: \"Phòng tranh Archibald à? Tôi không biết gì về nghệ thuật. Nhưng tên quản lý Victor của chỗ đó thì là khách VIP ở đây. Hắn đang nợ sòng bạc này tới 5,000 bảng Anh. Tối qua hắn vừa hứa với tôi là 'sắp có một món hàng lớn' để thế chấp trừ nợ.\"",
       "unlocks": {
         "nodes": ["17WC"],
@@ -109,7 +109,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Ngân hàng Trung tâm",
       "area": "WC",
       "type": "clue_inspection",
-      "map_coords": { "left": "44%", "top": "36%" },
+      "map_coords": {"left":"44%","top":"36%"},
       "content": "Nhân viên giao dịch kiểm tra sổ sách: \"Tài khoản của Phòng tranh Archibald rất khỏe mạnh. Tuy nhiên, tài khoản cá nhân của Victor - người quản lý - thì đã cạn kiệt từ ba tháng nay.\"",
       "unlocks": {
         "nodes": [],
@@ -122,7 +122,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Tòa soạn báo The Times",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": { "left": "60%", "top": "36%" },
+      "map_coords": {"left":"72%","top":"32%"},
       "content": "Tổng biên tập Henry Ellis lật tờ báo ngày hôm qua: \"Phòng tranh Archibald dạo này rất nổi tiếng. Ngài Archibald vừa mua bảo hiểm cho bức 'Hoàng hôn trên sông Thames' trị giá 20,000 bảng Anh. Ngoài ra không có tin tức tội phạm nào đáng chú ý ở khu vực đó.\"",
       "unlocks": {
         "nodes": [],
@@ -135,7 +135,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Tiệm thuộc da Henderson",
       "area": "NW",
       "type": "decoy",
-      "map_coords": { "left": "18%", "top": "46%" },
+      "map_coords": {"left":"18%","top":"46%"},
       "content": "Xưởng chế tác da thuộc hoạt động bình thường. Không có manh mối nào liên quan tới vụ đánh tráo bức tranh.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -144,7 +144,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Khách sạn Victoria Club",
       "area": "SW",
       "type": "decoy",
-      "map_coords": { "left": "30%", "top": "88%" },
+      "map_coords": {"left":"30%","top":"88%"},
       "content": "Khách sạn dành cho khách du lịch. Không phát hiện dấu vết hay đối tượng nghi vấn.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -153,7 +153,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Chủ xưởng đóng tàu Albert Jenkins",
       "area": "EC",
       "type": "decoy",
-      "map_coords": { "left": "74%", "top": "16%" },
+      "map_coords": {"left":"74%","top":"16%"},
       "content": "Xưởng đóng tàu Albert Jenkins làm việc bận rộn. Không có thông tin gì về vụ tráo tranh.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -162,7 +162,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Kensington Tea Rooms",
       "area": "SW",
       "type": "decoy",
-      "map_coords": { "left": "20%", "top": "66%" },
+      "map_coords": {"left":"20%","top":"66%"},
       "content": "Quán trà quý tộc Kensington hoạt động bình thường, không có dấu vết khả nghi.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -171,7 +171,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Văn phòng quản ngục Newgate",
       "area": "EC",
       "type": "decoy",
-      "map_coords": { "left": "86%", "top": "24%" },
+      "map_coords": {"left":"86%","top":"24%"},
       "content": "Hồ sơ phạm nhân Newgate được lưu trữ cẩn thận. Không có manh mối nào liên quan.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -180,7 +180,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Tiệm đồng hồ Alfred Higgins",
       "area": "WC",
       "type": "decoy",
-      "map_coords": { "left": "48%", "top": "22%" },
+      "map_coords": {"left":"48%","top":"22%"},
       "content": "Tiệm sửa đồng hồ cổ Alfred Higgins buôn bán bình thường, không liên quan vụ án.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -189,7 +189,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Phòng tranh William Blake",
       "area": "WC",
       "type": "decoy",
-      "map_coords": { "left": "54%", "top": "34%" },
+      "map_coords": {"left":"54%","top":"34%"},
       "content": "Phòng triển lãm tranh nghệ thuật yên tĩnh, không có manh mối nào.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -198,7 +198,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Tiệm đồng hồ Oxford Street",
       "area": "NW",
       "type": "decoy",
-      "map_coords": { "left": "20%", "top": "30%" },
+      "map_coords": {"left":"20%","top":"30%"},
       "content": "Cửa hàng bán đồng hồ quả lắc bình thường, không có manh mối khả nghi.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -207,7 +207,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Hội trường Victoria Memorial",
       "area": "SW",
       "type": "decoy",
-      "map_coords": { "left": "28%", "top": "82%" },
+      "map_coords": {"left":"28%","top":"82%"},
       "content": "Hội trường sinh hoạt cộng đồng yên tĩnh, không phát hiện sự cố.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -216,7 +216,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Union Bank of London",
       "area": "EC",
       "type": "decoy",
-      "map_coords": { "left": "92%", "top": "18%" },
+      "map_coords": {"left":"92%","top":"18%"},
       "content": "Chi nhánh ngân hàng Union Bank hoạt động bình thường, không có liên hệ vụ án.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -225,7 +225,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Bệnh viện đại học University College",
       "area": "NW",
       "type": "decoy",
-      "map_coords": { "left": "34%", "top": "42%" },
+      "map_coords": {"left":"34%","top":"42%"},
       "content": "Bệnh viện tiếp nhận bệnh nhân thông thường, không có báo cáo nghi vấn.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -234,7 +234,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Đại lý vận tải biển Xavier",
       "area": "EC",
       "type": "decoy",
-      "map_coords": { "left": "86%", "top": "44%" },
+      "map_coords": {"left":"86%","top":"44%"},
       "content": "Đại lý tàu biển Xavier làm việc bình thường, không có lịch trình khả nghi.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
@@ -243,7 +243,7 @@ export const SHERLOCK_CASE_1 = {
       "title": "Hội động vật học Zoological Society",
       "area": "NW",
       "type": "decoy",
-      "map_coords": { "left": "16%", "top": "48%" },
+      "map_coords": {"left":"16%","top":"48%"},
       "content": "Trụ sở hội nghiên cứu động vật yên tĩnh, không có dấu vết nào.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     }

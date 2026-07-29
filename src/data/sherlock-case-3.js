@@ -20,7 +20,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Căn hộ hai chị em Frances & Loretta Nolan",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 580, "y": 280 },
+      "map_coords": {"left":"64%","top":"32%"},
       "content": "Frances Nolan ngơ ngác chia sẻ: 'Trong 2 tuần qua, tôi liên tục bị ngất xỉu và mất trí nhớ 2 lần mà không rõ lý do. Lần đầu tiên tôi tỉnh dậy thấy mình đang ngồi trên ghế công viên Hyde Park. Lần thứ hai vài ngày sau, khi tôi đến Lambeth Walk (24SE) để hỏi thuê một ngôi nhà nghỉ dưỡng xa thành phố cho hai chị em, tôi lại bị ngất và sau đó tỉnh dậy tại Ga xe lửa Waterloo. Tôi đã hỏi ý kiến Bác sĩ Trevelyan và ông ấy bảo tôi chỉ bị kiệt sức. Nếu tôi có bất trắc gì xảy ra, luật sư Hiram Davenport của gia đình vẫn là người quản lý tài sản theo đúng ý nguyện cha mẹ'. Lời khai chứng minh Frances hoàn toàn không biết việc di chúc của cô đã bị sửa đổi nhượng quyền cho Dr. Trevelyan!",
       "unlocks": {
         "nodes": ["24SE", "17WC", "28WC", "52EC"],
@@ -39,7 +39,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Bệnh viện St. Bartholomew (Bác sĩ pháp y Sir Jasper Meeks)",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": { "x": 550, "y": 320 },
+      "map_coords": {"left":"64.0%","top":"56.1%"},
       "content": "Bác sĩ khám nghiệm tử thi Sir Jasper Meeks kết luận: Nạn nhân Clarendon bị bắn ở cự ly kề cận bằng một khẩu súng sáu cỡ nhỏ. Tử vong khoảng từ 4 đến 10 tiếng trước 1 giờ chiều.",
       "unlocks": {
         "nodes": ["28WC"],
@@ -52,7 +52,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Porky Shinwell & Tiệm sòng bạc Kilgore",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 600, "y": 350 },
+      "map_coords": {"left":"80%","top":"34%"},
       "content": "Porky Shinwell tiết lộ: Clarendon nợ Claude Kilgore khoản tiền nợ cờ bạc khổng lồ 7.000 Bảng Anh và bị gã tay chân Gus Bullock (kẻ có vết sẹo dài trên mặt) đe dọa. Về sau Clarendon bất ngờ trả hết nợ và liên tục gặp gỡ bí mật với Calvin Leach (kẻ chuyên tiêu thụ đồ trộm cắp) vào đêm trước khi bị sát hại.",
       "unlocks": {
         "nodes": ["15SW"],
@@ -65,7 +65,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Văn phòng Luật sư Hiram Davenport",
       "area": "WC",
       "type": "suspect_interview",
-      "map_coords": { "x": 380, "y": 350 },
+      "map_coords": {"left":"44.2%","top":"61.4%"},
       "content": "Luật sư Hiram Davenport xem lại sổ sách và tiết lộ: 'Tháng trước, cô Frances Nolan có tới đây cùng Bác sĩ Trevelyan - vị bác sĩ riêng phụ trách chăm sóc sức khỏe cho cô em gái Loretta. Cô Frances bày tỏ nguyện vọng muốn Bác sĩ Trevelyan trở thành người giám hộ hợp pháp toàn bộ tài sản gia đình nếu cô gặp bất trắc. Lúc ấy tôi thấy ánh mắt cô Frances đờ đẫn, thần trí vơ vẩn mộng du rất kỳ lạ. Nhưng khi nghe cô ấy bị ngất xỉu sau đó trong ngày, tôi chỉ nghĩ cô ấy bị say nắng'.",
       "unlocks": {
         "nodes": ["17WC", "14WC"],
@@ -81,7 +81,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Phòng lưu trữ di chúc Chancery",
       "area": "WC",
       "type": "clue_inspection",
-      "map_coords": { "x": 410, "y": 390 },
+      "map_coords": {"left":"44%","top":"36%"},
       "content": "Bản di chúc chính thức của Frances Nolan lập tháng 6 xác nhận: Trong trường hợp Frances qua đời hoặc mất khả năng hành vi, Bác sĩ Trevelyan sẽ trở thành người giám hộ duy nhất toàn quyền sở hữu và quản lý khối tài sản thừa kế khổng lồ của gia đình Nolan.",
       "unlocks": {
         "nodes": [],
@@ -94,7 +94,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Căn hộ thuê bí mật Lambeth Walk",
       "area": "SE",
       "type": "location_search",
-      "map_coords": { "x": 620, "y": 700 },
+      "map_coords": {"left":"72.1%","top":"122.8%"},
       "content": "Khám xét căn hộ cho thuê ở Lambeth Walk (nơi Frances bị ngất xỉu lần 2), thám tử phát hiện một phòng kín có dụng cụ thôi miên, đĩa quay con lắc và lọ thuốc mê bốc hơi. Chủ nhà xác nhận Bác sĩ Trevelyan thường xuyên lui tới căn hộ này dưới tên giả.",
       "unlocks": {
         "nodes": ["28WC"],
@@ -107,7 +107,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Khách sạn Clarendon lưu trú",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 190, "y": 580 },
+      "map_coords": {"left":"22.1%","top":"101.8%"},
       "content": "Quản lý khách sạn nhớ lại chi tiết: 'Trong thời gian lưu trú, ông Clarendon có một phụ nữ ăn mặc rất nổi bật đến thăm. Sau đó xuất hiện người thứ hai: một gã đàn ông lực lưỡng hung tợn, có ria mép dày và vết sẹo dài trên má đến đe dọa đòi gặp Clarendon. Khi biết Clarendon không có ở đó, gã tức giận ngồi chực chờ ở quầy bar đến tận chạng vạng tối'. Hiện trường vụ án chỉ có 1 ly rượu, chứng minh gã người lạ và cô em gái Loretta không có mặt trong phòng lúc nổ súng.",
       "unlocks": {
         "nodes": [],
@@ -123,7 +123,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Cửa hàng súng sáu Derringer",
       "area": "WC",
       "type": "location_search",
-      "map_coords": { "x": 440, "y": 320 },
+      "map_coords": {"left":"42%","top":"42%"},
       "content": "Chủ cửa hàng súng xác nhận khẩu súng Derringer gây án được mua bởi một người đàn ông đeo kính có ngoại hình giống Bác sĩ Trevelyan, nhưng biên nhận cố tình ghi tên Frances Nolan để vu khống cô.",
       "unlocks": {
         "nodes": [],
@@ -136,7 +136,7 @@ export const SHERLOCK_CASE_3 = {
       "title": "Sở cảnh sát Scotland Yard - Hồ sơ Yoblinski (1861)",
       "area": "WC",
       "type": "clue_inspection",
-      "map_coords": { "x": 360, "y": 420 },
+      "map_coords": {"left":"41.9%","top":"73.7%"},
       "content": "Hồ sơ vụ án năm 1861 ghi rõ: Cha mẹ của Frances và Loretta bị sát hại bởi Zagreb Yoblinski - một kẻ bị tâm thần hành động đơn độc. Vụ án đã khép lại và Yoblinski đã bị trừng phạt nghiêm khắc, không liên quan hung thủ vụ án hiện tại.",
       "unlocks": {
         "nodes": [],

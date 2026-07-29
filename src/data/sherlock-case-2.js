@@ -21,7 +21,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Nhà bà Olivia Robins (Nhân chứng)",
       "area": "NW",
       "type": "suspect_interview",
-      "map_coords": { "x": 120, "y": 420 },
+      "map_coords": {"left":"22%","top":"16%"},
       "content": "Bà Olivia Robins, một phụ nữ cao tuổi lưng hơi còng, ra mở cửa và gắt lên: \"Mấy người mất nhiều thời gian quá đấy mới chịu đến gặp tôi! Tôi đã nói với mấy ông cảnh sát ngoài kia vụ cháy là tôi có thông tin, tôi thấy mọi chuyện, mà họ cứ gạt tôi đi. Thế mấy người đến đây để lắng nghe chưa? Có muốn tìm câu trả lời ai đã giết Sherlock Holmes không?\"\n\nThanh tra Lestrade ngượng ngùng khi bà tiếp tục: \"Tôi sống một mình. Sở thích của tôi là quan sát. Tôi nhìn qua cửa sổ suốt ngày. Tôi nắm rõ mọi tin tức và báo chí. Tôi là một công dân London có hiểu biết, thưa các ông.\"\n\n\"Như tôi đang nói dở trước khi bị ngắt lời, Sherlock đứng ngoài nhà ông ấy lúc 8:30 khi anh trai ông ấy đến, và họ nói chuyện khoảng một phút. Anh trai ông ấy rời đi, còn tôi quay vào xem ấm trà. Khi tôi nhìn lại thì Sherlock đã vào trong nhà.\"\n\n\"Sau đó muộn hơn, tôi nhìn qua cửa sổ và thấy một gã trông rất giống Edward Beaupre đứng ngoài nhà Sherlock Holmes lúc 9 giờ tối. Gã không đi một mình. Beaupre đi cùng một phụ nữ mặc chiếc váy màu đỏ rực rỡ. Và cô ta đeo một thứ như mặt nạ kịch nghệ - hình mặt cười vui vẻ.\"\n\n\"Đây là phần lắp vào các mảnh ghép còn thiếu: Tôi thấy Beaupre tưới dầu hỏa xung quanh các bức tường nhà Sherlock, rồi người phụ nữ châm một que diêm, giơ lên trời và ném vào ngôi nhà. Họ bỏ đi ngay khi những người đầu tiên chạy tới hiện trường. Lúc đó tôi bắt đầu chạy ra ngoài hét lên cầu cứu.\"",
       "unlocks": {
         "nodes": ["8SW", "52SW", "85WC"],
@@ -34,7 +34,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Mycroft Holmes",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 80, "y": 620 },
+      "map_coords": {"left":"28%","top":"74%"},
       "content": "Mycroft Holmes đau buồn chia sẻ: 'Tôi đã gặp em trai mình hai lần vào ngày hôm qua. Chúng tôi ăn trưa cùng nhau lúc 1 giờ chiều và mọi thứ vẫn bình thường. Sherlock bảo tôi ghé qua căn hộ của nó vào tối muộn. Tôi đến lúc 8:30 tối, Sherlock đón tôi ngay trước cửa thay vì mời vào nhà. Nó ăn mặc rất kỳ lạ - mặc một bộ vest màu đỏ burgundy bóng bẩy thay vì đồ vải thô màu nâu xám quen thuộc, và trông bộ quần áo có vẻ mới toanh. Sherlock cũng tỏ ra rất vội vã, thậm chí còn hỏi vay tôi một số tiền (điều nó chưa từng làm) rồi bảo tôi rời đi ngay vì có việc gấp. Nó liên tục gọi nhầm tên tôi trong cuộc trò chuyện ngắn'.",
       "unlocks": {
         "nodes": ["88SE"],
@@ -47,7 +47,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Phòng thí nghiệm của Murray",
       "area": "SW",
       "type": "clue_inspection",
-      "map_coords": { "x": 150, "y": 600 },
+      "map_coords": {"left":"34%","top":"84%"},
       "content": "Murray đang khám nghiệm chiếc hộp sắt lấy từ đống tro tàn: 'Nội dung bên trong không có gì đặc biệt, nhưng vành kim loại bên trong nắp hộp bị biến dạng nhẹ do nhiệt độ cao. Điều này chứng tỏ nắp hộp không được khóa chốt cẩn thận khi đám cháy xảy ra. Ai đó đã đóng vội chiếc hộp này lại trong lúc ngọn lửa đang thiêu rụi căn phòng'.",
       "unlocks": {
         "nodes": [],
@@ -60,7 +60,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Nhà nghỉ Camden House (Wilkie Gunderson)",
       "area": "NW",
       "type": "location",
-      "map_coords": { "x": 110, "y": 390 },
+      "map_coords": {"left":"26%","top":"28%"},
       "content": "Chủ nhà nghỉ Wilkie Gunderson dẫn chúng ta lên phòng trống trên tầng lầu nhìn thẳng sang 221B Baker St. Căn phòng nồng nặc mùi thuốc súng cháy. Cửa kính bị vỡ vụn, các mảnh kính rơi đầy trên chiếc bàn bầu dục nhỏ phía dưới. Trên sàn nhà cạnh bàn, chúng ta tìm thấy một vỏ đạn súng ngắn đã bắn. Gunderson hoảng hốt: 'Phòng này đáng lẽ phải khóa vì không có khách thuê. Chỉ có tôi và đội dọn dẹp có chìa khóa. Hôm nay chỉ có một nhân viên dọn dẹp mới nghỉ việc không phép là Israel Jacobs'.",
       "unlocks": {
         "nodes": ["53EC", "5EC"],
@@ -73,7 +73,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Cửa hàng vũ khí Grant Arms (Oliver Perkins)",
       "area": "EC",
       "type": "location",
-      "map_coords": { "x": 620, "y": 280 },
+      "map_coords": {"left":"78%","top":"18%"},
       "content": "Chủ cửa hàng Oliver Perkins xem xét vỏ đạn Webley .44: 'Đây là vỏ đạn .44 Webley nhưng bắn từ một khẩu Bull Dog cỡ nhỏ. Khẩu này chỉ có tầm bắn tối đa khoảng 50 feet. Để bắn trúng tim nạn nhân qua hai lớp kính từ khoảng cách 50 feet là một phát bắn cực kỳ khó. Ở London này chỉ có 2 người làm được: tôi và Chandler Davenport. Về Israel Jacobs, nó là con riêng của vợ tôi. Vợ tôi đang ở tù. Thằng bé bị bệnh run tay bẩm sinh từ nhỏ, nó không thể bắn súng được đâu. Nhưng gần đây nó hay qua lại với Chandler Davenport tại trường bắn sau ngõ của tôi'.",
       "unlocks": {
         "nodes": ["28WC", "53EC"],
@@ -86,7 +86,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Nhà riêng của Israel Jacobs",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 680, "y": 300 },
+      "map_coords": {"left":"80%","top":"36%"},
       "content": "Israel Jacobs mở cửa với vẻ mặt đầy lo lắng, hai bàn tay run rẩy liên tục không kiểm soát: 'Tôi không sở hữu khẩu súng nào và cũng chưa từng bắn súng. Tay tôi bị thế này từ nhỏ rồi'. Khi chúng ta nhặt lên một cuốn sổ ghi chú có tiêu đề 'Grant Firearms - Đáp ứng mọi nhu cầu súng đạn của bạn', Jacobs tái mặt: 'Mẹ tôi cưới ông chủ tiệm súng Grant. Tôi không ưa ông ta nhưng lấy giấy này viết nháp thôi'.",
       "unlocks": {
         "nodes": ["5EC"],
@@ -99,7 +99,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Căn hộ của Chandler Davenport",
       "area": "WC",
       "type": "location",
-      "map_coords": { "x": 420, "y": 320 },
+      "map_coords": {"left":"42%","top":"42%"},
       "content": "Căn hộ của Davenport mở cửa nhưng không có ai ở nhà. Khám xét phòng, chúng ta thấy một hòm sắt chứa nhiều loại súng đạn. Dưới nắp hòm dán một bài báo cũ ngày 25/11/1891 tiêu đề 'Tuyên án băng nhóm buôn lậu tại cảng phía Đông': 'Tòa án kết án 8 thành viên của băng nhóm buôn lậu cổ vật và ma túy. Chandler Davenport là người thứ 9 được tuyên trắng án do thiếu chứng cứ'.",
       "unlocks": {
         "nodes": ["5EC", "34WC"],
@@ -112,7 +112,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Nhà Gerald Locke",
       "area": "WC",
       "type": "suspect_interview",
-      "map_coords": { "x": 480, "y": 350 },
+      "map_coords": {"left":"52%","top":"38%"},
       "content": "Gerald Locke, anh em song sinh của John Locke (thành viên băng buôn lậu đang ở tù) cho biết: 'John là em trai tôi. Nó đi buôn lậu và bị bắt là đáng đời. Nhưng tôi nghe nói những gia đình khác của băng nhóm rất căm phẫn Sherlock Holmes vì tin báo của ông ta khiến người thân của họ đi tù 10-30 năm. Lần cuối tôi gặp John trong tù vài ngày trước, nó nói sắp có một vụ lớn xảy ra trả thù Holmes nhưng không chịu tiết lộ chi tiết'.",
       "unlocks": {
         "nodes": [],
@@ -125,7 +125,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Căn hộ của Ambroise Beaupre",
       "area": "SW",
       "type": "location",
-      "map_coords": { "x": 190, "y": 660 },
+      "map_coords": {"left":"24%","top":"80%"},
       "content": "Căn hộ của Ambroise Beaupre (em trai Edward Beaupre) trống trơn như đã bỏ đi vài ngày. Bánh mì trên bàn đã mốc. Trên bàn có một mảnh giấy ghi địa chỉ '85 WC'. Trong phòng tắm, có một bức thư mật mã kỳ lạ dán trên tường: các chữ cái xếp thành hàng dọc và hàng ngang hỗn loạn, trong đó có một số chữ viết hoa (A, T, A, C, T, C, P).",
       "unlocks": {
         "nodes": ["85WC"],
@@ -138,7 +138,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Nhà Laura Parker",
       "area": "WC",
       "type": "suspect_interview",
-      "map_coords": { "x": 510, "y": 380 },
+      "map_coords": {"left":"48%","top":"30%"},
       "content": "Laura Parker cho biết: 'Tôi từng hẹn hò với Edward Beaupre trước khi anh ta bị bắt vào tù. Tôi biết em trai anh ta là Ambroise Beaupre rất tức giận sau vụ bắt giữ đó. Tôi nghĩ anh ta đã rời London cách đây vài ngày vì quá tức giận'.",
       "unlocks": {
         "nodes": ["52SW"],
@@ -151,7 +151,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Căn hộ của Marvin Pemberton",
       "area": "EC",
       "type": "location",
-      "map_coords": { "x": 710, "y": 340 },
+      "map_coords": {"left":"82%","top":"14%"},
       "content": "Căn hộ của Pemberton không khóa. Trong phòng ngủ treo đầy những mẩu báo viết về các vụ án của Sherlock Holmes. Trong tủ quần áo chứa toàn áo khoác dạ tweed và mũ thợ săn giống hệt trang phục của Holmes. Trên bàn làm việc có ba bức thư từ viết tay gửi từ 'S' (Sherlock): \n1. 'M, Hãy ghé qua lúc 8:45 tối nay. Tôi rất tiếc phải nói rằng việc này không như anh mong đợi đâu. - S'\n2. 'M, Anh bắt chước rất giỏi, tôi thừa nhận. Tuy nhiên, tôi không thích việc đi vào một nhà hàng và thấy hóa đơn đã được thanh toán dưới tên tôi. - S'\n3. 'M, Với sự tâng bốc sâu sắc nhất, tôi đã ở cửa hàng hôm nọ. Thật ấn tượng. Nhưng người duy nhất anh không thể lừa được là tôi. - S'.",
       "unlocks": {
         "nodes": ["16NW", "88SE", "83EC"],
@@ -164,7 +164,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Cửa hàng mũ Tetley & Butler",
       "area": "NW",
       "type": "location",
-      "map_coords": { "x": 130, "y": 450 },
+      "map_coords": {"left":"32%","top":"14%"},
       "content": "Người bán hàng cho biết: 'Chúng tôi không bán được nhiều mũ thợ săn deerstalker, nhưng gần đây có một quý ông trung niên trông lịch lãm, tinh tế hay ghé mua loại mũ này. Ông ta nói tên mình là Pemberton'.",
       "unlocks": {
         "nodes": ["73EC"],
@@ -177,7 +177,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Cửa hàng thời trang Roberts & Parfitt",
       "area": "SE",
       "type": "location",
-      "map_coords": { "x": 890, "y": 620 },
+      "map_coords": {"left":"80%","top":"76%"},
       "content": "Chủ tiệm Roberts & Parfitt kể lại: 'Sherlock Holmes thường xuyên mua đồ ở đây. Hôm qua khoảng 5 giờ chiều, ông ấy có ghé qua lấy một chiếc áo khoác tweed màu burgundy và ghi nợ vào tài khoản. Ông ấy tỏ ra rất cởi mở, trò chuyện vui vẻ và đồng ý cho tôi làm một ma-nơ-canh giống ông ấy đặt trước cửa'. Wiggins thì thầm: 'Sherlock thật không bao giờ dùng thẻ tín dụng ghi nợ, ông ấy chỉ nhận quà hoặc trả tiền mặt, và ông ấy cực kỳ ghét việc phô trương làm ma-nơ-canh'.",
       "unlocks": {
         "nodes": ["8SW"],
@@ -190,7 +190,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Nhà Gertrude Helwig",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 740, "y": 360 },
+      "map_coords": {"left":"88%","top":"22%"},
       "content": "Gertrude Helwig, một phụ nữ trẻ xinh đẹp, tiếp đón chúng ta: 'Tối qua tôi ở Nhà hát Lyceum để tập duyệt cho vở diễn mới tối nay. Tôi không hề bén mảng tới Baker Street'. Tuy nhiên, khi nhấc gói bưu phẩm giúp cô ấy, cô ấy dễ dàng dùng tay trái nhưng khẽ nhăn mặt đau đớn khi đưa cánh tay phải ra đỡ. Chúng ta thấy vết bỏng đỏ lớn được che dưới lớp áo pink overcoat.",
       "unlocks": {
         "nodes": ["18WC"],
@@ -203,7 +203,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Nhà hát Lyceum (Wayne Nelson)",
       "area": "WC",
       "type": "location",
-      "map_coords": { "x": 450, "y": 280 },
+      "map_coords": {"left":"46%","top":"36%"},
       "content": "Đạo diễn Wayne Nelson đang la hét vì nữ diễn viên chính Gertrude Helwig chưa đến. Ông cho biết thêm: 'Vở kịch tối nay của chúng tôi tên là The Initiative of Dharma. Nhân vật chính là một phụ nữ xinh đẹp mặc váy đỏ. À, hôm qua ai đó đã lấy cắp chiếc mặt nạ kịch vui vẻ (happy theater mask) treo trên tường phòng hóa trang'.",
       "unlocks": {
         "nodes": ["74EC"],
@@ -216,7 +216,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Quán ăn Ship and Turtle",
       "area": "EC",
       "type": "location",
-      "map_coords": { "x": 780, "y": 380 },
+      "map_coords": {"left":"84%","top":"40%"},
       "content": "Nữ phục vụ quán Ship and Turtle kể lại: 'Hôm qua khoảng 5 giờ chiều, có một cụ già mặc áo khoác nâu (giống Holmes) đi trên vỉa hè thì một thùng gỗ đựng dưa chuột muối từ kho của chúng tôi tuột ra va trúng chân ông ấy khiến ông ấy đi tập tễnh. Hai nhân viên kho làm việc hôm qua là Mitchell Rourke và Israel Jacobs. Israel là một cậu bé rất tốt'.",
       "unlocks": {
         "nodes": ["53EC", "5WC"],
@@ -229,7 +229,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Trạm xe ngựa Trung tâm (Central Carriage Stables)",
       "area": "WC",
       "type": "location",
-      "map_coords": { "x": 400, "y": 250 },
+      "map_coords": {"left":"40%","top":"26%"},
       "content": "Điều hành trạm xe ngựa báo cáo: 'Sherlock Holmes được xe chở đi hai lần hôm qua. Một lần lúc 1:45 chiều hướng NW nhưng xuống giữa chừng không rõ lý do. Lần hai lúc gần 6:00 chiều về hướng WC. Tài xế phụ kể thêm: Hôm qua lúc 5:00 chiều thấy ông Holmes bị một thùng gỗ va trúng chân trước quán Ship and Turtle, trông rất đau nhưng ông ấy từ chối đi bác sĩ'.",
       "unlocks": {
         "nodes": ["83EC"],
@@ -242,7 +242,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Quán rượu The Pavilion (Elle Fanning)",
       "area": "NW",
       "type": "suspect_interview",
-      "map_coords": { "x": 100, "y": 480 },
+      "map_coords": {"left":"14%","top":"34%"},
       "content": "Cô phục vụ Annette Verlaine kể lại: 'Hôm qua lúc 2 giờ chiều, có một người trông giống Sherlock Holmes vào quán ngồi im lặng suốt một giờ. Khi ông ta gọi trà, bà chủ Elle Fanning đã gạt tôi ra, tự tay pha trà và mang ra cho ông ta. Tôi thấy ông Holmes nhìn chằm chằm vào cô ấy, ngửi chén trà hai lần rồi đứng dậy bỏ tiền lại và đi thẳng. Mấy ngày trước, tôi thấy Elle Fanning họp kín trong phòng sau với hai gã trông rất đáng sợ, một gã cứ xoay khẩu súng trên ngón tay, gã kia thì đập cây gậy vào lòng bàn tay'.",
       "unlocks": {
         "nodes": ["90NW", "72NW"],
@@ -255,7 +255,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Cửa hàng hóa chất John Taylor Chemist",
       "area": "NW",
       "type": "clue_inspection",
-      "map_coords": { "x": 180, "y": 420 },
+      "map_coords": {"left":"24%","top":"38%"},
       "content": "Nhà hóa học John Taylor kiểm tra sổ sách: 'Gần đây tôi có bán một lượng chất độc Cyanide đóng trong thùng gỗ cho cô Elle Fanning. Cô ấy nói mua để làm chất tráng ảnh nghệ thuật sepia vì cô ấy là nhiếp ảnh gia nghiệp dư'.",
       "unlocks": {
         "nodes": ["20NW", "90NW"],
@@ -268,7 +268,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Sở cảnh sát Tichfield (Dick Alpert's case)",
       "area": "NW",
       "type": "location",
-      "map_coords": { "x": 190, "y": 490 },
+      "map_coords": {"left":"30%","top":"36%"},
       "content": "Đại úy cảnh sát chia sẻ hồ sơ: 'Cô Elle Fanning là con gái của Dick Alpert, một cảnh sát kỳ cựu đã hy sinh trong vụ vây bắt băng buôn lậu Outer Docks hai năm trước. Sherlock Holmes là người đã cung cấp thông tin mật giúp cảnh sát phá vụ án đó. Tên Alpert bị bắn chết bởi một phát súng không rõ thủ phạm'.",
       "unlocks": {
         "nodes": ["20NW", "90NW"],
@@ -281,7 +281,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Nhà riêng của Elle Fanning",
       "area": "NW",
       "type": "suspect_interview",
-      "map_coords": { "x": 210, "y": 480 },
+      "map_coords": {"left":"28%","top":"44%"},
       "content": "Căn hộ của Elle Fanning bừa bộn. Sau ghế sofa giấu một chiếc thùng gỗ nhỏ có nhãn của tiệm hóa chất 'Taylor'. Cô ta thừa nhận: 'Sherlock Holmes có ghé quán tôi hôm qua lúc 2 giờ chiều. Tôi rất ngưỡng mộ ông ấy nên tự tay pha trà mời ông ấy, nhưng ông ấy hành xử rất kỳ lạ rồi bỏ đi không uống'.",
       "unlocks": {
         "nodes": ["72NW"],
@@ -294,7 +294,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Cảng Outer Docks (Phía Đông)",
       "area": "E",
       "type": "location",
-      "map_coords": { "x": 920, "y": 300 },
+      "map_coords": {"left":"94%","top":"28%"},
       "content": "Quản lý cảng cho biết: 'Tên Ambroise Beaupre làm bảo vệ cho chúng tôi ở đây. Gã là một kẻ hung tợn, chuyên mang theo một cây gậy gỗ sồi shillelagh rất nặng để hăm dọa người khác. Hôm nay là lần đầu tiên gã bỏ làm không lý do'.",
       "unlocks": {
         "nodes": ["52SW"],
@@ -307,7 +307,7 @@ export const SHERLOCK_CASE_2 = {
       "title": "Tòa soạn báo London Times (Henry Ellis)",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 650, "y": 320 },
+      "map_coords": {"left":"72%","top":"32%"},
       "content": "Nhà báo Henry Ellis cho biết: 'Tôi nhận được tin báo từ Dirkin Topper. Hắn đi ngang qua Baker Street lúc hơn 9:00 tối qua và thấy ba người vội vã rời khỏi căn hộ đang cháy của Sherlock: một người đàn ông, một người phụ nữ mặc váy đỏ và một bóng đen mặc đồ đen đi sau cùng'.",
       "unlocks": {
         "nodes": [],

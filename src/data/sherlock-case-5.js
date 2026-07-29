@@ -19,7 +19,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Hiện trường 63 Fleet Street (Góc ngõ Shoe Lane)",
       "area": "EC",
       "type": "crime_scene",
-      "map_coords": { "x": 590, "y": 310 },
+      "map_coords": {"left":"58.5%","top":"36.5%"},
       "content": "Căn nhà hoang số 63 Fleet Street xơ xác, các cửa sổ bị đóng ván gỗ. Thanh tra Lestrade dẫn chúng ta ra sân sau nơi thi thể nạn nhân nằm trên nền đá lạnh: \"Không có dấu hiệu ẩu đả, không có ví tiền hay giấy tờ. Nhiều khả năng chỉ là một gã lang thang tự tử ngã từ mái nhà\". Bác sĩ Sir Jasper Meeks tháo găng tay kiểm tra: \"Nạn nhân bị vỡ hộp sọ và gãy nhiều xương, tử vong tức thì do ngã từ trên cao. Mặt nạn nhân bị biến dạng nặng không thể nhận diện. Tuy nhiên, quần áo có mùi khói nhẹ bộc phát rất kỳ lạ\".",
       "unlocks": {
         "nodes": ["34EC", "22SW", "13SW"],
@@ -32,7 +32,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Nhà cụ bà đối diện 63 Fleet Street",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 610, "y": 320 },
+      "map_coords": {"left":"70.9%","top":"56.1%"},
       "content": "Cụ bà sống đối diện Shoe Lane cho biết: \"Tôi nghe thấy một tiếng động khủng khiếp như bao than rơi từ trên xe xuống! Tôi báo cảnh sát nhưng họ không nghe. Sáng sớm hôm đó trong sương mờ, tôi thấy một bóng người di chuyển rất nhanh qua ngõ. Tôi cũng đọc báo thấy có bài viết về một gã mang dao tấn công người khác!\".",
       "unlocks": {
         "nodes": ["35EC"],
@@ -45,7 +45,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Nhà trọ Mrs. Hagwood (Nơi Martha Jamieson ở)",
       "area": "EC",
       "type": "crime_scene",
-      "map_coords": { "x": 560, "y": 290 },
+      "map_coords": {"left":"65%","top":"30%"},
       "content": "Bà chủ trọ Hagwood kể lại: \"Cô Martha Jamieson thuê căn hộ riêng ở đây vài tuần nay vì mâu thuẫn với chồng. Đêm qua xảy ra hỏa hoạn trong phòng cô ấy. Chúng tôi dập lửa rất nhanh, căn phòng chỉ bị ám khói. Người ta bảo không khí ngột ngạt làm cô ấy chết ngạt trước khi lửa cháy tới\". Tuy nhiên, thám tử phát hiện quần áo của Martha ẩm ướt bất thường và vết ướt trên sàn phòng tắm chứng tỏ cô ấy bị dìm chết đuối (Thủy) trước khi lửa được châm lên (Hỏa).",
       "unlocks": {
         "nodes": ["10EC", "39EC"],
@@ -58,7 +58,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Khách sạn Metropolitan Hotel (Angus McAllister)",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 580, "y": 260 },
+      "map_coords": {"left":"72%","top":"32%"},
       "content": "Ông Angus McAllister hào hứng khoe: \"Tôi nhìn thấy toàn bộ vụ cháy ở nhà trọ Hagwood từ phòng khách sạn! Tôi đã trả lời phỏng vấn trên tờ báo The Times và mua hẳn 50 tờ báo! Tôi còn nhớ thấy hai chiếc xe cấp cứu chạy đến sau vụ cháy, một chiếc rồi lại thêm một chiếc nữa!\".",
       "unlocks": {
         "nodes": [],
@@ -71,7 +71,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Nhà riêng vợ chồng Jamieson",
       "area": "EC",
       "type": "location",
-      "map_coords": { "x": 620, "y": 330 },
+      "map_coords": {"left":"70%","top":"38%"},
       "content": "Căn nhà bừa bộn và bám bụi. Trên tường treo hai bằng tốt nghiệp Đại học UCL mang tên Frank Jamieson và Martha Jamieson. Trên bàn làm việc có một mảnh giấy nhắn ngắn: \"Frank, Chúng ta không thể tiếp tục thế này. Hãy đến gặp em tại căn hộ góc đường Clifton & Sun Street lúc 10 giờ. - M.\". Mảnh giấy này trùng nét chữ với bức thư gửi Pearl Jones!",
       "unlocks": {
         "nodes": ["41EC", "43WC"],
@@ -84,7 +84,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Nhà Pearl Jones",
       "area": "WC",
       "type": "location",
-      "map_coords": { "x": 490, "y": 360 },
+      "map_coords": {"left":"48%","top":"36%"},
       "content": "Trong căn hộ của cô Pearl Jones (nạn nhân tử vong tại nhà tắm Thổ Nhĩ Kỳ), thám tử tìm thấy một bức thư đe dọa nhem nhuốc: \"Cô Jones, Cô phải đến nhà tắm Nevill's Turkish Baths tối nay. Đi một mình. Không đèn. Không được từ chối. Fire consumes, water preserves, air carries, and earth receives. All things return to their proper state. Đến lúc 9:30. - Empedocles\". Ngoài ra còn có bức thư tình từ chồng mới cưới Douglas Ferguson.",
       "unlocks": {
         "nodes": ["92WC", "54WC", "178WC"],
@@ -97,7 +97,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Nhật ký bí mật của Pearl Jones (Khám xét kỹ hơn)",
       "area": "WC",
       "type": "clue_inspection",
-      "map_coords": { "x": 495, "y": 365 },
+      "map_coords": {"left":"49%","top":"37%"},
       "content": "Dưới đáy hòm trang điểm giấu cuốn nhật ký cũ của Pearl Jones: \"Tối nay chúng tôi đến nhà tắm Haley. Philippe mang loại cây Belladonna đến để thử nghiệm tĩnh tâm. Agnes không muốn thử nhưng chúng tôi ép cô ấy uống. Liều quá mạnh làm Agnes co giật ngạt thở. Frank đứng nhìn không làm gì. Để che giấu sự thật, Frank bảo dìm xác cô ấy xuống nước và dựng hiện trường chết đuối accident. Nhưng khi tôi về nhà, tôi nhìn thấy một bóng người đứng trong bóng tối theo dõi tất cả... Sir Jasper Meeks!\".",
       "unlocks": {
         "nodes": ["43SW"],
@@ -110,7 +110,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Nhà tắm Thổ Nhĩ Kỳ Nevill's Turkish Baths",
       "area": "WC",
       "type": "crime_scene",
-      "map_coords": { "x": 510, "y": 380 },
+      "map_coords": {"left":"51%","top":"38%"},
       "content": "Nhân viên nhà tắm cho biết Pearl Jones được tìm thấy chết trong phòng tắm hơi ngâm nước. Cảnh sát cho rằng cô bị ngất do nhiệt và đuối nước (Thủy). Tuy nhiên, Bác sĩ Murray khám nghiệm nhận xét hiện trường không hề có dấu vết giãy giụa chống cự của người bị đuối nước. Cô ấy đã bị đầu độc bằng chiết xuất thảo mộc Belladonna (Thổ) trước khi đưa vào phòng tắm!",
       "unlocks": {
         "nodes": ["93WC", "22SW"],
@@ -123,7 +123,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Công viên Archbishop's Park (Hòm gỗ chôn sống)",
       "area": "SE",
       "type": "crime_scene",
-      "map_coords": { "x": 750, "y": 680 },
+      "map_coords": {"left":"50.5%","top":"74%"},
       "content": "Con chó Bram của gã Alby Sam đã đào được một chiếc hòm gỗ chôn dưới đất trong công viên. Bên trong hòm là thi thể của nhà khảo cổ Philippe Pelletier. Công chúng ngỡ anh bị chôn sống (Thổ), nhưng khám nghiệm của Murray chứng minh trong hòm gỗ không hề có vết cào cấu hay giãy giụa. Philippe đã bị rút hết oxy ngạt thở (Khí) trong phòng kín của Meeks trước khi đặt vào hòm chôn!",
       "unlocks": {
         "nodes": ["66SE", "11SE"],
@@ -136,7 +136,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Nhà gã Alby Sam (Chủ con chó Bram)",
       "area": "SE",
       "type": "suspect_interview",
-      "map_coords": { "x": 720, "y": 660 },
+      "map_coords": {"left":"62%","top":"80%"},
       "content": "Alby Sam tỏ ra hằn học nhưng khi thấy giấy giới thiệu Credentials (R) từ Scotland Yard thì đồng ý hợp tác. Con chó Bram ngậm ra một mẩu báo rách The Times ngày 4 tháng 6 ghi lại vụ cháy nhà trọ.",
       "unlocks": {
         "nodes": ["11SE"],
@@ -149,7 +149,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Dirk Stephen (Trợ lý đồn khám nghiệm)",
       "area": "SE",
       "type": "suspect_interview",
-      "map_coords": { "x": 700, "y": 640 },
+      "map_coords": {"left":"68%","top":"73%"},
       "content": "Dirk Stephen xin việc tại đồn khám nghiệm của Sir Jasper Meeks kể lại: \"Tôi nghe thấy tiếng động kỳ lạ và tiếng thở dốc hốt hoảng từ phòng riêng của Meeks. Meeks gạt đi bảo là tiếng chó của ông ấy. Nhưng tôi ghét chó nên bỏ đi luôn. Meeks làm gì có nuôi con chó nào!\".",
       "unlocks": {
         "nodes": [],
@@ -162,7 +162,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Đại học UCL (University College London)",
       "area": "WC",
       "type": "location",
-      "map_coords": { "x": 420, "y": 280 },
+      "map_coords": {"left":"42.5%","top":"23%"},
       "content": "Trong phòng giáo vụ Đại học UCL, vị giáo sư già cho chúng tôi xem bức ảnh tập thể dự án năm 1867: \"EMPEDOCLES PROJECT — 2A, 2G, 2H — 1867\". Bức ảnh chụp 6 sinh viên xuất sắc gồm 2 triết gia (Pearl Jones, Martha Jamieson), 2 y khoa (Sir Jasper Meeks, Agnes Monroe) và 2 khảo cổ (Frank Jamieson, Philippe Pelletier). Vị giáo sư thở dài: \"Tội nghiệp cô Agnes Monroe...\".",
       "unlocks": {
         "nodes": ["43SW"],
@@ -175,7 +175,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Nhà cha mẹ Agnes Monroe",
       "area": "SW",
       "type": "suspect_interview",
-      "map_coords": { "x": 220, "y": 640 },
+      "map_coords": {"left":"22%","top":"64%"},
       "content": "Bà Monroe đau buồn đưa cho chúng tôi cuốn nhật ký thời đại học của con gái Agnes: \"Họ bảo con tôi bị chết đuối tai nạn. Nhưng nhật ký Agnes ghi rõ nhóm bạn Pearl, Martha, Frank, Philippe dụ cô ấy dùng thử cây Belladonna tại nhà tắm. Khi Agnes gặp nguy hiểm, không ai cứu cô ấy mà còn dìm cô ấy xuống nước để ngụy tạo tai nạn. Người yêu của Agnes thời đó chính là Jasper Meeks!\".",
       "unlocks": {
         "nodes": [],
@@ -188,7 +188,7 @@ export const SHERLOCK_CASE_5 = {
       "title": "Đại sứ quán Nga (Thông tin sát thủ thuê Ivan Moroz)",
       "area": "SW",
       "type": "location",
-      "map_coords": { "x": 260, "y": 680 },
+      "map_coords": {"left":"28%","top":"82%"},
       "content": "Quan chức đại sứ quán xác nhận: Gã nam giới có vết sẹo dài trên mặt nói tiếng Nga là Ivan Moroz - một tên tay sai đâm thuê chém thuê khét tiếng đi cùng Sergei Sokolov. Chúng được ai đó tại London thuê để di chuyển thi thể và phóng hỏa dàn cảnh.",
       "unlocks": {
         "nodes": [],

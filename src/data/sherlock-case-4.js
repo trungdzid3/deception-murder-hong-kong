@@ -20,7 +20,7 @@ export const SHERLOCK_CASE_4 = {
       "title": "Nhà riêng nạn nhân Oswald Mason",
       "area": "WC",
       "type": "crime_scene",
-      "map_coords": { "x": 390, "y": 290 },
+      "map_coords": {"left":"45.3%","top":"50.9%"},
       "content": "Bà Rose Mason (vợ nạn nhân) nức nở kể lại: 'Chồng tôi trở về nhà lúc 9:30 tối và vào phòng làm việc. Lúc 10:00 tối khi tôi vào phòng thì bàng hoàng thấy ông ấy nằm gục trên bàn làm việc, đầu bị thương nặng. Chiếc két sắt trong phòng có dấu vết bị cạy nhưng không mất tiền mặt, chỉ mất đi cuộn bản đồ định vị cổ vật lăng mộ Katebet mà ông ấy vừa nhận từ Ai Cập'.",
       "unlocks": {
         "nodes": ["12NW", "50EC", "43WC"],
@@ -33,7 +33,7 @@ export const SHERLOCK_CASE_4 = {
       "title": "Nhà riêng Bà quả phụ Thám hiểm gia Katebet",
       "area": "NW",
       "type": "suspect_interview",
-      "map_coords": { "x": 140, "y": 380 },
+      "map_coords": {"left":"32%","top":"16%"},
       "content": "Bà quả phụ tuyệt đẹp và quyến rũ tiếp đón thám tử trong phòng khách tràn ngập cổ vật Ai Cập. Cô tiết lộ mâu thuẫn nảy lửa trong nội bộ đoàn khai quật: 'Chồng tôi và Giáo sư Windibank tranh cãi nảy lửa về quyền sở hữu các cổ vật của Vua Toutankhamon. Windibank đặc biệt lo lắng và muốn bán lén cổ vật ra thị trường đen cho các nhà sưu tập tư nhân ở London'.",
       "unlocks": {
         "nodes": ["38EC", "30EC"],
@@ -46,7 +46,7 @@ export const SHERLOCK_CASE_4 = {
       "title": "Phóng viên báo The Times (Travis)",
       "area": "EC",
       "type": "suspect_interview",
-      "map_coords": { "x": 610, "y": 310 },
+      "map_coords": {"left":"70.9%","top":"54.4%"},
       "content": "Phóng viên Travis trình bày chi tiết: 'Mọi người nghi ngờ tôi là hung thủ vì tôi liên tục đưa tin về đoàn thám hiểm. Nhưng sự thật là hàng rào an ninh quanh khu vực cắm trại khai quật vô cùng nghiêm ngặt. Dù tôi đã nhiều lần đệ đơn xin phép nhưng họ tuyệt đối không cho tôi bước chân vào lăng mộ. Tôi hoàn toàn không thể nào tiếp cận lăng mộ hay nạn nhân để gây ra vụ sát hại đầu tiên được!'. Chi tiết an ninh nghiêm ngặt tạo chứng cứ ngoại phạm sắt đá loại trừ Travis!",
       "unlocks": {
         "nodes": ["43WC"],
@@ -65,7 +65,7 @@ export const SHERLOCK_CASE_4 = {
       "title": "Viện Bảo Tàng Anh (Phòng Ai Cập)",
       "area": "EC",
       "type": "clue_inspection",
-      "map_coords": { "x": 550, "y": 340 },
+      "map_coords": {"left":"64.0%","top":"59.6%"},
       "content": "Chuyên gia bảo tàng đính chính thông tin: 'Chiếc bùa hộ mệnh thu được tại hiện trường không phải của Nữ vương Katebet mà thuộc về lăng mộ Vua Toutankhamon. Nó đã được đánh tráo tinh vi nhằm dựng lên vụ án Lời nguyền siêu nhiên hù dọa dư luận'. Chỉ duy nhất Đại học London là nhà tài trợ chính thức.",
       "unlocks": {
         "nodes": ["30EC"],
@@ -78,7 +78,7 @@ export const SHERLOCK_CASE_4 = {
       "title": "Đại học tổng hợp London (Khoa Khảo cổ)",
       "area": "WC",
       "type": "suspect_interview",
-      "map_coords": { "x": 370, "y": 310 },
+      "map_coords": {"left":"42.5%","top":"23%"},
       "content": "Đại diện khoa khảo cổ xác nhận: Trợ lý Turnbull rất khao khát tham gia đoàn thám hiểm Katebet. Sau khi bị từ chối và xảy ra mâu thuẫn lợi nhuận mua bán cổ vật với Giáo sư Windibank, Turnbull đã giận dữ nộp đơn xin từ chức khỏi Đại học và chuyển sang làm phóng viên tự do.",
       "unlocks": {
         "nodes": [],
@@ -91,7 +91,7 @@ export const SHERLOCK_CASE_4 = {
       "title": "Cửa hàng đồ cổ Ai Cập đường Oxford",
       "area": "EC",
       "type": "location_search",
-      "map_coords": { "x": 510, "y": 300 },
+      "map_coords": {"left":"72%","top":"32%"},
       "content": "Chủ tiệm đồ cổ khai báo: 'Một người đàn ông năng nổ kỳ quặc đại diện đoàn thám hiểm đã bán lén cho tôi các bức tượng nhỏ Ai Cập với giá rất cao. Kẻ này hiểu biết rất sâu về cổ vật Toutankhamon'.",
       "unlocks": {
         "nodes": [],

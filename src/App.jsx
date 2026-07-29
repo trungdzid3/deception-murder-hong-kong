@@ -1305,60 +1305,8 @@ function App() {
                       {Object.values(activeSherlockCase?.nodes || {}).map((n) => {
                         const isVisited = roomState.visitedNodes?.includes(n.id);
                         
-                        // Tọa độ % phân vùng địa lý: Ưu tiên n.map_coords của chính vụ án đó
-                        const coordsMapFallback = {
-                          '221B': { left: '18%', top: '22%' },
-                          '50NW': { left: '22%', top: '16%' },
-                          '53NW': { left: '26%', top: '28%' },
-                          '16NW': { left: '32%', top: '14%' },
-                          '20NW': { left: '14%', top: '34%' },
-                          '72NW': { left: '24%', top: '38%' },
-                          '89NW': { left: '30%', top: '36%' },
-                          '90NW': { left: '28%', top: '44%' },
-                          '41NW': { left: '12%', top: '12%' },
-                          '49NW': { left: '36%', top: '22%' },
-                          '96NW': { left: '18%', top: '46%' },
-                          '45NW': { left: '20%', top: '30%' },
-                          '78NW': { left: '34%', top: '42%' },
-                          '99NW': { left: '16%', top: '48%' },
-                          '18WC': { left: '46%', top: '36%' },
-                          '28WC': { left: '42%', top: '42%' },
-                          '34WC': { left: '52%', top: '38%' },
-                          '85WC': { left: '48%', top: '30%' },
-                          '5WC': { left: '40%', top: '26%' },
-                          '15WC': { left: '44%', top: '20%' },
-                          '67WC': { left: '50%', top: '44%' },
-                          '24WC': { left: '48%', top: '22%' },
-                          '31WC': { left: '54%', top: '34%' },
-                          '5EC': { left: '78%', top: '18%' },
-                          '30EC': { left: '72%', top: '32%' },
-                          '35EC': { left: '76%', top: '26%' },
-                          '42EC': { left: '84%', top: '30%' },
-                          '53EC': { left: '80%', top: '36%' },
-                          '73EC': { left: '82%', top: '14%' },
-                          '74EC': { left: '88%', top: '22%' },
-                          '83EC': { left: '84%', top: '40%' },
-                          '98E': { left: '94%', top: '28%' },
-                          '27EC': { left: '68%', top: '20%' },
-                          '61EC': { left: '74%', top: '42%' },
-                          '91EC': { left: '90%', top: '38%' },
-                          '11EC': { left: '74%', top: '16%' },
-                          '21EC': { left: '86%', top: '24%' },
-                          '39EC': { left: '70%', top: '38%' },
-                          '66EC': { left: '92%', top: '18%' },
-                          '82EC': { left: '86%', top: '44%' },
-                          '8SW': { left: '28%', top: '74%' },
-                          '22SW': { left: '34%', top: '84%' },
-                          '14SW': { left: '20%', top: '66%' },
-                          '52SW': { left: '24%', top: '80%' },
-                          '12SW': { left: '16%', top: '76%' },
-                          '79SW': { left: '38%', top: '72%' },
-                          '98SW': { left: '30%', top: '88%' },
-                          '54SW': { left: '28%', top: '82%' },
-                          '88SE': { left: '80%', top: '76%' }
-                        };
-
-                        let pos = null;
+                        // Tọa độ % phân vùng địa lý: Đọc trực tiếp từ n.map_coords của chính vụ án đó
+                        let pos = { left: '50%', top: '50%' };
                         if (n.map_coords?.left && n.map_coords?.top) {
                           pos = { left: n.map_coords.left, top: n.map_coords.top };
                         } else if (n.map_coords?.x !== undefined && n.map_coords?.y !== undefined) {
@@ -1366,13 +1314,8 @@ function App() {
                             left: `${((n.map_coords.x / 860) * 100).toFixed(2)}%`,
                             top: `${((n.map_coords.y / 570) * 100).toFixed(2)}%`
                           };
-                        } else if (coordsMapFallback[n.id]) {
-                          pos = coordsMapFallback[n.id];
-                        } else {
-                          let hash = 0;
-                          for (let i = 0; i < n.id.length; i++) hash = n.id.charCodeAt(i) + ((hash << 5) - hash);
-                          pos = { left: `${15 + Math.abs(hash % 70)}%`, top: `${15 + Math.abs((hash >> 3) % 70)}%` };
                         }
+
                         const bareNumber = n.id.replace(/(NW|SW|EC|WC|SE|E)$/i, '');
 
                         return (
