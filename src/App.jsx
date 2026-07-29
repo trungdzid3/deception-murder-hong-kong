@@ -1251,10 +1251,10 @@ function App() {
                         </div>
                       </div>
 
-                      {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT NGAY DƯỚI BẢNG MANH MỐI GIÁ TRỊ */}
+                      {/* NÚT TRẢ LỜI CÂU HỎI PHÁ ÁN - ĐẶT NĂM DƯỚI BẢNG MANH MỐI GIÁ TRỊ VỚI KHOẢNG CÁCH THOẢI MÁI */}
                       <button 
                         onClick={() => handleSherlockNextPhase('SHERLOCK_QUIZ')}
-                        className="btn btn-gold-draw w-full font-black tracking-wider shadow-lg flex items-center justify-center gap-2 py-3 text-sm rounded-xl"
+                        className="btn btn-gold-draw w-full font-black tracking-wider shadow-lg flex items-center justify-center gap-2 py-3 text-sm rounded-xl mt-6"
                       >
                         <Trophy size={18} /> TRẢ LỜI CÂU HỎI PHÁ ÁN <ArrowRight size={18} />
                       </button>
@@ -1301,7 +1301,7 @@ function App() {
                               <h4 className="font-extrabold text-amber-300 text-xs uppercase flex items-center gap-1.5">
                                 <Skull size={14} /> Manh mối đầu tiên phát hiện tại hiện trường:
                               </h4>
-                              <ul className="sherlock-clue-list space-y-2">
+                               <ul className="sherlock-clue-list space-y-1.5">
                                 {activeSherlockCase.intro.initial_clues.map((clue, i) => {
                                   const isObj = typeof clue === 'object' && clue !== null;
                                   const title = isObj ? clue.title : clue;
@@ -1310,18 +1310,11 @@ function App() {
                                     <li 
                                       key={i} 
                                       onClick={() => { if (detail) setSherlockSelectedClueModal(clue); }}
-                                      className={`sherlock-clue-item p-2 rounded-lg transition-all ${detail ? 'cursor-pointer hover:bg-amber-500/15 border border-amber-500/20 bg-amber-950/30' : ''}`}
+                                      className="sherlock-clue-item group cursor-pointer hover:text-amber-300 transition-colors py-1 px-2 rounded-lg hover:bg-amber-500/10 flex items-center gap-2"
+                                      title="Bấm vào dòng này để mở xem tài liệu"
                                     >
-                                      <span className="sherlock-clue-bullet">•</span>
-                                      <div className="flex-1 flex items-center justify-between gap-2">
-                                        <span className="font-bold text-xs text-amber-200">{title}</span>
-                                        {detail && (
-                                          <span className="text-[0.65rem] font-extrabold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/40 shrink-0 flex items-center gap-1">
-                                            <span>Xem văn bản</span>
-                                            <ArrowRight size={10} />
-                                          </span>
-                                        )}
-                                      </div>
+                                      <Search size={14} className="text-amber-400 shrink-0 group-hover:scale-110 transition-transform" />
+                                      <span className="font-semibold text-xs md:text-sm text-slate-200 group-hover:text-amber-200 group-hover:underline flex-1">{title}</span>
                                     </li>
                                   );
                                 })}
