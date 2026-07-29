@@ -2908,7 +2908,10 @@ function App() {
               </div>
 
               {/* CHÍNH VĂN NỘI DUNG VĂN BẢN NGUYÊN VĂN */}
-              <div className="text-xs md:text-sm text-amber-950 leading-relaxed whitespace-pre-wrap font-medium">
+              <div 
+                className="text-xs md:text-sm text-amber-950 font-mono"
+                style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: '1.8' }}
+              >
                 {sherlockSelectedClueModal.detail}
               </div>
             </div>

@@ -15,9 +15,6 @@
 /* PERFORMANCE OPTIMIZATION: DISABLE ALL HEAVY ANIMATIONS AND FILTERS */
 *, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-sans);
   animation: none !important;
   transition: none !important;
   backdrop-filter: none !important;
