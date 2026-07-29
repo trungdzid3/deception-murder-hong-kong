@@ -1361,7 +1361,7 @@ function App() {
                       />
 
                       {/* GHIM CÁC CON SỐ NGUYÊN BẢN TRÊN BẢN ĐỒ CHUẨN ĐỊA LÝ HOÀN TOÀN GIỐNG BẢN BACKUP */}
-                      {Object.values(activeSherlockCase?.nodes || {}).map((n) => {
+                      {Object.values(activeSherlockCase?.nodes || {}).filter(n => n.type !== 'decoy').map((n) => {
                         const isVisited = roomState.visitedNodes?.includes(n.id);
                         
                         // Tọa độ % phân vùng địa lý chuẩn 100% trên bản đồ Holmes London

@@ -260,8 +260,8 @@ export const SHERLOCK_CASE_5 = {
       "content": "Phòng triển lãm tranh nghệ thuật yên tĩnh, không có manh mối nào.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
-    "39EC_decoy": {
-      "id": "39EC_decoy",
+    "40EC": {
+      "id": "40EC",
       "title": "Ngân hàng Barings",
       "area": "EC",
       "type": "decoy",
@@ -276,8 +276,8 @@ export const SHERLOCK_CASE_5 = {
       "content": "Cửa hàng bán đồng hồ quả lắc bình thường, không có manh mối khả nghi.",
       "unlocks": { "nodes": [], "evidence_items": [] }
     },
-    "54SW_decoy": {
-      "id": "54SW_decoy",
+    "55SW": {
+      "id": "55SW",
       "title": "Hội trường Victoria Memorial",
       "area": "SW",
       "type": "decoy",
