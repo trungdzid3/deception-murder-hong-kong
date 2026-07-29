@@ -1,6 +1,6 @@
 export const SHERLOCK_CASE_6 = {
   "case_id": "sherlock_case_6",
-  "title": "Vụ án 6: Bản Thiết Kế Bị Đánh Cắp (The Stolen Blueprint)",
+  "title": "Vụ Án 1: Bản Thiết Kế Bị Đánh Cắp (The Stolen Blueprint)",
   "author": "Sherlock Holmes Fan Case (Nhập môn nâng cao)",
   "setting_date": "Thứ Ba, ngày 14 tháng 10 năm 1890",
   "holmes_clues": 3,

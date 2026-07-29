@@ -1,6 +1,6 @@
 export const SHERLOCK_CASE_4 = {
   "case_id": "sherlock_case_4",
-  "title": "Vụ án 4: Lời Nguyền Của Xác Ướp (The Mummy's Curse)",
+  "title": "Vụ Án 5: Lời Nguyền Của Xác Ướp (The Mummy's Curse)",
   "author": "Ystari & Raymond Edwards",
   "setting_date": "Ngày 11 tháng 4 năm 1890",
   "intro": {

@@ -1,6 +1,6 @@
 export const SHERLOCK_CASE_5 = {
   "case_id": "sherlock_case_5",
-  "title": "Vụ án 5: Cán Cân Chao Đảo (The Case of the Unsettled Balance)",
+  "title": "Vụ Án 6: Cán Cân Chao Đảo (The Case of the Unsettled Balance)",
   "author": "Ilias Monemvasiotis",
   "setting_date": "Ngày 11 tháng 6 năm 1888",
   "intro": {
